@@ -1,0 +1,39 @@
+//
+//  WWCommon.pch
+//  Mr.Time
+//
+//  Created by 王伟伟 on 2017/4/12.
+//  Copyright © 2017年 Offape. All rights reserved.
+//
+
+#ifndef WWCommon_pch
+#define WWCommon_pch
+
+///头文件
+#import "HomeViewController.h"
+#import "UserViewController.h"
+#import "LoginViewController.h"
+#import "CollectViewController.h"
+#import "BookViewController.h"
+#import "RDVTabBarController.h"
+
+#define WWUserDefault [NSUserDefaults standardUserDefaults]
+#define screenRate ( KWidth / 375.0)
+#define screenRate6P (KWidth  / 414.0)
+#define KWidth [UIScreen mainScreen].bounds.size.width
+#define KHeight [UIScreen mainScreen].bounds.size.height
+
+#define Main_Color [UIColor colorWithRed:(3)/255.0 green:(160)/255.0 blue:(235)/255.0 alpha:1.0]
+#define Main2_Color [UIColor colorWithRed:(135)/255.0 green:(202)/255.0 blue:(231)/255.0 alpha:1.0]
+#define VTColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define Text_Color [UIColor colorWithRed:(51)/255.0 green:(71)/255.0 blue:(113)/255.0 alpha:1.0]
+#define BackGround_Color [UIColor colorWithRed:(235)/255.0 green:(235)/255.0 blue:(241)/255.0 alpha:1.0]
+///字体
+#define kFont_Bold (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Semibold" : @"AppleSDGothicNeo-Bold")
+#define kFont_Light (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Light" :  @"AppleSDGothicNeo-Light")
+#define kFont_Thin (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Thin" : @"AppleSDGothicNeo-Thin")
+#define kFont_Regular (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Regular" : @"AppleSDGothicNeo-Regular")
+#define kFont_Medium (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Medium" : @"AppleSDGothicNeo-Medium")
+#define kFont_SemiBold (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Semibold" : @"AppleSDGothicNeo-SemiBold")
+#define kFont_Avenir (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"Avenir-Medium" : @"PingFangSC-Regular")
+#endif /* WWCommon_pch */

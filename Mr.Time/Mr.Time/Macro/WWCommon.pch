@@ -16,6 +16,7 @@
 #import "CollectViewController.h"
 #import "BookViewController.h"
 #import "RDVTabBarController.h"
+#import "SDAutoLayout.h"
 
 #define WWUserDefault [NSUserDefaults standardUserDefaults]
 #define screenRate ( KWidth / 375.0)
@@ -28,6 +29,10 @@
 #define VTColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define Text_Color [UIColor colorWithRed:(51)/255.0 green:(71)/255.0 blue:(113)/255.0 alpha:1.0]
 #define BackGround_Color [UIColor colorWithRed:(235)/255.0 green:(235)/255.0 blue:(241)/255.0 alpha:1.0]
+//*************随机色*************//
+#define RandomColor [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1]
+//*************十六进制颜色*************//
+#define RGBCOLOR(color) [UIColor colorWithRed:(((color)>>16)&0xff)*1.0/255.0 green:(((color)>>8)&0xff)*1.0/255.0 blue:((color)&0xff)*1.0/255.0 alpha:1.0]
 ///字体
 #define kFont_Bold (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Semibold" : @"AppleSDGothicNeo-Bold")
 #define kFont_Light (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Light" :  @"AppleSDGothicNeo-Light")

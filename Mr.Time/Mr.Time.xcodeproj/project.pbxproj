@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E0E38A3D0D61B3B40177530 /* Pods_Mr_Time.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2811DD938DB0501B1D8023CD /* Pods_Mr_Time.framework */; };
+		C0A69F2F1EE5557500DB4678 /* WWSimpleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */; };
 		FF340B021E9E03BE00B4DB39 /* WWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B011E9E03BE00B4DB39 /* WWAppDelegate.m */; };
 		FF340B081E9E152500B4DB39 /* WWAppDelegate+RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B071E9E152500B4DB39 /* WWAppDelegate+RootController.m */; };
 		FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B0A1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m */; };
@@ -66,6 +67,8 @@
 		2811DD938DB0501B1D8023CD /* Pods_Mr_Time.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mr_Time.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3E3194488AB383DFA6D83F /* Pods-Mr.Time.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr.Time.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr.Time/Pods-Mr.Time.release.xcconfig"; sourceTree = "<group>"; };
 		A11F728AAD1C437A121BCF73 /* Pods-Mr.Time.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr.Time.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mr.Time/Pods-Mr.Time.debug.xcconfig"; sourceTree = "<group>"; };
+		C0A69F2D1EE5557500DB4678 /* WWSimpleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWSimpleVC.h; sourceTree = "<group>"; };
+		C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWSimpleVC.m; sourceTree = "<group>"; };
 		FF340B001E9E03BE00B4DB39 /* WWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWAppDelegate.h; sourceTree = "<group>"; };
 		FF340B011E9E03BE00B4DB39 /* WWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWAppDelegate.m; sourceTree = "<group>"; };
 		FF340B061E9E152500B4DB39 /* WWAppDelegate+RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WWAppDelegate+RootController.h"; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 			children = (
 				FF340B181E9E1FA200B4DB39 /* HomeViewController.h */,
 				FF340B191E9E1FA200B4DB39 /* HomeViewController.m */,
+				C0A69F2D1EE5557500DB4678 /* WWSimpleVC.h */,
+				C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -492,7 +497,7 @@
 				TargetAttributes = {
 					FF61E0981E9BBE76000E68F0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2CSYYV5Z4H;
+						DevelopmentTeam = WQUPS6XKQ9;
 						ProvisioningStyle = Automatic;
 					};
 					FF61E0B11E9BBE76000E68F0 = {
@@ -632,6 +637,7 @@
 				FF61E09E1E9BBE76000E68F0 /* main.m in Sources */,
 				FF340B2C1E9E3C5200B4DB39 /* VTGeneralTool.m in Sources */,
 				FF340B081E9E152500B4DB39 /* WWAppDelegate+RootController.m in Sources */,
+				C0A69F2F1EE5557500DB4678 /* WWSimpleVC.m in Sources */,
 				FF340B261E9E200000B4DB39 /* BookViewController.m in Sources */,
 				FF340B201E9E1FDC00B4DB39 /* LoginViewController.m in Sources */,
 				FF340B1D1E9E1FC600B4DB39 /* UserViewController.m in Sources */,
@@ -778,7 +784,7 @@
 			baseConfigurationReference = A11F728AAD1C437A121BCF73 /* Pods-Mr.Time.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
+				DEVELOPMENT_TEAM = WQUPS6XKQ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -805,7 +811,7 @@
 			baseConfigurationReference = 6A3E3194488AB383DFA6D83F /* Pods-Mr.Time.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
+				DEVELOPMENT_TEAM = WQUPS6XKQ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

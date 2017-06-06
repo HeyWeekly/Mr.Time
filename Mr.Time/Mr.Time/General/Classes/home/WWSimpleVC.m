@@ -1,23 +1,24 @@
 //
-//  HomeViewController.m
+//  WWSimpleVC.m
 //  Mr.Time
 //
-//  Created by 王伟伟 on 2017/4/12.
+//  Created by steaest on 2017/6/5.
 //  Copyright © 2017年 Offape. All rights reserved.
 //
 
-#import "HomeViewController.h"
 #import "WWSimpleVC.h"
-@interface HomeViewController ()
+
+@interface WWSimpleVC ()
 @property (nonatomic,strong) UILabel *tipsLabel;
 @property (nonatomic,strong) UILabel *tipsLabel2;
 @property (nonatomic,strong) UILabel *navLabel;
 @property (nonatomic,strong) UILabel *yearsNum;
 @property (nonatomic,strong) UILabel *yearLbael;
-@property (nonatomic, strong) UIButton *dayLabel;
+@property (nonatomic,strong) UILabel *nameLbael;
+@property (nonatomic,strong) UILabel *dayLbael;
 @end
 
-@implementation HomeViewController
+@implementation WWSimpleVC
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -32,13 +33,18 @@
 - (void)setupSubViews {
     [self.view addSubview:self.navLabel];
     [self.navLabel sizeToFit];
+    self.navLabel.top = 15*screenRate;
     self.navLabel.centerX = self.view.centerX;
-    self.navLabel.top = 30*screenRate;
     [self.navLabel sizeToFit];
+    [self.view addSubview:self.nameLbael];
+    [self.nameLbael sizeToFit];
+    self.nameLbael.centerX = self.view.centerX;
+    self.nameLbael.top = self.navLabel.bottom+8*screenRate;
+    [self.nameLbael sizeToFit];
     [self.view addSubview:self.yearsNum];
     [self.yearsNum sizeToFit];
     self.yearsNum.centerX = self.view.centerX;
-    self.yearsNum.top = self.navLabel.bottom+26*screenRate;
+    self.yearsNum.top = 81*screenRate;
     [self.yearsNum sizeToFit];
     [self.view addSubview:self.yearLbael];
     [self.yearLbael sizeToFit];
@@ -55,9 +61,11 @@
     self.tipsLabel2.centerX = self.view.centerX;
     self.tipsLabel2.top = self.tipsLabel.bottom;
     [self.tipsLabel2 sizeToFit];
-    [self.view addSubview:self.dayLabel];
-    self.dayLabel.frame = CGRectMake(100, 100, 100,100);
-    
+    [self.view addSubview:self.dayLbael];
+    [self.dayLbael sizeToFit];
+    self.dayLbael.centerX = self.view.centerX;
+    self.dayLbael.top = self.tipsLabel2.bottom+20;
+    [self.dayLbael sizeToFit];
     int totalColumns = 10;
     CGFloat cellW = 12*screenRate;
     CGFloat cellH = 12*screenRate;
@@ -73,8 +81,8 @@
         CGFloat cellX = 44*screenRate + col * (cellW + margin);
         CGFloat cellY = self.yearLbael.bottom+30*screenRate+row * (cellH + margin);
         cellView.frame = CGRectMake(cellX, cellY, cellW, cellH);
-        // 添加到view 中  
-        [self.view addSubview:cellView];  
+        // 添加到view 中
+        [self.view addSubview:cellView];
     }
     
     CGFloat cellW2 = 22*screenRate;
@@ -146,7 +154,7 @@
 - (UILabel *)yearsNum {
     if (_yearsNum == nil) {
         _yearsNum = [[UILabel alloc]init];
-        _yearsNum.text = @"26";
+        _yearsNum.text = @"23";
         _yearsNum.textAlignment = NSTextAlignmentCenter;
         _yearsNum.font = [UIFont fontWithName:@"DINAlternate-Bold" size:66*screenRate];
         _yearsNum.textColor = [UIColor whiteColor];
@@ -157,23 +165,33 @@
     }
     return _yearsNum;
 }
-- (UIButton *)dayLabel {
-    if (_dayLabel == nil) {
-        _dayLabel = [[UIButton alloc]init];
-        [_dayLabel setBackgroundColor:[UIColor redColor]];
-        [_dayLabel addTarget:self action:@selector(dsada) forControlEvents:UIControlEventTouchUpInside];
-//        _dayLabel.hidden = YES;
+- (UILabel *)nameLbael {
+    if (_nameLbael == nil) {
+        _nameLbael = [[UILabel alloc]init];
+        _nameLbael.text = @"TDD";
+        _nameLbael.textAlignment = NSTextAlignmentCenter;
+        _nameLbael.font = [UIFont fontWithName:kFont_Medium size:17*screenRate];
+        _nameLbael.textColor = [UIColor whiteColor];
     }
-    return _dayLabel;
+    return _nameLbael;
 }
-- (void)dsada {
-    WWSimpleVC *vc = [[WWSimpleVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+- (UILabel *)dayLbael {
+    if (_dayLbael == nil) {
+        _dayLbael = [[UILabel alloc]init];
+        _dayLbael.text = @"Tips：在这个世界上你已经存在了8,719天";
+        _dayLbael.textAlignment = NSTextAlignmentCenter;
+        _dayLbael.font = [UIFont fontWithName:kFont_Medium size:14*screenRate];
+        _dayLbael.textColor = RGBCOLOR(0x545454);
+    }
+    return _dayLbael;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//    return UIStatusBarStyleLightContent;
+//}
+-(BOOL)prefersStatusBarHidden {
+    return YES;
 }
 @end

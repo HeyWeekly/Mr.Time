@@ -168,7 +168,7 @@
 - (UILabel *)nameLbael {
     if (_nameLbael == nil) {
         _nameLbael = [[UILabel alloc]init];
-        _nameLbael.text = @"TDD";
+        _nameLbael.text = @"乱花渐欲迷人眼";
         _nameLbael.textAlignment = NSTextAlignmentCenter;
         _nameLbael.font = [UIFont fontWithName:kFont_Medium size:17*screenRate];
         _nameLbael.textColor = [UIColor whiteColor];
@@ -178,7 +178,7 @@
 - (UILabel *)dayLbael {
     if (_dayLbael == nil) {
         _dayLbael = [[UILabel alloc]init];
-        _dayLbael.text = @"Tips：在这个世界上你已经存在了8,719天";
+        _dayLbael.text = @"Tips：在这个世界上你已经存在了8728天";
         _dayLbael.textAlignment = NSTextAlignmentCenter;
         _dayLbael.font = [UIFont fontWithName:kFont_Medium size:14*screenRate];
         _dayLbael.textColor = RGBCOLOR(0x545454);

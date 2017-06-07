@@ -29,6 +29,7 @@
 #define VTColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define Text_Color [UIColor colorWithRed:(51)/255.0 green:(71)/255.0 blue:(113)/255.0 alpha:1.0]
 #define BackGround_Color [UIColor colorWithRed:(235)/255.0 green:(235)/255.0 blue:(241)/255.0 alpha:1.0]
+#define viewBackGround_Color [UIColor colorWithRed:(41)/255.0 green:(41)/255.0 blue:(41)/255.0 alpha:1.0]
 //*************随机色*************//
 #define RandomColor [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1]
 //*************十六进制颜色*************//
@@ -41,4 +42,6 @@
 #define kFont_Medium (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Medium" : @"AppleSDGothicNeo-Medium")
 #define kFont_SemiBold (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Semibold" : @"AppleSDGothicNeo-SemiBold")
 #define kFont_Avenir (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"Avenir-Medium" : @"PingFangSC-Regular")
+#define kFont_DINAlternate (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"DINAlternate-Bold" : @"PingFangSC-Regular")
+
 #endif /* WWCommon_pch */

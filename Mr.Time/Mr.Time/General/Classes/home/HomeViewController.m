@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:(41)/255.0 green:(41)/255.0 blue:(41)/255.0 alpha:1.0];
+    self.view.backgroundColor = viewBackGround_Color;
     [self setupSubViews];
     
 }
@@ -148,7 +148,7 @@
         _yearsNum = [[UILabel alloc]init];
         _yearsNum.text = @"26";
         _yearsNum.textAlignment = NSTextAlignmentCenter;
-        _yearsNum.font = [UIFont fontWithName:@"DINAlternate-Bold" size:66*screenRate];
+        _yearsNum.font = [UIFont fontWithName:kFont_DINAlternate size:66*screenRate];
         _yearsNum.textColor = [UIColor whiteColor];
         _yearsNum.layer.shadowColor = [UIColor blackColor].CGColor;
         _yearsNum.layer.shadowOpacity = 0.5;
@@ -162,7 +162,7 @@
         _dayLabel = [[UIButton alloc]init];
         [_dayLabel setBackgroundColor:[UIColor redColor]];
         [_dayLabel addTarget:self action:@selector(dsada) forControlEvents:UIControlEventTouchUpInside];
-//        _dayLabel.hidden = YES;
+        _dayLabel.hidden = YES;
     }
     return _dayLabel;
 }

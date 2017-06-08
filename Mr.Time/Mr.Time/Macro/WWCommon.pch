@@ -17,6 +17,7 @@
 #import "BookViewController.h"
 #import "RDVTabBarController.h"
 #import "SDAutoLayout.h"
+#import "WWNavigationVC.h"
 
 #define WWUserDefault [NSUserDefaults standardUserDefaults]
 #define screenRate ( KWidth / 375.0)

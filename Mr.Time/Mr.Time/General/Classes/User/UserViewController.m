@@ -99,7 +99,7 @@
 #pragma mark - 懒加载
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20*screenRate, self.yearLbael.bottom+25*screenRate, KWidth-40*screenRate, KHeight-self.yearLbael.bottom+25*screenRate)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20*screenRate, self.yearLbael.bottom+25*screenRate, KWidth-40*screenRate, KHeight-self.yearLbael.bottom+25*screenRate-49)];
         _tableView.delegate = self;
         _tableView.dataSource  = self;
         _tableView.backgroundColor = viewBackGround_Color;

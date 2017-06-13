@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - IQKeyboardManager (4.0.9)
   - MJRefresh (3.1.12)
   - RDVTabBarController (1.1.9)
   - SDWebImage (3.8.2):
@@ -24,7 +23,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1)
-  - IQKeyboardManager
   - MJRefresh (~> 3.1.7)
   - RDVTabBarController (~> 1.1.9)
   - SDWebImage (~> 3.8.1)
@@ -32,12 +30,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 66aee2a5e8689b77dda76a44fd86ff1739d29cf3
+PODFILE CHECKSUM: d7858d05b1d109016ce04302f972a6689c8bfc07
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.0.1

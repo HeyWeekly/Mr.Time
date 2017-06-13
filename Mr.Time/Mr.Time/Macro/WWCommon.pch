@@ -18,6 +18,8 @@
 #import "RDVTabBarController.h"
 #import "SDAutoLayout.h"
 #import "WWNavigationVC.h"
+#import "YYText.h"
+#import "WWLabel.h"
 
 #define WWUserDefault [NSUserDefaults standardUserDefaults]
 #define screenRate ( KWidth / 375.0)

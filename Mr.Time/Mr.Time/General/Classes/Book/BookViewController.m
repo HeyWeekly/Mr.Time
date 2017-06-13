@@ -7,30 +7,44 @@
 //
 
 #import "BookViewController.h"
-
-@interface BookViewController ()
+#import "WWCardSlide.h"
+#import "WWMessageVC.h"
+@interface BookViewController ()<WWCardSlideDelegate> {
+    WWCardSlide *_cardSlide;
+}
+@property (nonatomic, strong) WWNavigationVC *nav;
 
 @end
 
 @implementation BookViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor cyanColor];
+    self.view.backgroundColor = viewBackGround_Color;
+    [self.view addSubview:self.nav];
+    _cardSlide = [[WWCardSlide alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
+    _cardSlide.delegate = self;
+    _cardSlide.selectedIndex = 0;
+    [self.view addSubview:_cardSlide];
+}
+#pragma mark - delegate
+- (void)cellWWCardSlideDidSelected {
+    WWMessageVC *vc = [[WWMessageVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+#pragma mark - 懒加载
+- (WWNavigationVC *)nav {
+    if (_nav == nil) {
+        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
+        _nav.backBtn.hidden = YES;
+        _nav.navTitle.text = @"人间指南";
+    }
+    return _nav;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
-*/
-
 @end

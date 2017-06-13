@@ -45,7 +45,7 @@
         _navTitle.textColor = [UIColor whiteColor];
         _navTitle.textAlignment = NSTextAlignmentCenter;
         _navTitle.font = [UIFont fontWithName:kFont_DINAlternate size:20];
-        _navTitle.text = @"时间先生";
+        _navTitle.text = @"时间先生hdsalkhhfsdkajhfla";
     }
     return _navTitle;
 }

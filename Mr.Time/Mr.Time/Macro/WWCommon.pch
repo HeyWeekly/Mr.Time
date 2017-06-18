@@ -18,8 +18,12 @@
 #import "RDVTabBarController.h"
 #import "SDAutoLayout.h"
 #import "WWNavigationVC.h"
-#import "YYText.h"
-#import "WWLabel.h"
+#import "YYFPSLabel.h"
+
+#define WEAK_SELF __weak typeof(self) weakSelf = self
+#define STRONG_SELF if (!weakSelf) return; \
+__strong typeof(weakSelf) strongSelf = weakSelf
+
 
 #define WWUserDefault [NSUserDefaults standardUserDefaults]
 #define screenRate ( KWidth / 375.0)

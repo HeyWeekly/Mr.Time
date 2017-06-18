@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UILabel *nameLbael;
 @property (nonatomic, strong) UILabel *yearLbael;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @end
 
 @implementation UserViewController
@@ -32,6 +33,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
     [self setupViews];
+    _fpsLabel = [YYFPSLabel new];
+    [_fpsLabel sizeToFit];
+    _fpsLabel.bottom = KHeight - 100;
+    _fpsLabel.left = 12;
+    _fpsLabel.alpha = 1;
+    [self.view addSubview:_fpsLabel];
 }
 - (void)setupViews {
     [self.view addSubview:self.headImage];

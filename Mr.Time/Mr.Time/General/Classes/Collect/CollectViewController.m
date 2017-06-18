@@ -7,7 +7,8 @@
 //
 
 #import "CollectViewController.h"
-
+#import <YYText/YYText.h>
+#import "WWLabel.h"
 @interface HeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) UIImageView *backImage;
 @property (nonatomic, strong,readwrite) YYLabel *toYearLabel;
@@ -26,6 +27,7 @@
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
+@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @end
 
 @implementation CollectViewController
@@ -34,6 +36,12 @@
     self.view.backgroundColor = viewBackGround_Color;
     [self setupViews];
     [self clickExtraLine:self.tableView];
+    _fpsLabel = [YYFPSLabel new];
+    [_fpsLabel sizeToFit];
+    _fpsLabel.bottom = KHeight - 100;
+    _fpsLabel.left = 12;
+    _fpsLabel.alpha = 1;
+    [self.view addSubview:_fpsLabel];
 }
 - (void)setupViews {
     [self.view addSubview:self.nav];

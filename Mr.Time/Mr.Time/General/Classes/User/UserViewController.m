@@ -11,7 +11,9 @@
 #import "QQEngine.h"
 #import "MYCollectionView.h"
 
-@interface userPublishCell : UITableViewCell
+#define CELL_IDENTITY @"myCell"
+
+@interface userPublishCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *yearsImage;
 @property (nonatomic, strong) UIImageView *likeImage;
 @property (nonatomic, strong) UILabel *likeNum;
@@ -20,14 +22,13 @@
 @end
 
 
-@interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,MYCollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property(nonatomic, strong) UIButton  *notice;
 @property(nonatomic, strong) UIButton  *setting;
 @property(nonatomic, strong) UIButton  *backheadImage;
 @property(nonatomic, strong) UIImageView  *headImage;
 @property (nonatomic, strong) UILabel *nameLbael;
 @property (nonatomic, strong) UILabel *yearLbael;
-@property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,strong) MYCollectionView *myCollectionView;
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @end
@@ -36,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self setupViews];
     _fpsLabel = [YYFPSLabel new];
     [_fpsLabel sizeToFit];
@@ -68,7 +70,7 @@
     [self.yearLbael sizeToFit];
     self.yearLbael.centerX = self.view.centerX;
     self.yearLbael.top = self.nameLbael.bottom+20;
-    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.myCollectionView];
 }
 
 #pragma mark - target
@@ -86,39 +88,34 @@
 }
 
 #pragma mark - tableView
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    userPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userPublishCell"];
-    if (!cell) {
-        cell = [[userPublishCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userPublishCell"];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    userPublishCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CELL_IDENTITY forIndexPath:indexPath];
+    
+    NSString *rowText = [NSString stringWithFormat:@"%zd",indexPath.row];
+    
+//    [cell configureData:rowText indexPath:indexPath];
+    
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 220*screenRate;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
+{
+    return [[QQEngine sharedInstance] getCardCount];
 }
 
 #pragma mark - 懒加载
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20*screenRate, self.yearLbael.bottom+25*screenRate, KWidth-40*screenRate, KHeight-self.yearLbael.bottom+25*screenRate-49)];
-        _tableView.delegate = self;
-        _tableView.dataSource  = self;
-        _tableView.backgroundColor = viewBackGround_Color;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.showsHorizontalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+- (MYCollectionView *)myCollectionView {
+    if (_myCollectionView == nil) {
+        _myCollectionView = [[MYCollectionView alloc]initWithFrame:CGRectMake(20*screenRate, self.yearLbael.bottom+25*screenRate, KWidth-40*screenRate, KHeight-self.yearLbael.bottom+25*screenRate-49)];
+        _myCollectionView.backgroundColor = viewBackGround_Color;
+        [_myCollectionView.collectionView registerClass:[userPublishCell class] forCellWithReuseIdentifier:CELL_IDENTITY];
+        _myCollectionView.delegate = self;
+        _myCollectionView.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _myCollectionView.collectionView.delegate = self;
+        _myCollectionView.collectionView.dataSource = self;
     }
-    return _tableView;
+    return _myCollectionView;
 }
 - (UILabel *)yearLbael {
     if (_yearLbael == nil) {
@@ -203,8 +200,8 @@
 
 
 @implementation userPublishCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
         self.backgroundColor = viewBackGround_Color;
         [self setupViews];
     }

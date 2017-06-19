@@ -1124,7 +1124,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.----.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/steaest/Desktop/Mr.Time/Mr.Time/Mr.Time/Mr.Time-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1159,7 +1159,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.----.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/steaest/Desktop/Mr.Time/Mr.Time/Mr.Time/Mr.Time-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};

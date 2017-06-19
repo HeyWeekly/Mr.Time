@@ -7,6 +7,9 @@
 //
 
 #import "UserViewController.h"
+#import "QQLineFlowLayout.h"
+#import "QQEngine.h"
+#import "MYCollectionView.h"
 
 @interface userPublishCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *yearsImage;
@@ -25,6 +28,7 @@
 @property (nonatomic, strong) UILabel *nameLbael;
 @property (nonatomic, strong) UILabel *yearLbael;
 @property (nonatomic, strong) UITableView *tableView;
+@property(nonatomic,strong) MYCollectionView *myCollectionView;
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @end
 

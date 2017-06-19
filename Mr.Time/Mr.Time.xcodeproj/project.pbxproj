@@ -51,6 +51,10 @@
 		C0D48A821EF680F000B92549 /* homePublish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D48A801EF680F000B92549 /* homePublish@3x.png */; };
 		C0D48A831EF680F000B92549 /* homePublish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D48A811EF680F000B92549 /* homePublish@2x.png */; };
 		C0D48A871EF688DA00B92549 /* WWPublishVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A861EF688DA00B92549 /* WWPublishVC.m */; };
+		C0D48A941EF7B97F00B92549 /* MYCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A8D1EF7B97F00B92549 /* MYCollectionView.m */; };
+		C0D48A951EF7B97F00B92549 /* QQEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A8F1EF7B97F00B92549 /* QQEngine.m */; };
+		C0D48A961EF7B97F00B92549 /* QQLineFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A911EF7B97F00B92549 /* QQLineFlowLayout.m */; };
+		C0D48A971EF7B97F00B92549 /* UIScreenEx.mm in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A931EF7B97F00B92549 /* UIScreenEx.mm */; };
 		FF340B021E9E03BE00B4DB39 /* WWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B011E9E03BE00B4DB39 /* WWAppDelegate.m */; };
 		FF340B081E9E152500B4DB39 /* WWAppDelegate+RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B071E9E152500B4DB39 /* WWAppDelegate+RootController.m */; };
 		FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B0A1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m */; };
@@ -173,6 +177,14 @@
 		C0D48A811EF680F000B92549 /* homePublish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homePublish@2x.png"; sourceTree = "<group>"; };
 		C0D48A851EF688DA00B92549 /* WWPublishVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWPublishVC.h; sourceTree = "<group>"; };
 		C0D48A861EF688DA00B92549 /* WWPublishVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWPublishVC.m; sourceTree = "<group>"; };
+		C0D48A8C1EF7B97F00B92549 /* MYCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCollectionView.h; sourceTree = "<group>"; };
+		C0D48A8D1EF7B97F00B92549 /* MYCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYCollectionView.m; sourceTree = "<group>"; };
+		C0D48A8E1EF7B97F00B92549 /* QQEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQEngine.h; sourceTree = "<group>"; };
+		C0D48A8F1EF7B97F00B92549 /* QQEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQEngine.m; sourceTree = "<group>"; };
+		C0D48A901EF7B97F00B92549 /* QQLineFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQLineFlowLayout.h; sourceTree = "<group>"; };
+		C0D48A911EF7B97F00B92549 /* QQLineFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQLineFlowLayout.m; sourceTree = "<group>"; };
+		C0D48A921EF7B97F00B92549 /* UIScreenEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScreenEx.h; sourceTree = "<group>"; };
+		C0D48A931EF7B97F00B92549 /* UIScreenEx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIScreenEx.mm; sourceTree = "<group>"; };
 		FF340B001E9E03BE00B4DB39 /* WWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWAppDelegate.h; sourceTree = "<group>"; };
 		FF340B011E9E03BE00B4DB39 /* WWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWAppDelegate.m; sourceTree = "<group>"; };
 		FF340B061E9E152500B4DB39 /* WWAppDelegate+RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WWAppDelegate+RootController.h"; sourceTree = "<group>"; };
@@ -408,6 +420,21 @@
 			path = pubLisHVC;
 			sourceTree = "<group>";
 		};
+		C0D48A8B1EF7B5FC00B92549 /* CardCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				C0D48A8C1EF7B97F00B92549 /* MYCollectionView.h */,
+				C0D48A8D1EF7B97F00B92549 /* MYCollectionView.m */,
+				C0D48A8E1EF7B97F00B92549 /* QQEngine.h */,
+				C0D48A8F1EF7B97F00B92549 /* QQEngine.m */,
+				C0D48A901EF7B97F00B92549 /* QQLineFlowLayout.h */,
+				C0D48A911EF7B97F00B92549 /* QQLineFlowLayout.m */,
+				C0D48A921EF7B97F00B92549 /* UIScreenEx.h */,
+				C0D48A931EF7B97F00B92549 /* UIScreenEx.mm */,
+			);
+			path = CardCollectionView;
+			sourceTree = "<group>";
+		};
 		E7C8D3B30187A7682DEF85CA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +635,7 @@
 		FF61E0D41E9BC061000E68F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				C0D48A8B1EF7B5FC00B92549 /* CardCollectionView */,
 				C0D48A251EF67EBC00B92549 /* GCD */,
 				C05940321EF1425A002751FE /* YYFPSLabel */,
 				FFBDCCC31EE52BFF00B3AE23 /* SDAutoLayout */,
@@ -899,6 +927,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFBDCCC91EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
+				C0D48A961EF7B97F00B92549 /* QQLineFlowLayout.m in Sources */,
 				FF340B131E9E19FE00B4DB39 /* WWRootViewController.m in Sources */,
 				C05940171EEF85FB002751FE /* WWCardSlideCell.m in Sources */,
 				C05940141EEF85A8002751FE /* WWCardSlideLayout.m in Sources */,
@@ -917,6 +946,8 @@
 				C0A69F2F1EE5557500DB4678 /* WWSimpleVC.m in Sources */,
 				FF340B261E9E200000B4DB39 /* BookViewController.m in Sources */,
 				C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */,
+				C0D48A971EF7B97F00B92549 /* UIScreenEx.mm in Sources */,
+				C0D48A951EF7B97F00B92549 /* QQEngine.m in Sources */,
 				FF340B1D1E9E1FC600B4DB39 /* UserViewController.m in Sources */,
 				FF340B231E9E1FF000B4DB39 /* CollectViewController.m in Sources */,
 				FF340B1A1E9E1FA200B4DB39 /* HomeViewController.m in Sources */,
@@ -924,6 +955,7 @@
 				FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */,
 				C05940381EF1425A002751FE /* YYWeakProxy.m in Sources */,
 				C0D48A321EF67EBC00B92549 /* GCDTimer.m in Sources */,
+				C0D48A941EF7B97F00B92549 /* MYCollectionView.m in Sources */,
 				C05940091EEA9659002751FE /* LoginViewController.m in Sources */,
 				FFBDCCCA1EE52BFF00B3AE23 /* UIView+SDAutoLayout.m in Sources */,
 				C0A69F5F1EE92DEA00DB4678 /* WWNavigationVC.m in Sources */,

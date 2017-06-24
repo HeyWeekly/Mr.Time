@@ -14,8 +14,7 @@
 
 @implementation QQEngine
 
-+(instancetype) sharedInstance
-{
++(instancetype) sharedInstance {
     static QQEngine* instance = nil;
     
     static dispatch_once_t onceToken;
@@ -26,21 +25,18 @@
     return instance;
 }
 
--(instancetype)init
-{
+-(instancetype)init {
     if(self = [super init]){
         self.cardCount = REAL_CELL_COUNT;//顶部多2张，底部多2张
     }
     return self;
 }
 
--(NSUInteger) getCardCount
-{
+-(NSUInteger) getCardCount {
     return self.cardCount;
 }
 
--(BOOL) isAlphaViewrow:(NSUInteger) row
-{
+-(BOOL) isAlphaViewrow:(NSUInteger) row {
 //    if( (row == self.cardCount - 1) || row == 0 || row == 1)
 //            return YES;
     

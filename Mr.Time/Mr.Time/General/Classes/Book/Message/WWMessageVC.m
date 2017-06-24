@@ -95,9 +95,6 @@
     }
     return _nav;
 }
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

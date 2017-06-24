@@ -160,7 +160,7 @@
 
 #pragma mark - 点击事件
 - (void)publishBtnClick {
-    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:self.yearsNum.text.integerValue];
+    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:self.yearsNum.text.integerValue andIsPublish:YES];
     [self.navigationController pushViewController:publishVC animated:YES];
 }
 
@@ -219,8 +219,5 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
 }
 @end

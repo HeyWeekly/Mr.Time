@@ -150,9 +150,6 @@
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
 }
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

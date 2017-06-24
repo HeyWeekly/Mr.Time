@@ -9,5 +9,5 @@
 #import "WWRootViewController.h"
 
 @interface WWPublishVC : WWRootViewController
-- (instancetype)initWithYear:(NSInteger )years;
+- (instancetype)initWithYear:(NSInteger )years andIsPublish:(BOOL)isPublish;
 @end

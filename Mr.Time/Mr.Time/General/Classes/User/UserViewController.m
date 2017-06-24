@@ -93,9 +93,8 @@
     userPublishCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CELL_IDENTITY forIndexPath:indexPath];
     
     NSString *rowText = [NSString stringWithFormat:@"%zd",indexPath.row];
-    
+    cell.likeNum.text = rowText;
 //    [cell configureData:rowText indexPath:indexPath];
-    
     return cell;
 }
 
@@ -189,10 +188,6 @@
     _headImage.layer.mask = shapLayer;
 }
 
-#pragma mark - 状态栏
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

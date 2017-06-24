@@ -12,17 +12,12 @@
 #define TOP 4
 #define CELL_HEIGHT  ((SCREEN_HEIGHT - 64 - 44) / (PAGECOUNT - 1))
 
-
 @interface QQLineFlowLayout()
 @property (nonatomic, strong) NSDictionary *layoutAttributes;
-
-
 @end
 
-
 @implementation QQLineFlowLayout
--(id)init
-{
+-(id)init {
     self = [super init];
     if (self) {
 
@@ -35,15 +30,12 @@
         self.sectionInset = UIEdgeInsetsMake(0, marginLeft, ITEM_SIZE_HEIGHT / 2, marginLeft);
         self.minimumLineSpacing = 0;
         self.minimumInteritemSpacing = 0;
-
     }
     return self;
 }
 
--(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect
-{
+-(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
     [self.arrayVisibleAttributes removeAllObjects];
-
     NSMutableArray* attributes = [NSMutableArray array];
     for (NSInteger i = 0 ; i < self.cellCount; i++) {
         NSIndexPath* indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -52,8 +44,7 @@
     return attributes;
 }
 
--(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)path
-{
+-(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)path {
     CGRect visibleRect;
     visibleRect.origin = self.collectionView.contentOffset;
     visibleRect.size = self.collectionView.bounds.size;
@@ -86,10 +77,10 @@
         attributes.zIndex = path.row;
         attributes.transform3D = transResult;
         
-        if(path.row == 0 || path.row == 1)
-        {
-            attributes.alpha = 0.f;
-        }
+//        if(path.row == 0 || path.row == 1)
+//        {
+//            attributes.alpha = 0.f;
+//        }
         
         [self.arrayVisibleAttributes addObject:attributes];
     }else{
@@ -101,8 +92,7 @@
 
 }
 
-//-(void) setBounce:(UICollectionViewLayoutAttributes*) attribute
-//{
+//-(void) setBounce:(UICollectionViewLayoutAttributes*) attribute {
 //    if(attribute.indexPath.row > PAGECOUNT){
 //        self.collectionView.alwaysBounceVertical = NO;
 //         [self.collectionView setBounces:NO];
@@ -113,29 +103,25 @@
 //}
 
 //获取Y坐标百分比 -3 -2 -1 0 1 2 3 :其中0表示中心点
--(CGFloat) getYCoordinate:(UICollectionViewLayoutAttributes*) attribute
-{
+-(CGFloat) getYCoordinate:(UICollectionViewLayoutAttributes*) attribute {
     CGFloat visibleRegionCenterY = [self getShowVisibleRegionCenter].y;
 
     CGFloat progress = (attribute.center.y - visibleRegionCenterY) / CGRectGetHeight(self.collectionView.bounds) * (PAGECOUNT-1);
 
     return progress;
 }
--(CGPoint) getShowVisibleRegionCenter
-{
+-(CGPoint) getShowVisibleRegionCenter {
     CGFloat x = self.collectionView.contentOffset.x ;
     CGFloat y = self.collectionView.contentOffset.y + CGRectGetHeight(self.collectionView.bounds) / 2.0f;
     return  CGPointMake(x, y);
 }
 
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
-{
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     return YES;
 }
 
 //  自动对齐到网格
-- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
-{
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
     //  proposedContentOffset是没有对齐到网格时停下来的位置
     CGFloat offsetAdjustment = MAXFLOAT;
     CGFloat verticalCenter = proposedContentOffset.y + (ITEM_SIZE_HEIGHT / 2.0);
@@ -163,7 +149,4 @@
     
     return CGPointMake(proposedContentOffset.x, proposedContentOffset.y + offsetAdjustment-ITEM_SIZE_HEIGHT/1.8);
 }
-
-
-
 @end

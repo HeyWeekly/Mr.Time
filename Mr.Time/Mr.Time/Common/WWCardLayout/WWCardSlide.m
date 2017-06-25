@@ -14,7 +14,7 @@
 static float CardWidthScale = 0.8f;
 static float CardHeightScale = 0.7f;
 
-@interface WWCardSlide ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface WWCardSlide ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WWCardSlideCellDelagate> {
     
     UICollectionView *_collectionView;
     
@@ -190,7 +190,12 @@ static float CardHeightScale = 0.7f;
     static NSString* cellId = @"WWCardSlideCell";
     WWCardSlideCell* card = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     card.model = _models[indexPath.row];
+    card.delegate = self;
     return  card;
+}
+
+- (void)bookCellLike {
+    
 }
 
 #pragma mark -

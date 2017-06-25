@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WWCardSlideCellDelagate <NSObject>
+- (void)bookCellLike;
+@end
+
+
 @interface WWCardSlideCell : UICollectionViewCell
 @property (strong,nonatomic) id model;
+@property (nonatomic, weak) id <WWCardSlideCellDelagate> delegate;
 @end

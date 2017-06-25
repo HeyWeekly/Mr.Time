@@ -29,6 +29,10 @@
     self.navTitle.centerX = self.centerX;
     self.navTitle.top = 11;
     [self addSubview:self.navTitle];
+    [self addSubview:self.rightBtn];
+    [self.rightBtn sizeToFit];
+    self.rightBtn.right = KWidth - 20*screenRate;
+    self.rightBtn.top = 14;
 }
 
 #pragma mark - 懒加载
@@ -48,5 +52,13 @@
         _navTitle.text = @"时间先生hdsalkhhfsdkajhfla";
     }
     return _navTitle;
+}
+- (UIButton *)rightBtn {
+    if (_rightBtn == nil) {
+        _rightBtn = [[UIButton alloc]init];
+        [_rightBtn setImage:[UIImage imageNamed:@"navrightBtn"] forState:UIControlStateNormal];
+        _rightBtn.hidden = YES;
+    }
+    return _rightBtn;
 }
 @end

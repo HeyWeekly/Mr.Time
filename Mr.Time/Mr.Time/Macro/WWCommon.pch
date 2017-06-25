@@ -19,6 +19,7 @@
 #import "SDAutoLayout.h"
 #import "WWNavigationVC.h"
 #import "YYFPSLabel.h"
+#import "NSString+WWExtra.h"
 
 #define WEAK_SELF __weak typeof(self) weakSelf = self
 #define STRONG_SELF if (!weakSelf) return; \

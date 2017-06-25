@@ -7,6 +7,8 @@
 //
 
 #import "WWMessageVC.h"
+#import "WWPublishVC.h"
+#import "WWMessageDetailVCViewController.h"
 
 @interface MessageHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) UIImageView *backImage;
@@ -66,8 +68,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 155*screenRate;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)messageto {
+    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:25 andIsPublish:NO];
+    [self.navigationController pushViewController:publishVC animated:YES];
 }
 - (UITableView *)tableView {
     if (!_tableView) {
@@ -91,7 +101,9 @@
         _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
         _nav.backBtn.hidden = NO;
         [_nav.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-        _nav.navTitle.text = @"TO 52 YEARS OLD";
+        _nav.navTitle.text = @"TO 25 YEARS OLD";
+        _nav.rightBtn.hidden = NO;
+        [_nav.rightBtn addTarget:self action:@selector(messageto) forControlEvents:UIControlEventTouchUpInside];
     }
     return _nav;
 }

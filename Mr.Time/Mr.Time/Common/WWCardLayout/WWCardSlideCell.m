@@ -13,14 +13,20 @@
     UIImageView *_imageView;
     UILabel *_textLabel;
     UILabel *_contentLabel;
-    UIImageView *_likeImage;
+    
 }
+@property (nonatomic, strong) UILabel *yearsNum;
+@property (nonatomic, strong) UILabel *yearsLabel;
+@property (nonatomic, strong) UILabel *oldLabel;
+@property (nonatomic, strong) UIButton *likeImage;
+@property (nonatomic, assign) BOOL islike;
 @end
 
 @implementation WWCardSlideCell
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupSubViews];
+        self.islike = NO;
     }
     return self;
 }
@@ -31,25 +37,38 @@
     self.backgroundColor = [UIColor whiteColor];
     
     _imageView = [[UIImageView alloc] init];
-    _imageView.image = [UIImage imageNamed:@"beijingceshi"];
+    _imageView.image = [UIImage imageNamed:@"bookOval"];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.layer.masksToBounds = true;
     [_imageView sizeToFit];
-    _imageView.left = -20;
+    _imageView.left = 0;
     _imageView.top = 0;
-    _imageView.width = 200*screenRate;
-    _imageView.height = 200*screenRate;
     [self addSubview:_imageView];
     
-    _likeImage = [[UIImageView alloc] init];
-    _likeImage.contentMode = UIViewContentModeScaleAspectFit;
-    _likeImage.image = [UIImage imageNamed:@"bookLike"];
-    _likeImage.layer.masksToBounds = true;
+    [self addSubview:self.yearsNum];
+    [self.yearsNum sizeToFit];
+    self.yearsNum.left = 25*screenRate;
+    self.yearsNum.top = 10*screenRate;
+    
+    [self addSubview:self.yearsLabel];
+    [self.yearsLabel sizeToFit];
+    self.yearsLabel.left = self.yearsNum.left;
+    self.yearsLabel.top = self.yearsNum.bottom;
+    
+    [self addSubview:self.oldLabel];
+    [self.oldLabel sizeToFit];
+    self.oldLabel.left = self.yearsNum.left;
+    self.oldLabel.top = self.yearsLabel.bottom;
+    
+    _likeImage = [[UIButton alloc] init];
+    _likeImage.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [_likeImage setImage:[UIImage imageNamed:@"bookLike"] forState:UIControlStateNormal];
     [_likeImage sizeToFit];
     _likeImage.right = self.bounds.size.width - 20*screenRate;
     _likeImage.top = 20*screenRate;
     [self addSubview:_likeImage];
     [_likeImage sizeToFit];
+    [_likeImage addTarget:self action:@selector(likeClick) forControlEvents:UIControlEventTouchUpInside];
     
     _contentLabel = [[UILabel alloc] init];
     _contentLabel.textColor = RGBCOLOR(0x39454E);
@@ -89,9 +108,46 @@
     _textLabel.right = self.bounds.size.width - 25*screenRate;
     [self addSubview:_textLabel];
     [_textLabel sizeToFit];
-    
 }
-
+- (void)likeClick {
+    self.islike = !self.islike;
+    if (self.islike) {
+        [self.likeImage setImage:[UIImage imageNamed:@"boolRedLike"] forState:UIControlStateNormal];
+    }else {
+        [self.likeImage setImage:[UIImage imageNamed:@"bookLike"] forState:UIControlStateNormal];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(bookCellLike)]) {
+        [self.delegate bookCellLike];
+    }
+}
+- (UILabel *)yearsNum {
+    if (_yearsNum == nil) {
+        _yearsNum = [[UILabel alloc]init];
+        _yearsNum.textColor = [UIColor whiteColor];
+        _yearsNum.font = [UIFont fontWithName:kFont_DINAlternate size:72*screenRate];
+        _yearsNum.text = @"25";
+    }
+    return _yearsNum;
+}
+- (UILabel *)yearsLabel {
+    if (_yearsLabel == nil) {
+        _yearsLabel = [[UILabel alloc]init];
+        _yearsLabel.textColor = [UIColor whiteColor];
+        _yearsLabel.font = [UIFont fontWithName:kFont_DINAlternate size:20*screenRate];
+        _yearsLabel.text = @"YEARS";
+    }
+    return _yearsLabel;
+}
+- (UILabel *)oldLabel {
+    if (_oldLabel == nil) {
+        _oldLabel = [[UILabel alloc]init];
+        _oldLabel.textColor = [UIColor whiteColor];
+        _oldLabel.font = [UIFont fontWithName:kFont_DINAlternate size:20*screenRate];
+        _oldLabel.text = @"OLD";
+    }
+    return _oldLabel;
+}
 -(void)setModel:(id)model {
 
 }

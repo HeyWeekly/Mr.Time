@@ -18,12 +18,17 @@
 @property (nonatomic, strong) UIView *sepLine;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, assign) BOOL isPublish;
+@property (nonatomic, assign) BOOL isSelect;
+@property (nonatomic, strong) UITextField *yearsField;
+@property (nonatomic, assign) NSUInteger yearsNum;
 @end
 
 @implementation WWPublishVC
 - (instancetype)initWithYear:(NSInteger )years andIsPublish:(BOOL)isPublish{
     if (self = [super init]) {
         self.isPublish = isPublish;
+        self.isSelect = NO;
+        self.yearsNum = years;
     }
     return self;
 }
@@ -41,7 +46,33 @@
     self.containerView.height = 542*screenRate;
     
     if (self.isPublish) {
+        self.yearsLbale.font = [UIFont fontWithName:kFont_Medium size:19*screenRate];
+        self.yearsLbale.text = @"写给多少岁：";
+        [self.containerView addSubview:self.yearsLbale];
+        [self.yearsLbale sizeToFit];
+        self.yearsLbale.left = 20*screenRate;
+        self.yearsLbale.top = 20*screenRate;
         
+        [self.containerView addSubview:self.yearsField];
+        [self.yearsField sizeToFit];
+        self.yearsField.left = self.yearsLbale.right;
+        self.yearsField.top = self.yearsLbale.top - 2;
+        self.yearsField.width = self.containerView.width - self.yearsLbale.width - 40*screenRate;
+    }else {
+        NSString *str = [NSString stringWithFormat:@"%ld",self.yearsNum];
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"TO %@  YEARS OLD",str]];
+        [text yy_setTextHighlightRange:NSMakeRange(3, str.length)
+                                 color:RGBCOLOR(0x15C2FF)
+                       backgroundColor:[UIColor whiteColor]
+                             tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                                 
+                             }];
+        self.yearsLbale.attributedText = text;
+        self.yearsLbale.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
+        [self.containerView addSubview:self.yearsLbale];
+        [self.yearsLbale sizeToFit];
+        self.yearsLbale.centerX = self.containerView.centerX-20*screenRate;
+        self.yearsLbale.top = 20*screenRate;
     }
     
     
@@ -63,13 +94,30 @@
     [self.mineLook sizeToFit];
     self.mineLook.top = self.sepLine.bottom + 20*screenRate;
     self.mineLook.left = 20*screenRate;
+    self.mineLook.width = 250*screenRate;
     
+    [self.containerView addSubview:self.inputTextView];
+    [self.inputTextView sizeToFit];
+    self.inputTextView.left = 20*screenRate;
+    self.inputTextView.top = 68*screenRate;
+    self.inputTextView.width = self.containerView.width-40*screenRate;
+    self.inputTextView.height = 363*screenRate;
 }
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)publishClick {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)minlookclick {
+    self.isSelect = !self.isSelect;
+    if (self.isSelect == YES) {
+        [_mineLook setImage:[UIImage imageNamed:@"selectLock"] forState:UIControlStateNormal];
+        [_mineLook setTitleColor:RGBCOLOR(0x50616E) forState:UIControlStateNormal];
+    }else {
+        [_mineLook setImage:[UIImage imageNamed:@"normalLock"] forState:UIControlStateNormal];
+        [_mineLook setTitleColor:RGBCOLOR(0xA6B1BA) forState:UIControlStateNormal];
+    }
 }
 #pragma mark - 懒加载
 
@@ -86,7 +134,6 @@
     if (!_yearsLbale) {
         _yearsLbale = [[YYLabel alloc]init];
         _yearsLbale.textColor = RGBCOLOR(0x50616E);
-        _yearsLbale.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
     }
     return _yearsLbale;
 }
@@ -112,18 +159,18 @@
     }
     return _sepLine;
 }
+
 - (UIButton *)mineLook {
     if (!_mineLook) {
         _mineLook = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_mineLook setTitle:@"仅自己可见" forState:UIControlStateSelected];
+        [_mineLook setTitle:@"仅自己可见" forState:UIControlStateNormal];
         _mineLook.titleLabel.font = [UIFont fontWithName:kFont_Medium size:14*screenRate];
-//        _mineLook.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//        [_mineLook setImage:[UIImage imageNamed:@"normalLock"] forState:UIControlStateNormal];
-//        [_mineLook setImage:[UIImage imageNamed:@"selectLock"] forState:UIControlStateHighlighted];
+        _mineLook.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_mineLook setImage:[UIImage imageNamed:@"normalLock"] forState:UIControlStateNormal];
         [_mineLook setTitleColor:RGBCOLOR(0xA6B1BA) forState:UIControlStateNormal];
-        [_mineLook setTitleColor:RGBCOLOR(0x50616E) forState:UIControlStateSelected];
-//        _mineLook.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,0);
-//        _mineLook.titleEdgeInsets = UIEdgeInsetsMake(0,12*screenRate,0,0);
+        _mineLook.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,0);
+        _mineLook.titleEdgeInsets = UIEdgeInsetsMake(0,12*screenRate,0,0);
+        [_mineLook addTarget:self action:@selector(minlookclick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _mineLook;
 }
@@ -143,6 +190,14 @@
         _containerView.layer.cornerRadius = 10;
     }
     return _containerView;
+}
+- (UITextField *)yearsField {
+    if (!_yearsField) {
+        _yearsField = [[UITextField alloc]init];
+        _yearsField.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
+        _yearsField.textColor = RGBCOLOR(0x15C2FF);
+    }
+    return _yearsField;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

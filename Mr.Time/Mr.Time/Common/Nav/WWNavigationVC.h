@@ -11,4 +11,5 @@
 @interface WWNavigationVC : UIView
 @property (nonatomic, strong) UIButton *backBtn;
 @property(nonatomic, strong) UILabel* navTitle;
+@property (nonatomic, strong) UIButton *rightBtn;
 @end

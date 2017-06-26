@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol WWCardSlideCellDelagate <NSObject>
+@optional
 - (void)bookCellLike;
 @end
 

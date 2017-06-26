@@ -10,6 +10,8 @@
 #import "QQLineFlowLayout.h"
 #import "QQEngine.h"
 #import "MYCollectionView.h"
+#import "WWSettingVC.h"
+#import "WWMessageDetailVCViewController.h"
 
 #define CELL_IDENTITY @"myCell"
 
@@ -31,6 +33,14 @@
 @property (nonatomic, strong) UILabel *yearLbael;
 @property(nonatomic,strong) MYCollectionView *myCollectionView;
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
+@property (nonatomic, strong) UILabel *collected;
+@property (nonatomic, strong) UILabel *collectedNum;
+@property (nonatomic, strong) UIView *sepLine1;
+@property (nonatomic, strong) UILabel *recorded;
+@property (nonatomic, strong) UILabel *recordedNum;
+@property (nonatomic, strong) UIView *sepLine2;
+@property (nonatomic, strong) UILabel *likeded;
+@property (nonatomic, strong) UILabel *likedNum;
 @end
 
 @implementation UserViewController
@@ -51,25 +61,70 @@
     [self drawRect];
     [self.view addSubview:self.backheadImage];
     [self.backheadImage sizeToFit];
-    self.backheadImage.centerX = self.view.centerX;
-    self.backheadImage.top = 41*screenRate;
+    self.backheadImage.left = 25*screenRate;
+    self.backheadImage.top = 50*screenRate;
     [self.backheadImage sizeToFit];
-    [self.view addSubview:self.notice];
-    self.notice.left = 58*screenRate;;
-    self.notice.top = 75 *screenRate;
-    [self.notice sizeToFit];
+    
     [self.view addSubview:self.setting];
-    self.setting.left = self.backheadImage.right+56*screenRate;
-    self.setting.top = self.notice.top;
     [self.setting sizeToFit];
+    self.setting.right = self.view.bounds.size.width-25*screenRate;
+    self.setting.top = self.backheadImage.top;
+    
+    [self.view addSubview:self.notice];
+    [self.notice sizeToFit];
+    self.notice.right = self.setting.left - 35*screenRate;;
+    self.notice.top = self.backheadImage.top;
+    
     [self.view addSubview:self.nameLbael];
     [self.nameLbael sizeToFit];
-    self.nameLbael.centerX = self.view.centerX;
-    self.nameLbael.top = self.backheadImage.bottom+10*screenRate;
+    self.nameLbael.left = self.backheadImage.right+22*screenRate;;
+    self.nameLbael.top = self.backheadImage.top;
+    
     [self.view addSubview:self.yearLbael];
     [self.yearLbael sizeToFit];
-    self.yearLbael.centerX = self.view.centerX;
-    self.yearLbael.top = self.nameLbael.bottom+20;
+    self.yearLbael.left = self.nameLbael.left;
+    self.yearLbael.top = self.nameLbael.bottom+8*screenRate;
+    
+    [self.view addSubview:self.collectedNum];
+    [self.collectedNum sizeToFit];
+    self.collectedNum.right = self.view.bounds.size.width - 23*screenRate;
+    self.collectedNum.top = self.setting.bottom+73*screenRate;
+    
+    [self.view addSubview:self.collected];
+    [self.collected sizeToFit];
+    self.collected.right = self.collectedNum.right;
+    self.collected.top = self.collectedNum.bottom+6*screenRate;
+    [self.view addSubview:self.sepLine1];
+    [self.sepLine1 sizeToFit];
+    self.sepLine1.right = self.collected.left - 15*screenRate;
+    self.sepLine1.top = self.collectedNum.top + 3*screenRate;
+    self.sepLine1.width = 1;
+    self.sepLine1.height = 30*screenRate;
+    
+    [self.view addSubview:self.recordedNum];
+    [self.recordedNum sizeToFit];
+    self.recordedNum.right = self.sepLine1.left - 15*screenRate;
+    self.recordedNum.top = self.collectedNum.top;
+    [self.view addSubview:self.recorded];
+    [self.recorded sizeToFit];
+    self.recorded.right = self.recordedNum.right;
+    self.recorded.top = self.recordedNum.bottom+6*screenRate;
+    [self.view addSubview:self.sepLine2];
+    [self.sepLine2 sizeToFit];
+    self.sepLine2.right = self.recorded.left - 15*screenRate;
+    self.sepLine2.top = self.recordedNum.top + 3*screenRate;
+    self.sepLine2.width = 1;
+    self.sepLine2.height = 30*screenRate;
+    
+    [self.view addSubview:self.likedNum];
+    [self.likedNum sizeToFit];
+    self.likedNum.right = self.sepLine2.left - 15*screenRate;
+    self.likedNum.top = self.collectedNum.top;
+    [self.view addSubview:self.likeded];
+    [self.likeded sizeToFit];
+    self.likeded.right = self.likedNum.right;
+    self.likeded.top = self.likedNum.bottom+6*screenRate;
+    
     [self.view addSubview:self.myCollectionView];
 }
 
@@ -86,10 +141,12 @@
     self.headImage.image = image;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
+- (void)setClick {
+    WWSettingVC *vc = [[WWSettingVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - tableView
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     userPublishCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CELL_IDENTITY forIndexPath:indexPath];
     
     NSString *rowText = [NSString stringWithFormat:@"%zd",indexPath.row];
@@ -97,22 +154,25 @@
 //    [cell configureData:rowText indexPath:indexPath];
     return cell;
 }
-
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
-{
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section; {
     return [[QQEngine sharedInstance] getCardCount];
 }
-
+- (void)myCollectionViewdidSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - 懒加载
 - (MYCollectionView *)myCollectionView {
     if (_myCollectionView == nil) {
-        _myCollectionView = [[MYCollectionView alloc]initWithFrame:CGRectMake(20*screenRate, self.yearLbael.bottom+25*screenRate, KWidth-40*screenRate, KHeight-self.yearLbael.bottom+25*screenRate-49)];
+        _myCollectionView = [[MYCollectionView alloc]initWithFrame:CGRectMake(20*screenRate, self.backheadImage.bottom+29*screenRate, KWidth-40*screenRate, KHeight-self.backheadImage.bottom+29*screenRate-49)];
         _myCollectionView.backgroundColor = viewBackGround_Color;
         [_myCollectionView.collectionView registerClass:[userPublishCell class] forCellWithReuseIdentifier:CELL_IDENTITY];
         _myCollectionView.delegate = self;
         _myCollectionView.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _myCollectionView.collectionView.delegate = self;
         _myCollectionView.collectionView.dataSource = self;
+        _myCollectionView.collectionView.showsVerticalScrollIndicator = NO;
+        _myCollectionView.collectionView.showsHorizontalScrollIndicator = NO;
     }
     return _myCollectionView;
 }
@@ -122,7 +182,11 @@
         _yearLbael.text = @"1991.10.18";
         _yearLbael.textAlignment = NSTextAlignmentCenter;
         _yearLbael.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
-        _yearLbael.textColor = [UIColor whiteColor];
+        _yearLbael.textColor = RGBCOLOR(0x545454);
+        _yearLbael.layer.shadowColor = [UIColor blackColor].CGColor;
+        _yearLbael.layer.shadowOpacity = 0.6;
+        _yearLbael.layer.shadowRadius = 10;
+        _yearLbael.layer.shadowOffset = CGSizeMake(0, 3);
     }
     return _yearLbael;
 }
@@ -132,7 +196,7 @@
         _nameLbael.text = @"王二黑";
         _nameLbael.textAlignment = NSTextAlignmentCenter;
         _nameLbael.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
-        _nameLbael.textColor = RGBCOLOR(0x545454);
+        _nameLbael.textColor = [UIColor whiteColor];
     }
     return _nameLbael;
 }
@@ -149,6 +213,7 @@
         _setting = [[UIButton alloc]init];
         [_setting setImage:[UIImage imageNamed:@"Setting icon"] forState:UIControlStateNormal];
         _setting.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_setting addTarget:self action:@selector(setClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _setting;
 }
@@ -163,14 +228,88 @@
 }
 - (UIImageView *)headImage {
     if (_headImage == nil) {
-        _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(144*screenRate, 45*screenRate, 89*screenRate, 89*screenRate)];
+        _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(33*screenRate, 60*screenRate, 55*screenRate, 55*screenRate)];
         _headImage.image = [UIImage imageNamed:@"dasdasdas"];
         _headImage.clipsToBounds = YES;
     }
     return _headImage;
 }
+- (UILabel *)collected {
+    if (!_collected) {
+        _collected = [[UILabel alloc]init];
+        _collected.text = @"已收藏";
+        _collected.textAlignment = NSTextAlignmentLeft;
+        _collected.font = [UIFont fontWithName:kFont_Medium size:10*screenRate];
+        _collected.textColor = RGBCOLOR(0x94A3AD);
+    }
+    return _collected;
+}
+- (UILabel *)collectedNum {
+    if (!_collectedNum) {
+        _collectedNum = [[UILabel alloc]init];
+        _collectedNum.text = @"320";
+        _collectedNum.textAlignment = NSTextAlignmentLeft;
+        _collectedNum.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
+        _collectedNum.textColor = RGBCOLOR(0xCBD4DC);
+    }
+    return _collectedNum;
+}
+- (UIView *)sepLine1 {
+    if (_sepLine1 == nil) {
+        _sepLine1 = [[UIView alloc]init];
+        _sepLine1.backgroundColor = RGBCOLOR(0x545454);
+    }
+    return _sepLine1;
+}
+- (UILabel *)recorded {
+    if (!_recorded) {
+        _recorded = [[UILabel alloc]init];
+        _recorded.text = @"已记录";
+        _recorded.textAlignment = NSTextAlignmentLeft;
+        _recorded.font = [UIFont fontWithName:kFont_Medium size:10*screenRate];
+        _recorded.textColor = RGBCOLOR(0x94A3AD);
+    }
+    return _recorded;
+}
+- (UILabel *)recordedNum {
+    if (!_recordedNum) {
+        _recordedNum = [[UILabel alloc]init];
+        _recordedNum.text = @"20";
+        _recordedNum.textAlignment = NSTextAlignmentLeft;
+        _recordedNum.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
+        _recordedNum.textColor = RGBCOLOR(0xCBD4DC);
+    }
+    return _recordedNum;
+}
+- (UIView *)sepLine2 {
+    if (_sepLine2 == nil) {
+        _sepLine2 = [[UIView alloc]init];
+        _sepLine2.backgroundColor = RGBCOLOR(0x545454);
+    }
+    return _sepLine2;
+}
+- (UILabel *)likeded {
+    if (!_likeded) {
+        _likeded = [[UILabel alloc]init];
+        _likeded.text = @"已被收藏";
+        _likeded.textAlignment = NSTextAlignmentLeft;
+        _likeded.font = [UIFont fontWithName:kFont_Medium size:10*screenRate];
+        _likeded.textColor = RGBCOLOR(0x94A3AD);
+    }
+    return _likeded;
+}
+- (UILabel *)likedNum {
+    if (!_likedNum) {
+        _likedNum = [[UILabel alloc]init];
+        _likedNum.text = @"1,299";
+        _likedNum.textAlignment = NSTextAlignmentLeft;
+        _likedNum.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
+        _likedNum.textColor = RGBCOLOR(0xCBD4DC);
+    }
+    return _likedNum;
+}
 - (void)drawRect {
-    float viewWidth = 89*screenRate;
+    float viewWidth = 55*screenRate;
     UIBezierPath * path = [UIBezierPath bezierPath];
     path.lineWidth = 2;
     [[UIColor whiteColor] setStroke];

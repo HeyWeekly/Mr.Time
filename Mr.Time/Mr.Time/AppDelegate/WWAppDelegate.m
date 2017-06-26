@@ -21,8 +21,7 @@
     WWAppDelegate *app = (WWAppDelegate *)[UIApplication sharedApplication].delegate;
     return (UINavigationController *)app.window.rootViewController;
 }
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setAppWindows];
     [self setTabbarController]; 
     [self setRootViewController];
@@ -30,8 +29,7 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
-- (void)setUpWindows
-{
+- (void)setUpWindows {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
@@ -40,8 +38,7 @@
     [self.window makeKeyAndVisible];
 }
 
-- (void)clearBadgeValue
-{
+- (void)clearBadgeValue {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }

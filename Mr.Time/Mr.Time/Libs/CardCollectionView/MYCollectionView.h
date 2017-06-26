@@ -11,13 +11,14 @@
 
 @class MYCollectionView;
 @protocol MYCollectionViewDelegate <UICollectionViewDataSource,UICollectionViewDelegate>
+@optional
 - (NSArray *)sectionIndexTitlesForDSCollectionView:(MYCollectionView *)tableView;
+-(void)myCollectionViewdidSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface MYCollectionView : UIView
 @property(nonatomic,strong) UICollectionView *collectionView;
 @property(nonatomic, weak)  id<MYCollectionViewDelegate> delegate;
-
 
 -(void)reloadData;
 

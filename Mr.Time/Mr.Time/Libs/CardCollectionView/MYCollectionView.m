@@ -58,7 +58,10 @@
             if(CGRectContainsPoint(regsionImageView, point)){
                 if(attributesCurrent.alpha == 1.f){
                     
-                    NSLog(@"%ld",(long)attributesCurrent.indexPath.row);
+                    if ([self.delegate respondsToSelector:@selector(myCollectionViewdidSelectItemAtIndexPath:)]) {
+                        [self.delegate myCollectionViewdidSelectItemAtIndexPath:attributesCurrent.indexPath];
+                    }
+//                    NSLog(@"%ld",(long)attributesCurrent.indexPath.row);
                 }
                 break;
             }

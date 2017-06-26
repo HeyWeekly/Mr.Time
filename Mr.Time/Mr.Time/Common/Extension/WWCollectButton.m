@@ -49,7 +49,7 @@
             }
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                self.imgContainer.transform = CGAffineTransformMakeScale(1.2, 1.2);
+                self.imgContainer.transform = CGAffineTransformMakeScale(1.1, 1.1);
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.08 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                     self.imgContainer.transform = CGAffineTransformIdentity;

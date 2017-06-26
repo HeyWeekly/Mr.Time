@@ -7,6 +7,7 @@
 //
 
 #import "WWCardSlideCell.h"
+#import "WWCollectButton.h"
 
 @interface WWCardSlideCell ()
 {
@@ -18,7 +19,7 @@
 @property (nonatomic, strong) UILabel *yearsNum;
 @property (nonatomic, strong) UILabel *yearsLabel;
 @property (nonatomic, strong) UILabel *oldLabel;
-@property (nonatomic, strong) UIButton *likeImage;
+@property (nonatomic, strong) WWCollectButton *likeImage;
 @property (nonatomic, assign) BOOL islike;
 @end
 
@@ -60,9 +61,9 @@
     self.oldLabel.left = self.yearsNum.left;
     self.oldLabel.top = self.yearsLabel.bottom;
     
-    _likeImage = [[UIButton alloc] init];
-    _likeImage.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [_likeImage setImage:[UIImage imageNamed:@"bookLike"] forState:UIControlStateNormal];
+    _likeImage = [[WWCollectButton alloc] init];
+    _likeImage.imageView.contentMode = UIViewContentModeCenter;
+    _likeImage.favoType = 1;
     [_likeImage sizeToFit];
     _likeImage.right = self.bounds.size.width - 20*screenRate;
     _likeImage.top = 20*screenRate;
@@ -112,9 +113,9 @@
 - (void)likeClick {
     self.islike = !self.islike;
     if (self.islike) {
-        [self.likeImage setImage:[UIImage imageNamed:@"boolRedLike"] forState:UIControlStateNormal];
+        [self.likeImage setFavo:YES withAnimate:YES];
     }else {
-        [self.likeImage setImage:[UIImage imageNamed:@"bookLike"] forState:UIControlStateNormal];
+        [self.likeImage setFavo:NO withAnimate:YES];
     }
     
     if ([self.delegate respondsToSelector:@selector(bookCellLike)]) {

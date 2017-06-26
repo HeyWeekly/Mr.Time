@@ -120,9 +120,9 @@
 - (void)likeClick {
     self.islike = !self.islike;
     if (self.islike) {
-        [self.likeImage setImage:[UIImage imageNamed:@"boolRedLike"] forState:UIControlStateNormal];
+        [self.likeImage setFavo:YES withAnimate:YES];
     }else {
-        [self.likeImage setImage:[UIImage imageNamed:@"bookLike"] forState:UIControlStateNormal];
+        [self.likeImage setFavo:NO withAnimate:YES];
     }
 }
 - (void)dowloadClick {

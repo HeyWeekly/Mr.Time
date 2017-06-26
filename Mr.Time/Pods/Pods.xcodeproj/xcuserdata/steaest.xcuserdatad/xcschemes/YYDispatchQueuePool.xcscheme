@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '586FEAA6FA514DA042FE8BA652094EFB'
+               BlueprintIdentifier = '5D58EEE67EF95D8A2177FCCA94991F1C'
                BlueprintName = 'YYDispatchQueuePool'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'YYDispatchQueuePool.framework'>

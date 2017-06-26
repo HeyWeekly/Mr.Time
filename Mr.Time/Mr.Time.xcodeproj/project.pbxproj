@@ -53,6 +53,22 @@
 		C089B2791F00E81F00648EB4 /* cleardelete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2731F00E81F00648EB4 /* cleardelete@3x.png */; };
 		C089B27A1F00E81F00648EB4 /* suggestion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2741F00E81F00648EB4 /* suggestion@2x.png */; };
 		C089B27B1F00E81F00648EB4 /* suggestion@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2751F00E81F00648EB4 /* suggestion@3x.png */; };
+		C089B27E1F00F05100648EB4 /* userNoCollect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B27C1F00F05100648EB4 /* userNoCollect@2x.png */; };
+		C089B27F1F00F05100648EB4 /* userNoCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B27D1F00F05100648EB4 /* userNoCollect@3x.png */; };
+		C089B2821F00F05A00648EB4 /* userCollect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2801F00F05A00648EB4 /* userCollect@2x.png */; };
+		C089B2831F00F05A00648EB4 /* userCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2811F00F05A00648EB4 /* userCollect@3x.png */; };
+		C089B2861F00F41E00648EB4 /* jitang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2841F00F41E00648EB4 /* jitang@2x.png */; };
+		C089B2871F00F41E00648EB4 /* jitang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2851F00F41E00648EB4 /* jitang@3x.png */; };
+		C089B28A1F00F44B00648EB4 /* wechatlogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2881F00F44B00648EB4 /* wechatlogin@2x.png */; };
+		C089B28B1F00F44B00648EB4 /* wechatlogin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2891F00F44B00648EB4 /* wechatlogin@3x.png */; };
+		C089B28E1F00F49400648EB4 /* Onboarding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B28C1F00F49400648EB4 /* Onboarding@2x.png */; };
+		C089B28F1F00F49400648EB4 /* Onboarding@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B28D1F00F49400648EB4 /* Onboarding@3x.png */; };
+		C089B2971F00F5BE00648EB4 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2911F00F5BE00648EB4 /* CardCell.swift */; };
+		C089B2981F00F5BE00648EB4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2921F00F5BE00648EB4 /* CardView.swift */; };
+		C089B2991F00F5BE00648EB4 /* CustomCardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2931F00F5BE00648EB4 /* CustomCardLayout.swift */; };
+		C089B29A1F00F5BE00648EB4 /* CustomFlipTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2941F00F5BE00648EB4 /* CustomFlipTransition.swift */; };
+		C089B29B1F00F5BE00648EB4 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2951F00F5BE00648EB4 /* UIViewControllerExtension.swift */; };
+		C089B29C1F00F5BE00648EB4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2961F00F5BE00648EB4 /* UIViewExtension.swift */; };
 		C0A69F2F1EE5557500DB4678 /* WWSimpleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */; };
 		C0A69F371EE79C2F00DB4678 /* Noticeicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F351EE79C2F00DB4678 /* Noticeicon@3x.png */; };
 		C0A69F381EE79C2F00DB4678 /* Noticeicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F361EE79C2F00DB4678 /* Noticeicon@2x.png */; };
@@ -63,8 +79,6 @@
 		C0A69F511EE7F64A00DB4678 /* 21yearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4D1EE7F64A00DB4678 /* 21yearsOld@2x.png */; };
 		C0A69F521EE7F64A00DB4678 /* 20yearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4E1EE7F64A00DB4678 /* 20yearsOld@2x.png */; };
 		C0A69F531EE7F64A00DB4678 /* 20yearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4F1EE7F64A00DB4678 /* 20yearsOld@3x.png */; };
-		C0A69F561EE7F65600DB4678 /* userlike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F541EE7F65600DB4678 /* userlike@2x.png */; };
-		C0A69F571EE7F65600DB4678 /* userlike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F551EE7F65600DB4678 /* userlike@3x.png */; };
 		C0A69F5F1EE92DEA00DB4678 /* WWNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A69F5E1EE92DEA00DB4678 /* WWNavigationVC.m */; };
 		C0A69F631EE9318D00DB4678 /* bacBackBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F611EE9318D00DB4678 /* bacBackBtn@3x.png */; };
 		C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F621EE9318D00DB4678 /* bacBackBtn@2x.png */; };
@@ -206,6 +220,22 @@
 		C089B2731F00E81F00648EB4 /* cleardelete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cleardelete@3x.png"; sourceTree = "<group>"; };
 		C089B2741F00E81F00648EB4 /* suggestion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "suggestion@2x.png"; sourceTree = "<group>"; };
 		C089B2751F00E81F00648EB4 /* suggestion@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "suggestion@3x.png"; sourceTree = "<group>"; };
+		C089B27C1F00F05100648EB4 /* userNoCollect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userNoCollect@2x.png"; sourceTree = "<group>"; };
+		C089B27D1F00F05100648EB4 /* userNoCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userNoCollect@3x.png"; sourceTree = "<group>"; };
+		C089B2801F00F05A00648EB4 /* userCollect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userCollect@2x.png"; sourceTree = "<group>"; };
+		C089B2811F00F05A00648EB4 /* userCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userCollect@3x.png"; sourceTree = "<group>"; };
+		C089B2841F00F41E00648EB4 /* jitang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jitang@2x.png"; sourceTree = "<group>"; };
+		C089B2851F00F41E00648EB4 /* jitang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jitang@3x.png"; sourceTree = "<group>"; };
+		C089B2881F00F44B00648EB4 /* wechatlogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechatlogin@2x.png"; sourceTree = "<group>"; };
+		C089B2891F00F44B00648EB4 /* wechatlogin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechatlogin@3x.png"; sourceTree = "<group>"; };
+		C089B28C1F00F49400648EB4 /* Onboarding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@2x.png"; sourceTree = "<group>"; };
+		C089B28D1F00F49400648EB4 /* Onboarding@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@3x.png"; sourceTree = "<group>"; };
+		C089B2911F00F5BE00648EB4 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		C089B2921F00F5BE00648EB4 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C089B2931F00F5BE00648EB4 /* CustomCardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCardLayout.swift; sourceTree = "<group>"; };
+		C089B2941F00F5BE00648EB4 /* CustomFlipTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFlipTransition.swift; sourceTree = "<group>"; };
+		C089B2951F00F5BE00648EB4 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		C089B2961F00F5BE00648EB4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C0A69F2D1EE5557500DB4678 /* WWSimpleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWSimpleVC.h; sourceTree = "<group>"; };
 		C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWSimpleVC.m; sourceTree = "<group>"; };
 		C0A69F351EE79C2F00DB4678 /* Noticeicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Noticeicon@3x.png"; sourceTree = "<group>"; };
@@ -217,8 +247,6 @@
 		C0A69F4D1EE7F64A00DB4678 /* 21yearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21yearsOld@2x.png"; sourceTree = "<group>"; };
 		C0A69F4E1EE7F64A00DB4678 /* 20yearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20yearsOld@2x.png"; sourceTree = "<group>"; };
 		C0A69F4F1EE7F64A00DB4678 /* 20yearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20yearsOld@3x.png"; sourceTree = "<group>"; };
-		C0A69F541EE7F65600DB4678 /* userlike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userlike@2x.png"; sourceTree = "<group>"; };
-		C0A69F551EE7F65600DB4678 /* userlike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userlike@3x.png"; sourceTree = "<group>"; };
 		C0A69F5D1EE92DEA00DB4678 /* WWNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWNavigationVC.h; sourceTree = "<group>"; };
 		C0A69F5E1EE92DEA00DB4678 /* WWNavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWNavigationVC.m; sourceTree = "<group>"; };
 		C0A69F611EE9318D00DB4678 /* bacBackBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bacBackBtn@3x.png"; sourceTree = "<group>"; };
@@ -443,9 +471,26 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		C089B2901F00F5BE00648EB4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C089B2911F00F5BE00648EB4 /* CardCell.swift */,
+				C089B2921F00F5BE00648EB4 /* CardView.swift */,
+				C089B2931F00F5BE00648EB4 /* CustomCardLayout.swift */,
+				C089B2941F00F5BE00648EB4 /* CustomFlipTransition.swift */,
+				C089B2951F00F5BE00648EB4 /* UIViewControllerExtension.swift */,
+				C089B2961F00F5BE00648EB4 /* UIViewExtension.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		C0A69F301EE7984500DB4678 /* userView */ = {
 			isa = PBXGroup;
 			children = (
+				C089B2801F00F05A00648EB4 /* userCollect@2x.png */,
+				C089B2811F00F05A00648EB4 /* userCollect@3x.png */,
+				C089B27C1F00F05100648EB4 /* userNoCollect@2x.png */,
+				C089B27D1F00F05100648EB4 /* userNoCollect@3x.png */,
 				C089B2701F00E81F00648EB4 /* aboutus@2x.png */,
 				C089B2711F00E81F00648EB4 /* aboutus@3x.png */,
 				C089B2721F00E81F00648EB4 /* cleardelete@2x.png */,
@@ -456,8 +501,6 @@
 				C089B26D1F00D59500648EB4 /* settingSwtch@3x.png */,
 				C089B2641F00A37400648EB4 /* headbackground@2x.png */,
 				C089B2651F00A37400648EB4 /* headbackground@3x.png */,
-				C0A69F541EE7F65600DB4678 /* userlike@2x.png */,
-				C0A69F551EE7F65600DB4678 /* userlike@3x.png */,
 				C0A69F391EE79CCC00DB4678 /* Setting icon@3x.png */,
 				C0A69F3A1EE79CCC00DB4678 /* Setting icon@2x.png */,
 				C0A69F351EE79C2F00DB4678 /* Noticeicon@3x.png */,
@@ -500,6 +543,12 @@
 		C0A69F601EE9317E00DB4678 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C089B28C1F00F49400648EB4 /* Onboarding@2x.png */,
+				C089B28D1F00F49400648EB4 /* Onboarding@3x.png */,
+				C089B2881F00F44B00648EB4 /* wechatlogin@2x.png */,
+				C089B2891F00F44B00648EB4 /* wechatlogin@3x.png */,
+				C089B2841F00F41E00648EB4 /* jitang@2x.png */,
+				C089B2851F00F41E00648EB4 /* jitang@3x.png */,
 				C089B23A1EFFBC6C00648EB4 /* Moment@2x.png */,
 				C089B23B1EFFBC6C00648EB4 /* Moment@3x.png */,
 				C089B23C1EFFBC6C00648EB4 /* QQzone@2x.png */,
@@ -777,6 +826,7 @@
 		FF61E0D41E9BC061000E68F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				C089B2901F00F5BE00648EB4 /* Classes */,
 				C0D48A8B1EF7B5FC00B92549 /* CardCollectionView */,
 				C0D48A251EF67EBC00B92549 /* GCD */,
 				C05940321EF1425A002751FE /* YYFPSLabel */,
@@ -909,7 +959,7 @@
 					FF61E0981E9BBE76000E68F0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2CSYYV5Z4H;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					FF61E0B11E9BBE76000E68F0 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -959,13 +1009,15 @@
 				C0A69F521EE7F64A00DB4678 /* 20yearsOld@2x.png in Resources */,
 				C089B2781F00E81F00648EB4 /* cleardelete@2x.png in Resources */,
 				FF340B781E9E640900B4DB39 /* userSelect@3x.png in Resources */,
+				C089B28B1F00F44B00648EB4 /* wechatlogin@3x.png in Resources */,
 				C0D48ACC1EFE99A100B92549 /* selectLock@3x.png in Resources */,
-				C0A69F561EE7F65600DB4678 /* userlike@2x.png in Resources */,
 				FF340B811EA0A04A00B4DB39 /* bookNormal@2x.png in Resources */,
 				C089B2671F00A37400648EB4 /* headbackground@3x.png in Resources */,
+				C089B2871F00F41E00648EB4 /* jitang@3x.png in Resources */,
 				C089B27A1F00E81F00648EB4 /* suggestion@2x.png in Resources */,
 				C089B26F1F00D59500648EB4 /* settingSwtch@3x.png in Resources */,
 				C089B2761F00E81F00648EB4 /* aboutus@2x.png in Resources */,
+				C089B28A1F00F44B00648EB4 /* wechatlogin@2x.png in Resources */,
 				C089B2771F00E81F00648EB4 /* aboutus@3x.png in Resources */,
 				C089B24B1EFFBC6C00648EB4 /* Wechat@3x.png in Resources */,
 				FF61E0AC1E9BBE76000E68F0 /* LaunchScreen.storyboard in Resources */,
@@ -977,13 +1029,17 @@
 				FF340B871EA0A04A00B4DB39 /* userNormal@2x.png in Resources */,
 				C0D48AC71EFE998700B92549 /* normalLock@2x.png in Resources */,
 				C0E8EDF71EFFA06D0034570D /* navrightBtn@2x.png in Resources */,
+				C089B28E1F00F49400648EB4 /* Onboarding@2x.png in Resources */,
 				C05940271EEFBF57002751FE /* hotMessage@3x.png in Resources */,
+				C089B27E1F00F05100648EB4 /* userNoCollect@2x.png in Resources */,
 				C089B2791F00E81F00648EB4 /* cleardelete@3x.png in Resources */,
+				C089B2831F00F05A00648EB4 /* userCollect@3x.png in Resources */,
 				C0E8EDF81EFFA06D0034570D /* navrightBtn@3x.png in Resources */,
 				C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */,
 				C089B27B1F00E81F00648EB4 /* suggestion@3x.png in Resources */,
 				FF340B721E9E640900B4DB39 /* bookSelect@3x.png in Resources */,
 				C089B2461EFFBC6C00648EB4 /* QQzone@2x.png in Resources */,
+				C089B28F1F00F49400648EB4 /* Onboarding@3x.png in Resources */,
 				C059401D1EEFADEE002751FE /* bookLike@3x.png in Resources */,
 				C0A69F381EE79C2F00DB4678 /* Noticeicon@2x.png in Resources */,
 				C0E8EDFF1EFFA5350034570D /* bookOval@3x.png in Resources */,
@@ -999,6 +1055,7 @@
 				FF61E0A91E9BBE76000E68F0 /* Assets.xcassets in Resources */,
 				C089B2441EFFBC6C00648EB4 /* Moment@2x.png in Resources */,
 				C0A69F3C1EE79CCC00DB4678 /* Setting icon@2x.png in Resources */,
+				C089B27F1F00F05100648EB4 /* userNoCollect@3x.png in Resources */,
 				C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */,
 				C0D48ACB1EFE99A100B92549 /* selectLock@2x.png in Resources */,
 				C0E8EDFE1EFFA5350034570D /* bookOval@2x.png in Resources */,
@@ -1009,6 +1066,7 @@
 				C0A69F501EE7F64A00DB4678 /* 21yearsOld@3x.png in Resources */,
 				FF340B851EA0A04A00B4DB39 /* homeNormal@2x.png in Resources */,
 				FF340B841EA0A04A00B4DB39 /* collectNormal@3x.png in Resources */,
+				C089B2861F00F41E00648EB4 /* jitang@2x.png in Resources */,
 				C059401C1EEFADEE002751FE /* bookLike@2x.png in Resources */,
 				FF340B831EA0A04A00B4DB39 /* collectNormal@2x.png in Resources */,
 				FF340B761E9E640900B4DB39 /* homeSelect@3x.png in Resources */,
@@ -1016,8 +1074,8 @@
 				C089B2391EFFB8CC00648EB4 /* notwhere@3x.png in Resources */,
 				C05940281EEFBF57002751FE /* newMessage@2x.png in Resources */,
 				C089B2471EFFBC6C00648EB4 /* QQzone@3x.png in Resources */,
-				C0A69F571EE7F65600DB4678 /* userlike@3x.png in Resources */,
 				FF340B741E9E640900B4DB39 /* collectSelect@3x.png in Resources */,
+				C089B2821F00F05A00648EB4 /* userCollect@2x.png in Resources */,
 				C089B26E1F00D59500648EB4 /* settingSwtch@2x.png in Resources */,
 				C05940291EEFBF57002751FE /* hotMessage@2x.png in Resources */,
 				FF340B821EA0A04A00B4DB39 /* bookNormal@3x.png in Resources */,
@@ -1099,12 +1157,14 @@
 				C05940171EEF85FB002751FE /* WWCardSlideCell.m in Sources */,
 				C05940141EEF85A8002751FE /* WWCardSlideLayout.m in Sources */,
 				C0D48A2F1EF67EBC00B92549 /* GCDGroup.m in Sources */,
+				C089B29C1F00F5BE00648EB4 /* UIViewExtension.swift in Sources */,
 				FF340B2F1E9E4D4D00B4DB39 /* MLTransition.m in Sources */,
 				C089B26B1F00B29D00648EB4 /* WWSettingVC.m in Sources */,
 				FF340B0E1E9E155100B4DB39 /* WWAppDelegate+AppService.m in Sources */,
 				C05940371EF1425A002751FE /* YYFPSLabel.m in Sources */,
 				C0D48A871EF688DA00B92549 /* WWPublishVC.m in Sources */,
 				C089B2631EFFD0AD00648EB4 /* WWCollectBtnCircleView.m in Sources */,
+				C089B29A1F00F5BE00648EB4 /* CustomFlipTransition.swift in Sources */,
 				C089B25A1EFFC54600648EB4 /* NSString+WWExtra.m in Sources */,
 				FF340B021E9E03BE00B4DB39 /* WWAppDelegate.m in Sources */,
 				FF61E09E1E9BBE76000E68F0 /* main.m in Sources */,
@@ -1121,11 +1181,14 @@
 				C0D48A971EF7B97F00B92549 /* UIScreenEx.mm in Sources */,
 				C0D48A951EF7B97F00B92549 /* QQEngine.m in Sources */,
 				FF340B1D1E9E1FC600B4DB39 /* UserViewController.m in Sources */,
+				C089B2991F00F5BE00648EB4 /* CustomCardLayout.swift in Sources */,
 				FF340B231E9E1FF000B4DB39 /* CollectViewController.m in Sources */,
 				FF340B1A1E9E1FA200B4DB39 /* HomeViewController.m in Sources */,
 				C05940111EEF84E8002751FE /* WWCardSlide.m in Sources */,
+				C089B29B1F00F5BE00648EB4 /* UIViewControllerExtension.swift in Sources */,
 				FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */,
 				C05940381EF1425A002751FE /* YYWeakProxy.m in Sources */,
+				C089B2971F00F5BE00648EB4 /* CardCell.swift in Sources */,
 				C0D48A321EF67EBC00B92549 /* GCDTimer.m in Sources */,
 				C089B25D1EFFCC7800648EB4 /* WWShareSucceedView.m in Sources */,
 				C0D48A941EF7B97F00B92549 /* MYCollectionView.m in Sources */,
@@ -1134,6 +1197,7 @@
 				C0A69F5F1EE92DEA00DB4678 /* WWNavigationVC.m in Sources */,
 				C05940051EEA9605002751FE /* WWCollectionModel.m in Sources */,
 				C05940021EEA48DB002751FE /* WWLabel.m in Sources */,
+				C089B2981F00F5BE00648EB4 /* CardView.swift in Sources */,
 				C089B2511EFFBDD400648EB4 /* WWShareView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1274,8 +1338,8 @@
 			baseConfigurationReference = A11F728AAD1C437A121BCF73 /* Pods-Mr.Time.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1295,9 +1359,10 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.----.Mr-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "500abf7d-f994-4a2f-acc3-ea6cee9fa1f3";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: *";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1309,8 +1374,8 @@
 			baseConfigurationReference = 6A3E3194488AB383DFA6D83F /* Pods-Mr.Time.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1330,9 +1395,10 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.----.Mr-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "500abf7d-f994-4a2f-acc3-ea6cee9fa1f3";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: *";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

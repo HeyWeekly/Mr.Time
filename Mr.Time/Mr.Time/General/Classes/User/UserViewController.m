@@ -12,15 +12,22 @@
 #import "MYCollectionView.h"
 #import "WWSettingVC.h"
 #import "WWMessageDetailVCViewController.h"
+#import "WWCollectButton.h"
 
 #define CELL_IDENTITY @"myCell"
 
+@protocol userPublishCellDelegate <NSObject>
+- (void)userCellLike;
+@end
+
 @interface userPublishCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *yearsImage;
-@property (nonatomic, strong) UIImageView *likeImage;
+@property (nonatomic, strong) WWCollectButton *likeImage;
 @property (nonatomic, strong) UILabel *likeNum;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, assign) BOOL islike;
+@property (nonatomic,  weak) id <userPublishCellDelegate> delegate;
 @end
 
 
@@ -353,10 +360,10 @@
     self.likeNum.top = 26.5*screenRate;
     [self.containerView addSubview:self.likeNum];
     
+    [self.containerView addSubview:self.likeImage];
     [self.likeImage sizeToFit];
     self.likeImage.right = self.likeNum.left-5*screenRate;
-    self.likeImage.top = 28*screenRate;
-    [self.containerView addSubview:self.likeImage];
+    self.likeImage.top = 19*screenRate;
     
     [self.contentLabel sizeToFit];
     self.contentLabel.left = 25*screenRate;
@@ -368,6 +375,14 @@
     self.containerView.height = self.contentLabel.bottom+27*screenRate;
     [self addSubview:self.containerView];
 }
+- (void)favoClick {
+    self.islike = !self.islike;
+    if (self.islike) {
+        [self.likeImage setFavo:YES withAnimate:YES];
+    }else {
+        [self.likeImage setFavo:NO withAnimate:YES];
+    }
+}
 -  (UIImageView *)yearsImage {
     if (_yearsImage == nil) {
         _yearsImage = [[UIImageView alloc]init];
@@ -375,10 +390,12 @@
     }
     return _yearsImage;
 }
-- (UIImageView *)likeImage {
+- (WWCollectButton *)likeImage {
     if (_likeImage == nil) {
-        _likeImage = [[UIImageView alloc]init];
-        _likeImage.image = [UIImage imageNamed:@"userlike"];
+        _likeImage = [[WWCollectButton alloc]init];
+        _likeImage.contentMode = UIViewContentModeCenter;
+        _likeImage.favoType = 2;
+        [_likeImage addTarget:self action:@selector(favoClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _likeImage;
 }

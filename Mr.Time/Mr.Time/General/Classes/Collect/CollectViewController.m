@@ -8,44 +8,44 @@
 
 #import "CollectViewController.h"
 #import <YYText/YYText.h>
+#import "Mr_Time-Swift.h"
 #import "WWLabel.h"
-@interface HeaderView : UITableViewHeaderFooterView
-@property (nonatomic, strong) UIImageView *backImage;
-@property (nonatomic, strong,readwrite) YYLabel *toYearLabel;
-@property (nonatomic, strong,readwrite) WWLabel *countLabel;
-@property (nonatomic, strong) NSArray *model;
+
+@interface  CollectCardView : UIView
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong,readwrite) YYLabel *toLabel;
+@property (nonatomic, strong,readwrite) WWLabel *yearNumLabel;
+@property (nonatomic, strong,readwrite) YYLabel *yearsLabel;
+@property (nonatomic, strong,readwrite) YYLabel *countLabel;
 @end
 
-
-@interface collectCardCell : UITableViewCell
-@property (nonatomic, assign) BOOL isUnfold;
-@property (nonatomic, strong) UILabel *contentLabel;
-@property (nonatomic, strong) UIView *sepLine;
-@end
-
-@interface CollectViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CollectViewController ()<UICollectionViewDataSource>
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
+@property (nonatomic, strong) CardView *cardView;
 @end
 
 @implementation CollectViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = viewBackGround_Color;
     [self setupViews];
-    [self clickExtraLine:self.tableView];
+}
+- (void)setupViews {
+    [self.view addSubview:self.nav];
+    [self.view addSubview:self.cardView];
+    NSMutableArray *arr = [self generateCardInfoWithCardCount:10];
+    [self.cardView setWithCards:arr];
+    [self.cardView showStyleWithStyle:1];
     _fpsLabel = [YYFPSLabel new];
     [_fpsLabel sizeToFit];
     _fpsLabel.bottom = KHeight - 100;
     _fpsLabel.left = 12;
     _fpsLabel.alpha = 1;
     [self.view addSubview:_fpsLabel];
-}
-- (void)setupViews {
-    [self.view addSubview:self.nav];
-    [self.view addSubview:self.tableView];
 }
 - (NSMutableArray *)listArray {
     if (_listArray == nil) {
@@ -66,75 +66,45 @@
     return _listArray;
 }
 #pragma mark - tableView
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.listArray.count;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.cardView.filterArr.count;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([[[self.listArray objectAtIndex:section] objectForKey:@"flag"] isEqualToString:@"NO"]) {
-        return 0;
-    } else {
-        return [[[self.listArray objectAtIndex:section] objectForKey:@"act"] count];
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    collectCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"collectCardCell"];
-    if (!cell) {
-        cell = [[collectCardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"collectCardCell"];
-    }
-    NSArray *conArr = [[self.listArray objectAtIndex:indexPath.section] objectForKey:@"act"];
-    cell.contentLabel.text = conArr[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cardView.filterArr[indexPath.row] forIndexPath:indexPath];
+    UIView *view = [cell viewWithTag:2000];
+    [view removeFromSuperview];
+    cell.collectionV = collectionView;
+    cell.reloadBlock = ^{
+        if ([collectionView.collectionViewLayout isKindOfClass:[CustomCardLayout class]]) {
+            CustomCardLayout *layout = (CustomCardLayout *)collectionView.collectionViewLayout;
+            layout.selectIdx = indexPath.row;
+        }
+    };
+    cell.backgroundColor = [UIColor whiteColor];
+    CollectCardView *collView = [[CollectCardView alloc]init];
+    collView.countLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    view.frame = cell.bounds;
+    collView.tag = 2000;
+    [cell addSubview:collView];
     return cell;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100*screenRate;
-}
-#pragma mark - UITableView Delegate
-// 添加头视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    HeaderView *headView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-//    HeaderView = self.listArray;
-    headView.tag = section;
-    
-    if (headView.gestureRecognizers == nil) {
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerViewClickedAction:)];
-        [headView addGestureRecognizer:tap];
-    }
-    
-    return headView;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
-    // 下面方法更好使
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-- (void) headerViewClickedAction:(UITapGestureRecognizer *)sender {
-    if ([[[self.listArray objectAtIndex:sender.view.tag] objectForKey:@"flag"] isEqualToString:@"NO"]) {
-        [[self.listArray objectAtIndex:sender.view.tag] setObject:@"YES" forKey:@"flag"];
-    } else {
-        [[self.listArray objectAtIndex:sender.view.tag] setObject:@"NO" forKey:@"flag"];
-    }
-    NSIndexSet *set = [NSIndexSet indexSetWithIndex:sender.view.tag];
-    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
-}
-
 #pragma mark - 懒加载
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
-        _tableView.delegate = self;
-        _tableView.dataSource  = self;
-        _tableView.backgroundColor = [UIColor whiteColor];
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.showsHorizontalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_tableView registerClass:[HeaderView class] forHeaderFooterViewReuseIdentifier:@"header"];
-        _tableView.sectionHeaderHeight = 63*screenRate;
+- (NSMutableArray *)generateCardInfoWithCardCount:(int)cardCount {
+    NSMutableArray *arr = [NSMutableArray array];
+    NSArray *arrName = @[@"CardA"];
+    for (int i=0; i<cardCount; i++) {
+        int value = arc4random_uniform(1);
+        [arr addObject:arrName[value]];
     }
-    return _tableView;
+    return arr;
+}
+- (CardView *)cardView {
+    if (!_cardView) {
+        _cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
+        _cardView.collectionView.dataSource = self;
+        [_cardView registerCardCellWithC:[CardCell class] identifier:@"CardA"];
+    }
+    return _cardView;
 }
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
@@ -144,123 +114,76 @@
     }
     return _nav;
 }
-- (void)clickExtraLine:(UITableView *)tableView
-{
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 @end
 
-@implementation collectCardCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = [UIColor whiteColor];
+@implementation CollectCardView
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor clearColor];
         [self setupViews];
     }
     return self;
 }
 - (void)setupViews{
-    [self.sepLine sizeToFit];
-    self.sepLine.left = 20*screenRate;
-    self.sepLine.top = 1;
-    self.sepLine.height = 0.5;
-    self.sepLine.width = KWidth - 40*screenRate;
-    [self addSubview:self.sepLine];
+    [self addSubview:self.toLabel];
+    [self.toLabel sizeToFit];
+    self.toLabel.left = 20*screenRate;
+    self.toLabel.top = 15*screenRate;
     
-    [self.contentLabel sizeToFit];
-    self.contentLabel.left  = 20*screenRate;
-    self.contentLabel.top = self.sepLine.bottom+15*screenRate;
-    self.contentLabel.width = KWidth - 40*screenRate;
-    [self addSubview:self.contentLabel];
-    [self.contentLabel sizeToFit];
+    [self addSubview:self.yearNumLabel];
+    [self.yearNumLabel sizeToFit];
+    self.yearNumLabel.left = self.toLabel.right+3;
+    self.yearNumLabel.top = 15*screenRate;
 
-}
-- (UILabel *)contentLabel {
-    if (_contentLabel == nil) {
-        _contentLabel = [[UILabel alloc]init];
-        _contentLabel.numberOfLines = 0;
-        _contentLabel.textColor = RGBCOLOR(0x39454E);
-        _contentLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
-        _contentLabel.text = @"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想。";
-    }
-    return _contentLabel;
-}
-- (UIView *)sepLine {
-    if (_sepLine == nil) {
-        _sepLine = [[UIView alloc]init];
-        _sepLine.backgroundColor = RGBCOLOR(0xC9D4DD);
-    }
-    return _sepLine;
-}
-@end
-
-
-@implementation HeaderView
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifie {
-    if (self == [super initWithReuseIdentifier:reuseIdentifie]) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
-        self.layer.masksToBounds = YES;
-        [self setupViews];
-    }
-    return self;
-}
-- (void)setupViews{
-    [self.backImage sizeToFit];
-    self.backImage.top = 0;
-    self.backImage.left = 0;
-    self.backImage.width = KWidth;
-    self.backImage.height = 63*screenRate;
-    [self addSubview:self.backImage];
+    [self addSubview:self.yearsLabel];
+    [self.yearsLabel sizeToFit];
+    self.yearsLabel.left = self.yearNumLabel.right+3;
+    self.yearsLabel.top = 15*screenRate;
     
-    NSString *str = @"TO 21 YEARS OLD";
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:str];
-    text.yy_font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
-    text.yy_color = RGBCOLOR(0x50616E);
-    [text yy_setTextHighlightRange:NSMakeRange(3, 2)
-                             color:RGBCOLOR(0x15C2FF)
-                   backgroundColor:[UIColor whiteColor]
-                         tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
-                             NSLog(@"年龄");
-                         }];
-    self.toYearLabel.attributedText = text;
-    [self.toYearLabel sizeToFit];
-    self.toYearLabel.left = 20*screenRate;
-    self.toYearLabel.top = 15*screenRate;
-    [self addSubview:self.toYearLabel];
-    
+    [self addSubview:self.countLabel];
     [self.countLabel sizeToFit];
     self.countLabel.right = KWidth - 20*screenRate;
     self.countLabel.top = 15*screenRate;
-    [self addSubview:self.countLabel];
+    
 }
-- (YYLabel *)toYearLabel {
-    if (_toYearLabel == nil) {
-        _toYearLabel = [[YYLabel alloc]init];
-        _toYearLabel.textColor = RGBCOLOR(0x50616E);
-        _toYearLabel.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
-        _toYearLabel.numberOfLines = 1;
+- (YYLabel *)toLabel {
+    if (_toLabel == nil) {
+        _toLabel = [[YYLabel alloc]init];
+        _toLabel.text = @"TO";
+        _toLabel.textColor = RGBCOLOR(0x50616E);
+        _toLabel.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
     }
-    return _toYearLabel;
+    return _toLabel;
 }
-- (WWLabel *)countLabel {
+- (WWLabel *)yearNumLabel {
+    if (_yearNumLabel == nil) {
+        _yearNumLabel = [[WWLabel alloc]init];
+        _yearNumLabel.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
+        _yearNumLabel.text = @"25";
+        NSArray *gradientColors = @[(id)RGBCOLOR(0x15C2FF).CGColor, (id)RGBCOLOR(0x2EFFB6).CGColor];
+        _yearNumLabel.colors =gradientColors;
+    }
+    return _yearNumLabel;
+}
+- (YYLabel *)yearsLabel {
+    if (_yearsLabel == nil) {
+        _yearsLabel = [[YYLabel alloc]init];
+        _yearsLabel.textColor = RGBCOLOR(0x50616E);
+        _yearsLabel.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
+        _yearsLabel.text = @"YEARS OLD";
+    }
+    return _yearsLabel;
+}
+- (YYLabel *)countLabel {
     if (_countLabel == nil) {
-        _countLabel = [[WWLabel alloc]init];
-        NSArray *gradientColors = @[(id)RGBCOLOR(0x15C2FF).CGColor, (id)[UIColor greenColor].CGColor];
-        _countLabel.colors =gradientColors;
+        _countLabel = [[YYLabel alloc]init];
         _countLabel.text = @"5";
+        _countLabel.textColor = RGBCOLOR(0x15C2FF);
         _countLabel.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
     }
     return _countLabel;
-}
-- (UIImageView *)backImage {
-    if (_backImage == nil) {
-        _backImage = [[UIImageView alloc]init];
-        _backImage.image = [UIImage imageNamed:@"ceshi"];
-    }
-    return _backImage;
 }
 @end

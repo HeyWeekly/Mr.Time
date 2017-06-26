@@ -14,20 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AsyncDisplayKit (1.9.90):
-    - AsyncDisplayKit/PINRemoteImage (= 1.9.90)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.90)
-  - AsyncDisplayKit/Core (1.9.90):
-    - AsyncDisplayKit/ASDealloc2MainObject
-  - AsyncDisplayKit/PINRemoteImage (1.9.90):
-    - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (>= 3.0.0-beta.3)
   - MJRefresh (3.1.12)
-  - PINCache (3.0.1-beta)
-  - PINRemoteImage/Core (3.0.0-beta.3):
-    - PINCache (>= 3.0.0-beta)
-  - PINRemoteImage/iOS (3.0.0-beta.3):
-    - PINRemoteImage/Core
   - pop (1.0.9)
   - RDVTabBarController (1.1.9)
   - SDWebImage (3.8.2):
@@ -47,7 +34,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1)
-  - AsyncDisplayKit
   - MJRefresh (~> 3.1.7)
   - pop (~> 1.0)
   - RDVTabBarController (~> 1.1.9)
@@ -61,10 +47,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AsyncDisplayKit: 926ded3ca3fb7026565e0e81f0e132fea4d3a6eb
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  PINCache: 6911fe422a633e18b3d3ddf2bd4f0e55e36e2892
-  PINRemoteImage: 308731aa6534500e58fc211b9cc2bb7252df25ba
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
@@ -76,6 +59,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: a2fb209a6678287214ba36f3177bc01d52f13dce
+PODFILE CHECKSUM: 0a6be09187988045eaf6466249a59aa4a0536411
 
 COCOAPODS: 1.0.1

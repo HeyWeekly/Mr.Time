@@ -11,6 +11,6 @@ import UIKit
 class WWSOCommon: NSObject {
     func show()
     {
-        print("hello baby!")
+        
     }
 }

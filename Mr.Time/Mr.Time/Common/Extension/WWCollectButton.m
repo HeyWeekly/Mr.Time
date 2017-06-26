@@ -145,17 +145,8 @@
         self.unfavoImg.image = [UIImage imageNamed:@"bookLike"];
         self.favoImg.image = [UIImage imageNamed:@"boolRedLike"];
     }else if(favoType == 2){
-        self.unfavoImg.image = [UIImage imageNamed:@"homeLookCellDisFavoBtn"];
-        self.favoImg.image = [UIImage imageNamed:@"homeLookCell_favoBtn"];
-    }else if (favoType == 3){
-        self.unfavoImg.image = [UIImage imageNamed:@"wenzhangDisFavo"];
-        self.favoImg.image = [UIImage imageNamed:@"wenzhangFavo"];
-    }else if (favoType == 4){
-        self.unfavoImg.image = [UIImage imageNamed:@"like_icon_black"];
-        self.favoImg.image = [UIImage imageNamed:@"like_icon_red"];
-    }else if(favoType == 5){
-        self.unfavoImg.image = [UIImage imageNamed:@"brandgoodscellnolike"];
-        self.favoImg.image = [UIImage imageNamed:@"brandgoodscelllike"];
+        self.unfavoImg.image = [UIImage imageNamed:@"userNoCollect"];
+        self.favoImg.image = [UIImage imageNamed:@"userCollect"];
     }
 }
 

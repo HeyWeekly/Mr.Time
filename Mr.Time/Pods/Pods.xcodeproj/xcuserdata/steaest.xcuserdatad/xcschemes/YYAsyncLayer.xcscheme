@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '74CF8BC192F86DDB144FCCC29E833BF6'
+               BlueprintIdentifier = 'E257FAC001D64F2F87B69A56CE7BDB47'
                BlueprintName = 'YYAsyncLayer'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'YYAsyncLayer.framework'>

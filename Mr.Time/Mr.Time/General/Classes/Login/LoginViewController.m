@@ -9,29 +9,43 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController ()
-
+@property (nonatomic, strong) UIImageView *furture;
+@property (nonatomic, strong) UIImageView *centerImage;
+@property (nonatomic, strong) UIButton *weChatBtn;
 @end
 
 @implementation LoginViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
+- (void)weChatBtnClick {
+    
+}
+- (UIImageView *)furture {
+    if (_furture == nil) {
+        _furture = [[UIImageView alloc]init];
+        _furture.image = [UIImage imageNamed:@""];
+    }
+    return _furture;
+}
+- (UIImageView *)centerImage {
+    if (_centerImage == nil) {
+        _centerImage = [[UIImageView alloc]init];
+        _centerImage.image = [UIImage imageNamed:@""];
+    }
+    return _centerImage;
+}
+- (UIButton *)weChatBtn {
+    if (_weChatBtn) {
+        _weChatBtn = [[UIButton alloc]init];
+        [_weChatBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_weChatBtn addTarget:self action:@selector(weChatBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _weChatBtn;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

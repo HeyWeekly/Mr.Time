@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '07C7D1EDAF484A44748AAABC606A5E0D'
+               BlueprintIdentifier = '6C458B364DD2C7CBCB3F4A02A79A6B32'
                BlueprintName = 'RDVTabBarController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'RDVTabBarController.framework'>

@@ -20,7 +20,7 @@
 - (void)userCellLike;
 @end
 
-@interface userPublishCell : UICollectionViewCell
+@interface userPublishCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *yearsImage;
 @property (nonatomic, strong) WWCollectButton *likeImage;
 @property (nonatomic, strong) UILabel *likeNum;
@@ -31,7 +31,7 @@
 @end
 
 
-@interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,MYCollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,MYCollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong) UIButton  *notice;
 @property(nonatomic, strong) UIButton  *setting;
 @property(nonatomic, strong) UIButton  *backheadImage;
@@ -48,6 +48,7 @@
 @property (nonatomic, strong) UIView *sepLine2;
 @property (nonatomic, strong) UILabel *likeded;
 @property (nonatomic, strong) UILabel *likedNum;
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation UserViewController
@@ -132,7 +133,7 @@
     self.likeded.right = self.likedNum.right;
     self.likeded.top = self.likedNum.bottom+6*screenRate;
     
-    [self.view addSubview:self.myCollectionView];
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - target
@@ -153,35 +154,46 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - tableView
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    userPublishCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CELL_IDENTITY forIndexPath:indexPath];
-    
-    NSString *rowText = [NSString stringWithFormat:@"%zd",indexPath.row];
-    cell.likeNum.text = rowText;
-//    [cell configureData:rowText indexPath:indexPath];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    userPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userPublishCell"];
+    if (!cell) {
+        cell = [[userPublishCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userPublishCell"];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.likeNum.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     return cell;
 }
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section; {
-    return [[QQEngine sharedInstance] getCardCount];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 215*screenRate;
 }
-- (void)myCollectionViewdidSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-#pragma mark - 懒加载
-- (MYCollectionView *)myCollectionView {
-    if (_myCollectionView == nil) {
-        _myCollectionView = [[MYCollectionView alloc]initWithFrame:CGRectMake(20*screenRate, self.backheadImage.bottom+29*screenRate, KWidth-40*screenRate, KHeight-self.backheadImage.bottom+29*screenRate-49)];
-        _myCollectionView.backgroundColor = viewBackGround_Color;
-        [_myCollectionView.collectionView registerClass:[userPublishCell class] forCellWithReuseIdentifier:CELL_IDENTITY];
-        _myCollectionView.delegate = self;
-        _myCollectionView.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        _myCollectionView.collectionView.delegate = self;
-        _myCollectionView.collectionView.dataSource = self;
-        _myCollectionView.collectionView.showsVerticalScrollIndicator = NO;
-        _myCollectionView.collectionView.showsHorizontalScrollIndicator = NO;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;
+    for (userPublishCell *cell in [self.tableView visibleCells]) {
+        CGFloat y = cell.centerY - scrollView.contentOffset.y;
+        CGFloat p = y - viewHeight / 2;
+        CGFloat scale = cos(p / viewHeight * 0.8) * 0.95;
+            [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                cell.containerView.transform = CGAffineTransformMakeScale(scale, scale);
+            } completion:NULL];
     }
-    return _myCollectionView;
+}
+
+#pragma mark - 懒加载
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20*screenRate, self.backheadImage.bottom+29*screenRate, KWidth-40*screenRate, KHeight-self.backheadImage.bottom+29*screenRate-49)];
+        _tableView.delegate = self;
+        _tableView.dataSource  = self;
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return _tableView;
 }
 - (UILabel *)yearLbael {
     if (_yearLbael == nil) {
@@ -341,8 +353,8 @@
 
 
 @implementation userPublishCell
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = viewBackGround_Color;
         [self setupViews];
     }

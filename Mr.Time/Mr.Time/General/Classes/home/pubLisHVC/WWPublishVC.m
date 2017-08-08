@@ -75,8 +75,6 @@
         self.yearsLbale.top = 20*screenRate;
     }
     
-    
-    
     [self.containerView addSubview:self.pubLish];
     [self.pubLish sizeToFit];
     self.pubLish.bottom = self.containerView.bottom -25*screenRate;

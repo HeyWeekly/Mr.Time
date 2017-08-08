@@ -10,18 +10,20 @@
 #import "VTGeneralTool.h"
 #import "RDVTabBar.h"
 #import "RDVTabBarItem.h"
+#import "LoginViewController.h"
 
 @interface WWAppDelegate ()<RDVTabBarControllerDelegate,UIScrollViewDelegate,UITabBarControllerDelegate>
 @end
 
 @implementation WWAppDelegate (RootController)
-- (void)setRootViewController
-{
-        [self setRoot];
+- (void)setRootViewController {
+    [self setRoot];
 }
-- (void)setRoot
-{
-    UINavigationController * navc = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+
+- (void)setRoot{
+    LoginViewController *vc = [[LoginViewController alloc]init];
+    //self.viewControl
+    UINavigationController * navc = [[UINavigationController alloc] initWithRootViewController:vc];
     navc.navigationBar.barTintColor = [UIColor colorWithRed:(41)/255.0 green:(41)/255.0 blue:(41)/255.0 alpha:1.0];
     
     navc.navigationBar.shadowImage = [[UIImage alloc] init];
@@ -31,11 +33,11 @@
     
     [navc.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     navc.navigationBar.tintColor = [UIColor whiteColor];
+    
     self.window.rootViewController = navc;
 }
 #pragma mark - Windows
-- (void)setTabbarController
-{
+- (void)setTabbarController {
     HomeViewController *home = [[HomeViewController alloc]init];
 //        UINavigationController *schoolNav = [[UINavigationController alloc]initWithRootViewController:home];
     
@@ -54,8 +56,7 @@
     [self customizeTabBarForController:tabBarController];
 }
 
-- (void)tabBarController:(RDVTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
+- (void)tabBarController:(RDVTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[HomeViewController class]])
     {
         tabBarController.navigationItem.title = @"人生进度";
@@ -74,8 +75,7 @@
     }
 }
 
-- (void)customizeTabBarForController:(RDVTabBarController *)tabBarController
-{
+- (void)customizeTabBarForController:(RDVTabBarController *)tabBarController {
     UIImage *finishedImage = [VTGeneralTool createImageWithColor:[UIColor colorWithRed:(41)/255.0 green:(41)/255.0 blue:(41)/255.0 alpha:1.0]];
     UIImage *unfinishedImage = [VTGeneralTool createImageWithColor:[UIColor colorWithRed:(41)/255.0 green:(41)/255.0 blue:(41)/255.0 alpha:1.0]];
     NSArray *tabBarItemImages = @[@"homeNormal",@"bookNormal",@"collectNormal",@"",@"userNormal"];
@@ -91,15 +91,14 @@
         index++;
     }
 }
-- (void)setAppWindows
-{
+
+- (void)setAppWindows {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
-- (void)goToMain
-{
+- (void)goToMain {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     [user setObject:@"isOne" forKey:@"isOne"];
     [user synchronize];

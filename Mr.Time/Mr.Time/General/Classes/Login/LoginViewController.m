@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "WWLoginSettingInfoVC.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) UIImageView *furture;
@@ -15,37 +16,60 @@
 @end
 
 @implementation LoginViewController
+
+#pragma mark - lifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setupSubviews];
 }
 
-- (void)weChatBtnClick {
+- (void)setupSubviews {
+    [self.view addSubview:self.furture];
+    [self.furture sizeToFit];
+    self.furture.centerX = self.view.centerX;
+    self.furture.top = 100*screenRate;
     
+    [self.view addSubview:self.centerImage];
+    [self.centerImage sizeToFit];
+    self.centerImage.centerX = self.view.centerX;
+    self.centerImage.top = self.furture.bottom+56*screenRate;
+    
+    [self.view addSubview:self.weChatBtn];
+    [self.weChatBtn sizeToFit];
+    self.weChatBtn.centerX = self.view.centerX;
+    self.weChatBtn.top = self.centerImage.bottom + 150*screenRate;
 }
+
+#pragma mark - event
+- (void)weChatBtnClick {
+    WWLoginSettingInfoVC *vc = [[WWLoginSettingInfoVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - lazy
 - (UIImageView *)furture {
     if (_furture == nil) {
         _furture = [[UIImageView alloc]init];
-        _furture.image = [UIImage imageNamed:@""];
+        _furture.image = [UIImage imageNamed:@"qianmuFurture"];
     }
     return _furture;
 }
+
 - (UIImageView *)centerImage {
     if (_centerImage == nil) {
         _centerImage = [[UIImageView alloc]init];
-        _centerImage.image = [UIImage imageNamed:@""];
+        _centerImage.image = [UIImage imageNamed:@"Onboarding@2x"];
     }
     return _centerImage;
 }
+
 - (UIButton *)weChatBtn {
-    if (_weChatBtn) {
+    if (_weChatBtn == nil) {
         _weChatBtn = [[UIButton alloc]init];
-        [_weChatBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_weChatBtn setImage:[UIImage imageNamed:@"weChatLogin"] forState:UIControlStateNormal];
         [_weChatBtn addTarget:self action:@selector(weChatBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _weChatBtn;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
+
 @end

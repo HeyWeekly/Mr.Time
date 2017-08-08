@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

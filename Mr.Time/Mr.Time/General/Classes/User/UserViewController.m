@@ -247,7 +247,7 @@
 }
 - (UIImageView *)headImage {
     if (_headImage == nil) {
-        _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(33*screenRate, 60*screenRate, 55*screenRate, 55*screenRate)];
+        _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(32.8*screenRate, 59.8*screenRate, 55, 55)];
         _headImage.image = [UIImage imageNamed:@"dasdasdas"];
         _headImage.clipsToBounds = YES;
     }
@@ -328,7 +328,7 @@
     return _likedNum;
 }
 - (void)drawRect {
-    float viewWidth = 55*screenRate;
+    float viewWidth = 55;
     UIBezierPath * path = [UIBezierPath bezierPath];
     path.lineWidth = 2;
     [[UIColor whiteColor] setStroke];

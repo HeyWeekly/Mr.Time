@@ -23,6 +23,12 @@
 		C05940291EEFBF57002751FE /* hotMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05940251EEFBF57002751FE /* hotMessage@2x.png */; };
 		C05940371EF1425A002751FE /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940341EF1425A002751FE /* YYFPSLabel.m */; };
 		C05940381EF1425A002751FE /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940361EF1425A002751FE /* YYWeakProxy.m */; };
+		C07ABFD21F39EF8E00EBED61 /* loginsettingheading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD01F39EF8E00EBED61 /* loginsettingheading@2x.png */; };
+		C07ABFD31F39EF8E00EBED61 /* loginsettingheading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD11F39EF8E00EBED61 /* loginsettingheading@3x.png */; };
+		C07ABFD61F39F04300EBED61 /* setingNickName@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD41F39F04300EBED61 /* setingNickName@2x.png */; };
+		C07ABFD71F39F04300EBED61 /* setingNickName@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD51F39F04300EBED61 /* setingNickName@3x.png */; };
+		C07ABFDA1F39F24F00EBED61 /* nextBirthday@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD81F39F24F00EBED61 /* nextBirthday@3x.png */; };
+		C07ABFDB1F39F24F00EBED61 /* nextBirthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD91F39F24F00EBED61 /* nextBirthday@2x.png */; };
 		C089B2341EFFB45700648EB4 /* boolRedLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */; };
 		C089B2351EFFB45700648EB4 /* boolRedLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */; };
 		C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */; };
@@ -83,6 +89,13 @@
 		C0A69F631EE9318D00DB4678 /* bacBackBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F611EE9318D00DB4678 /* bacBackBtn@3x.png */; };
 		C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F621EE9318D00DB4678 /* bacBackBtn@2x.png */; };
 		C0A69FA01EE949E600DB4678 /* WWSOCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A69F9F1EE949E600DB4678 /* WWSOCommon.swift */; };
+		C0B948F71F39DC760008E29F /* Onboarding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948F51F39DC760008E29F /* Onboarding@2x.png */; };
+		C0B948F81F39DC760008E29F /* Onboarding@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948F61F39DC760008E29F /* Onboarding@3x.png */; };
+		C0B948FB1F39DC8F0008E29F /* qianmuFurture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948F91F39DC8F0008E29F /* qianmuFurture@2x.png */; };
+		C0B948FC1F39DC8F0008E29F /* qianmuFurture@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948FA1F39DC8F0008E29F /* qianmuFurture@3x.png */; };
+		C0B949031F39DFE50008E29F /* WWLoginSettingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */; };
+		C0B949061F39E1620008E29F /* weChatLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949041F39E1620008E29F /* weChatLogin@2x.png */; };
+		C0B949071F39E1620008E29F /* weChatLogin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949051F39E1620008E29F /* weChatLogin@3x.png */; };
 		C0D48A2F1EF67EBC00B92549 /* GCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A281EF67EBC00B92549 /* GCDGroup.m */; };
 		C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A2A1EF67EBC00B92549 /* GCDQueue.m */; };
 		C0D48A311EF67EBC00B92549 /* GCDSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A2C1EF67EBC00B92549 /* GCDSemaphore.m */; };
@@ -184,6 +197,12 @@
 		C05940341EF1425A002751FE /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		C05940351EF1425A002751FE /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		C05940361EF1425A002751FE /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		C07ABFD01F39EF8E00EBED61 /* loginsettingheading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginsettingheading@2x.png"; sourceTree = "<group>"; };
+		C07ABFD11F39EF8E00EBED61 /* loginsettingheading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginsettingheading@3x.png"; sourceTree = "<group>"; };
+		C07ABFD41F39F04300EBED61 /* setingNickName@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setingNickName@2x.png"; sourceTree = "<group>"; };
+		C07ABFD51F39F04300EBED61 /* setingNickName@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setingNickName@3x.png"; sourceTree = "<group>"; };
+		C07ABFD81F39F24F00EBED61 /* nextBirthday@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextBirthday@3x.png"; sourceTree = "<group>"; };
+		C07ABFD91F39F24F00EBED61 /* nextBirthday@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextBirthday@2x.png"; sourceTree = "<group>"; };
 		C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@2x.png"; sourceTree = "<group>"; };
 		C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@3x.png"; sourceTree = "<group>"; };
 		C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notwhere@2x.png"; sourceTree = "<group>"; };
@@ -253,6 +272,14 @@
 		C0A69F621EE9318D00DB4678 /* bacBackBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bacBackBtn@2x.png"; sourceTree = "<group>"; };
 		C0A69F9E1EE9498100DB4678 /* Mr.Time-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr.Time-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0A69F9F1EE949E600DB4678 /* WWSOCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWSOCommon.swift; sourceTree = "<group>"; };
+		C0B948F51F39DC760008E29F /* Onboarding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@2x.png"; sourceTree = "<group>"; };
+		C0B948F61F39DC760008E29F /* Onboarding@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@3x.png"; sourceTree = "<group>"; };
+		C0B948F91F39DC8F0008E29F /* qianmuFurture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qianmuFurture@2x.png"; sourceTree = "<group>"; };
+		C0B948FA1F39DC8F0008E29F /* qianmuFurture@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qianmuFurture@3x.png"; sourceTree = "<group>"; };
+		C0B949011F39DFE50008E29F /* WWLoginSettingInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWLoginSettingInfoVC.h; sourceTree = "<group>"; };
+		C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWLoginSettingInfoVC.m; sourceTree = "<group>"; };
+		C0B949041F39E1620008E29F /* weChatLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatLogin@2x.png"; sourceTree = "<group>"; };
+		C0B949051F39E1620008E29F /* weChatLogin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatLogin@3x.png"; sourceTree = "<group>"; };
 		C0D48A231EF67D3800B92549 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C0D48A261EF67EBC00B92549 /* GCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCD.h; sourceTree = "<group>"; };
 		C0D48A271EF67EBC00B92549 /* GCDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDGroup.h; sourceTree = "<group>"; };
@@ -403,6 +430,8 @@
 			children = (
 				C05940071EEA9659002751FE /* LoginViewController.h */,
 				C05940081EEA9659002751FE /* LoginViewController.m */,
+				C0B949011F39DFE50008E29F /* WWLoginSettingInfoVC.h */,
+				C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -583,6 +612,25 @@
 				C0A69F621EE9318D00DB4678 /* bacBackBtn@2x.png */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C0B948F41F39DC2D0008E29F /* loginImage */ = {
+			isa = PBXGroup;
+			children = (
+				C07ABFD81F39F24F00EBED61 /* nextBirthday@3x.png */,
+				C07ABFD91F39F24F00EBED61 /* nextBirthday@2x.png */,
+				C07ABFD41F39F04300EBED61 /* setingNickName@2x.png */,
+				C07ABFD51F39F04300EBED61 /* setingNickName@3x.png */,
+				C07ABFD01F39EF8E00EBED61 /* loginsettingheading@2x.png */,
+				C07ABFD11F39EF8E00EBED61 /* loginsettingheading@3x.png */,
+				C0B949041F39E1620008E29F /* weChatLogin@2x.png */,
+				C0B949051F39E1620008E29F /* weChatLogin@3x.png */,
+				C0B948F91F39DC8F0008E29F /* qianmuFurture@2x.png */,
+				C0B948FA1F39DC8F0008E29F /* qianmuFurture@3x.png */,
+				C0B948F51F39DC760008E29F /* Onboarding@2x.png */,
+				C0B948F61F39DC760008E29F /* Onboarding@3x.png */,
+			);
+			path = loginImage;
 			sourceTree = "<group>";
 		};
 		C0D48A251EF67EBC00B92549 /* GCD */ = {
@@ -853,6 +901,7 @@
 		FF61E0D71E9BC061000E68F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C0B948F41F39DC2D0008E29F /* loginImage */,
 				C0A69F601EE9317E00DB4678 /* Common */,
 				C0A69F4B1EE7F5EA00DB4678 /* userYear */,
 				C0A69F491EE7D2DE00DB4678 /* dasdasdas.png */,
@@ -1017,13 +1066,17 @@
 				C089B27A1F00E81F00648EB4 /* suggestion@2x.png in Resources */,
 				C089B26F1F00D59500648EB4 /* settingSwtch@3x.png in Resources */,
 				C089B2761F00E81F00648EB4 /* aboutus@2x.png in Resources */,
+				C07ABFD71F39F04300EBED61 /* setingNickName@3x.png in Resources */,
+				C0B948F71F39DC760008E29F /* Onboarding@2x.png in Resources */,
 				C089B28A1F00F44B00648EB4 /* wechatlogin@2x.png in Resources */,
 				C089B2771F00E81F00648EB4 /* aboutus@3x.png in Resources */,
 				C089B24B1EFFBC6C00648EB4 /* Wechat@3x.png in Resources */,
 				FF61E0AC1E9BBE76000E68F0 /* LaunchScreen.storyboard in Resources */,
 				FF340B881EA0A04A00B4DB39 /* userNormal@3x.png in Resources */,
 				C089B2491EFFBC6C00648EB4 /* Savetoalbum@3x.png in Resources */,
+				C0B948FC1F39DC8F0008E29F /* qianmuFurture@3x.png in Resources */,
 				C0D48A821EF680F000B92549 /* homePublish@3x.png in Resources */,
+				C07ABFD31F39EF8E00EBED61 /* loginsettingheading@3x.png in Resources */,
 				C0A69F631EE9318D00DB4678 /* bacBackBtn@3x.png in Resources */,
 				C0A69F531EE7F64A00DB4678 /* 20yearsOld@3x.png in Resources */,
 				FF340B871EA0A04A00B4DB39 /* userNormal@2x.png in Resources */,
@@ -1031,17 +1084,21 @@
 				C0E8EDF71EFFA06D0034570D /* navrightBtn@2x.png in Resources */,
 				C089B28E1F00F49400648EB4 /* Onboarding@2x.png in Resources */,
 				C05940271EEFBF57002751FE /* hotMessage@3x.png in Resources */,
+				C07ABFD61F39F04300EBED61 /* setingNickName@2x.png in Resources */,
 				C089B27E1F00F05100648EB4 /* userNoCollect@2x.png in Resources */,
 				C089B2791F00E81F00648EB4 /* cleardelete@3x.png in Resources */,
 				C089B2831F00F05A00648EB4 /* userCollect@3x.png in Resources */,
 				C0E8EDF81EFFA06D0034570D /* navrightBtn@3x.png in Resources */,
 				C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */,
+				C07ABFD21F39EF8E00EBED61 /* loginsettingheading@2x.png in Resources */,
 				C089B27B1F00E81F00648EB4 /* suggestion@3x.png in Resources */,
 				FF340B721E9E640900B4DB39 /* bookSelect@3x.png in Resources */,
+				C0B948FB1F39DC8F0008E29F /* qianmuFurture@2x.png in Resources */,
 				C089B2461EFFBC6C00648EB4 /* QQzone@2x.png in Resources */,
 				C089B28F1F00F49400648EB4 /* Onboarding@3x.png in Resources */,
 				C059401D1EEFADEE002751FE /* bookLike@3x.png in Resources */,
 				C0A69F381EE79C2F00DB4678 /* Noticeicon@2x.png in Resources */,
+				C07ABFDA1F39F24F00EBED61 /* nextBirthday@3x.png in Resources */,
 				C0E8EDFF1EFFA5350034570D /* bookOval@3x.png in Resources */,
 				C089B24C1EFFBC6C00648EB4 /* Weibo@2x.png in Resources */,
 				C089B24D1EFFBC6C00648EB4 /* Weibo@3x.png in Resources */,
@@ -1053,16 +1110,20 @@
 				C089B2351EFFB45700648EB4 /* boolRedLike@3x.png in Resources */,
 				C0D48AC81EFE998700B92549 /* normalLock@3x.png in Resources */,
 				FF61E0A91E9BBE76000E68F0 /* Assets.xcassets in Resources */,
+				C0B949061F39E1620008E29F /* weChatLogin@2x.png in Resources */,
 				C089B2441EFFBC6C00648EB4 /* Moment@2x.png in Resources */,
 				C0A69F3C1EE79CCC00DB4678 /* Setting icon@2x.png in Resources */,
 				C089B27F1F00F05100648EB4 /* userNoCollect@3x.png in Resources */,
+				C07ABFDB1F39F24F00EBED61 /* nextBirthday@2x.png in Resources */,
 				C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */,
 				C0D48ACB1EFE99A100B92549 /* selectLock@2x.png in Resources */,
 				C0E8EDFE1EFFA5350034570D /* bookOval@2x.png in Resources */,
 				C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */,
 				FF340B731E9E640900B4DB39 /* collectSelect@2x.png in Resources */,
+				C0B948F81F39DC760008E29F /* Onboarding@3x.png in Resources */,
 				C089B2481EFFBC6C00648EB4 /* Savetoalbum@2x.png in Resources */,
 				C089B2451EFFBC6C00648EB4 /* Moment@3x.png in Resources */,
+				C0B949071F39E1620008E29F /* weChatLogin@3x.png in Resources */,
 				C0A69F501EE7F64A00DB4678 /* 21yearsOld@3x.png in Resources */,
 				FF340B851EA0A04A00B4DB39 /* homeNormal@2x.png in Resources */,
 				FF340B841EA0A04A00B4DB39 /* collectNormal@3x.png in Resources */,
@@ -1180,6 +1241,7 @@
 				C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */,
 				C0D48A971EF7B97F00B92549 /* UIScreenEx.mm in Sources */,
 				C0D48A951EF7B97F00B92549 /* QQEngine.m in Sources */,
+				C0B949031F39DFE50008E29F /* WWLoginSettingInfoVC.m in Sources */,
 				FF340B1D1E9E1FC600B4DB39 /* UserViewController.m in Sources */,
 				C089B2991F00F5BE00648EB4 /* CustomCardLayout.swift in Sources */,
 				FF340B231E9E1FF000B4DB39 /* CollectViewController.m in Sources */,

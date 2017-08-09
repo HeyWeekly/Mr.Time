@@ -7,6 +7,7 @@
 //
 
 #import "WWLoginSettingInfoVC.h"
+#import "WWLoginBirthdaySetting.h"
 
 @interface WWLoginSettingInfoVC ()
 @property (nonatomic, strong) WWNavigationVC *nav;
@@ -32,17 +33,37 @@
     self.thisNickName.centerX = self.view.centerX;
     self.thisNickName.top = 85*screenRate;
     
-    [self.view addSubview:self.settingHeadImage];
-    [self drawRect];
     [self.view addSubview:self.backheadImage];
     [self.backheadImage sizeToFit];
     self.backheadImage.centerX = self.view.centerX;
-    self.backheadImage.top = 50*screenRate;
+    self.backheadImage.top = self.thisNickName.bottom + 80*screenRate;
     [self.backheadImage sizeToFit];
+    
+    [self.view addSubview:self.settingHeadImage];
+    [self drawRect];
+    
+    [self.view addSubview:self.sepView];
+    [self.sepView sizeToFit];
+    self.sepView.left = 120*screenRate;
+    self.sepView.top = self.backheadImage.bottom + 68*screenRate;
+    self.sepView.width = 135*screenRate;
+    self.sepView.height = 2;
+    
+    [self.view addSubview:self.nickName];
+    [self.nickName sizeToFit];
+    self.nickName.centerX = self.view.centerX;
+    self.nickName.width = self.sepView.width;
+    self.nickName.left = self.sepView.left;
+    self.nickName.top = self.backheadImage.bottom+35*screenRate;
+    
+    [self.view addSubview:self.nextBtn];
+    [self.nextBtn sizeToFit];
+    self.nextBtn.bottom = self.view.bottom - 60*screenRate;
+    self.nextBtn.centerX = self.view.centerX;
 }
 
 - (void)drawRect {
-    float viewWidth = 55;
+    float viewWidth = 98;
     UIBezierPath * path = [UIBezierPath bezierPath];
     path.lineWidth = 2;
     [[UIColor whiteColor] setStroke];
@@ -66,7 +87,8 @@
 }
 
 - (void)nextClick {
-
+    WWLoginBirthdaySetting *vc = [[WWLoginBirthdaySetting alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)backClick {
@@ -94,7 +116,7 @@
 
 - (UIImageView *)settingHeadImage {
     if (_settingHeadImage == nil) {
-        _settingHeadImage = [[UIImageView alloc]initWithFrame:CGRectMake(137*screenRate, self.thisNickName.bottom+80*screenRate, 55, 55)];
+        _settingHeadImage = [[UIImageView alloc]initWithFrame:CGRectMake(KWidth/2 - self.backheadImage.width/2 + 6, self.thisNickName.bottom+90*screenRate, 98, 98)];
         _settingHeadImage.image = [UIImage imageNamed:@"dasdasdas"];
         _settingHeadImage.clipsToBounds = YES;
     }
@@ -114,10 +136,33 @@
 - (UIButton *)nextBtn {
     if (_nextBtn == nil) {
         _nextBtn = [[UIButton alloc]init];
-        [_nextBtn setImage:[UIImage imageNamed:@"loginsettingheading"] forState:UIControlStateNormal];
+        [_nextBtn setImage:[UIImage imageNamed:@"nextBirthday"] forState:UIControlStateNormal];
         _nextBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [_nextBtn addTarget:self action:@selector(nextClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _nextBtn;
+}
+
+- (UIView *)sepView {
+    if (_sepView == nil) {
+        _sepView = [[UIView alloc]init];
+        _sepView.backgroundColor = RGBCOLOR(0x545454);
+    }
+    return _sepView;
+}
+
+- (UITextField *)nickName {
+    if (_nickName == nil) {
+        _nickName = [[UITextField alloc]init];
+        _nickName.font = [UIFont fontWithName:kFont_SemiBold size:20*screenRate];
+        _nickName.textColor = [UIColor whiteColor];
+        _nickName.placeholder = @"请填写昵称";
+        _nickName.textAlignment = NSTextAlignmentCenter;
+        _nickName.keyboardType = UIKeyboardTypeDefault;
+        _nickName.keyboardAppearance = UIKeyboardAppearanceDark;
+        _nickName.returnKeyType = UIReturnKeyDone;
+        _nickName.tintColor = RGBCOLOR(0x15C2FF);
+    }
+    return _nickName;
 }
 @end

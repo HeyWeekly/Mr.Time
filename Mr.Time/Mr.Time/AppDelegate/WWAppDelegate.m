@@ -11,6 +11,8 @@
 #import "WWAppDelegate+AppLifeCircle.h"
 #import "WWAppDelegate+RootController.h"
 #import "MLTransition.h"
+#import "IQKeyboardManager.h"
+
 @interface WWAppDelegate ()
 @property (nonatomic,strong) NSMutableArray *imageArr;
 @property (nonatomic,assign) NSInteger *imageIndex;
@@ -22,6 +24,10 @@
     return (UINavigationController *)app.window.rootViewController;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [IQKeyboardManager sharedManager].enable = YES; //默认值为NO.
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;//不显示工具条
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;//点空白处收回
+    
     [self setAppWindows];
     [self setTabbarController]; 
     [self setRootViewController];

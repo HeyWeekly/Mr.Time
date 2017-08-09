@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +77,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
+		<key>02875FCA666877EF98CA560E6938B1B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CB58145B8CAB23145A37D0A1F54D5BF</key>
+		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,52 +92,57 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30A3E993A05AFBE5F765543FF58B2EDB</key>
+		<key>37C76CD246D637B8E4C586284A0D96B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D58EEE67EF95D8A2177FCCA94991F1C</key>
+		<key>5D622615EFB5A23237F34123DA18304A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C458B364DD2C7CBCB3F4A02A79A6B32</key>
+		<key>7E2B5C3F44E664F9DC0C05B2305CE673</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6FA033A40F200E31ABD40E70F9E1B1DD</key>
+		<key>8364728036B2E1A6DC8A7131A277FC93</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A749FBD1A27E4C0D842E04959A8DC0D0</key>
+		<key>9D831BBD033D2DA2596E3A4EAC3FB1FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B27065F52811C4C88EA880DACB7BF9D0</key>
+		<key>A6778037E77C8B3F74A561ACE930ED46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E09A0147A0AAFC328B48920ED8844187</key>
+		<key>B5A2A61822A4F1FCE9C3A7755FD4E3C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E257FAC001D64F2F87B69A56CE7BDB47</key>
+		<key>B74B28D3E6DC55CEFACC86F0A2ED2D28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E5A37EE98A672278EC96CEB91DEEA176</key>
+		<key>CD863282A7BAA923F3DFEEC186D52A59</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3278B8750B95389B4457E605DAEA184</key>
+		<key>DBD78E3E3F830CB1D0DDE05644B33707</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E44D278F5F1B42F8518F8A0B68ED60FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

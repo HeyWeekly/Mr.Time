@@ -22,4 +22,6 @@
 ///根视图
 - (void)setRootViewController;
 
+- (void)LoginSuccess;
+
 @end

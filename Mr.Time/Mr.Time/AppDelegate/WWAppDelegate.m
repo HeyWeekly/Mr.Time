@@ -33,6 +33,8 @@
     [self setRootViewController];
 
     [self.window makeKeyAndVisible];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginSuccess) name:@"userLoginSuccess" object:nil];
+//    [self LoginSuccess];
     return YES;
 }
 - (void)setUpWindows {

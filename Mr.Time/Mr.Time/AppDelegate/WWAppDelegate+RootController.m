@@ -36,6 +36,20 @@
     
     self.window.rootViewController = navc;
 }
+- (void)LoginSuccess {
+    UINavigationController * navc = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    navc.navigationBar.barTintColor = [UIColor colorWithRed:(41)/255.0 green:(41)/255.0 blue:(41)/255.0 alpha:1.0];
+    
+    navc.navigationBar.shadowImage = [[UIImage alloc] init];
+    [navc.navigationBar setTranslucent:NO];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    [navc.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    navc.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.window.rootViewController = navc;
+}
 #pragma mark - Windows
 - (void)setTabbarController {
     HomeViewController *home = [[HomeViewController alloc]init];

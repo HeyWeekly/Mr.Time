@@ -30,6 +30,17 @@
 		C07ABFDA1F39F24F00EBED61 /* nextBirthday@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD81F39F24F00EBED61 /* nextBirthday@3x.png */; };
 		C07ABFDB1F39F24F00EBED61 /* nextBirthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD91F39F24F00EBED61 /* nextBirthday@2x.png */; };
 		C07ABFDE1F3ADE6100EBED61 /* WWLoginBirthdaySetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ABFDD1F3ADE6100EBED61 /* WWLoginBirthdaySetting.m */; };
+		C07ABFE11F3C2D8900EBED61 /* tellMeBirthday@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFDF1F3C2D8900EBED61 /* tellMeBirthday@3x.png */; };
+		C07ABFE21F3C2D8900EBED61 /* tellMeBirthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFE01F3C2D8900EBED61 /* tellMeBirthday@2x.png */; };
+		C07ABFE51F3C2E6000EBED61 /* birthdayDone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFE31F3C2E6000EBED61 /* birthdayDone@3x.png */; };
+		C07ABFE61F3C2E6000EBED61 /* birthdayDone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFE41F3C2E6000EBED61 /* birthdayDone@2x.png */; };
+		C07ABFF51F3C435200EBED61 /* selectBirthday@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFF31F3C435200EBED61 /* selectBirthday@3x.png */; };
+		C07ABFF61F3C435200EBED61 /* selectBirthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFF41F3C435200EBED61 /* selectBirthday@2x.png */; };
+		C07ABFF91F3C79F200EBED61 /* UIButton+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ABFF81F3C79F200EBED61 /* UIButton+Touch.m */; };
+		C07ABFFD1F3C7CA600EBED61 /* WWAutomaticRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ABFFC1F3C7CA600EBED61 /* WWAutomaticRotation.m */; };
+		C07AC0001F3C811600EBED61 /* WWRotationPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C07ABFFF1F3C811600EBED61 /* WWRotationPageControl.m */; };
+		C07AC0041F3C832E00EBED61 /* WWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0031F3C832E00EBED61 /* WWCollectionViewLayout.m */; };
+		C07AC0071F3C849500EBED61 /* WWRotationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0061F3C849500EBED61 /* WWRotationCell.m */; };
 		C089B2341EFFB45700648EB4 /* boolRedLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */; };
 		C089B2351EFFB45700648EB4 /* boolRedLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */; };
 		C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */; };
@@ -206,6 +217,22 @@
 		C07ABFD91F39F24F00EBED61 /* nextBirthday@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextBirthday@2x.png"; sourceTree = "<group>"; };
 		C07ABFDC1F3ADE6100EBED61 /* WWLoginBirthdaySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWLoginBirthdaySetting.h; sourceTree = "<group>"; };
 		C07ABFDD1F3ADE6100EBED61 /* WWLoginBirthdaySetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWLoginBirthdaySetting.m; sourceTree = "<group>"; };
+		C07ABFDF1F3C2D8900EBED61 /* tellMeBirthday@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tellMeBirthday@3x.png"; sourceTree = "<group>"; };
+		C07ABFE01F3C2D8900EBED61 /* tellMeBirthday@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tellMeBirthday@2x.png"; sourceTree = "<group>"; };
+		C07ABFE31F3C2E6000EBED61 /* birthdayDone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "birthdayDone@3x.png"; sourceTree = "<group>"; };
+		C07ABFE41F3C2E6000EBED61 /* birthdayDone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "birthdayDone@2x.png"; sourceTree = "<group>"; };
+		C07ABFF31F3C435200EBED61 /* selectBirthday@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectBirthday@3x.png"; sourceTree = "<group>"; };
+		C07ABFF41F3C435200EBED61 /* selectBirthday@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectBirthday@2x.png"; sourceTree = "<group>"; };
+		C07ABFF71F3C79F200EBED61 /* UIButton+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Touch.h"; sourceTree = "<group>"; };
+		C07ABFF81F3C79F200EBED61 /* UIButton+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Touch.m"; sourceTree = "<group>"; };
+		C07ABFFB1F3C7CA600EBED61 /* WWAutomaticRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWAutomaticRotation.h; sourceTree = "<group>"; };
+		C07ABFFC1F3C7CA600EBED61 /* WWAutomaticRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWAutomaticRotation.m; sourceTree = "<group>"; };
+		C07ABFFE1F3C811600EBED61 /* WWRotationPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWRotationPageControl.h; sourceTree = "<group>"; };
+		C07ABFFF1F3C811600EBED61 /* WWRotationPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWRotationPageControl.m; sourceTree = "<group>"; };
+		C07AC0021F3C832E00EBED61 /* WWCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWCollectionViewLayout.h; sourceTree = "<group>"; };
+		C07AC0031F3C832E00EBED61 /* WWCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWCollectionViewLayout.m; sourceTree = "<group>"; };
+		C07AC0051F3C849500EBED61 /* WWRotationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWRotationCell.h; sourceTree = "<group>"; };
+		C07AC0061F3C849500EBED61 /* WWRotationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWRotationCell.m; sourceTree = "<group>"; };
 		C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@2x.png"; sourceTree = "<group>"; };
 		C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@3x.png"; sourceTree = "<group>"; };
 		C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notwhere@2x.png"; sourceTree = "<group>"; };
@@ -418,6 +445,8 @@
 		C0593FFF1EEA48B0002751FE /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C07ABFF71F3C79F200EBED61 /* UIButton+Touch.h */,
+				C07ABFF81F3C79F200EBED61 /* UIButton+Touch.m */,
 				C05940001EEA48DB002751FE /* WWLabel.h */,
 				C05940011EEA48DB002751FE /* WWLabel.m */,
 				C089B25E1EFFD02600648EB4 /* WWCollectButton.h */,
@@ -474,6 +503,28 @@
 				C05940361EF1425A002751FE /* YYWeakProxy.m */,
 			);
 			path = YYFPSLabel;
+			sourceTree = "<group>";
+		};
+		C07ABFFA1F3C7C3D00EBED61 /* WWRotationView */ = {
+			isa = PBXGroup;
+			children = (
+				C07ABFFB1F3C7CA600EBED61 /* WWAutomaticRotation.h */,
+				C07ABFFC1F3C7CA600EBED61 /* WWAutomaticRotation.m */,
+				C07ABFFE1F3C811600EBED61 /* WWRotationPageControl.h */,
+				C07ABFFF1F3C811600EBED61 /* WWRotationPageControl.m */,
+				C07AC0051F3C849500EBED61 /* WWRotationCell.h */,
+				C07AC0061F3C849500EBED61 /* WWRotationCell.m */,
+			);
+			path = WWRotationView;
+			sourceTree = "<group>";
+		};
+		C07AC0011F3C831500EBED61 /* collectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				C07AC0021F3C832E00EBED61 /* WWCollectionViewLayout.h */,
+				C07AC0031F3C832E00EBED61 /* WWCollectionViewLayout.m */,
+			);
+			path = collectionViewLayout;
 			sourceTree = "<group>";
 		};
 		C089B24E1EFFBDB600648EB4 /* bottomView */ = {
@@ -557,6 +608,8 @@
 		C0A69F5B1EE92DBA00DB4678 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C07AC0011F3C831500EBED61 /* collectionViewLayout */,
+				C07ABFFA1F3C7C3D00EBED61 /* WWRotationView */,
 				C089B24E1EFFBDB600648EB4 /* bottomView */,
 				C059400E1EEF84B5002751FE /* WWCardLayout */,
 				C0593FFF1EEA48B0002751FE /* Extension */,
@@ -622,6 +675,12 @@
 		C0B948F41F39DC2D0008E29F /* loginImage */ = {
 			isa = PBXGroup;
 			children = (
+				C07ABFF31F3C435200EBED61 /* selectBirthday@3x.png */,
+				C07ABFF41F3C435200EBED61 /* selectBirthday@2x.png */,
+				C07ABFE31F3C2E6000EBED61 /* birthdayDone@3x.png */,
+				C07ABFE41F3C2E6000EBED61 /* birthdayDone@2x.png */,
+				C07ABFDF1F3C2D8900EBED61 /* tellMeBirthday@3x.png */,
+				C07ABFE01F3C2D8900EBED61 /* tellMeBirthday@2x.png */,
 				C07ABFD81F39F24F00EBED61 /* nextBirthday@3x.png */,
 				C07ABFD91F39F24F00EBED61 /* nextBirthday@2x.png */,
 				C07ABFD41F39F04300EBED61 /* setingNickName@2x.png */,
@@ -1066,6 +1125,7 @@
 				C089B28B1F00F44B00648EB4 /* wechatlogin@3x.png in Resources */,
 				C0D48ACC1EFE99A100B92549 /* selectLock@3x.png in Resources */,
 				FF340B811EA0A04A00B4DB39 /* bookNormal@2x.png in Resources */,
+				C07ABFF61F3C435200EBED61 /* selectBirthday@2x.png in Resources */,
 				C089B2671F00A37400648EB4 /* headbackground@3x.png in Resources */,
 				C089B2871F00F41E00648EB4 /* jitang@3x.png in Resources */,
 				C089B27A1F00E81F00648EB4 /* suggestion@2x.png in Resources */,
@@ -1078,6 +1138,7 @@
 				C089B24B1EFFBC6C00648EB4 /* Wechat@3x.png in Resources */,
 				FF61E0AC1E9BBE76000E68F0 /* LaunchScreen.storyboard in Resources */,
 				FF340B881EA0A04A00B4DB39 /* userNormal@3x.png in Resources */,
+				C07ABFE51F3C2E6000EBED61 /* birthdayDone@3x.png in Resources */,
 				C089B2491EFFBC6C00648EB4 /* Savetoalbum@3x.png in Resources */,
 				C0B948FC1F39DC8F0008E29F /* qianmuFurture@3x.png in Resources */,
 				C0D48A821EF680F000B92549 /* homePublish@3x.png in Resources */,
@@ -1095,6 +1156,8 @@
 				C089B2831F00F05A00648EB4 /* userCollect@3x.png in Resources */,
 				C0E8EDF81EFFA06D0034570D /* navrightBtn@3x.png in Resources */,
 				C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */,
+				C07ABFF51F3C435200EBED61 /* selectBirthday@3x.png in Resources */,
+				C07ABFE11F3C2D8900EBED61 /* tellMeBirthday@3x.png in Resources */,
 				C07ABFD21F39EF8E00EBED61 /* loginsettingheading@2x.png in Resources */,
 				C089B27B1F00E81F00648EB4 /* suggestion@3x.png in Resources */,
 				FF340B721E9E640900B4DB39 /* bookSelect@3x.png in Resources */,
@@ -1120,6 +1183,7 @@
 				C0A69F3C1EE79CCC00DB4678 /* Setting icon@2x.png in Resources */,
 				C089B27F1F00F05100648EB4 /* userNoCollect@3x.png in Resources */,
 				C07ABFDB1F39F24F00EBED61 /* nextBirthday@2x.png in Resources */,
+				C07ABFE21F3C2D8900EBED61 /* tellMeBirthday@2x.png in Resources */,
 				C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */,
 				C0D48ACB1EFE99A100B92549 /* selectLock@2x.png in Resources */,
 				C0E8EDFE1EFFA5350034570D /* bookOval@2x.png in Resources */,
@@ -1144,6 +1208,7 @@
 				C089B2821F00F05A00648EB4 /* userCollect@2x.png in Resources */,
 				C089B26E1F00D59500648EB4 /* settingSwtch@2x.png in Resources */,
 				C05940291EEFBF57002751FE /* hotMessage@2x.png in Resources */,
+				C07ABFE61F3C2E6000EBED61 /* birthdayDone@2x.png in Resources */,
 				FF340B821EA0A04A00B4DB39 /* bookNormal@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1219,6 +1284,7 @@
 			files = (
 				FFBDCCC91EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				C0D48A961EF7B97F00B92549 /* QQLineFlowLayout.m in Sources */,
+				C07AC0041F3C832E00EBED61 /* WWCollectionViewLayout.m in Sources */,
 				FF340B131E9E19FE00B4DB39 /* WWRootViewController.m in Sources */,
 				C05940171EEF85FB002751FE /* WWCardSlideCell.m in Sources */,
 				C05940141EEF85A8002751FE /* WWCardSlideLayout.m in Sources */,
@@ -1226,6 +1292,7 @@
 				C089B29C1F00F5BE00648EB4 /* UIViewExtension.swift in Sources */,
 				FF340B2F1E9E4D4D00B4DB39 /* MLTransition.m in Sources */,
 				C089B26B1F00B29D00648EB4 /* WWSettingVC.m in Sources */,
+				C07ABFFD1F3C7CA600EBED61 /* WWAutomaticRotation.m in Sources */,
 				FF340B0E1E9E155100B4DB39 /* WWAppDelegate+AppService.m in Sources */,
 				C05940371EF1425A002751FE /* YYFPSLabel.m in Sources */,
 				C0D48A871EF688DA00B92549 /* WWPublishVC.m in Sources */,
@@ -1240,12 +1307,15 @@
 				C0A69FA01EE949E600DB4678 /* WWSOCommon.swift in Sources */,
 				FF340B081E9E152500B4DB39 /* WWAppDelegate+RootController.m in Sources */,
 				C05940211EEFB7F7002751FE /* WWMessageVC.m in Sources */,
+				C07ABFF91F3C79F200EBED61 /* UIButton+Touch.m in Sources */,
 				C0A69F2F1EE5557500DB4678 /* WWSimpleVC.m in Sources */,
 				C089B2601EFFD02600648EB4 /* WWCollectButton.m in Sources */,
 				FF340B261E9E200000B4DB39 /* BookViewController.m in Sources */,
 				C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */,
+				C07AC0001F3C811600EBED61 /* WWRotationPageControl.m in Sources */,
 				C07ABFDE1F3ADE6100EBED61 /* WWLoginBirthdaySetting.m in Sources */,
 				C0D48A971EF7B97F00B92549 /* UIScreenEx.mm in Sources */,
+				C07AC0071F3C849500EBED61 /* WWRotationCell.m in Sources */,
 				C0D48A951EF7B97F00B92549 /* QQEngine.m in Sources */,
 				C0B949031F39DFE50008E29F /* WWLoginSettingInfoVC.m in Sources */,
 				FF340B1D1E9E1FC600B4DB39 /* UserViewController.m in Sources */,

@@ -12,11 +12,15 @@
 #import "WWLabel.h"
 #import "GCD.h"
 #import "POP.h"
+#import "WWAutomaticRotation.h"
 
-@interface HomeViewController ()
-@property (nonatomic,strong) YYLabel *tipsLabel;
+@interface HomeYearsCell :UICollectionViewCell
 @property (nonatomic,strong) UILabel *yearsNum;
 @property (nonatomic,strong) UILabel *yearLbael;
+@end
+
+@interface HomeViewController ()<WWAutomaticRotationDelegate>
+@property (nonatomic, strong) WWAutomaticRotation *yearCircle;
 @property (nonatomic, strong) UIView *animationView;
 @property (nonatomic, strong) UIButton *puslishBtn;
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
@@ -40,29 +44,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
+    self.yearCircle.modelArray = @[@1,@2];
     [self setupSubViews];
 }
 
+- (void)viewWillLayoutSubviews {
+
+}
+
 - (void)setupSubViews {
-    [self.view addSubview:self.yearsNum];
-    [self.yearsNum sizeToFit];
-    self.yearsNum.centerX = self.view.centerX;
-    self.yearsNum.top = 40;
-    [self.yearsNum sizeToFit];
-    [self.view addSubview:self.yearLbael];
-    [self.yearLbael sizeToFit];
-    self.yearLbael.centerX = self.view.centerX;
-    self.yearLbael.top = self.yearsNum.bottom;
-    [self.yearLbael sizeToFit];
-    [self.view addSubview:self.tipsLabel];
-    [self.tipsLabel sizeToFit];
-    self.tipsLabel.centerX = self.view.centerX;
-    self.tipsLabel.top = 486*screenRate;
-    [self.tipsLabel sizeToFit];
+//    [self.view addSubview:self.yearsNum];
+//    [self.yearsNum sizeToFit];
+//    self.yearsNum.centerX = self.view.centerX;
+//    self.yearsNum.top = 40;
+//    [self.yearsNum sizeToFit];
+//    
+//    [self.view addSubview:self.yearLbael];
+//    [self.yearLbael sizeToFit];
+//    self.yearLbael.centerX = self.view.centerX;
+//    self.yearLbael.top = self.yearsNum.bottom;
+//    [self.yearLbael sizeToFit];
+    
+    [self.view addSubview:self.yearCircle];
+    [self.yearCircle sizeToFit];
+    self.yearCircle.left = 116*screenRate;
+    self.yearCircle.top = 40;
+    self.yearCircle.width = 150*screenRate;
+    self.yearCircle.height = 130*screenRate;
+    
     [self.view addSubview:self.puslishBtn];
     [self.puslishBtn sizeToFit];
-    self.puslishBtn.top = self.tipsLabel.bottom + 21*screenRate;
     self.puslishBtn.centerX = self.view.centerX;
+    self.puslishBtn.bottom = self.view.bottom - 10*screenRate - 49;
+    
     [self creatBackView];
     [self creatYearsView];
 }
@@ -74,14 +88,14 @@
     for(int index = 0; index< 100; index++) {
         UIView *cellView = [[UIView alloc ]init ];
         cellView.backgroundColor = RGBCOLOR(0x404040);
-        // 计算行号  和   列号
+        // 计算行号 & 列号
         int row = index / totalColumns;
         int col = index % totalColumns;
-        //根据行号和列号来确定 子控件的坐标
+        //根据行号和列号来确定子控件的坐标
         CGFloat cellX = 44*screenRate + col * (cellW + margin);
-        CGFloat cellY = self.yearLbael.bottom+30*screenRate+row * (cellH + margin);
+        CGFloat cellY = 197*screenRate+row * (cellH + margin);
         cellView.frame = CGRectMake(cellX, cellY, cellW, cellH);
-        // 添加到view 中
+        // 添加到view中
         [self.view addSubview:cellView];
     }
 }
@@ -91,7 +105,7 @@
     CGFloat cellH2 = 22*screenRate;
     CGFloat margin2 =9*screenRate;
     
-    for(int index = 0; index< self.yearsNum.text.integerValue; index++) {
+    for(int index = 0; index< 25; index++) {
         UIView *cellView = [[UIView alloc ]init ];
         cellView.layer.shadowColor = RGBCOLOR(0x27ECCC).CGColor;
         cellView.layer.shadowOpacity = 0.35;
@@ -102,7 +116,7 @@
         int row = index / totalColumns;
         int col = index % totalColumns;
         CGFloat cellX = 39*screenRate + col * (cellW2 + margin2);
-        CGFloat cellY = self.yearLbael.bottom+25*screenRate+row * (cellH2 + margin2);
+        CGFloat cellY = 192*screenRate+row * (cellH2 + margin2);
         cellView.frame = CGRectMake(cellX, cellY, cellW2, cellH2);
         CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
         //位置x,y    自己根据需求进行设置   使其从不同位置进行渐变
@@ -158,39 +172,77 @@
     }
 }
 
+- (UICollectionViewCell*)carouselView:(WWAutomaticRotation*)carouselView collection:(UICollectionView*)collection customCellForIndex:(NSUInteger)index forIndexPath:(NSIndexPath *)indexPath{
+    HomeYearsCell* cell = [collection dequeueReusableCellWithReuseIdentifier:@"yearsCircleCell" forIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        cell.yearsNum.text = @"25";
+        cell.yearLbael.text = @"YEARS OLD";
+    }else if (indexPath.row == 1 ) {
+        cell.yearsNum.text = @"8,568";
+        cell.yearLbael.text = @"DAY";
+    }
+    return cell;
+}
+
 #pragma mark - 点击事件
 - (void)publishBtnClick {
-    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:self.yearsNum.text.integerValue andIsPublish:YES];
+    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:25 andIsPublish:YES];
     [self.navigationController pushViewController:publishVC animated:YES];
 }
 
 #pragma mark - lazyLoad
-- (YYLabel *)tipsLabel {
-    if (_tipsLabel == nil) {
-        _tipsLabel = [[YYLabel alloc]init];
-        _tipsLabel.textAlignment = NSTextAlignmentCenter;
-        _tipsLabel.font = [UIFont fontWithName:kFont_Medium size:14*screenRate];
-        _tipsLabel.textColor = RGBCOLOR(0x545454);
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"在这个世界上你已经存在了 8,950 天"];
-        text.yy_font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
-        text.yy_color = RGBCOLOR(0x545454);;
-        [text yy_setTextHighlightRange:NSMakeRange(13, 5)
-                                 color:RGBCOLOR(0xC6C2C2)
-                       backgroundColor:[UIColor whiteColor]
-                             tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
-                                 
-                             }];
-        self.tipsLabel.attributedText = text;
+- (UIButton *)puslishBtn {
+    if (_puslishBtn == nil) {
+        _puslishBtn = [[UIButton alloc]init];
+        [_puslishBtn setImage:[UIImage imageNamed:@"homePublish"] forState:UIControlStateNormal];
+        [_puslishBtn addTarget:self action:@selector(publishBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _tipsLabel;
+    return _puslishBtn;
+}
+
+- (WWAutomaticRotation *)yearCircle {
+    if (_yearCircle == nil) {
+        _yearCircle = [[WWAutomaticRotation alloc]initWithModelArray:nil itemIntervel:0];
+        _yearCircle.backgroundColor = [UIColor yellowColor];
+        [_yearCircle.collection registerClass:[HomeYearsCell class] forCellWithReuseIdentifier:@"yearsCircleCell"];
+        [_yearCircle pageControlHidden:NO];
+        [_yearCircle setNeedAnimation:NO];
+        _yearCircle.pageWidth = KWidth;
+        _yearCircle.delegate = self;
+        _yearCircle.pageCon.constant = -20*screenRate;
+        _yearCircle.pageControl.style = WWRotationPageControlStyleSquare;
+    }
+    return _yearCircle;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+@end
+
+
+@implementation HomeYearsCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor redColor];
+        [self addSubview:self.yearsNum];
+        [self.yearsNum sizeToFit];
+        self.yearsNum.centerX = self.centerX;
+        self.yearsNum.top = 0;
+        [self addSubview:self.yearLbael];
+        [self.yearLbael sizeToFit];
+        self.yearLbael.centerX = self.centerX;
+        self.yearLbael.top = self.yearsNum.bottom;
+    }
+    return self;
 }
 
 - (UILabel *)yearLbael {
     if (_yearLbael == nil) {
         _yearLbael = [[UILabel alloc]init];
-        _yearLbael.text = @"YEARS OLD";
         _yearLbael.textAlignment = NSTextAlignmentCenter;
-        _yearLbael.font = [UIFont fontWithName:kFont_Medium size:24*screenRate];
+        _yearLbael.font = [UIFont fontWithName:kFont_DINAlternate size:21*screenRate];
         _yearLbael.textColor = RGBCOLOR(0x545454);
     }
     return _yearLbael;
@@ -198,7 +250,6 @@
 - (UILabel *)yearsNum {
     if (_yearsNum == nil) {
         _yearsNum = [[UILabel alloc]init];
-        _yearsNum.text = @"25";
         _yearsNum.textAlignment = NSTextAlignmentCenter;
         _yearsNum.font = [UIFont fontWithName:kFont_DINAlternate size:66*screenRate];
         _yearsNum.textColor = [UIColor whiteColor];
@@ -208,16 +259,5 @@
         _yearsNum.layer.shadowOffset = CGSizeMake(0, 8*screenRate);
     }
     return _yearsNum;
-}
-- (UIButton *)puslishBtn {
-    if (_puslishBtn == nil) {
-        _puslishBtn = [[UIButton alloc]init];
-        [_puslishBtn setImage:[UIImage imageNamed:@"homePublish"] forState:UIControlStateNormal];
-        [_puslishBtn addTarget:self action:@selector(publishBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _puslishBtn;
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 @end

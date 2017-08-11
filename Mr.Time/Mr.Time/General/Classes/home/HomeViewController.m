@@ -12,15 +12,17 @@
 #import "WWLabel.h"
 #import "GCD.h"
 #import "POP.h"
-#import "WWAutomaticRotation.h"
+#import "SDCycleScrollView.h"
 
 @interface HomeYearsCell :UICollectionViewCell
+@property (nonatomic, strong) UIView *containerView;
 @property (nonatomic,strong) UILabel *yearsNum;
 @property (nonatomic,strong) UILabel *yearLbael;
 @end
 
-@interface HomeViewController ()<WWAutomaticRotationDelegate>
-@property (nonatomic, strong) WWAutomaticRotation *yearCircle;
+@interface HomeViewController ()<SDCycleScrollViewDelegate>{
+    SDCycleScrollView* _bannerView;
+}
 @property (nonatomic, strong) UIView *animationView;
 @property (nonatomic, strong) UIButton *puslishBtn;
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
@@ -44,34 +46,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
-    self.yearCircle.modelArray = @[@1,@2];
+    NSArray *imagesURLStrings = @[@"",@""];
+    _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(105*screenRate, 40, 175*screenRate, 140*screenRate) delegate:self placeholderImage:nil];
+    _bannerView.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+    _bannerView.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+    _bannerView.imageURLStringsGroup = imagesURLStrings;
+    _bannerView.autoScroll = NO;
+    [self.view addSubview:_bannerView];
     [self setupSubViews];
 }
-
-- (void)viewWillLayoutSubviews {
-
+- (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view {
+    if (view != _bannerView) {
+        return nil;
+    }
+    return [HomeYearsCell class];
+}
+- (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
+    HomeYearsCell *myCell = (HomeYearsCell *)cell;
+    if (index == 0) {
+        myCell.yearsNum.text = @"28";
+        myCell.yearLbael.text = @"YEARS OLD";
+    }else if (index == 1){
+        myCell.yearsNum.text = @"1,111";
+        myCell.yearLbael.text = @"DAY";
+    }
+    
 }
 
 - (void)setupSubViews {
-//    [self.view addSubview:self.yearsNum];
-//    [self.yearsNum sizeToFit];
-//    self.yearsNum.centerX = self.view.centerX;
-//    self.yearsNum.top = 40;
-//    [self.yearsNum sizeToFit];
-//    
-//    [self.view addSubview:self.yearLbael];
-//    [self.yearLbael sizeToFit];
-//    self.yearLbael.centerX = self.view.centerX;
-//    self.yearLbael.top = self.yearsNum.bottom;
-//    [self.yearLbael sizeToFit];
-    
-    [self.view addSubview:self.yearCircle];
-    [self.yearCircle sizeToFit];
-    self.yearCircle.left = 116*screenRate;
-    self.yearCircle.top = 40;
-    self.yearCircle.width = 150*screenRate;
-    self.yearCircle.height = 130*screenRate;
-    
     [self.view addSubview:self.puslishBtn];
     [self.puslishBtn sizeToFit];
     self.puslishBtn.centerX = self.view.centerX;
@@ -172,17 +174,7 @@
     }
 }
 
-- (UICollectionViewCell*)carouselView:(WWAutomaticRotation*)carouselView collection:(UICollectionView*)collection customCellForIndex:(NSUInteger)index forIndexPath:(NSIndexPath *)indexPath{
-    HomeYearsCell* cell = [collection dequeueReusableCellWithReuseIdentifier:@"yearsCircleCell" forIndexPath:indexPath];
-    if (indexPath.row == 0) {
-        cell.yearsNum.text = @"25";
-        cell.yearLbael.text = @"YEARS OLD";
-    }else if (indexPath.row == 1 ) {
-        cell.yearsNum.text = @"8,568";
-        cell.yearLbael.text = @"DAY";
-    }
-    return cell;
-}
+
 
 #pragma mark - 点击事件
 - (void)publishBtnClick {
@@ -200,20 +192,6 @@
     return _puslishBtn;
 }
 
-- (WWAutomaticRotation *)yearCircle {
-    if (_yearCircle == nil) {
-        _yearCircle = [[WWAutomaticRotation alloc]initWithModelArray:nil itemIntervel:0];
-        _yearCircle.backgroundColor = [UIColor yellowColor];
-        [_yearCircle.collection registerClass:[HomeYearsCell class] forCellWithReuseIdentifier:@"yearsCircleCell"];
-        [_yearCircle pageControlHidden:NO];
-        [_yearCircle setNeedAnimation:NO];
-        _yearCircle.pageWidth = KWidth;
-        _yearCircle.delegate = self;
-        _yearCircle.pageCon.constant = -20*screenRate;
-        _yearCircle.pageControl.style = WWRotationPageControlStyleSquare;
-    }
-    return _yearCircle;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -225,14 +203,13 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor redColor];
         [self addSubview:self.yearsNum];
         [self.yearsNum sizeToFit];
-        self.yearsNum.centerX = self.centerX;
-        self.yearsNum.top = 0;
+        self.yearsNum.left = 0;
+        self.yearsNum.top = 5;
         [self addSubview:self.yearLbael];
         [self.yearLbael sizeToFit];
-        self.yearLbael.centerX = self.centerX;
+        self.yearLbael.centerX = self.yearsNum.centerX;
         self.yearLbael.top = self.yearsNum.bottom;
     }
     return self;
@@ -241,6 +218,7 @@
 - (UILabel *)yearLbael {
     if (_yearLbael == nil) {
         _yearLbael = [[UILabel alloc]init];
+        _yearLbael.text = @"YEARS OLD";
         _yearLbael.textAlignment = NSTextAlignmentCenter;
         _yearLbael.font = [UIFont fontWithName:kFont_DINAlternate size:21*screenRate];
         _yearLbael.textColor = RGBCOLOR(0x545454);
@@ -251,6 +229,7 @@
     if (_yearsNum == nil) {
         _yearsNum = [[UILabel alloc]init];
         _yearsNum.textAlignment = NSTextAlignmentCenter;
+        _yearsNum.text = @"9,9999";
         _yearsNum.font = [UIFont fontWithName:kFont_DINAlternate size:66*screenRate];
         _yearsNum.textColor = [UIColor whiteColor];
         _yearsNum.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -259,5 +238,11 @@
         _yearsNum.layer.shadowOffset = CGSizeMake(0, 8*screenRate);
     }
     return _yearsNum;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
 }
 @end

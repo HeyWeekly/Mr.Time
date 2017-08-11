@@ -136,13 +136,44 @@
     [self.view addSubview:self.tableView];
 }
 
-#pragma mark - target
+#pragma mark - event
 - (void)headImageClick {
-    UIImagePickerController *pic = [[UIImagePickerController alloc] init];
-    pic.allowsEditing = YES;
-    pic.delegate = self;
-    [self presentViewController:pic animated:YES completion:nil];
+    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
+    WEAK_SELF;
+    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"相机"
+                                                               handler:^(WWActionSheetAction *action) {
+                                                                   UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                                                                       if ([Permissions isGetCameraPermission] ) {
+                                                                           sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                           UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                                                                           picker.delegate = weakSelf;
+                                                                           picker.allowsEditing = YES;//设置可编辑
+                                                                           picker.sourceType = sourceType;
+                                                                           [weakSelf presentViewController:picker animated:YES completion:nil];
+                                                                       }else {
+                                                                           [Permissions getCameraPerMissionWithViewController:weakSelf];
+                                                                       }
+                                                                   }
+                                                               }];
+
+    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"从相册获取"
+                                                               handler:^(WWActionSheetAction *action) {
+                                                                   if ([Permissions isGetPhotoPermission]) {
+                                                                       UIImagePickerController *pic = [[UIImagePickerController alloc] init];
+                                                                       pic.allowsEditing = YES;
+                                                                       pic.delegate = weakSelf;
+                                                                       [weakSelf presentViewController:pic animated:YES completion:nil];
+                                                                   }else {
+                                                                       [Permissions getPhonePermissionWithViewController:weakSelf];
+                                                                   }
+                                                               }];
+    [actionSheet addAction:action];
+    [actionSheet addAction:action2];
+    
+    [actionSheet showInWindow:[WWGeneric popOverWindow]];
 }
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (!image) {return;}

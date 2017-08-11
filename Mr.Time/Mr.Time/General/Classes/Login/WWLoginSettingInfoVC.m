@@ -9,7 +9,7 @@
 #import "WWLoginSettingInfoVC.h"
 #import "WWLoginBirthdaySetting.h"
 
-@interface WWLoginSettingInfoVC ()
+@interface WWLoginSettingInfoVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) UIImageView *thisNickName;
 @property (nonatomic, strong) UIImageView *settingHeadImage;
@@ -83,7 +83,47 @@
 
 #pragma mark - event
 - (void)headImageClick {
+    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
+    WEAK_SELF;
+    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"相机"
+                                                               handler:^(WWActionSheetAction *action) {
+                                                                   UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                                                                       if ([Permissions isGetCameraPermission] ) {
+                                                                           sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                           UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                                                                           picker.delegate = weakSelf;
+                                                                           picker.allowsEditing = YES;//设置可编辑
+                                                                           picker.sourceType = sourceType;
+                                                                           [weakSelf presentViewController:picker animated:YES completion:nil];
+                                                                       }else {
+                                                                           [Permissions getCameraPerMissionWithViewController:weakSelf];
+                                                                       }
+                                                                   }
+                                                               }];
+    
+    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"从相册获取"
+                                                                handler:^(WWActionSheetAction *action) {
+                                                                    if ([Permissions isGetPhotoPermission]) {
+                                                                        UIImagePickerController *pic = [[UIImagePickerController alloc] init];
+                                                                        pic.allowsEditing = YES;
+                                                                        pic.delegate = weakSelf;
+                                                                        [weakSelf presentViewController:pic animated:YES completion:nil];
+                                                                    }else {
+                                                                        [Permissions getPhonePermissionWithViewController:weakSelf];
+                                                                    }
+                                                                }];
+    [actionSheet addAction:action];
+    [actionSheet addAction:action2];
+    
+    [actionSheet showInWindow:[WWGeneric popOverWindow]];
+}
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (!image) {return;}
+    self.settingHeadImage.image = image;
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)nextClick {
@@ -117,7 +157,7 @@
 - (UIImageView *)settingHeadImage {
     if (_settingHeadImage == nil) {
         _settingHeadImage = [[UIImageView alloc]initWithFrame:CGRectMake(KWidth/2 - self.backheadImage.width/2 + 6, self.thisNickName.bottom+90*screenRate, 98, 98)];
-        _settingHeadImage.image = [UIImage imageNamed:@"dasdasdas"];
+        _settingHeadImage.image = [UIImage imageNamed:@"defaulthead"];
         _settingHeadImage.clipsToBounds = YES;
     }
     return _settingHeadImage;
@@ -162,6 +202,7 @@
         _nickName.keyboardAppearance = UIKeyboardAppearanceDark;
         _nickName.returnKeyType = UIReturnKeyDone;
         _nickName.tintColor = RGBCOLOR(0x15C2FF);
+        _nickName.adjustsFontSizeToFitWidth = YES;
     }
     return _nickName;
 }

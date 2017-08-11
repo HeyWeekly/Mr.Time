@@ -15,7 +15,6 @@
 #import "SDCycleScrollView.h"
 
 @interface HomeYearsCell :UICollectionViewCell
-@property (nonatomic, strong) UIView *containerView;
 @property (nonatomic,strong) UILabel *yearsNum;
 @property (nonatomic,strong) UILabel *yearLbael;
 @end
@@ -54,23 +53,6 @@
     _bannerView.autoScroll = NO;
     [self.view addSubview:_bannerView];
     [self setupSubViews];
-}
-- (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view {
-    if (view != _bannerView) {
-        return nil;
-    }
-    return [HomeYearsCell class];
-}
-- (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
-    HomeYearsCell *myCell = (HomeYearsCell *)cell;
-    if (index == 0) {
-        myCell.yearsNum.text = @"28";
-        myCell.yearLbael.text = @"YEARS OLD";
-    }else if (index == 1){
-        myCell.yearsNum.text = @"1,111";
-        myCell.yearLbael.text = @"DAY";
-    }
-    
 }
 
 - (void)setupSubViews {
@@ -174,7 +156,23 @@
     }
 }
 
-
+#pragma mark - delegate
+- (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view {
+    if (view != _bannerView) {
+        return nil;
+    }
+    return [HomeYearsCell class];
+}
+- (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
+    HomeYearsCell *myCell = (HomeYearsCell *)cell;
+    if (index == 0) {
+        myCell.yearsNum.text = @"28";
+        myCell.yearLbael.text = @"YEARS OLD";
+    }else if (index == 1){
+        myCell.yearsNum.text = @"1,111";
+        myCell.yearLbael.text = @"DAY";
+    }
+}
 
 #pragma mark - 点击事件
 - (void)publishBtnClick {
@@ -192,10 +190,6 @@
     return _puslishBtn;
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 @end
 
 
@@ -225,6 +219,7 @@
     }
     return _yearLbael;
 }
+
 - (UILabel *)yearsNum {
     if (_yearsNum == nil) {
         _yearsNum = [[UILabel alloc]init];
@@ -240,9 +235,4 @@
     return _yearsNum;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-}
 @end

@@ -20,6 +20,13 @@
 #import "WWNavigationVC.h"
 #import "YYFPSLabel.h"
 #import "NSString+WWExtra.h"
+#import "WWImageTagPHPPicker.h"
+#import "UIView+WWExt.h"
+#import "UIImage+WWExt.h"
+#import "WWGeneric.h"
+#import "WWGeneric+Application.h"
+#import "WWActionSheet.h"
+#import "Permissions.h"
 
 #define WEAK_SELF __weak typeof(self) weakSelf = self
 #define STRONG_SELF if (!weakSelf) return; \

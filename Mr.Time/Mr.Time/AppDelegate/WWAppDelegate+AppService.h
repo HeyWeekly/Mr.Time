@@ -9,5 +9,5 @@
 #import "WWAppDelegate.h"
 
 @interface WWAppDelegate (AppService)
-
+- (void)loadWechatLoginInformation:(NSString *)code;
 @end

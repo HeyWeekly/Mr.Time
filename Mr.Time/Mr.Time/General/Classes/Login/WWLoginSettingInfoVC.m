@@ -9,7 +9,9 @@
 #import "WWLoginSettingInfoVC.h"
 #import "WWLoginBirthdaySetting.h"
 
-@interface WWLoginSettingInfoVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#define DESMAX_STARWORDS_LENGTH 12
+
+@interface WWLoginSettingInfoVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) UIImageView *thisNickName;
 @property (nonatomic, strong) UIImageView *settingHeadImage;
@@ -17,13 +19,17 @@
 @property (nonatomic, strong) UIView *sepView;
 @property (nonatomic, strong) UIButton *backheadImage;
 @property (nonatomic, strong) UIButton *nextBtn;
+@property (nonatomic, assign) BOOL isHaveHeadImage;
+@property (nonatomic, assign) NSInteger nickNameLength;
 @end
 
 @implementation WWLoginSettingInfoVC
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    self.isHaveHeadImage = NO;
     [self setupSubview];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFiledEditChanged:) name:UITextFieldTextDidChangeNotification object:self.nickName];
 }
 
 - (void)setupSubview {
@@ -46,7 +52,7 @@
     [self.sepView sizeToFit];
     self.sepView.left = 120*screenRate;
     self.sepView.top = self.backheadImage.bottom + 68*screenRate;
-    self.sepView.width = 135*screenRate;
+    self.sepView.width = 140*screenRate;
     self.sepView.height = 2;
     
     [self.view addSubview:self.nickName];
@@ -60,6 +66,84 @@
     [self.nextBtn sizeToFit];
     self.nextBtn.bottom = self.view.bottom - 60*screenRate;
     self.nextBtn.centerX = self.view.centerX;
+}
+
+#pragma mark - NSNotification
+//中英文的分别判断字符个数
+-(void)textFiledEditChanged:(NSNotification *)obj{
+    __block NSInteger count = 0;
+    UITextField *textField = self.nickName;
+    NSString *toBeString = textField.text;
+    // 获取高亮部分
+    UITextRange *selectedRange = [textField markedTextRange];
+    UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+    // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+    if (!position){
+        if (toBeString.length > DESMAX_STARWORDS_LENGTH){
+            NSRange rangeIndex = [toBeString rangeOfComposedCharacterSequenceAtIndex:DESMAX_STARWORDS_LENGTH];
+            if (rangeIndex.length == 1){
+                textField.text = [toBeString substringToIndex:DESMAX_STARWORDS_LENGTH];
+            }else{
+                NSRange rangeRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, DESMAX_STARWORDS_LENGTH)];
+                textField.text = [toBeString substringWithRange:rangeRange];
+            }
+        }
+    }
+    WEAK_SELF;
+    [textField.text enumerateSubstringsInRange:NSMakeRange(0, textField.text.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:
+     ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+         char commitChar = [toBeString characterAtIndex:0];
+         NSString *temp = [toBeString substringWithRange:NSMakeRange(0,1)];
+         const char *u8Temp = [temp UTF8String];
+         if ([weakSelf stringContainsEmoji:substring]) {
+             count += 1;
+         }else if (u8Temp && 3==strlen(u8Temp)) {
+             count += 2;
+         }else if(commitChar >= 0 && commitChar <= 127){
+             count++;
+         }else{
+             count++;
+         }
+     }];
+    self.nickNameLength = count;
+}
+
+#pragma mark - Tools
+- (BOOL)stringContainsEmoji:(NSString *)string {
+    __block BOOL returnValue = NO;
+    [string enumerateSubstringsInRange:NSMakeRange(0, [string length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:
+     ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+         const unichar hs = [substring characterAtIndex:0];
+         // surrogate pair
+         if (0xd800 <= hs && hs <= 0xdbff) {
+             if (substring.length > 1) {
+                 const unichar ls = [substring characterAtIndex:1];
+                 const int uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
+                 if (0x1d000 <= uc && uc <= 0x1f77f) {
+                     returnValue = YES;
+                 }
+             }
+         } else if (substring.length > 1) {
+             const unichar ls = [substring characterAtIndex:1];
+             if (ls == 0x20e3) {
+                 returnValue = YES;
+             }
+         } else {
+             // non surrogate
+             if (0x2100 <= hs && hs <= 0x27ff) {
+                 returnValue = YES;
+             } else if (0x2B05 <= hs && hs <= 0x2b07) {
+                 returnValue = YES;
+             } else if (0x2934 <= hs && hs <= 0x2935) {
+                 returnValue = YES;
+             } else if (0x3297 <= hs && hs <= 0x3299) {
+                 returnValue = YES;
+             } else if (hs == 0xa9 || hs == 0xae || hs == 0x303d || hs == 0x3030 || hs == 0x2b55 || hs == 0x2b1c || hs == 0x2b1b || hs == 0x2b50) {
+                 returnValue = YES;
+             }
+         }
+     }];
+    return returnValue;
 }
 
 - (void)drawRect {
@@ -119,13 +203,6 @@
     [actionSheet showInWindow:[WWGeneric popOverWindow]];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    if (!image) {return;}
-    self.settingHeadImage.image = image;
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)nextClick {
     WWLoginBirthdaySetting *vc = [[WWLoginBirthdaySetting alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -133,6 +210,20 @@
 
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.nickName resignFirstResponder];
+    return YES;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (!image) {return;}
+    self.settingHeadImage.image = image;
+    self.isHaveHeadImage = YES;
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - lazy
@@ -196,13 +287,18 @@
         _nickName = [[UITextField alloc]init];
         _nickName.font = [UIFont fontWithName:kFont_SemiBold size:20*screenRate];
         _nickName.textColor = [UIColor whiteColor];
-        _nickName.placeholder = @"请填写昵称";
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@"请输入昵称" attributes:
+                                          @{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                            NSFontAttributeName:_nickName.font
+                                            }];
+        _nickName.attributedPlaceholder = attrString;
         _nickName.textAlignment = NSTextAlignmentCenter;
         _nickName.keyboardType = UIKeyboardTypeDefault;
         _nickName.keyboardAppearance = UIKeyboardAppearanceDark;
         _nickName.returnKeyType = UIReturnKeyDone;
         _nickName.tintColor = RGBCOLOR(0x15C2FF);
         _nickName.adjustsFontSizeToFitWidth = YES;
+        _nickName.delegate = self;
     }
     return _nickName;
 }

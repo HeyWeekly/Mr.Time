@@ -7,6 +7,7 @@
 //
 
 #import "WWAppDelegate+AppLifeCircle.h"
+#import "WXApi.h"
 
 @implementation WWAppDelegate (AppLifeCircle)
 -(void)applicationDidEnterBackground:(UIApplication *)application{
@@ -55,16 +56,5 @@ didRegisterUserNotificationSettings:
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {//禁止横屏
     return UIInterfaceOrientationMaskPortrait;
-}
-#pragma mark - App挑选回调
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-   
-    
-    
-   
-    
-    return YES;
-    
 }
 @end

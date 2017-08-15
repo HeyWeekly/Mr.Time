@@ -9,7 +9,7 @@
 #import "WWPublishVC.h"
 #import <YYText/YYText.h>
 
-@interface WWPublishVC ()<YYTextViewDelegate>
+@interface WWPublishVC ()<YYTextViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) YYLabel *yearsLbale;
 @property (nonatomic, strong) YYTextView *inputTextView;
@@ -24,6 +24,7 @@
 @end
 
 @implementation WWPublishVC
+
 - (instancetype)initWithYear:(NSInteger )years andIsPublish:(BOOL)isPublish{
     if (self = [super init]) {
         self.isPublish = isPublish;
@@ -32,12 +33,14 @@
     }
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
     [self.view addSubview:self.nav];
     [self setupSubview];
 }
+
 - (void)setupSubview {
     [self.view addSubview:self.containerView];
     self.containerView.top = self.nav.bottom+10*screenRate;
@@ -101,12 +104,31 @@
     self.inputTextView.width = self.containerView.width-40*screenRate;
     self.inputTextView.height = 363*screenRate;
 }
+
+#pragma mark - delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.yearsField resignFirstResponder];
+    return YES;
+}
+- (void)textViewDidEndEditing:(YYTextView *)textView {
+
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+#pragma mark - event
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)publishClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)minlookclick {
     self.isSelect = !self.isSelect;
     if (self.isSelect == YES) {
@@ -117,8 +139,8 @@
         [_mineLook setTitleColor:RGBCOLOR(0xA6B1BA) forState:UIControlStateNormal];
     }
 }
-#pragma mark - 懒加载
 
+#pragma mark - lazyload
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
         _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
@@ -128,6 +150,7 @@
     }
     return _nav;
 }
+
 - (YYLabel *)yearsLbale {
     if (!_yearsLbale) {
         _yearsLbale = [[YYLabel alloc]init];
@@ -135,6 +158,7 @@
     }
     return _yearsLbale;
 }
+
 - (YYTextView *)inputTextView {
     if (_inputTextView == nil) {
         _inputTextView = [[YYTextView alloc]initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
@@ -146,8 +170,22 @@
         _inputTextView.keyboardType = UIKeyboardTypeDefault;
         _inputTextView.returnKeyType = UIReturnKeyDone;
         _inputTextView.delegate = self;
+        _inputTextView.keyboardAppearance = UIKeyboardAppearanceDark;
     }
     return _inputTextView;
+}
+
+- (UITextField *)yearsField {
+    if (!_yearsField) {
+        _yearsField = [[UITextField alloc]init];
+        _yearsField.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
+        _yearsField.textColor = RGBCOLOR(0x15C2FF);
+        _yearsField.keyboardType = UIKeyboardTypeNumberPad;
+        _yearsField.keyboardAppearance = UIKeyboardAppearanceDark;
+        _yearsField.returnKeyType = UIReturnKeyDone;
+        _yearsField.delegate = self;
+    }
+    return _yearsField;
 }
 
 - (UIView *)sepLine {
@@ -172,6 +210,7 @@
     }
     return _mineLook;
 }
+
 - (UIButton *)pubLish {
     if (!_pubLish) {
         _pubLish = [[UIButton alloc]init];
@@ -180,6 +219,7 @@
     }
     return _pubLish;
 }
+
 - (UIView *)containerView {
     if (!_containerView) {
         _containerView = [[UIView alloc]init];
@@ -189,15 +229,5 @@
     }
     return _containerView;
 }
-- (UITextField *)yearsField {
-    if (!_yearsField) {
-        _yearsField = [[UITextField alloc]init];
-        _yearsField.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
-        _yearsField.textColor = RGBCOLOR(0x15C2FF);
-    }
-    return _yearsField;
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
+
 @end

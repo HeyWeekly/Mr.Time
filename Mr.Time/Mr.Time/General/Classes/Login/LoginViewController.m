@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "WWLoginSettingInfoVC.h"
+#import "WXApi.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) UIImageView *furture;
@@ -42,8 +43,23 @@
 
 #pragma mark - event
 - (void)weChatBtnClick {
-    WWLoginSettingInfoVC *vc = [[WWLoginSettingInfoVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    SendAuthReq *req = [[SendAuthReq alloc] init];
+    req.scope = @"snsapi_userinfo";
+    req.state = @"App";
+    [WXApi sendReq:req];
+    
+//    WWLoginSettingInfoVC *vc = [[WWLoginSettingInfoVC alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//微信回调通知
+- (void)weChatCompltion:(NSNotification*)notify {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userLoginSuccess" object:nil];
+}
+//微信失败回调
+- (void)weChatFailureCompltion:(NSNotification*)notify {
+    
 }
 
 #pragma mark - lazy

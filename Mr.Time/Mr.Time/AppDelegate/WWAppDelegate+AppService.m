@@ -7,7 +7,20 @@
 //
 
 #import "WWAppDelegate+AppService.h"
+#import "API.h"
 
 @implementation WWAppDelegate (AppService)
-
+- (void)loadWechatLoginInformation:(NSString *)code {
+    NSLog(@"%@",code);
+    [XMCenter sendRequest:^(XMRequest *request) {
+        request.server = AppApi;
+        request.api = userLogin;
+        request.parameters = @{@"code": code};
+        request.httpMethod = kXMHTTPMethodGET;
+    } onSuccess:^(id responseObject) {
+        NSLog(@"onSuccess: %@", responseObject);
+    } onFailure:^(NSError *error) {
+        NSLog(@"onFailure: %@", error);
+    }];
+}
 @end

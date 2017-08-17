@@ -55,6 +55,9 @@
     self.sepView.width = 140*screenRate;
     self.sepView.height = 2;
     
+    if ([WWUserModel shareUserModel].nickname) {
+        self.nickName.text = [WWUserModel shareUserModel].nickname;
+    }
     [self.view addSubview:self.nickName];
     [self.nickName sizeToFit];
     self.nickName.centerX = self.view.centerX;
@@ -106,6 +109,86 @@
          }
      }];
     self.nickNameLength = count;
+}
+
+#pragma mark - event
+- (void)headImageClick {
+    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
+    WEAK_SELF;
+    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"相机"
+                                                               handler:^(WWActionSheetAction *action) {
+                                                                   UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                                                                       if ([Permissions isGetCameraPermission] ) {
+                                                                           sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                           UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                                                                           picker.delegate = weakSelf;
+                                                                           picker.allowsEditing = YES;//设置可编辑
+                                                                           picker.sourceType = sourceType;
+                                                                           [weakSelf presentViewController:picker animated:YES completion:nil];
+                                                                       }else {
+                                                                           [Permissions getCameraPerMissionWithViewController:weakSelf];
+                                                                       }
+                                                                   }
+                                                               }];
+    
+    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"从相册获取"
+                                                                handler:^(WWActionSheetAction *action) {
+                                                                    if ([Permissions isGetPhotoPermission]) {
+                                                                        UIImagePickerController *pic = [[UIImagePickerController alloc] init];
+                                                                        pic.allowsEditing = YES;
+                                                                        pic.delegate = weakSelf;
+                                                                        [weakSelf presentViewController:pic animated:YES completion:nil];
+                                                                    }else {
+                                                                        [Permissions getPhonePermissionWithViewController:weakSelf];
+                                                                    }
+                                                                }];
+    [actionSheet addAction:action];
+    [actionSheet addAction:action2];
+    
+    [actionSheet showInWindow:[WWGeneric popOverWindow]];
+}
+
+- (void)nextClick {
+    if (!self.isHaveHeadImage && self.nickName.text.length <= 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像和用户名"}];
+        return;
+    }
+    if (!self.isHaveHeadImage) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像"}];
+        return;
+    }
+    if (self.nickName.text.length <= 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请输入用户名"}];
+        return;
+    }
+    if (self.nickNameLength > DESMAX_STARWORDS_LENGTH) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"用户名最长6个中文字符（12个英文字符）"}];
+        return;
+    }
+    [WWUserModel shareUserModel].nickname = self.nickName.text;
+    [WWUserModel shareUserModel].headimg = self.settingHeadImage.image;
+    [shareUserModel saveAccount];
+    WWLoginBirthdaySetting *vc = [[WWLoginBirthdaySetting alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)backClick {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.nickName resignFirstResponder];
+    return YES;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (!image) {return;}
+    self.settingHeadImage.image = image;
+    self.isHaveHeadImage = YES;
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Tools
@@ -163,67 +246,6 @@
     shapLayer.strokeColor = [UIColor whiteColor].CGColor;
     shapLayer.path = path.CGPath;
     _settingHeadImage.layer.mask = shapLayer;
-}
-
-#pragma mark - event
-- (void)headImageClick {
-    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
-    WEAK_SELF;
-    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"相机"
-                                                               handler:^(WWActionSheetAction *action) {
-                                                                   UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                                   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                                                                       if ([Permissions isGetCameraPermission] ) {
-                                                                           sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                                           UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                                                                           picker.delegate = weakSelf;
-                                                                           picker.allowsEditing = YES;//设置可编辑
-                                                                           picker.sourceType = sourceType;
-                                                                           [weakSelf presentViewController:picker animated:YES completion:nil];
-                                                                       }else {
-                                                                           [Permissions getCameraPerMissionWithViewController:weakSelf];
-                                                                       }
-                                                                   }
-                                                               }];
-    
-    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"从相册获取"
-                                                                handler:^(WWActionSheetAction *action) {
-                                                                    if ([Permissions isGetPhotoPermission]) {
-                                                                        UIImagePickerController *pic = [[UIImagePickerController alloc] init];
-                                                                        pic.allowsEditing = YES;
-                                                                        pic.delegate = weakSelf;
-                                                                        [weakSelf presentViewController:pic animated:YES completion:nil];
-                                                                    }else {
-                                                                        [Permissions getPhonePermissionWithViewController:weakSelf];
-                                                                    }
-                                                                }];
-    [actionSheet addAction:action];
-    [actionSheet addAction:action2];
-    
-    [actionSheet showInWindow:[WWGeneric popOverWindow]];
-}
-
-- (void)nextClick {
-    WWLoginBirthdaySetting *vc = [[WWLoginBirthdaySetting alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)backClick {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.nickName resignFirstResponder];
-    return YES;
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    if (!image) {return;}
-    self.settingHeadImage.image = image;
-    self.isHaveHeadImage = YES;
-    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - lazy

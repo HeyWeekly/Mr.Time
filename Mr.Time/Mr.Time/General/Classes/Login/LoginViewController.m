@@ -21,6 +21,8 @@
 #pragma mark - lifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weChatCompltion:) name:@"WeChatLoginSucess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weChatFailureCompltion:) name:@"WeChatLoginFailure" object:nil];
     [self setupSubviews];
 }
 
@@ -38,28 +40,35 @@
     [self.view addSubview:self.weChatBtn];
     [self.weChatBtn sizeToFit];
     self.weChatBtn.centerX = self.view.centerX;
-    self.weChatBtn.top = self.centerImage.bottom + 150*screenRate;
+    self.weChatBtn.bottom = self.view.bottom - 16*screenRate - 49;
 }
 
 #pragma mark - event
 - (void)weChatBtnClick {
-    
     SendAuthReq *req = [[SendAuthReq alloc] init];
     req.scope = @"snsapi_userinfo";
     req.state = @"App";
     [WXApi sendReq:req];
-    
-//    WWLoginSettingInfoVC *vc = [[WWLoginSettingInfoVC alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //微信回调通知
 - (void)weChatCompltion:(NSNotification*)notify {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"userLoginSuccess" object:nil];
+    NSDictionary *user = notify.object;
+    shareUserModel = [WWUserModel yy_modelWithDictionary:[user valueForKey:@"result"]];
+    [shareUserModel saveAccount];
+    dispatch_sync(dispatch_get_main_queue(), ^(){
+        if ([[user valueForKey:@"code"] integerValue] == 1) {
+#warning 判断数据是不是新用户，是新用户直接跳转 老用户直接登录 
+            WWLoginSettingInfoVC *vc = [[WWLoginSettingInfoVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"登录失败，请重试"}];
+        }
+    });
 }
 //微信失败回调
 - (void)weChatFailureCompltion:(NSNotification*)notify {
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"登录失败，请重试"}];
 }
 
 #pragma mark - lazy
@@ -86,6 +95,10 @@
         [_weChatBtn addTarget:self action:@selector(weChatBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _weChatBtn;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end

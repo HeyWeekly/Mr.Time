@@ -23,6 +23,8 @@
 		C05940291EEFBF57002751FE /* hotMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05940251EEFBF57002751FE /* hotMessage@2x.png */; };
 		C05940371EF1425A002751FE /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940341EF1425A002751FE /* YYFPSLabel.m */; };
 		C05940381EF1425A002751FE /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940361EF1425A002751FE /* YYWeakProxy.m */; };
+		C06351261F443ED400820458 /* WWUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C06351251F443ED400820458 /* WWUserModel.m */; };
+		C063512A1F4440E500820458 /* WWErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C06351291F4440E500820458 /* WWErrorView.m */; };
 		C07ABFD21F39EF8E00EBED61 /* loginsettingheading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD01F39EF8E00EBED61 /* loginsettingheading@2x.png */; };
 		C07ABFD31F39EF8E00EBED61 /* loginsettingheading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD11F39EF8E00EBED61 /* loginsettingheading@3x.png */; };
 		C07ABFD61F39F04300EBED61 /* setingNickName@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFD41F39F04300EBED61 /* setingNickName@2x.png */; };
@@ -238,6 +240,10 @@
 		C05940341EF1425A002751FE /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		C05940351EF1425A002751FE /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		C05940361EF1425A002751FE /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		C06351241F443ED400820458 /* WWUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWUserModel.h; sourceTree = "<group>"; };
+		C06351251F443ED400820458 /* WWUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWUserModel.m; sourceTree = "<group>"; };
+		C06351281F4440E500820458 /* WWErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWErrorView.h; sourceTree = "<group>"; };
+		C06351291F4440E500820458 /* WWErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWErrorView.m; sourceTree = "<group>"; };
 		C07ABFD01F39EF8E00EBED61 /* loginsettingheading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginsettingheading@2x.png"; sourceTree = "<group>"; };
 		C07ABFD11F39EF8E00EBED61 /* loginsettingheading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginsettingheading@3x.png"; sourceTree = "<group>"; };
 		C07ABFD41F39F04300EBED61 /* setingNickName@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setingNickName@2x.png"; sourceTree = "<group>"; };
@@ -596,6 +602,24 @@
 			path = YYFPSLabel;
 			sourceTree = "<group>";
 		};
+		C06351231F443EB800820458 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C06351241F443ED400820458 /* WWUserModel.h */,
+				C06351251F443ED400820458 /* WWUserModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C06351271F4440E500820458 /* WWErrorView */ = {
+			isa = PBXGroup;
+			children = (
+				C06351281F4440E500820458 /* WWErrorView.h */,
+				C06351291F4440E500820458 /* WWErrorView.m */,
+			);
+			path = WWErrorView;
+			sourceTree = "<group>";
+		};
 		C07AC0011F3C831500EBED61 /* collectionViewLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,6 +794,7 @@
 		C0A69F5B1EE92DBA00DB4678 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C06351271F4440E500820458 /* WWErrorView */,
 				C07AC08B1F42E2AC00EBED61 /* NetWorkTools */,
 				C07AC0611F3DCCFD00EBED61 /* Category */,
 				C07AC0571F3DBB8A00EBED61 /* Alert */,
@@ -1023,7 +1048,6 @@
 				FF61E0D11E9BC061000E68F0 /* General */,
 				FF61E0D41E9BC061000E68F0 /* Libs */,
 				FF61E0D51E9BC061000E68F0 /* Macro */,
-				FF61E0D61E9BC061000E68F0 /* Models */,
 				FF61E0D71E9BC061000E68F0 /* Resources */,
 				FF61E0D81E9BC061000E68F0 /* Vendors */,
 				FF61E09C1E9BBE76000E68F0 /* Supporting Files */,
@@ -1080,9 +1104,9 @@
 		FF61E0D11E9BC061000E68F0 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				C06351231F443EB800820458 /* Models */,
 				FF340B101E9E19B900B4DB39 /* Main */,
 				FF61E0D21E9BC061000E68F0 /* Classes */,
-				FF61E0D31E9BC061000E68F0 /* View */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -1097,13 +1121,6 @@
 				FF340B0F1E9E192500B4DB39 /* home */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		FF61E0D31E9BC061000E68F0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		FF61E0D41E9BC061000E68F0 /* Libs */ = {
@@ -1127,13 +1144,6 @@
 				C07AC0741F41902C00EBED61 /* API.h */,
 			);
 			path = Macro;
-			sourceTree = "<group>";
-		};
-		FF61E0D61E9BC061000E68F0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		FF61E0D71E9BC061000E68F0 /* Resources */ = {
@@ -1246,6 +1256,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2CSYYV5Z4H;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					FF61E0B11E9BBE76000E68F0 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1512,6 +1527,7 @@
 				FF340B1A1E9E1FA200B4DB39 /* HomeViewController.m in Sources */,
 				C05940111EEF84E8002751FE /* WWCardSlide.m in Sources */,
 				C089B29B1F00F5BE00648EB4 /* UIViewControllerExtension.swift in Sources */,
+				C063512A1F4440E500820458 /* WWErrorView.m in Sources */,
 				C07AC05D1F3DBCAE00EBED61 /* WWActionSheet.m in Sources */,
 				FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */,
 				C05940381EF1425A002751FE /* YYWeakProxy.m in Sources */,
@@ -1519,6 +1535,7 @@
 				C07AC06C1F3DCF0900EBED61 /* UIButton+Touch.m in Sources */,
 				C0D48A321EF67EBC00B92549 /* GCDTimer.m in Sources */,
 				C07AC0371F3D796F00EBED61 /* TAAnimatedDotView.m in Sources */,
+				C06351261F443ED400820458 /* WWUserModel.m in Sources */,
 				C07AC0701F3DD06900EBED61 /* WWGeneric.m in Sources */,
 				C07AC03A1F3D796F00EBED61 /* SDCollectionViewCell.m in Sources */,
 				C089B25D1EFFCC7800648EB4 /* WWShareSucceedView.m in Sources */,

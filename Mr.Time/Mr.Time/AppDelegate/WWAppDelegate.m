@@ -13,6 +13,7 @@
 #import "MLTransition.h"
 #import "IQKeyboardManager.h"
 #import "WXApi.h"
+#import "WWErrorView.h"
 
 @interface WWAppDelegate ()<WXApiDelegate>
 @property (nonatomic,strong) NSMutableArray *imageArr;
@@ -28,6 +29,8 @@
     [IQKeyboardManager sharedManager].enable = YES; //默认值为NO.
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;//不显示工具条
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;//点空白处收回
+    
+    [WWErrorView alloc];
     
     [WXApi registerApp:@"wxfaf372338328fa69"];
     
@@ -66,7 +69,7 @@
 - (void)onResp:(BaseResp*)resp {
     //微信登录
     if ([resp isKindOfClass:[SendAuthResp class]]) {   //授权登录的类。
-        if (resp.errCode == 0) {  //成功。
+        if (resp.errCode == 0) {  //成功
             SendAuthResp *resp2 = (SendAuthResp *)resp;
             [self loadWechatLoginInformation:resp2.code];
         }else{ //失败

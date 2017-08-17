@@ -21,6 +21,9 @@
 @property (nonatomic, strong) NSArray *yearArray;
 @property (nonatomic, strong) NSArray *monthArray;
 @property (nonatomic, retain) NSDate *scrollToDate;
+@property (nonatomic, copy) NSString *year;
+@property (nonatomic, copy) NSString *month;
+@property (nonatomic, copy) NSString *day;
 @end
 
 @implementation WWLoginBirthdaySetting
@@ -106,8 +109,9 @@
         }
     }
     [pickerView reloadAllComponents];
-    NSString *dateStr = [NSString stringWithFormat:@"%@-%@-%@",_yearArray[yearIndex],_monthArray[monthIndex],_dayArray[dayIndex]];
-    NSLog(@"%@",dateStr);
+    self.year = _yearArray[yearIndex];
+    self.month = _monthArray[monthIndex];
+    self.day = _dayArray[dayIndex];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
@@ -128,6 +132,10 @@
 
 #pragma mark - event
 - (void)birthdayDoneClick {
+    [WWUserModel shareUserModel].year = self.year;
+    [WWUserModel shareUserModel].month = self.month;
+    [WWUserModel shareUserModel].day = self.day;
+    [shareUserModel saveAccount];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userLoginSuccess" object:nil];
 }
 

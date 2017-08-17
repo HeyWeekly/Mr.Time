@@ -20,16 +20,18 @@
 @property (nonatomic, strong) UIImageView *backImage;
 @property (nonatomic, strong) NSArray *yearArray;
 @property (nonatomic, strong) NSArray *monthArray;
-@property (nonatomic, retain) NSDate *scrollToDate;
+@property (nonatomic, strong) NSDate *scrollToDate;
 @property (nonatomic, copy) NSString *year;
 @property (nonatomic, copy) NSString *month;
 @property (nonatomic, copy) NSString *day;
+@property (nonatomic, copy) NSString *dateStr;
 @end
 
 @implementation WWLoginBirthdaySetting
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dateStr = @"1949-1-01";
     NSMutableArray *tempArray = [NSMutableArray array];
     self.monthArray = [NSArray array];
     for (int i = 1949; i <= 2020; i++) {
@@ -109,6 +111,7 @@
         }
     }
     [pickerView reloadAllComponents];
+    self.dateStr = [NSString stringWithFormat:@"%@-%@-%@",_yearArray[yearIndex],_monthArray[monthIndex],_dayArray[dayIndex]];
     self.year = _yearArray[yearIndex];
     self.month = _monthArray[monthIndex];
     self.day = _dayArray[dayIndex];
@@ -132,14 +135,48 @@
 
 #pragma mark - event
 - (void)birthdayDoneClick {
+    NSInteger dataStr = [self getDifferenceByDate:self.dateStr];
+    NSString *yearDay = [self dateToOld:self.dateStr];
+    [WWUserModel shareUserModel].yearDay = yearDay;
+    [WWUserModel shareUserModel].dataStr = [NSString stringWithFormat:@"%ld",(long)dataStr];
     [WWUserModel shareUserModel].year = self.year;
     [WWUserModel shareUserModel].month = self.month;
     [WWUserModel shareUserModel].day = self.day;
-    [shareUserModel saveAccount];
+    [[WWUserModel shareUserModel] saveAccount];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userLoginSuccess" object:nil];
 }
 
 #pragma mark - tools
+-(NSString *)dateToOld:(NSString *)bornDate{
+    
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *oldDate = [dateFormatter dateFromString:bornDate];
+    
+    //获得当前系统时间
+    NSDate *currentDate = [NSDate date];
+    //获得当前系统时间与出生日期之间的时间间隔
+    NSTimeInterval time = [currentDate timeIntervalSinceDate:oldDate];
+    //时间间隔以秒作为单位,求年的话除以60*60*24*356
+    int age = ((int)time)/(3600*24*365);
+    return [NSString stringWithFormat:@"%d",age];
+}
+
+- (NSInteger)getDifferenceByDate:(NSString *)date {
+    //获得当前时间
+    NSDate *now = [NSDate date];
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *oldDate = [dateFormatter dateFromString:date];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    unsigned int unitFlags = NSCalendarUnitDay;
+    NSDateComponents *comps = [gregorian components:unitFlags fromDate:oldDate  toDate:now  options:0];
+    return [comps day];
+}
 
 -(NSArray *)getNumberOfRowsInComponent {
     NSInteger yearNum = self.yearArray.count;

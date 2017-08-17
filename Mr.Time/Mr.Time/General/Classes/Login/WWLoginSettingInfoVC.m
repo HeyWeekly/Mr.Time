@@ -150,14 +150,14 @@
 }
 
 - (void)nextClick {
-    if (!self.isHaveHeadImage && self.nickName.text.length <= 0) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像和用户名"}];
-        return;
-    }
-    if (!self.isHaveHeadImage) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像"}];
-        return;
-    }
+//    if (!self.isHaveHeadImage && self.nickName.text.length <= 0) {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像和用户名"}];
+//        return;
+//    }
+//    if (!self.isHaveHeadImage) {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像"}];
+//        return;
+//    }
     if (self.nickName.text.length <= 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请输入用户名"}];
         return;
@@ -168,7 +168,7 @@
     }
     [WWUserModel shareUserModel].nickname = self.nickName.text;
     [WWUserModel shareUserModel].headimg = self.settingHeadImage.image;
-    [shareUserModel saveAccount];
+    [[WWUserModel shareUserModel] saveAccount];
     WWLoginBirthdaySetting *vc = [[WWLoginBirthdaySetting alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }

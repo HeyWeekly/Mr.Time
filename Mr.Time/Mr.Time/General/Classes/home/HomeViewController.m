@@ -89,7 +89,7 @@
     CGFloat cellH2 = 22*screenRate;
     CGFloat margin2 =9*screenRate;
     
-    for(int index = 0; index< 25; index++) {
+    for(int index = 0; index< [WWUserModel shareUserModel].yearDay.integerValue; index++) {
         UIView *cellView = [[UIView alloc ]init ];
         cellView.layer.shadowColor = RGBCOLOR(0x27ECCC).CGColor;
         cellView.layer.shadowOpacity = 0.35;
@@ -119,7 +119,7 @@
         [cellView.layer addSublayer:gradientLayer];
         // 添加到view 中
         [self.view addSubview:cellView];
-        if (index == 24) {
+        if (index == [WWUserModel shareUserModel].yearDay.integerValue-1) {
             self.animationView = cellView;
             [GCDQueue executeInMainQueue:^{
                 [self scaleAnimation];
@@ -166,17 +166,17 @@
 - (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
     HomeYearsCell *myCell = (HomeYearsCell *)cell;
     if (index == 0) {
-        myCell.yearsNum.text = @"28";
+        myCell.yearsNum.text = [WWUserModel shareUserModel].yearDay;
         myCell.yearLbael.text = @"YEARS OLD";
     }else if (index == 1){
-        myCell.yearsNum.text = @"1,111";
+        myCell.yearsNum.text = [WWUserModel shareUserModel].dataStr;
         myCell.yearLbael.text = @"DAY";
     }
 }
 
 #pragma mark - 点击事件
 - (void)publishBtnClick {
-    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:25 andIsPublish:YES];
+    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:[WWUserModel shareUserModel].yearDay.integerValue andIsPublish:YES];
     [self.navigationController pushViewController:publishVC animated:YES];
 }
 

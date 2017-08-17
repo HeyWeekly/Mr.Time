@@ -9,14 +9,17 @@
 #import "WWUserModel.h"
 #import "NSObject+YYModel.h"
 
+static WWUserModel *instance;
+
 @implementation WWUserModel
 
 + (instancetype)shareUserModel {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shareUserModel = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        instance = [[WWUserModel alloc]init];
+        instance = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
     });
-    return shareUserModel;
+    return instance;
 }
 
 /// 保存用户信息
@@ -25,7 +28,7 @@
 }
 ///  清空用户信息
 + (void)clearUserAccount {
-    shareUserModel = nil;
+    instance = nil;
     [[NSFileManager defaultManager] removeItemAtPath:ArchiverPath error:nil];
 }
 

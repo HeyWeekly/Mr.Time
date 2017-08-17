@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class WWUserModel;
-
-static WWUserModel *shareUserModel;
-
 @interface WWUserModel : NSObject
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *headimgurl;
@@ -22,6 +18,8 @@ static WWUserModel *shareUserModel;
 @property (nonatomic, copy) NSString *year;
 @property (nonatomic, copy) NSString *month;
 @property (nonatomic, copy) NSString *day;
+@property (nonatomic, copy) NSString *dataStr;
+@property (nonatomic, copy) NSString *yearDay;
 @property (nonatomic, strong) UIImage *headimg;
 + (instancetype)shareUserModel;
 - (void) saveAccount;

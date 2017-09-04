@@ -23,4 +23,5 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"WeChatLoginFailure" object:nil];
     }];
 }
+
 @end

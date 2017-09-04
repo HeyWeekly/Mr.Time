@@ -17,12 +17,11 @@
 
 @implementation WWAppDelegate (RootController)
 - (void)setRootViewController {
-    if ([WWUserModel shareUserModel].openid) {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"oldCustom"] isEqualToString:@"YES"]) {
         [self LoginSuccess];
     }else {
         [self setRoot];
     }
-
 }
 
 - (void)setRoot{

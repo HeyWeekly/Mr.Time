@@ -56,10 +56,10 @@
     NSDictionary *user = notify.object;
     WWUserModel *userModel = [WWUserModel shareUserModel];
      userModel = [WWUserModel yy_modelWithDictionary:[user valueForKey:@"result"]];
+    NSLog(@"%@",[user valueForKey:@"result"]);
     [userModel saveAccount];
     dispatch_sync(dispatch_get_main_queue(), ^(){
         if ([[user valueForKey:@"code"] integerValue] == 1) {
-#warning 判断数据是不是新用户，是新用户直接跳转 老用户直接登录 
             WWLoginSettingInfoVC *vc = [[WWLoginSettingInfoVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }else {

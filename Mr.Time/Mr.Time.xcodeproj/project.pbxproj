@@ -74,6 +74,12 @@
 		C07AC0941F42E2B800EBED61 /* XMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0901F42E2B800EBED61 /* XMEngine.m */; };
 		C07AC0951F42E2B800EBED61 /* XMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0921F42E2B800EBED61 /* XMRequest.m */; };
 		C07B39961F5D2509001088F2 /* threeqidongye .png in Resources */ = {isa = PBXBuildFile; fileRef = C07B39951F5D2509001088F2 /* threeqidongye .png */; };
+		C07B39A51F5D83B2001088F2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B399A1F5D83B2001088F2 /* FMDatabase.m */; };
+		C07B39A61F5D83B2001088F2 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B399C1F5D83B2001088F2 /* FMDatabaseAdditions.m */; };
+		C07B39A71F5D83B2001088F2 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B399E1F5D83B2001088F2 /* FMDatabasePool.m */; };
+		C07B39A81F5D83B2001088F2 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B39A01F5D83B2001088F2 /* FMDatabaseQueue.m */; };
+		C07B39A91F5D83B2001088F2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B39A31F5D83B2001088F2 /* FMResultSet.m */; };
+		C07B39AA1F5D83B2001088F2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07B39A41F5D83B2001088F2 /* Info.plist */; };
 		C089B2341EFFB45700648EB4 /* boolRedLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */; };
 		C089B2351EFFB45700648EB4 /* boolRedLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */; };
 		C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */; };
@@ -138,6 +144,7 @@
 		C0B949031F39DFE50008E29F /* WWLoginSettingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */; };
 		C0B949061F39E1620008E29F /* weChatLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949041F39E1620008E29F /* weChatLogin@2x.png */; };
 		C0B949071F39E1620008E29F /* weChatLogin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949051F39E1620008E29F /* weChatLogin@3x.png */; };
+		C0CBA6121F5D9033008DC3B9 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CBA6111F5D9033008DC3B9 /* Student.m */; };
 		C0D48A2F1EF67EBC00B92549 /* GCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A281EF67EBC00B92549 /* GCDGroup.m */; };
 		C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A2A1EF67EBC00B92549 /* GCDQueue.m */; };
 		C0D48A311EF67EBC00B92549 /* GCDSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A2C1EF67EBC00B92549 /* GCDSemaphore.m */; };
@@ -318,6 +325,18 @@
 		C07AC0911F42E2B800EBED61 /* XMRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequest.h; sourceTree = "<group>"; };
 		C07AC0921F42E2B800EBED61 /* XMRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequest.m; sourceTree = "<group>"; };
 		C07B39951F5D2509001088F2 /* threeqidongye .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeqidongye .png"; sourceTree = "<group>"; };
+		C07B39991F5D83B2001088F2 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		C07B399A1F5D83B2001088F2 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		C07B399B1F5D83B2001088F2 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		C07B399C1F5D83B2001088F2 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		C07B399D1F5D83B2001088F2 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		C07B399E1F5D83B2001088F2 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		C07B399F1F5D83B2001088F2 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		C07B39A01F5D83B2001088F2 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		C07B39A11F5D83B2001088F2 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		C07B39A21F5D83B2001088F2 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		C07B39A31F5D83B2001088F2 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		C07B39A41F5D83B2001088F2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@2x.png"; sourceTree = "<group>"; };
 		C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@3x.png"; sourceTree = "<group>"; };
 		C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notwhere@2x.png"; sourceTree = "<group>"; };
@@ -390,6 +409,8 @@
 		C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWLoginSettingInfoVC.m; sourceTree = "<group>"; };
 		C0B949041F39E1620008E29F /* weChatLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatLogin@2x.png"; sourceTree = "<group>"; };
 		C0B949051F39E1620008E29F /* weChatLogin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatLogin@3x.png"; sourceTree = "<group>"; };
+		C0CBA6101F5D9033008DC3B9 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		C0CBA6111F5D9033008DC3B9 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		C0D48A231EF67D3800B92549 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C0D48A261EF67EBC00B92549 /* GCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCD.h; sourceTree = "<group>"; };
 		C0D48A271EF67EBC00B92549 /* GCDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDGroup.h; sourceTree = "<group>"; };
@@ -717,6 +738,25 @@
 				C07AC0921F42E2B800EBED61 /* XMRequest.m */,
 			);
 			path = NetWorkTools;
+			sourceTree = "<group>";
+		};
+		C07B39981F5D83B2001088F2 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				C07B39991F5D83B2001088F2 /* FMDatabase.h */,
+				C07B399A1F5D83B2001088F2 /* FMDatabase.m */,
+				C07B399B1F5D83B2001088F2 /* FMDatabaseAdditions.h */,
+				C07B399C1F5D83B2001088F2 /* FMDatabaseAdditions.m */,
+				C07B399D1F5D83B2001088F2 /* FMDatabasePool.h */,
+				C07B399E1F5D83B2001088F2 /* FMDatabasePool.m */,
+				C07B399F1F5D83B2001088F2 /* FMDatabaseQueue.h */,
+				C07B39A01F5D83B2001088F2 /* FMDatabaseQueue.m */,
+				C07B39A11F5D83B2001088F2 /* FMDB.h */,
+				C07B39A21F5D83B2001088F2 /* FMResultSet.h */,
+				C07B39A31F5D83B2001088F2 /* FMResultSet.m */,
+				C07B39A41F5D83B2001088F2 /* Info.plist */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 		C089B24E1EFFBDB600648EB4 /* bottomView */ = {
@@ -1092,6 +1132,8 @@
 				FF340B0A1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m */,
 				FF340B0C1E9E155100B4DB39 /* WWAppDelegate+AppService.h */,
 				FF340B0D1E9E155100B4DB39 /* WWAppDelegate+AppService.m */,
+				C0CBA6101F5D9033008DC3B9 /* Student.h */,
+				C0CBA6111F5D9033008DC3B9 /* Student.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -1121,6 +1163,7 @@
 		FF61E0D41E9BC061000E68F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				C07B39981F5D83B2001088F2 /* fmdb */,
 				C07AC0751F41971900EBED61 /* WeChatSDK */,
 				C07AC0261F3D796F00EBED61 /* SDCycleScrollView */,
 				C089B2901F00F5BE00648EB4 /* Classes */,
@@ -1360,6 +1403,7 @@
 				C089B24C1EFFBC6C00648EB4 /* Weibo@2x.png in Resources */,
 				C089B24D1EFFBC6C00648EB4 /* Weibo@3x.png in Resources */,
 				FF340B771E9E640900B4DB39 /* userSelect@2x.png in Resources */,
+				C07B39AA1F5D83B2001088F2 /* Info.plist in Resources */,
 				C0D48A831EF680F000B92549 /* homePublish@2x.png in Resources */,
 				FF340B711E9E640900B4DB39 /* bookSelect@2x.png in Resources */,
 				C0A69F511EE7F64A00DB4678 /* 21yearsOld@2x.png in Resources */,
@@ -1506,10 +1550,14 @@
 				C07AC03B1F3D796F00EBED61 /* SDCycleScrollView.m in Sources */,
 				C07AC0941F42E2B800EBED61 /* XMEngine.m in Sources */,
 				C089B2601EFFD02600648EB4 /* WWCollectButton.m in Sources */,
+				C07B39A81F5D83B2001088F2 /* FMDatabaseQueue.m in Sources */,
 				C07AC0671F3DCE1500EBED61 /* UIImage+WWExt.m in Sources */,
 				C07AC0931F42E2B800EBED61 /* XMCenter.m in Sources */,
+				C07B39A61F5D83B2001088F2 /* FMDatabaseAdditions.m in Sources */,
 				FF340B261E9E200000B4DB39 /* BookViewController.m in Sources */,
 				C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */,
+				C0CBA6121F5D9033008DC3B9 /* Student.m in Sources */,
+				C07B39A51F5D83B2001088F2 /* FMDatabase.m in Sources */,
 				C07ABFDE1F3ADE6100EBED61 /* WWLoginBirthdaySetting.m in Sources */,
 				C0D48A971EF7B97F00B92549 /* UIScreenEx.mm in Sources */,
 				C0D48A951EF7B97F00B92549 /* QQEngine.m in Sources */,
@@ -1530,6 +1578,7 @@
 				C0D48A321EF67EBC00B92549 /* GCDTimer.m in Sources */,
 				C07AC0371F3D796F00EBED61 /* TAAnimatedDotView.m in Sources */,
 				C06351261F443ED400820458 /* WWUserModel.m in Sources */,
+				C07B39A91F5D83B2001088F2 /* FMResultSet.m in Sources */,
 				C07AC0701F3DD06900EBED61 /* WWGeneric.m in Sources */,
 				C07AC03A1F3D796F00EBED61 /* SDCollectionViewCell.m in Sources */,
 				C089B25D1EFFCC7800648EB4 /* WWShareSucceedView.m in Sources */,
@@ -1542,6 +1591,7 @@
 				C089B2981F00F5BE00648EB4 /* CardView.swift in Sources */,
 				C089B2511EFFBDD400648EB4 /* WWShareView.m in Sources */,
 				C07AC0731F3DD2EB00EBED61 /* WWGeneric+Application.m in Sources */,
+				C07B39A71F5D83B2001088F2 /* FMDatabasePool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1709,7 +1759,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "329ab76e-4ccf-42fd-adc0-3ea30bad94eb";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1750,7 +1800,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "329ab76e-4ccf-42fd-adc0-3ea30bad94eb";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

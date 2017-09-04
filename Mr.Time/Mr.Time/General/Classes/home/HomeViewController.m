@@ -100,7 +100,7 @@
         gradientLayer.startPoint = CGPointMake(0.0, 0.0);
         gradientLayer.endPoint = CGPointMake(0.9, 0.9);
         gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(cellView.frame), CGRectGetHeight(cellView.frame));
-        if (index == 24) {
+        if (index == [WWUserModel shareUserModel].yearDay.integerValue-1) {
             gradientLayer.colors = @[(__bridge id)RGBCOLOR(0x27EBCD).CGColor,(__bridge id)RGBCOLOR(0x16C3FE).CGColor];
         }else if(index >= 0+row*10 && index <= row*10+3 ){
             gradientLayer.backgroundColor = [UIColor colorWithRed:0/255.0 green:255/255.0 blue:213/255.0 alpha:1].CGColor;

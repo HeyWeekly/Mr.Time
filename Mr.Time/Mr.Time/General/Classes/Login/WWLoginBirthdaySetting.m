@@ -141,6 +141,8 @@
     [WWUserModel shareUserModel].dataStr = [NSString stringWithFormat:@"%ld",(long)dataStr];
     [WWUserModel shareUserModel].isNewUser = YES;
     [[WWUserModel shareUserModel] saveAccount];
+    [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"oldCustom"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userLoginSuccess" object:nil];
 }
 

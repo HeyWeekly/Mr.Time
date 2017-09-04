@@ -17,7 +17,12 @@
 
 @implementation WWAppDelegate (RootController)
 - (void)setRootViewController {
-    [self setRoot];
+    if ([WWUserModel shareUserModel].openid) {
+        [self LoginSuccess];
+    }else {
+        [self setRoot];
+    }
+
 }
 
 - (void)setRoot{

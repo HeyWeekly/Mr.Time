@@ -15,12 +15,11 @@
 @property (nonatomic, copy) NSString *openid;
 @property (nonatomic, copy) NSString *sex;
 @property (nonatomic, copy) NSString *uid;
-@property (nonatomic, copy) NSString *year;
-@property (nonatomic, copy) NSString *month;
-@property (nonatomic, copy) NSString *day;
 @property (nonatomic, copy) NSString *dataStr;
+//年龄
 @property (nonatomic, copy) NSString *yearDay;
 @property (nonatomic, strong) UIImage *headimg;
+@property (nonatomic, assign) BOOL isNewUser;
 + (instancetype)shareUserModel;
 - (void) saveAccount;
 + (void)clearUserAccount;

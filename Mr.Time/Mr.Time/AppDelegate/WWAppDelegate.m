@@ -30,6 +30,8 @@
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;//不显示工具条
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;//点空白处收回
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginSuccess) name:@"userLoginSuccess" object:nil];
+    
     [WWErrorView alloc];
     
     [WXApi registerApp:@"wxfaf372338328fa69"];
@@ -39,8 +41,7 @@
     [self setRootViewController];
 
     [self.window makeKeyAndVisible];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginSuccess) name:@"userLoginSuccess" object:nil];
-//    [self LoginSuccess];
+    
     return YES;
 }
 - (void)setUpWindows {

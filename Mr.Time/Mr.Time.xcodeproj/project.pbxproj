@@ -73,6 +73,7 @@
 		C07AC0931F42E2B800EBED61 /* XMCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC08D1F42E2B800EBED61 /* XMCenter.m */; };
 		C07AC0941F42E2B800EBED61 /* XMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0901F42E2B800EBED61 /* XMEngine.m */; };
 		C07AC0951F42E2B800EBED61 /* XMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0921F42E2B800EBED61 /* XMRequest.m */; };
+		C07B39961F5D2509001088F2 /* threeqidongye .png in Resources */ = {isa = PBXBuildFile; fileRef = C07B39951F5D2509001088F2 /* threeqidongye .png */; };
 		C089B2341EFFB45700648EB4 /* boolRedLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */; };
 		C089B2351EFFB45700648EB4 /* boolRedLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */; };
 		C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */; };
@@ -118,12 +119,10 @@
 		C089B29A1F00F5BE00648EB4 /* CustomFlipTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2941F00F5BE00648EB4 /* CustomFlipTransition.swift */; };
 		C089B29B1F00F5BE00648EB4 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2951F00F5BE00648EB4 /* UIViewControllerExtension.swift */; };
 		C089B29C1F00F5BE00648EB4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2961F00F5BE00648EB4 /* UIViewExtension.swift */; };
-		C0A69F2F1EE5557500DB4678 /* WWSimpleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */; };
 		C0A69F371EE79C2F00DB4678 /* Noticeicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F351EE79C2F00DB4678 /* Noticeicon@3x.png */; };
 		C0A69F381EE79C2F00DB4678 /* Noticeicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F361EE79C2F00DB4678 /* Noticeicon@2x.png */; };
 		C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F391EE79CCC00DB4678 /* Setting icon@3x.png */; };
 		C0A69F3C1EE79CCC00DB4678 /* Setting icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F3A1EE79CCC00DB4678 /* Setting icon@2x.png */; };
-		C0A69F4A1EE7D2DE00DB4678 /* dasdasdas.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F491EE7D2DE00DB4678 /* dasdasdas.png */; };
 		C0A69F501EE7F64A00DB4678 /* 21yearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4C1EE7F64A00DB4678 /* 21yearsOld@3x.png */; };
 		C0A69F511EE7F64A00DB4678 /* 21yearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4D1EE7F64A00DB4678 /* 21yearsOld@2x.png */; };
 		C0A69F521EE7F64A00DB4678 /* 20yearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4E1EE7F64A00DB4678 /* 20yearsOld@2x.png */; };
@@ -318,6 +317,7 @@
 		C07AC0901F42E2B800EBED61 /* XMEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMEngine.m; sourceTree = "<group>"; };
 		C07AC0911F42E2B800EBED61 /* XMRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequest.h; sourceTree = "<group>"; };
 		C07AC0921F42E2B800EBED61 /* XMRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequest.m; sourceTree = "<group>"; };
+		C07B39951F5D2509001088F2 /* threeqidongye .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeqidongye .png"; sourceTree = "<group>"; };
 		C089B2321EFFB45700648EB4 /* boolRedLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@2x.png"; sourceTree = "<group>"; };
 		C089B2331EFFB45700648EB4 /* boolRedLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolRedLike@3x.png"; sourceTree = "<group>"; };
 		C089B2361EFFB8CC00648EB4 /* notwhere@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notwhere@2x.png"; sourceTree = "<group>"; };
@@ -368,13 +368,10 @@
 		C089B2941F00F5BE00648EB4 /* CustomFlipTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFlipTransition.swift; sourceTree = "<group>"; };
 		C089B2951F00F5BE00648EB4 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C089B2961F00F5BE00648EB4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		C0A69F2D1EE5557500DB4678 /* WWSimpleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWSimpleVC.h; sourceTree = "<group>"; };
-		C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWSimpleVC.m; sourceTree = "<group>"; };
 		C0A69F351EE79C2F00DB4678 /* Noticeicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Noticeicon@3x.png"; sourceTree = "<group>"; };
 		C0A69F361EE79C2F00DB4678 /* Noticeicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Noticeicon@2x.png"; sourceTree = "<group>"; };
 		C0A69F391EE79CCC00DB4678 /* Setting icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Setting icon@3x.png"; sourceTree = "<group>"; };
 		C0A69F3A1EE79CCC00DB4678 /* Setting icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Setting icon@2x.png"; sourceTree = "<group>"; };
-		C0A69F491EE7D2DE00DB4678 /* dasdasdas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dasdasdas.png; sourceTree = "<group>"; };
 		C0A69F4C1EE7F64A00DB4678 /* 21yearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21yearsOld@3x.png"; sourceTree = "<group>"; };
 		C0A69F4D1EE7F64A00DB4678 /* 21yearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21yearsOld@2x.png"; sourceTree = "<group>"; };
 		C0A69F4E1EE7F64A00DB4678 /* 20yearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20yearsOld@2x.png"; sourceTree = "<group>"; };
@@ -948,8 +945,6 @@
 				C0D48A841EF6832500B92549 /* pubLisHVC */,
 				FF340B181E9E1FA200B4DB39 /* HomeViewController.h */,
 				FF340B191E9E1FA200B4DB39 /* HomeViewController.m */,
-				C0A69F2D1EE5557500DB4678 /* WWSimpleVC.h */,
-				C0A69F2E1EE5557500DB4678 /* WWSimpleVC.m */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -1149,10 +1144,10 @@
 		FF61E0D71E9BC061000E68F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C07B39951F5D2509001088F2 /* threeqidongye .png */,
 				C0B948F41F39DC2D0008E29F /* loginImage */,
 				C0A69F601EE9317E00DB4678 /* Common */,
 				C0A69F4B1EE7F5EA00DB4678 /* userYear */,
-				C0A69F491EE7D2DE00DB4678 /* dasdasdas.png */,
 				C0A69F301EE7984500DB4678 /* userView */,
 				FF340B301E9E520D00B4DB39 /* tabbar */,
 			);
@@ -1346,6 +1341,7 @@
 				C089B2831F00F05A00648EB4 /* userCollect@3x.png in Resources */,
 				C0E8EDF81EFFA06D0034570D /* navrightBtn@3x.png in Resources */,
 				C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */,
+				C07B39961F5D2509001088F2 /* threeqidongye .png in Resources */,
 				C07ABFF51F3C435200EBED61 /* selectBirthday@3x.png in Resources */,
 				C07ABFE11F3C2D8900EBED61 /* tellMeBirthday@3x.png in Resources */,
 				C07ABFD21F39EF8E00EBED61 /* loginsettingheading@2x.png in Resources */,
@@ -1394,7 +1390,6 @@
 				C059401C1EEFADEE002751FE /* bookLike@2x.png in Resources */,
 				FF340B831EA0A04A00B4DB39 /* collectNormal@2x.png in Resources */,
 				FF340B761E9E640900B4DB39 /* homeSelect@3x.png in Resources */,
-				C0A69F4A1EE7D2DE00DB4678 /* dasdasdas.png in Resources */,
 				C089B2391EFFB8CC00648EB4 /* notwhere@3x.png in Resources */,
 				C05940281EEFBF57002751FE /* newMessage@2x.png in Resources */,
 				C089B2471EFFBC6C00648EB4 /* QQzone@3x.png in Resources */,
@@ -1510,7 +1505,6 @@
 				C05940211EEFB7F7002751FE /* WWMessageVC.m in Sources */,
 				C07AC03B1F3D796F00EBED61 /* SDCycleScrollView.m in Sources */,
 				C07AC0941F42E2B800EBED61 /* XMEngine.m in Sources */,
-				C0A69F2F1EE5557500DB4678 /* WWSimpleVC.m in Sources */,
 				C089B2601EFFD02600648EB4 /* WWCollectButton.m in Sources */,
 				C07AC0671F3DCE1500EBED61 /* UIImage+WWExt.m in Sources */,
 				C07AC0931F42E2B800EBED61 /* XMCenter.m in Sources */,

@@ -24,7 +24,6 @@
 }
 @property (nonatomic, strong) UIView *animationView;
 @property (nonatomic, strong) UIButton *puslishBtn;
-@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @end
 
 #define totalColumns 10
@@ -34,12 +33,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    _fpsLabel = [YYFPSLabel new];
-    [_fpsLabel sizeToFit];
-    _fpsLabel.bottom = KHeight - 100;
-    _fpsLabel.left = 12;
-    _fpsLabel.alpha = 1;
-    [self.view addSubview:_fpsLabel];
 }
 
 - (void)viewDidLoad {
@@ -91,10 +84,10 @@
     
     for(int index = 0; index< [WWUserModel shareUserModel].yearDay.integerValue; index++) {
         UIView *cellView = [[UIView alloc ]init ];
-        cellView.layer.shadowColor = RGBCOLOR(0x27ECCC).CGColor;
-        cellView.layer.shadowOpacity = 0.35;
-        cellView.layer.shadowRadius = 6;
-        cellView.layer.shadowOffset = CGSizeMake(1, 1);
+//        cellView.layer.shadowColor = RGBCOLOR(0x27ECCC).CGColor;
+//        cellView.layer.shadowOpacity = 0.35;
+//        cellView.layer.shadowRadius = 6;
+//        cellView.layer.shadowOffset = CGSizeMake(1, 1);
         cellView.layer.cornerRadius = 4;
         cellView.clipsToBounds = YES;
         int row = index / totalColumns;

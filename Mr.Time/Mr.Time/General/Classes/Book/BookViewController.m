@@ -13,7 +13,6 @@
     WWCardSlide *_cardSlide;
 }
 @property (nonatomic, strong) WWNavigationVC *nav;
-@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @end
 
 @implementation BookViewController
@@ -25,12 +24,6 @@
     _cardSlide.delegate = self;
     _cardSlide.selectedIndex = 0;
     [self.view addSubview:_cardSlide];
-    _fpsLabel = [YYFPSLabel new];
-    [_fpsLabel sizeToFit];
-    _fpsLabel.bottom = KHeight - 100;
-    _fpsLabel.left = 12;
-    _fpsLabel.alpha = 1;
-    [self.view addSubview:_fpsLabel];
 }
 #pragma mark - delegate
 - (void)cellWWCardSlideDidSelected {

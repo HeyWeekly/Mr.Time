@@ -126,7 +126,52 @@
 }
 
 - (void)publishClick {
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString *url = nil;
+    if (self.isPublish) {
+        if (self.yearsField.text.length <= 0 && self.inputTextView.text.length <= 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写年龄和箴言"}];
+            return;
+        }
+    }
+    if (self.isPublish) {
+        if (self.yearsField.text.length <= 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写年龄"}];
+            return;
+        }
+    }
+    if (self.isPublish) {
+        url = postMotto;
+        if (self.inputTextView.text.length <= 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写箴言"}];
+            return;
+        }
+    }else {
+        url = postComment;
+        if (self.inputTextView.text.length <= 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写评论"}];
+            return;
+        }
+    }
+    if (self.inputTextView.text.length > 240) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"内容限制240以内"}];
+        return;
+    }
+    
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.server = AppApi;
+        [request.headers setValue:[WWUserModel shareUserModel].openid forKey:@"User_Openid"];
+        request.api = url;
+        request.requestSerializerType = kXMRequestSerializerRAW;
+        request.responseSerializerType = kXMResponseSerializerRAW;
+        request.parameters = @{@"content": self.inputTextView.text,@"age":@(self.yearsField.text.integerValue)};
+        request.httpMethod = kXMHTTPMethodPOST;
+    } onSuccess:^(id  _Nullable responseObject) {
+        
+    } onFailure:^(NSError * _Nullable error) {
+
+    } onFinished:^(id  _Nullable responseObject, NSError * _Nullable error) {
+        
+    }];
 }
 
 - (void)minlookclick {

@@ -40,7 +40,7 @@
     [self.view addSubview:self.weChatBtn];
     [self.weChatBtn sizeToFit];
     self.weChatBtn.centerX = self.view.centerX;
-    self.weChatBtn.bottom = self.view.bottom - 16*screenRate - 49;
+    self.weChatBtn.bottom = self.view.bottom - 16*screenRate  - 49;
 }
 
 #pragma mark - event

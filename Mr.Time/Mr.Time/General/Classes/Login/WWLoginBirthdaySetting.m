@@ -139,9 +139,7 @@
     NSString *yearDay = [self dateToOld:self.dateStr];
     [WWUserModel shareUserModel].yearDay = yearDay;
     [WWUserModel shareUserModel].dataStr = [NSString stringWithFormat:@"%ld",(long)dataStr];
-    [WWUserModel shareUserModel].year = self.year;
-    [WWUserModel shareUserModel].month = self.month;
-    [WWUserModel shareUserModel].day = self.day;
+    [WWUserModel shareUserModel].isNewUser = YES;
     [[WWUserModel shareUserModel] saveAccount];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userLoginSuccess" object:nil];
 }

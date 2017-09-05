@@ -9,19 +9,43 @@
 #import "WWUserModel.h"
 #import "NSObject+YYModel.h"
 
-static WWUserModel *instance;
+static WWUserModel *instance = nil;
 
 @implementation WWUserModel
 
 + (instancetype)shareUserModel {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[WWUserModel alloc]init];
-        instance = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        if (instance == nil) {
+            instance = [[WWUserModel alloc]init];
+            instance = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        }
     });
     return instance;
 }
 
++(instancetype)allocWithZone:(struct _NSZone *)zone{
+    if (instance == nil) {
+        instance = [super allocWithZone:zone];
+    }
+    return instance;
+}
+
+-(id)copy {
+    return self;
+}
+
+-(id)mutableCopy {
+    return self;
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+-(id)mutableCopyWithZone:(NSZone *)zone {
+    return self;
+}
 /// 保存用户信息
 - (void) saveAccount {
     [NSKeyedArchiver archiveRootObject:self toFile:ArchiverPath];

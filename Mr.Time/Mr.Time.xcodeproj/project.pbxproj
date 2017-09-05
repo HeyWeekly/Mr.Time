@@ -144,7 +144,6 @@
 		C0B949031F39DFE50008E29F /* WWLoginSettingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */; };
 		C0B949061F39E1620008E29F /* weChatLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949041F39E1620008E29F /* weChatLogin@2x.png */; };
 		C0B949071F39E1620008E29F /* weChatLogin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949051F39E1620008E29F /* weChatLogin@3x.png */; };
-		C0CBA6121F5D9033008DC3B9 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CBA6111F5D9033008DC3B9 /* Student.m */; };
 		C0D48A2F1EF67EBC00B92549 /* GCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A281EF67EBC00B92549 /* GCDGroup.m */; };
 		C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A2A1EF67EBC00B92549 /* GCDQueue.m */; };
 		C0D48A311EF67EBC00B92549 /* GCDSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D48A2C1EF67EBC00B92549 /* GCDSemaphore.m */; };
@@ -409,8 +408,6 @@
 		C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWLoginSettingInfoVC.m; sourceTree = "<group>"; };
 		C0B949041F39E1620008E29F /* weChatLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatLogin@2x.png"; sourceTree = "<group>"; };
 		C0B949051F39E1620008E29F /* weChatLogin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatLogin@3x.png"; sourceTree = "<group>"; };
-		C0CBA6101F5D9033008DC3B9 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
-		C0CBA6111F5D9033008DC3B9 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		C0D48A231EF67D3800B92549 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C0D48A261EF67EBC00B92549 /* GCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCD.h; sourceTree = "<group>"; };
 		C0D48A271EF67EBC00B92549 /* GCDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDGroup.h; sourceTree = "<group>"; };
@@ -1132,8 +1129,6 @@
 				FF340B0A1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m */,
 				FF340B0C1E9E155100B4DB39 /* WWAppDelegate+AppService.h */,
 				FF340B0D1E9E155100B4DB39 /* WWAppDelegate+AppService.m */,
-				C0CBA6101F5D9033008DC3B9 /* Student.h */,
-				C0CBA6111F5D9033008DC3B9 /* Student.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -1556,7 +1551,6 @@
 				C07B39A61F5D83B2001088F2 /* FMDatabaseAdditions.m in Sources */,
 				FF340B261E9E200000B4DB39 /* BookViewController.m in Sources */,
 				C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */,
-				C0CBA6121F5D9033008DC3B9 /* Student.m in Sources */,
 				C07B39A51F5D83B2001088F2 /* FMDatabase.m in Sources */,
 				C07ABFDE1F3ADE6100EBED61 /* WWLoginBirthdaySetting.m in Sources */,
 				C0D48A971EF7B97F00B92549 /* UIScreenEx.mm in Sources */,

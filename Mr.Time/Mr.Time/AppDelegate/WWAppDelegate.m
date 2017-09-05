@@ -14,7 +14,6 @@
 #import "IQKeyboardManager.h"
 #import "WXApi.h"
 #import "WWErrorView.h"
-#import "FMDatabase.h"
 
 @interface WWAppDelegate ()<WXApiDelegate>
 @property (nonatomic,strong) NSMutableArray *imageArr;
@@ -30,9 +29,7 @@
     [IQKeyboardManager sharedManager].enable = YES; //默认值为NO.
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;//不显示工具条
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;//点空白处收回
-    
-    [self creatBookSq];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginSuccess) name:@"userLoginSuccess" object:nil];
     
     [WWErrorView alloc];
@@ -46,28 +43,6 @@
     [self.window makeKeyAndVisible];
     
     return YES;
-}
-
-- (void)creatBookSq {
-    //1.获得数据库文件的路径
-    NSString *doc =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES)  lastObject];
-    
-    NSString *fileName = [doc stringByAppendingPathComponent:@"student.sqlite"];
-    NSLog(@"%@",fileName);
-    
-    //2.获得数据库
-    FMDatabase *db = [FMDatabase databaseWithPath:fileName];
-    
-    //3.使用如下语句，如果打开失败，可能是权限不足或者资源不足。通常打开完操作操作后，需要调用 close 方法来关闭数据库。在和数据库交互 之前，数据库必须是打开的。如果资源或权限不足无法打开或创建数据库，都会导致打开失败。
-    if ([db open])
-    {
-        //4.创表
-        BOOL result = [db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_student (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, age integer NOT NULL);"];
-        if (result)
-        {
-            NSLog(@"创建成功");
-        }
-    }
 }
 
 - (void)setUpWindows {

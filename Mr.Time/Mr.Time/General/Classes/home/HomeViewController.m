@@ -37,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configNetwork];
     self.view.backgroundColor = viewBackGround_Color;
     NSArray *imagesURLStrings = @[@"",@""];
     _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(105*screenRate, 40, 175*screenRate, 140*screenRate) delegate:self placeholderImage:nil];
@@ -174,6 +175,20 @@
 - (void)publishBtnClick {
     WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:25 andIsPublish:YES];
     [self.navigationController pushViewController:publishVC animated:YES];
+}
+
+//因为这是一个简易程序，没有完整的登录模式。所以统一在home设置公众网络信息
+- (void)configNetwork {
+    [XMCenter setupConfig:^(XMConfig *config) {
+        config.generalServer = AppApi;
+        WWUserModel *model = [WWUserModel shareUserModel];
+        model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        config.generalHeaders = @{@"User_Openid": model.openid};
+        config.callbackQueue = dispatch_get_main_queue();
+#ifdef DEBUG
+        config.consoleLog = YES;
+#endif
+    }];
 }
 
 #pragma mark - lazyLoad

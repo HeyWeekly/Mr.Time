@@ -47,7 +47,7 @@
     [self.backheadImage sizeToFit];
     
     if ([WWUserModel shareUserModel].headimgurl) {
-        [self.settingHeadImage sd_setImageWithURL:[NSURL URLWithString:[WWUserModel shareUserModel].headimgurl] placeholderImage:[UIImage imageNamed:@"[WWUserModel shareUserModel].headimgurl"]];
+        [self.settingHeadImage sd_setImageWithURL:[NSURL URLWithString:[WWUserModel shareUserModel].headimgurl] placeholderImage:[UIImage imageNamed:@"defaulthead"]];
     }
     [self.view addSubview:self.settingHeadImage];
     [self drawRect];

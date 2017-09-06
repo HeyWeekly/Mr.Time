@@ -139,7 +139,7 @@
     NSString *yearDay = [self dateToOld:self.dateStr];
     [WWUserModel shareUserModel].yearDay = yearDay;
     [WWUserModel shareUserModel].dataStr = [NSString stringWithFormat:@"%ld",(long)dataStr];
-    [WWUserModel shareUserModel].isNewUser = YES;
+    [WWUserModel shareUserModel].birthday = self.dateStr;
     [[WWUserModel shareUserModel] saveAccount];
     [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"oldCustom"];
     [[NSUserDefaults standardUserDefaults] synchronize];

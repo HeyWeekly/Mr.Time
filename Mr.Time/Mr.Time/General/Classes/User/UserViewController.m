@@ -13,6 +13,7 @@
 #import "WWSettingVC.h"
 #import "WWMessageDetailVCViewController.h"
 #import "WWCollectButton.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define CELL_IDENTITY @"myCell"
 
@@ -39,7 +40,6 @@
 @property (nonatomic, strong) UILabel *nameLbael;
 @property (nonatomic, strong) UILabel *yearLbael;
 @property(nonatomic,strong) MYCollectionView *myCollectionView;
-@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @property (nonatomic, strong) UILabel *collected;
 @property (nonatomic, strong) UILabel *collectedNum;
 @property (nonatomic, strong) UIView *sepLine1;
@@ -49,22 +49,28 @@
 @property (nonatomic, strong) UILabel *likeded;
 @property (nonatomic, strong) UILabel *likedNum;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, assign) BOOL animation ;
 @end
 
 @implementation UserViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self setupViews];
-    _fpsLabel = [YYFPSLabel new];
-    [_fpsLabel sizeToFit];
-    _fpsLabel.bottom = KHeight - 100;
-    _fpsLabel.left = 12;
-    _fpsLabel.alpha = 1;
-    [self.view addSubview:_fpsLabel];
 }
 - (void)setupViews {
+    
+//    [self.view addSubview:self.containerView];
+//    self.containerView.frame = CGRectMake(10, 20, KWidth-20, 193);
+    
+    WWUserModel *model = [WWUserModel shareUserModel];
+    model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+    if (model.headimgurl) {
+        [self.headImage sd_setImageWithURL:[NSURL URLWithString:model.headimgurl] placeholderImage:[UIImage imageNamed:@"defaulthead"]];
+    }
     [self.view addSubview:self.headImage];
     [self drawRect];
     [self.view addSubview:self.backheadImage];
@@ -83,11 +89,17 @@
     self.notice.right = self.setting.left - 35*screenRate;;
     self.notice.top = self.backheadImage.top;
     
+    if (model.nickname) {
+        self.nameLbael.text = model.nickname;
+    }
     [self.view addSubview:self.nameLbael];
     [self.nameLbael sizeToFit];
     self.nameLbael.left = self.backheadImage.right+22*screenRate;;
     self.nameLbael.top = self.backheadImage.top;
     
+    if (model.dataStr) {
+        self.yearLbael.text = model.birthday;
+    }
     [self.view addSubview:self.yearLbael];
     [self.yearLbael sizeToFit];
     self.yearLbael.left = self.nameLbael.left;
@@ -180,10 +192,12 @@
     self.headImage.image = image;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (void)setClick {
     WWSettingVC *vc = [[WWSettingVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 #pragma mark - tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 20;
@@ -198,34 +212,56 @@
     cell.likeNum.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 215*screenRate;
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;
     for (userPublishCell *cell in [self.tableView visibleCells]) {
         CGFloat y = cell.centerY - scrollView.contentOffset.y;
         CGFloat p = y - viewHeight / 2;
         CGFloat scale = cos(p / viewHeight * 0.8) * 0.95;
-            [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                cell.containerView.transform = CGAffineTransformMakeScale(scale, scale);
-            } completion:NULL];
+        [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            cell.containerView.transform = CGAffineTransformMakeScale(scale, scale);
+        } completion:NULL];
     }
+    
+//    CGFloat offset = scrollView.contentOffset.y;
+//    if(offset > 0 && offset <180){
+//        NSLog(@"offset>0<193===%f",offset);
+//        self.tableView.frame = CGRectMake(20*screenRate, 213-offset, KWidth-40*screenRate, KHeight-49+offset);
+//        [self.view setNeedsLayout];
+//    }else if (offset <= 193 && offset >= 180){
+//        NSLog(@"offset===%f",offset);
+//        self.tableView.frame = CGRectMake(20*screenRate, 20, KWidth-40*screenRate, KHeight-49-20);
+//        [self.view setNeedsLayout];
+//    }
 }
 
 #pragma mark - 懒加载
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20*screenRate, self.backheadImage.bottom+29*screenRate, KWidth-40*screenRate, KHeight-self.backheadImage.bottom+29*screenRate-49)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20*screenRate, self.backheadImage.bottom+29*screenRate, KWidth-40*screenRate, KHeight-(self.backheadImage.bottom+29*screenRate)-49)];
         _tableView.delegate = self;
         _tableView.dataSource  = self;
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = viewBackGround_Color;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
+
+//- (UIView *)containerView {
+//    if (!_containerView) {
+//        _containerView = [[UIView alloc]init];
+//        _containerView.backgroundColor = viewBackGround_Color;
+//    }
+//    return _containerView;
+//}
+
 - (UILabel *)yearLbael {
     if (_yearLbael == nil) {
         _yearLbael = [[UILabel alloc]init];
@@ -240,16 +276,18 @@
     }
     return _yearLbael;
 }
+
 - (UILabel *)nameLbael {
     if (_nameLbael == nil) {
         _nameLbael = [[UILabel alloc]init];
-        _nameLbael.text = @"王二黑";
+        _nameLbael.text = @"时间先生";
         _nameLbael.textAlignment = NSTextAlignmentCenter;
         _nameLbael.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
         _nameLbael.textColor = [UIColor whiteColor];
     }
     return _nameLbael;
 }
+
 - (UIButton *)notice {
     if (_notice == nil) {
         _notice = [[UIButton alloc]init];
@@ -258,6 +296,7 @@
     }
     return _notice;
 }
+
 - (UIButton *)setting {
     if (_setting == nil) {
         _setting = [[UIButton alloc]init];
@@ -267,6 +306,7 @@
     }
     return _setting;
 }
+
 - (UIButton *)backheadImage {
     if (_backheadImage == nil) {
         _backheadImage = [[UIButton alloc]init];
@@ -276,14 +316,16 @@
     }
     return _backheadImage;
 }
+
 - (UIImageView *)headImage {
     if (_headImage == nil) {
         _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(32.8*screenRate, 59.8*screenRate, 55, 55)];
-        _headImage.image = [UIImage imageNamed:@"dasdasdas"];
+        _headImage.image = [UIImage imageNamed:@"defaulthead"];
         _headImage.clipsToBounds = YES;
     }
     return _headImage;
 }
+
 - (UILabel *)collected {
     if (!_collected) {
         _collected = [[UILabel alloc]init];
@@ -294,6 +336,7 @@
     }
     return _collected;
 }
+
 - (UILabel *)collectedNum {
     if (!_collectedNum) {
         _collectedNum = [[UILabel alloc]init];
@@ -304,6 +347,7 @@
     }
     return _collectedNum;
 }
+
 - (UIView *)sepLine1 {
     if (_sepLine1 == nil) {
         _sepLine1 = [[UIView alloc]init];
@@ -311,6 +355,7 @@
     }
     return _sepLine1;
 }
+
 - (UILabel *)recorded {
     if (!_recorded) {
         _recorded = [[UILabel alloc]init];
@@ -321,6 +366,7 @@
     }
     return _recorded;
 }
+
 - (UILabel *)recordedNum {
     if (!_recordedNum) {
         _recordedNum = [[UILabel alloc]init];
@@ -331,6 +377,7 @@
     }
     return _recordedNum;
 }
+
 - (UIView *)sepLine2 {
     if (_sepLine2 == nil) {
         _sepLine2 = [[UIView alloc]init];
@@ -338,6 +385,7 @@
     }
     return _sepLine2;
 }
+
 - (UILabel *)likeded {
     if (!_likeded) {
         _likeded = [[UILabel alloc]init];
@@ -348,6 +396,7 @@
     }
     return _likeded;
 }
+
 - (UILabel *)likedNum {
     if (!_likedNum) {
         _likedNum = [[UILabel alloc]init];
@@ -358,6 +407,7 @@
     }
     return _likedNum;
 }
+
 - (void)drawRect {
     float viewWidth = 55;
     UIBezierPath * path = [UIBezierPath bezierPath];
@@ -377,13 +427,11 @@
     _headImage.layer.mask = shapLayer;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 @end
 
 
 @implementation userPublishCell
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = viewBackGround_Color;
@@ -391,6 +439,7 @@
     }
     return self;
 }
+
 - (void)setupViews{
     self.containerView.width = KWidth - 40*screenRate;
     [self.yearsImage sizeToFit];
@@ -418,6 +467,7 @@
     self.containerView.height = self.contentLabel.bottom+27*screenRate;
     [self addSubview:self.containerView];
 }
+
 - (void)favoClick {
     self.islike = !self.islike;
     if (self.islike) {
@@ -426,6 +476,7 @@
         [self.likeImage setFavo:NO withAnimate:YES];
     }
 }
+
 -  (UIImageView *)yearsImage {
     if (_yearsImage == nil) {
         _yearsImage = [[UIImageView alloc]init];
@@ -433,6 +484,7 @@
     }
     return _yearsImage;
 }
+
 - (WWCollectButton *)likeImage {
     if (_likeImage == nil) {
         _likeImage = [[WWCollectButton alloc]init];
@@ -442,6 +494,7 @@
     }
     return _likeImage;
 }
+
 - (UILabel *)likeNum {
     if (_likeNum == nil) {
         _likeNum = [[UILabel alloc]init];
@@ -451,6 +504,7 @@
     }
     return _likeNum;
 }
+
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
         _contentLabel = [[UILabel alloc]init];
@@ -464,6 +518,7 @@
     }
     return _contentLabel;
 }
+
 - (UIView *)containerView {
     if (_containerView == nil) {
         _containerView = [[UIView alloc]init];
@@ -473,4 +528,5 @@
     }
     return _containerView;
 }
+
 @end

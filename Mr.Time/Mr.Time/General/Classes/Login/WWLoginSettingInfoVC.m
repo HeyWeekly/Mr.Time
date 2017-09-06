@@ -8,6 +8,7 @@
 
 #import "WWLoginSettingInfoVC.h"
 #import "WWLoginBirthdaySetting.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define DESMAX_STARWORDS_LENGTH 12
 
@@ -45,6 +46,9 @@
     self.backheadImage.top = self.thisNickName.bottom + 80*screenRate;
     [self.backheadImage sizeToFit];
     
+    if ([WWUserModel shareUserModel].headimgurl) {
+        [self.settingHeadImage sd_setImageWithURL:[NSURL URLWithString:[WWUserModel shareUserModel].headimgurl] placeholderImage:[UIImage imageNamed:@"[WWUserModel shareUserModel].headimgurl"]];
+    }
     [self.view addSubview:self.settingHeadImage];
     [self drawRect];
     
@@ -154,7 +158,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像和用户名"}];
         return;
     }
-    if (!self.isHaveHeadImage) {
+    if (!self.isHaveHeadImage && [self.settingHeadImage.image isEqual:[UIImage imageNamed:@"defaulthead"]]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请设置头像"}];
         return;
     }

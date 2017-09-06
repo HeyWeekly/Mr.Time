@@ -1753,7 +1753,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "329ab76e-4ccf-42fd-adc0-3ea30bad94eb";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1794,7 +1794,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "329ab76e-4ccf-42fd-adc0-3ea30bad94eb";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

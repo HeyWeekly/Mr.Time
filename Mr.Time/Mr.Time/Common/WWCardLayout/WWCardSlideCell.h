@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class WWHomeBookModel;
+
 @protocol WWCardSlideCellDelagate <NSObject>
 @optional
 - (void)bookCellLike;
@@ -15,6 +17,6 @@
 
 
 @interface WWCardSlideCell : UICollectionViewCell
-@property (strong,nonatomic) id model;
+@property (strong,nonatomic) WWHomeBookModel *model;
 @property (nonatomic, weak) id <WWCardSlideCellDelagate> delegate;
 @end

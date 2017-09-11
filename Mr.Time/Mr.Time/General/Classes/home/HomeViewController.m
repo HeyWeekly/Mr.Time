@@ -186,7 +186,7 @@
         config.generalHeaders = @{@"User_Openid": model.openid};
         config.callbackQueue = dispatch_get_main_queue();
 #ifdef DEBUG
-        config.consoleLog = YES;
+        config.consoleLog = NO;
 #endif
     }];
 }

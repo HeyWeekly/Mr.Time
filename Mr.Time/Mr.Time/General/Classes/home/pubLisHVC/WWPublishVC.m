@@ -152,8 +152,8 @@
             return;
         }
     }
-    if (self.inputTextView.text.length > 240) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"内容限制240以内"}];
+    if (self.inputTextView.text.length > 119) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"内容限制119以内"}];
         return;
     }
     

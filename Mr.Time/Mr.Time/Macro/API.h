@@ -13,5 +13,6 @@
 #define userLogin                  @"life/oauth2/wx/login"                                        //用户登录
 #define postMotto                 @"life/apthm/add"                                               //发表箴言
 #define postComment           @"life/apthm/id/cmts"                                         //发表评论
+#define getAllMotto               @"/life/apthm/list"                                               //获取全部箴言列表
 
 #endif /* API_h */

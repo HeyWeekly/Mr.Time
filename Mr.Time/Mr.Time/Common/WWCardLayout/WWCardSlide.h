@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WWHomeBookModel.h"
+
 
 @protocol WWCardSlideDelegate <NSObject>
 @optional
-//滚动代理方法
 -(void)WWCardSlideDidSelectedAt:(NSInteger)index;
 - (void)cellWWCardSlideDidSelected;
 @end
@@ -18,10 +19,8 @@
 @interface WWCardSlide : UIView
 //当前选中位置
 @property (nonatomic ,assign, readwrite) NSInteger selectedIndex;
-//设置数据源
-@property (nonatomic, strong) NSArray *models;
-//代理
+@property (nonatomic, strong) NSArray<WWHomeBookModel *> *models;
 @property (nonatomic, weak) id<WWCardSlideDelegate>delegate;
-//手动滚动到某个卡片位置
-- (void)slideToIndex:(NSInteger)index animated:(BOOL)animated;
+//构造方法
+-(instancetype)initWithFrame:(CGRect)frame andModel:(NSArray <WWHomeBookModel* > *)models;
 @end

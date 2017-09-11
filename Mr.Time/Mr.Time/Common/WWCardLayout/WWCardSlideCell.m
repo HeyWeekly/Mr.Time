@@ -8,24 +8,25 @@
 
 #import "WWCardSlideCell.h"
 #import "WWCollectButton.h"
+#import "WWHomeBookModel.h"
 
 @interface WWCardSlideCell ()
-{
-    UIImageView *_imageView;
-    UILabel *_textLabel;
-    UILabel *_contentLabel;
-    
-}
 @property (nonatomic, strong) UILabel *yearsNum;
 @property (nonatomic, strong) UILabel *yearsLabel;
 @property (nonatomic, strong) UILabel *oldLabel;
 @property (nonatomic, strong) WWCollectButton *likeImage;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UILabel *textLabel;;
+@property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, assign) BOOL islike;
 @end
 
 @implementation WWCardSlideCell
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.layer.cornerRadius = 10.0f;
+        self.layer.masksToBounds = true;
+        self.backgroundColor = [UIColor whiteColor];
         [self setupSubViews];
         self.islike = NO;
     }
@@ -33,18 +34,10 @@
 }
 
 -(void)setupSubViews {
-    self.layer.cornerRadius = 10.0f;
-    self.layer.masksToBounds = true;
-    self.backgroundColor = [UIColor whiteColor];
-    
-    _imageView = [[UIImageView alloc] init];
-    _imageView.image = [UIImage imageNamed:@"bookOval"];
-    _imageView.contentMode = UIViewContentModeScaleAspectFit;
-    _imageView.layer.masksToBounds = true;
-    [_imageView sizeToFit];
-    _imageView.left = 0;
-    _imageView.top = 0;
-    [self addSubview:_imageView];
+    [self addSubview:self.imageView];
+    [self.imageView sizeToFit];
+    self.imageView.left = 0;
+    self.imageView.top = 0;
     
     [self addSubview:self.yearsNum];
     [self.yearsNum sizeToFit];
@@ -61,55 +54,54 @@
     self.oldLabel.left = self.yearsNum.left;
     self.oldLabel.top = self.yearsLabel.bottom;
     
-    _likeImage = [[WWCollectButton alloc] init];
-    _likeImage.imageView.contentMode = UIViewContentModeCenter;
-    _likeImage.favoType = 1;
-    [_likeImage sizeToFit];
-    _likeImage.right = self.bounds.size.width - 20*screenRate;
-    _likeImage.top = 20*screenRate;
-    [self addSubview:_likeImage];
-    [_likeImage sizeToFit];
-    [_likeImage addTarget:self action:@selector(likeClick) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.likeImage];
+    [self.likeImage sizeToFit];
+    self.likeImage.right = self.bounds.size.width - 20*screenRate;
+    self.likeImage.top = 20*screenRate;
     
-    _contentLabel = [[UILabel alloc] init];
-    _contentLabel.textColor = RGBCOLOR(0x39454E);
-    _contentLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
-    _contentLabel.numberOfLines = 5;
-    _contentLabel.adjustsFontSizeToFitWidth = true;
+    [self.likeImage sizeToFit];
+    [self.likeImage addTarget:self action:@selector(likeClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.contentLabel.top = self.imageView.bottom;
+    self.contentLabel.left = 25*screenRate;
+    self.contentLabel.width = self.bounds.size.width - 50*screenRate;
+    [self addSubview:self.contentLabel];
+    
+    self.textLabel.top = 378*screenRate;
+    self.textLabel.left = 25*screenRate;
+    self.textLabel.width = self.bounds.size.width - 50*screenRate;
+    self.textLabel.height = 20*screenRate;
+    [self addSubview:self.textLabel];
+}
 
-    NSString *strText = @"此刻正在阅读这封信的你身在何方，在做些什么？十五岁的我，怀揣着无法向任何人述说的烦恼的种子，我有话要对十五岁的你说，是否就能将一切诚实地坦露，问问自己到底自己为什么不够一切的爱上一个人，爱的那么轰轰烈烈，没有任何负担的全身心投入";
+-(void)setModel:(WWHomeBookModel *)model {
+    _model = model;
+    int ages = model.age.intValue/10;
+    NSString *year = [NSString stringWithFormat:@"%d",ages];
+    self.imageView.image = [UIImage imageNamed:[@"contentYearBg" stringByAppendingString:year]];
+    
+    self.yearsNum.text = model.age;
+    [self.yearsNum sizeToFit];
+    
+    NSString *strText = model.content;
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:6];
     NSAttributedString *string = [[NSAttributedString alloc] initWithString:strText attributes:@{NSForegroundColorAttributeName : RGBCOLOR(0x39454E), NSParagraphStyleAttributeName: paragraphStyle}];
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString:string];
     [text addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_SemiBold size:27*screenRate] range:NSMakeRange(0, 1)];
-    _contentLabel.attributedText = text;
+    self.contentLabel.attributedText = text;
+    [self.contentLabel sizeToFit];
     
-    [_contentLabel sizeToFit];
-    _contentLabel.top = 228*screenRate;
-    _contentLabel.left = 25*screenRate;
-    _contentLabel.width = self.bounds.size.width - 50*screenRate;
-    [self addSubview:_contentLabel];
-    [_contentLabel sizeToFit];
-    
-    _textLabel = [[UILabel alloc] init];
-    _textLabel.textColor = RGBCOLOR(0x94A3AE);
-    _textLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
-    _textLabel.numberOfLines = 1;
-    _textLabel.adjustsFontSizeToFitWidth = true;
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"—— 来自 50岁 的 Punk奶奶"];
-    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(6,3)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(6, 3)];
-    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(12,6)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(12, 6)];
-    _textLabel.attributedText = str;
-    
-    [_textLabel sizeToFit];
-    _textLabel.top = 378*screenRate;
-    _textLabel.right = self.bounds.size.width - 25*screenRate;
-    [self addSubview:_textLabel];
-    [_textLabel sizeToFit];
+    WWUserModel *userModel = [WWUserModel shareUserModel];
+    userModel = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"—— 来自 %@岁 的 %@" ,userModel.yearDay,userModel.nickname]];
+    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(6,userModel.yearDay.length+1)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(6, userModel.yearDay.length+1)];
+    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(12,userModel.nickname.length)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(12, userModel.nickname.length)];
+    self.textLabel.attributedText = str;
 }
+
 - (void)likeClick {
     self.islike = !self.islike;
     if (self.islike) {
@@ -122,6 +114,7 @@
         [self.delegate bookCellLike];
     }
 }
+
 - (UILabel *)yearsNum {
     if (_yearsNum == nil) {
         _yearsNum = [[UILabel alloc]init];
@@ -131,6 +124,7 @@
     }
     return _yearsNum;
 }
+
 - (UILabel *)yearsLabel {
     if (_yearsLabel == nil) {
         _yearsLabel = [[UILabel alloc]init];
@@ -140,6 +134,7 @@
     }
     return _yearsLabel;
 }
+
 - (UILabel *)oldLabel {
     if (_oldLabel == nil) {
         _oldLabel = [[UILabel alloc]init];
@@ -149,7 +144,46 @@
     }
     return _oldLabel;
 }
--(void)setModel:(id)model {
 
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc]init];
+        _imageView.image = [UIImage imageNamed:@"contentYearBg9"];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _imageView;
 }
+
+- (UILabel *)textLabel {
+    if (!_textLabel ) {
+        _textLabel = [[UILabel alloc] init];
+        _textLabel.textColor = RGBCOLOR(0x94A3AE);
+        _textLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
+        _textLabel.numberOfLines = 1;
+        _textLabel.textAlignment = NSTextAlignmentRight;
+        _textLabel.adjustsFontSizeToFitWidth = true;
+    }
+    return _textLabel;
+}
+
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] init];
+        _contentLabel.textColor = RGBCOLOR(0x39454E);
+        _contentLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
+        _contentLabel.numberOfLines = 7;
+        _contentLabel.adjustsFontSizeToFitWidth = true;
+    }
+    return _contentLabel;
+}
+
+- (WWCollectButton *)likeImage {
+    if (!_likeImage) {
+        _likeImage = [[WWCollectButton alloc] init];
+        _likeImage.imageView.contentMode = UIViewContentModeCenter;
+        _likeImage.favoType = 1;
+    }
+    return _likeImage;
+}
+
 @end

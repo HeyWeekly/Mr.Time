@@ -29,9 +29,10 @@ static float CardHeightScale = 0.7f;
 @end
 
 @implementation WWCardSlide
--(instancetype)initWithFrame:(CGRect)frame {
+-(instancetype)initWithFrame:(CGRect)frame andModel:(NSArray <WWHomeBookModel* > *)models {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = viewBackGround_Color;
+        self.models = models;
         [self buildUI];
     }
     return self;
@@ -60,6 +61,7 @@ static float CardHeightScale = 0.7f;
     self.yearsView.height = 12*screenRate;
     [self addSubview:self.yearsView];
 }
+
 - (void)yearsChangeYearsOld:(NSInteger)years {
     [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:0.85 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.yearsView.width = 286/100*years;
@@ -83,22 +85,14 @@ static float CardHeightScale = 0.7f;
     [self addSubview:_collectionView];
 }
 
-#pragma mark -
 #pragma mark Setter
--(void)setModels:(NSArray *)models
-{
-//    _models = models;
-//    if (_models.count) {
-//        XLCardModel *model = _models.firstObject;
-//        _imageView.image = [UIImage imageNamed:model.imageName];
-//    }
+- (void)setModels:(NSArray<WWHomeBookModel *> *)models {
+    _models = models;
 }
 
 #pragma mark - CollectionDelegate
-
 //配置cell居中
--(void)fixCellToCenter
-{
+-(void)fixCellToCenter {
     //最小滚动距离
     float dragMiniDistance = self.bounds.size.width/20.0f;
     if (_dragStartX -  _dragEndX >= dragMiniDistance) {
@@ -113,35 +107,26 @@ static float CardHeightScale = 0.7f;
     [self scrollToCenter];
 }
 
--(void)scrollToCenter
-{
+-(void)scrollToCenter {
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    
-//    XLCardModel *model = _models[_selectedIndex];
-//    _imageView.image = [UIImage imageNamed:model.imageName];
-    
     [self performDelegateMethod];
 }
 
-#pragma mark -
 #pragma mark CollectionDelegate
 //手指拖动开始
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     _dragStartX = scrollView.contentOffset.x;
 }
 
 //手指拖动停止
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     _dragEndX = scrollView.contentOffset.x;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self fixCellToCenter];
     });
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.delegate respondsToSelector:@selector(cellWWCardSlideDidSelected)]) {
         [self.delegate cellWWCardSlideDidSelected];
     }
@@ -149,47 +134,38 @@ static float CardHeightScale = 0.7f;
     [self scrollToCenter];
 }
 
-#pragma mark -
 #pragma mark CollectionDataSource
-
 //卡片宽度
--(CGFloat)cellWidth
-{
+-(CGFloat)cellWidth {
     return self.bounds.size.width * CardWidthScale;
 }
 
 //卡片间隔
--(float)cellMargin
-{
+-(float)cellMargin {
     return (self.bounds.size.width - [self cellWidth])/4;
 }
 
 //设置左右缩进
--(CGFloat)collectionInset
-{
+-(CGFloat)collectionInset {
     return self.bounds.size.width/2.0f - [self cellWidth]/2.0f;
 }
 
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, [self collectionInset], 0, [self collectionInset]);
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 10;
-}
-
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.models.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* cellId = @"WWCardSlideCell";
     WWCardSlideCell* card = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    card.model = _models[indexPath.row];
+    card.model = self.models[indexPath.row];
     card.delegate = self;
     return  card;
 }
@@ -198,9 +174,7 @@ static float CardHeightScale = 0.7f;
     
 }
 
-#pragma mark -
 #pragma mark 功能方法
-
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     [self switchToIndex:selectedIndex animated:false];
 }

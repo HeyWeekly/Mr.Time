@@ -125,6 +125,7 @@
 		C089B29A1F00F5BE00648EB4 /* CustomFlipTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2941F00F5BE00648EB4 /* CustomFlipTransition.swift */; };
 		C089B29B1F00F5BE00648EB4 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2951F00F5BE00648EB4 /* UIViewControllerExtension.swift */; };
 		C089B29C1F00F5BE00648EB4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2961F00F5BE00648EB4 /* UIViewExtension.swift */; };
+		C09C7D881F678831004F5DC7 /* WWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C09C7D871F678831004F5DC7 /* WWMessageModel.m */; };
 		C0A69F371EE79C2F00DB4678 /* Noticeicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F351EE79C2F00DB4678 /* Noticeicon@3x.png */; };
 		C0A69F381EE79C2F00DB4678 /* Noticeicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F361EE79C2F00DB4678 /* Noticeicon@2x.png */; };
 		C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F391EE79CCC00DB4678 /* Setting icon@3x.png */; };
@@ -428,6 +429,8 @@
 		C089B2941F00F5BE00648EB4 /* CustomFlipTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFlipTransition.swift; sourceTree = "<group>"; };
 		C089B2951F00F5BE00648EB4 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C089B2961F00F5BE00648EB4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		C09C7D861F678831004F5DC7 /* WWMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWMessageModel.h; sourceTree = "<group>"; };
+		C09C7D871F678831004F5DC7 /* WWMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWMessageModel.m; sourceTree = "<group>"; };
 		C0A69F351EE79C2F00DB4678 /* Noticeicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Noticeicon@3x.png"; sourceTree = "<group>"; };
 		C0A69F361EE79C2F00DB4678 /* Noticeicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Noticeicon@2x.png"; sourceTree = "<group>"; };
 		C0A69F391EE79CCC00DB4678 /* Setting icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Setting icon@3x.png"; sourceTree = "<group>"; };
@@ -710,6 +713,8 @@
 				C06351251F443ED400820458 /* WWUserModel.m */,
 				C0CBA6B71F669B7D008DC3B9 /* WWHomeBookModel.h */,
 				C0CBA6B81F669B7D008DC3B9 /* WWHomeBookModel.m */,
+				C09C7D861F678831004F5DC7 /* WWMessageModel.h */,
+				C09C7D871F678831004F5DC7 /* WWMessageModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1737,6 +1742,7 @@
 				C07AC0671F3DCE1500EBED61 /* UIImage+WWExt.m in Sources */,
 				C07AC0931F42E2B800EBED61 /* XMCenter.m in Sources */,
 				C07B39A61F5D83B2001088F2 /* FMDatabaseAdditions.m in Sources */,
+				C09C7D881F678831004F5DC7 /* WWMessageModel.m in Sources */,
 				FF340B261E9E200000B4DB39 /* BookViewController.m in Sources */,
 				C0D48A301EF67EBC00B92549 /* GCDQueue.m in Sources */,
 				C07B39A51F5D83B2001088F2 /* FMDatabase.m in Sources */,

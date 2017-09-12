@@ -10,4 +10,8 @@
 
 @interface WWMessageVC : WWRootViewController
 
+@property (nonatomic, assign) NSInteger year;
+
+- (instancetype)initWithMettoId:(NSInteger)mettoId;
+
 @end

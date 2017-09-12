@@ -9,5 +9,6 @@
 #import "WWRootViewController.h"
 
 @interface WWPublishVC : WWRootViewController
+@property (nonatomic, assign) NSInteger mettoId;
 - (instancetype)initWithYear:(NSInteger )years andIsPublish:(BOOL)isPublish;
 @end

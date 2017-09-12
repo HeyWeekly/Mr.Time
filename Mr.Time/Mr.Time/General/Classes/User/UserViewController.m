@@ -60,6 +60,7 @@
     self.view.backgroundColor = viewBackGround_Color;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self setupViews];
+    [self loadCustomInfo];
 }
 - (void)setupViews {
     
@@ -146,6 +147,20 @@
     self.likeded.top = self.likedNum.bottom+6*screenRate;
     
     [self.view addSubview:self.tableView];
+}
+
+- (void)loadCustomInfo {
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.api = getCustomMetto;
+        WWUserModel *model = [WWUserModel shareUserModel];
+        model = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        request.parameters = @{@"uid":model.uid,@"page":@(0),@"pagesize":@(20)};
+        request.httpMethod = kXMHTTPMethodGET;
+    } onSuccess:^(id  _Nullable responseObject) {
+        NSLog(@"responseObject = %@",responseObject);
+    } onFailure:^(NSError * _Nullable error) {
+#warning 提示信息
+    } onFinished:nil];
 }
 
 #pragma mark - event

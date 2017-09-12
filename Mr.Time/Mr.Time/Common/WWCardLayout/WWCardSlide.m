@@ -62,14 +62,6 @@ static float CardHeightScale = 0.7f;
     [self addSubview:self.yearsView];
 }
 
-- (void)yearsChangeYearsOld:(NSInteger)years {
-    [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:0.85 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.yearsView.width = 286/100*years;
-        [self.yearsView sizeToFit];
-        [self.yearsView layoutIfNeeded];
-    } completion:nil];
-}
-
 -(void)addCollectionView {
     WWCardSlideLayout *flowLayout = [[WWCardSlideLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake([self cellWidth],self.bounds.size.height * CardHeightScale)];
@@ -127,8 +119,8 @@ static float CardHeightScale = 0.7f;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(cellWWCardSlideDidSelected)]) {
-        [self.delegate cellWWCardSlideDidSelected];
+    if ([self.delegate respondsToSelector:@selector(cellWWCardSlideDidSelected:)]) {
+        [self.delegate cellWWCardSlideDidSelected:indexPath.row];
     }
     _selectedIndex = indexPath.row;
     [self scrollToCenter];
@@ -189,8 +181,18 @@ static float CardHeightScale = 0.7f;
     if ([_delegate respondsToSelector:@selector(WWCardSlideDidSelectedAt:)]) {
         [_delegate WWCardSlideDidSelectedAt:_selectedIndex];
     }
-    [self yearsChangeYearsOld:_selectedIndex*5];
+    [self yearsChangeYearsOld:self.models[_selectedIndex].age.integerValue];
 }
+
+- (void)yearsChangeYearsOld:(NSInteger)years {
+    [UIView animateWithDuration:0.15 delay:0 usingSpringWithDamping:0.65 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.yearsView.width = 265*screenRate/100*years;
+        [self.yearsView sizeToFit];
+        [self.yearsView layoutIfNeeded];
+    } completion:nil];
+}
+
+#pragma mark - 懒加载
 - (UILabel *)oneLabel {
     if (_oneLabel == nil) {
         _oneLabel = [[UILabel alloc]init];
@@ -200,6 +202,7 @@ static float CardHeightScale = 0.7f;
     }
     return _oneLabel;
 }
+
 - (UILabel *)hundrandLabel {
     if (_hundrandLabel == nil) {
         _hundrandLabel = [[UILabel alloc]init];
@@ -209,6 +212,7 @@ static float CardHeightScale = 0.7f;
     }
     return _hundrandLabel;
 }
+
 - (UIView *)backView {
     if (_backView == nil) {
         _backView = [[UIView alloc]init];
@@ -218,6 +222,7 @@ static float CardHeightScale = 0.7f;
     }
     return _backView;
 }
+
 - (UIView *)yearsView {
     if (_yearsView == nil) {
         _yearsView = [[UIView alloc]init];

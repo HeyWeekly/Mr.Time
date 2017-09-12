@@ -9,6 +9,7 @@
 #import "WWMessageVC.h"
 #import "WWPublishVC.h"
 #import "WWMessageDetailVCViewController.h"
+#import "WWMessageModel.h"
 
 @interface MessageHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) UIImageView *backImage;
@@ -21,14 +22,26 @@
 @property (nonatomic, strong) UIImageView *likeImage;
 @property (nonatomic, strong) UILabel *likeNum;
 @property (nonatomic, strong) UIView *sepLine;
+@property (nonatomic, strong) WWMessageDetailModel *model;
 @end
 
 @interface WWMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSInteger mettoId;
+@property (nonatomic, strong) NSArray <WWMessageDetailModel *> *messageModelArray;
 @end
 
 @implementation WWMessageVC
+
+- (instancetype)initWithMettoId:(NSInteger)mettoId {
+    if (self = [super init]) {
+        self.mettoId = mettoId;
+        [self loadHotMessage];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
@@ -36,16 +49,41 @@
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, 64, KWidth, KHeight- 64);
 }
+
+- (void)setYear:(NSInteger)year {
+    _year = year;
+    self.nav.navTitle.text = [NSString stringWithFormat:@"TO %ld YEARS OLD",(long)year];
+}
+
+#pragma mark - network
+- (void)loadHotMessage {
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.api = getHotMessage;
+        request.httpMethod = kXMHTTPMethodGET;
+        request.parameters = @{@"apthmId":@(self.mettoId)};
+    } onSuccess:^(id  _Nullable responseObject) {
+        WWJsonMessageModel *model = [WWJsonMessageModel yy_modelWithJSON:responseObject];
+        if ([model.code isEqualToString:@"1"]) {
+            self.messageModelArray = model.result.cmts;
+            [self.tableView reloadData];
+        }
+        self.messageModelArray = model.result.cmts;
+    } onFailure:^(NSError * _Nullable error) {
+#warning 提示信息
+    } onFinished:nil];
+}
+
 #pragma mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 5;
-    } else {
-        return 10;
-    }
+//    if (section == 0) {
+//        return 5;
+//    } else {
+//        return 10;
+//    }
+    return self.messageModelArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,32 +91,39 @@
     if (!cell) {
         cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCell"];
     }
+    cell.model = self.messageModelArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     MessageHeaderView *headView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-    if (section == 0) {
-        headView.backImage.image = [UIImage imageNamed:@"hotMessage"];
-    }else {
+//    if (section == 0) {
+//        headView.backImage.image = [UIImage imageNamed:@"hotMessage"];
+//    }else {
         headView.backImage.image = [UIImage imageNamed:@"newMessage"];
-    }
+//    }
     return headView;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 155*screenRate;
+    return self.messageModelArray[indexPath.row].cellHeight ? self.messageModelArray[indexPath.row].cellHeight : 44 ;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)messageto {
-    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:25 andIsPublish:NO];
+    WWPublishVC *publishVC = [[WWPublishVC alloc]initWithYear:self.year andIsPublish:NO];
+    publishVC.mettoId = self.mettoId;
     [self.navigationController pushViewController:publishVC animated:YES];
 }
+
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
@@ -116,23 +161,27 @@
 @implementation MessageCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self setupSubviews];
+        
     }
     return self;
 }
-- (void)setupSubviews {
-    [self.messageLabel sizeToFit];
+
+- (void)setModel:(WWMessageDetailModel *)model {
+    _model = model;
+    self.messageLabel.text = model.content;
     self.messageLabel.left = 20*screenRate;
     self.messageLabel.top = 10 *screenRate;
     self.messageLabel.width = KWidth - 40*screenRate;
     [self addSubview:self.messageLabel];
     [self.messageLabel sizeToFit];
     
+    self.nameLbael.text = @"——来自 50岁 的王二黑";
     [self.nameLbael sizeToFit];
     self.nameLbael.left = 20*screenRate;
     self.nameLbael.top = self.messageLabel.bottom + 12*screenRate;
     [self addSubview:self.nameLbael];
     
+    self.likeNum.text = @"165";
     [self.likeNum sizeToFit];
     self.likeNum.right = KWidth - 20*screenRate;
     self.likeNum.top = self.nameLbael.top;
@@ -149,27 +198,30 @@
     self.sepLine.width = KWidth - 40*screenRate;
     self.sepLine.height = 0.5;
     [self addSubview:self.sepLine];
+    model.cellHeight = self.sepLine.bottom;
 }
+
+#pragma mark - 懒加载
 - (UILabel *)messageLabel {
     if (_messageLabel == nil) {
         _messageLabel = [[UILabel alloc]init];
         _messageLabel.textColor = RGBCOLOR(0x39454E);
         _messageLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
         _messageLabel.numberOfLines = 0;
-        _messageLabel.text = @"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想。";
     }
     return _messageLabel;
 }
+
 - (UILabel *)nameLbael {
     if (_nameLbael == nil) {
         _nameLbael = [[UILabel alloc]init];
         _nameLbael.textColor = RGBCOLOR(0x94A3AE);
         _nameLbael.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
         _nameLbael.numberOfLines = 1;
-        _nameLbael.text = @"—— 来自 50岁 的 Punk奶奶";
     }
     return _nameLbael;
 }
+
 - (UIImageView *)likeImage {
     if (_likeImage == nil) {
         _likeImage = [[UIImageView alloc]init];
@@ -177,15 +229,16 @@
     }
     return _likeImage;
 }
+
 - (UILabel *)likeNum {
     if (_likeNum == nil) {
         _likeNum = [[UILabel alloc]init];
-        _likeNum.text = @"1,3445";
         _likeNum.textColor = RGBCOLOR(0x94A3AD);
         _likeNum.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
     }
     return _likeNum;
 }
+
 - (UIView *)sepLine {
     if (_sepLine == nil) {
         _sepLine = [[UIView alloc]init];
@@ -193,6 +246,7 @@
     }
     return _sepLine;
 }
+
 @end
 
 

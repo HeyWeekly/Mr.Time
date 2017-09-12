@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface WWHomeBookModel : NSObject
-@property (nonatomic, strong) NSString *age;
-@property (nonatomic, strong) NSString *content;
-@property (nonatomic, strong) NSString *pubtime;
-@property (nonatomic, strong) NSString *id;
+@property (nonatomic, copy) NSString *age;
+@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *pubtime;
+@property (nonatomic, copy) NSString *aid;
 @end
 
 @interface WWHomeJsonBookModel : NSObject
-@property (nonatomic, strong) NSString *code;
-@property (nonatomic, strong) NSString *msg;
+@property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSString *msg;
 @property (nonatomic, strong) NSArray <WWHomeBookModel *> *result;
 @end

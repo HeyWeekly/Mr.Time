@@ -13,7 +13,7 @@
 @protocol WWCardSlideDelegate <NSObject>
 @optional
 -(void)WWCardSlideDidSelectedAt:(NSInteger)index;
-- (void)cellWWCardSlideDidSelected;
+- (void)cellWWCardSlideDidSelected:(NSInteger)selectIndex;
 @end
 
 @interface WWCardSlide : UIView

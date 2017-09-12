@@ -34,6 +34,10 @@
     return self;
 }
 
+- (void)setMettoId:(NSInteger)mettoId {
+    _mettoId = mettoId;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
@@ -159,14 +163,20 @@
     
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
         request.api = url;
-        request.parameters = @{@"content": self.inputTextView.text,@"age":@(self.yearsField.text.integerValue)};
+        if (self.isPublish) {
+            request.parameters = @{@"content": self.inputTextView.text,@"age":@(self.yearsField.text.integerValue)};
+        }else {
+            request.parameters = @{@"cmt": self.inputTextView.text,@"apthmId":@(self.mettoId)};
+        }
         request.httpMethod = kXMHTTPMethodPOST;
     } onSuccess:^(id  _Nullable responseObject) {
         [self.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布成功"}];
     } onFailure:^(NSError * _Nullable error) {
+        NSLog(@"%@",error);
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布失败，服务器可能挂了~"}];
     } onFinished:nil];
+    
 }
 
 - (void)minlookclick {

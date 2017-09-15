@@ -7,13 +7,13 @@
 //
 
 #import "UserViewController.h"
-#import "QQLineFlowLayout.h"
-#import "QQEngine.h"
-#import "MYCollectionView.h"
 #import "WWSettingVC.h"
 #import "WWMessageDetailVCViewController.h"
 #import "WWCollectButton.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "WWLabel.h"
+#import "WWBaseTableView.h"
+#import "WWHomeBookModel.h"
 
 #define CELL_IDENTITY @"myCell"
 
@@ -22,6 +22,7 @@
 @end
 
 @interface userPublishCell : UITableViewCell
+@property (nonatomic, strong) WWLabel *yearsNum;
 @property (nonatomic, strong) UIImageView *yearsImage;
 @property (nonatomic, strong) WWCollectButton *likeImage;
 @property (nonatomic, strong) UILabel *likeNum;
@@ -29,17 +30,17 @@
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, assign) BOOL islike;
 @property (nonatomic,  weak) id <userPublishCellDelegate> delegate;
+@property (nonatomic, strong) WWHomeBookModel *model;
 @end
 
 
-@interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,MYCollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
+@interface UserViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong) UIButton  *notice;
 @property(nonatomic, strong) UIButton  *setting;
 @property(nonatomic, strong) UIButton  *backheadImage;
 @property(nonatomic, strong) UIImageView  *headImage;
 @property (nonatomic, strong) UILabel *nameLbael;
 @property (nonatomic, strong) UILabel *yearLbael;
-@property(nonatomic,strong) MYCollectionView *myCollectionView;
 @property (nonatomic, strong) UILabel *collected;
 @property (nonatomic, strong) UILabel *collectedNum;
 @property (nonatomic, strong) UIView *sepLine1;
@@ -48,9 +49,8 @@
 @property (nonatomic, strong) UIView *sepLine2;
 @property (nonatomic, strong) UILabel *likeded;
 @property (nonatomic, strong) UILabel *likedNum;
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIView *containerView;
-@property (nonatomic, assign) BOOL animation ;
+@property (nonatomic, strong) WWBaseTableView *tableView;
+@property (nonatomic, strong) NSArray <WWHomeBookModel*>* modelArray;
 @end
 
 @implementation UserViewController
@@ -63,10 +63,6 @@
     [self loadCustomInfo];
 }
 - (void)setupViews {
-    
-//    [self.view addSubview:self.containerView];
-//    self.containerView.frame = CGRectMake(10, 20, KWidth-20, 193);
-    
     WWUserModel *model = [WWUserModel shareUserModel];
     model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
     if (model.headimgurl) {
@@ -157,57 +153,20 @@
         request.parameters = @{@"uid":model.uid,@"page":@(0),@"pagesize":@(20)};
         request.httpMethod = kXMHTTPMethodGET;
     } onSuccess:^(id  _Nullable responseObject) {
-        NSLog(@"responseObject = %@",responseObject);
+        WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
+        if ([model.code isEqualToString:@"1"]) {
+            self.modelArray = model.result;
+            if (self.modelArray.count == 0) {
+                [self.tableView showEmptyViewWithType:1];
+            }
+            [self.tableView reloadData];
+        }
     } onFailure:^(NSError * _Nullable error) {
 #warning 提示信息
     } onFinished:nil];
 }
 
 #pragma mark - event
-- (void)headImageClick {
-    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
-    WEAK_SELF;
-    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"相机"
-                                                               handler:^(WWActionSheetAction *action) {
-                                                                   UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                                   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                                                                       if ([Permissions isGetCameraPermission] ) {
-                                                                           sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                                           UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                                                                           picker.delegate = weakSelf;
-                                                                           picker.allowsEditing = YES;//设置可编辑
-                                                                           picker.sourceType = sourceType;
-                                                                           [weakSelf presentViewController:picker animated:YES completion:nil];
-                                                                       }else {
-                                                                           [Permissions getCameraPerMissionWithViewController:weakSelf];
-                                                                       }
-                                                                   }
-                                                               }];
-
-    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"从相册获取"
-                                                               handler:^(WWActionSheetAction *action) {
-                                                                   if ([Permissions isGetPhotoPermission]) {
-                                                                       UIImagePickerController *pic = [[UIImagePickerController alloc] init];
-                                                                       pic.allowsEditing = YES;
-                                                                       pic.delegate = weakSelf;
-                                                                       [weakSelf presentViewController:pic animated:YES completion:nil];
-                                                                   }else {
-                                                                       [Permissions getPhonePermissionWithViewController:weakSelf];
-                                                                   }
-                                                               }];
-    [actionSheet addAction:action];
-    [actionSheet addAction:action2];
-    
-    [actionSheet showInWindow:[WWGeneric popOverWindow]];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    if (!image) {return;}
-    self.headImage.image = image;
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)setClick {
     WWSettingVC *vc = [[WWSettingVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -215,7 +174,7 @@
 
 #pragma mark - tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.modelArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -223,42 +182,31 @@
     if (!cell) {
         cell = [[userPublishCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userPublishCell"];
     }
+    cell.model = self.modelArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.likeNum.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 215*screenRate;
+    return self.modelArray[indexPath.row].cellHeight ? self.modelArray[indexPath.row].cellHeight : 44;
 }
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;
-    for (userPublishCell *cell in [self.tableView visibleCells]) {
-        CGFloat y = cell.centerY - scrollView.contentOffset.y;
-        CGFloat p = y - viewHeight / 2;
-        CGFloat scale = cos(p / viewHeight * 0.8) * 0.95;
-        [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            cell.containerView.transform = CGAffineTransformMakeScale(scale, scale);
-        } completion:NULL];
-    }
-    
-//    CGFloat offset = scrollView.contentOffset.y;
-//    if(offset > 0 && offset <180){
-//        NSLog(@"offset>0<193===%f",offset);
-//        self.tableView.frame = CGRectMake(20*screenRate, 213-offset, KWidth-40*screenRate, KHeight-49+offset);
-//        [self.view setNeedsLayout];
-//    }else if (offset <= 193 && offset >= 180){
-//        NSLog(@"offset===%f",offset);
-//        self.tableView.frame = CGRectMake(20*screenRate, 20, KWidth-40*screenRate, KHeight-49-20);
-//        [self.view setNeedsLayout];
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;
+//    for (userPublishCell *cell in [self.tableView visibleCells]) {
+//        CGFloat y = cell.centerY - scrollView.contentOffset.y;
+//        CGFloat p = y - viewHeight / 2;
+//        CGFloat scale = cos(p / viewHeight * 0.8) * 0.95;
+//        [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            cell.containerView.transform = CGAffineTransformMakeScale(scale, scale);
+//        } completion:NULL];
 //    }
-}
+//}
 
 #pragma mark - 懒加载
-- (UITableView *)tableView {
+- (WWBaseTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20*screenRate, self.backheadImage.bottom+29*screenRate, KWidth-40*screenRate, KHeight-(self.backheadImage.bottom+29*screenRate)-49)];
+        _tableView = [[WWBaseTableView alloc] initWithFrame:CGRectMake(20*screenRate, self.backheadImage.bottom+29*screenRate, KWidth-40*screenRate, KHeight-(self.backheadImage.bottom+29*screenRate)-49)];
         _tableView.delegate = self;
         _tableView.dataSource  = self;
         _tableView.backgroundColor = viewBackGround_Color;
@@ -268,14 +216,6 @@
     }
     return _tableView;
 }
-
-//- (UIView *)containerView {
-//    if (!_containerView) {
-//        _containerView = [[UIView alloc]init];
-//        _containerView.backgroundColor = viewBackGround_Color;
-//    }
-//    return _containerView;
-//}
 
 - (UILabel *)yearLbael {
     if (_yearLbael == nil) {
@@ -327,7 +267,7 @@
         _backheadImage = [[UIButton alloc]init];
         [_backheadImage setImage:[UIImage imageNamed:@"headbackground"] forState:UIControlStateNormal];
         _backheadImage.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [_backheadImage addTarget:self action:@selector(headImageClick) forControlEvents:UIControlEventTouchUpInside];
+//        [_backheadImage addTarget:self action:@selector(headImageClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backheadImage;
 }
@@ -442,6 +382,50 @@
     _headImage.layer.mask = shapLayer;
 }
 
+//无数据库支持 暂不支持换头像
+//- (void)headImageClick {
+//    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
+//    WEAK_SELF;
+//    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"相机"
+//                                                               handler:^(WWActionSheetAction *action) {
+//                                                                   UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+//                                                                   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//                                                                       if ([Permissions isGetCameraPermission] ) {
+//                                                                           sourceType = UIImagePickerControllerSourceTypeCamera;
+//                                                                           UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//                                                                           picker.delegate = weakSelf;
+//                                                                           picker.allowsEditing = YES;//设置可编辑
+//                                                                           picker.sourceType = sourceType;
+//                                                                           [weakSelf presentViewController:picker animated:YES completion:nil];
+//                                                                       }else {
+//                                                                           [Permissions getCameraPerMissionWithViewController:weakSelf];
+//                                                                       }
+//                                                                   }
+//                                                               }];
+//    
+//    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"从相册获取"
+//                                                                handler:^(WWActionSheetAction *action) {
+//                                                                    if ([Permissions isGetPhotoPermission]) {
+//                                                                        UIImagePickerController *pic = [[UIImagePickerController alloc] init];
+//                                                                        pic.allowsEditing = YES;
+//                                                                        pic.delegate = weakSelf;
+//                                                                        [weakSelf presentViewController:pic animated:YES completion:nil];
+//                                                                    }else {
+//                                                                        [Permissions getPhonePermissionWithViewController:weakSelf];
+//                                                                    }
+//                                                                }];
+//    [actionSheet addAction:action];
+//    [actionSheet addAction:action2];
+//    
+//    [actionSheet showInWindow:[WWGeneric popOverWindow]];
+//}
+//
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+//    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+//    if (!image) {return;}
+//    self.headImage.image = image;
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//}
 @end
 
 
@@ -450,37 +434,61 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = viewBackGround_Color;
-        [self setupViews];
+        [self setupSubviews];
     }
     return self;
 }
 
-- (void)setupViews{
-    self.containerView.width = KWidth - 40*screenRate;
-    [self.yearsImage sizeToFit];
-    self.yearsImage.left = 20*screenRate;
-    self.yearsImage.top = 11.5*screenRate;
+- (void)setupSubviews {
+    [self.containerView addSubview:self.yearsNum];
     [self.containerView addSubview:self.yearsImage];
+    [self.containerView addSubview:self.likeNum];
+    [self.containerView addSubview:self.likeImage];
+    [self.containerView addSubview:self.contentLabel];
+    [self addSubview:self.containerView];
+}
+
+- (void)setModel:(WWHomeBookModel *)model {
+    _model = model;
+    self.containerView.width = KWidth - 40*screenRate;
+    
+    self.yearsNum.text = model.age;
+    [self.yearsNum sizeToFit];
+    self.yearsNum.top = 8*screenRate;
+    self.yearsNum.left = 20*screenRate;
+//    [self.containerView addSubview:self.yearsNum];
+    
+    [self.yearsImage sizeToFit];
+    self.yearsImage.left = self.yearsNum.right;
+    self.yearsImage.top = 12*screenRate;
+//    [self.containerView addSubview:self.yearsImage];
     
     [self.likeNum sizeToFit];
     self.likeNum.right = self.containerView.width-25*screenRate;
     self.likeNum.top = 26.5*screenRate;
-    [self.containerView addSubview:self.likeNum];
+//    [self.containerView addSubview:self.likeNum];
     
-    [self.containerView addSubview:self.likeImage];
+//    [self.containerView addSubview:self.likeImage];
     [self.likeImage sizeToFit];
     self.likeImage.right = self.likeNum.left-5*screenRate;
     self.likeImage.top = 19*screenRate;
     
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:6];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:model.content attributes:@{NSForegroundColorAttributeName : RGBCOLOR(0x39454E), NSParagraphStyleAttributeName: paragraphStyle}];
+    self.contentLabel.attributedText = string;
     [self.contentLabel sizeToFit];
     self.contentLabel.left = 25*screenRate;
     self.contentLabel.top = self.yearsImage.bottom+15.5*screenRate;
     self.contentLabel.width = self.containerView.width - 50*screenRate;
-    [self.containerView addSubview:self.contentLabel];
+//    [self.containerView addSubview:self.contentLabel];
     [self.contentLabel sizeToFit];
     
     self.containerView.height = self.contentLabel.bottom+27*screenRate;
-    [self addSubview:self.containerView];
+//    self.containerView.top = 0;
+//    self.containerView.left = 0;
+//    [self addSubview:self.containerView];
+    _model.cellHeight = self.contentLabel.bottom + 47*screenRate;
 }
 
 - (void)favoClick {
@@ -492,10 +500,22 @@
     }
 }
 
+#pragma mark - 懒加载
+- (WWLabel *)yearsNum {
+    if (_yearsNum == nil) {
+        _yearsNum = [[WWLabel alloc]init];
+        _yearsNum.font = [UIFont fontWithName:kFont_DINAlternate size:40*screenRate];
+        _yearsNum.text = @"25";
+        NSArray *gradientColors = @[(id)RGBCOLOR(0x15C2FF).CGColor, (id)RGBCOLOR(0x2EFFB6).CGColor];
+        _yearsNum.colors =gradientColors;
+    }
+    return _yearsNum;
+}
+
 -  (UIImageView *)yearsImage {
     if (_yearsImage == nil) {
         _yearsImage = [[UIImageView alloc]init];
-        _yearsImage.image = [UIImage imageNamed:@"21yearsOld"];
+        _yearsImage.image = [UIImage imageNamed:@"userYearsOld"];
     }
     return _yearsImage;
 }
@@ -523,11 +543,6 @@
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
         _contentLabel = [[UILabel alloc]init];
-        NSString *text =@"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信";
-        NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        [paragraphStyle setLineSpacing:6];
-        NSAttributedString *string = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : RGBCOLOR(0x39454E), NSParagraphStyleAttributeName: paragraphStyle}];
-        _contentLabel.attributedText = string;
         _contentLabel.numberOfLines = 4;
         _contentLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
     }

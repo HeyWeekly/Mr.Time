@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *pubtime;
 @property (nonatomic, copy) NSString *aid;
+@property (nonatomic, assign) CGFloat cellHeight;
 @end
 
 @interface WWHomeJsonBookModel : NSObject

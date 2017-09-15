@@ -14,7 +14,7 @@
 #import "IQKeyboardManager.h"
 #import "WXApi.h"
 #import "WWErrorView.h"
-
+ 
 @interface WWAppDelegate ()<WXApiDelegate>
 @property (nonatomic,strong) NSMutableArray *imageArr;
 @property (nonatomic,assign) NSInteger *imageIndex;

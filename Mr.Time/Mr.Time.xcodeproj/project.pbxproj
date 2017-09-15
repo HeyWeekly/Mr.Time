@@ -130,10 +130,6 @@
 		C0A69F381EE79C2F00DB4678 /* Noticeicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F361EE79C2F00DB4678 /* Noticeicon@2x.png */; };
 		C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F391EE79CCC00DB4678 /* Setting icon@3x.png */; };
 		C0A69F3C1EE79CCC00DB4678 /* Setting icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F3A1EE79CCC00DB4678 /* Setting icon@2x.png */; };
-		C0A69F501EE7F64A00DB4678 /* 21yearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4C1EE7F64A00DB4678 /* 21yearsOld@3x.png */; };
-		C0A69F511EE7F64A00DB4678 /* 21yearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4D1EE7F64A00DB4678 /* 21yearsOld@2x.png */; };
-		C0A69F521EE7F64A00DB4678 /* 20yearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4E1EE7F64A00DB4678 /* 20yearsOld@2x.png */; };
-		C0A69F531EE7F64A00DB4678 /* 20yearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F4F1EE7F64A00DB4678 /* 20yearsOld@3x.png */; };
 		C0A69F5F1EE92DEA00DB4678 /* WWNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A69F5E1EE92DEA00DB4678 /* WWNavigationVC.m */; };
 		C0A69F631EE9318D00DB4678 /* bacBackBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F611EE9318D00DB4678 /* bacBackBtn@3x.png */; };
 		C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F621EE9318D00DB4678 /* bacBackBtn@2x.png */; };
@@ -241,6 +237,15 @@
 		FF61E0C21E9BBE76000E68F0 /* Mr_TimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0C11E9BBE76000E68F0 /* Mr_TimeUITests.m */; };
 		FFBDCCC91EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBDCCC61EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m */; };
 		FFBDCCCA1EE52BFF00B3AE23 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBDCCC81EE52BFF00B3AE23 /* UIView+SDAutoLayout.m */; };
+		FFBED3801F6BA866005C239E /* usernoData@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED37C1F6BA866005C239E /* usernoData@3x.png */; };
+		FFBED3811F6BA866005C239E /* usernoData@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED37D1F6BA866005C239E /* usernoData@2x.png */; };
+		FFBED3821F6BA866005C239E /* usernoMore@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED37E1F6BA866005C239E /* usernoMore@3x.png */; };
+		FFBED3831F6BA866005C239E /* usernoMore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED37F1F6BA866005C239E /* usernoMore@2x.png */; };
+		FFBED38A1F6BAA4A005C239E /* WWNoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBED3891F6BAA4A005C239E /* WWNoContentView.m */; };
+		FFBED3911F6BB183005C239E /* WWBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBED3901F6BB183005C239E /* WWBaseTableView.m */; };
+		FFBED3941F6BB3F2005C239E /* WWUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */; };
+		FFBED3971F6BBAD0005C239E /* userYearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */; };
+		FFBED3981F6BBAD0005C239E /* userYearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -435,10 +440,6 @@
 		C0A69F361EE79C2F00DB4678 /* Noticeicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Noticeicon@2x.png"; sourceTree = "<group>"; };
 		C0A69F391EE79CCC00DB4678 /* Setting icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Setting icon@3x.png"; sourceTree = "<group>"; };
 		C0A69F3A1EE79CCC00DB4678 /* Setting icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Setting icon@2x.png"; sourceTree = "<group>"; };
-		C0A69F4C1EE7F64A00DB4678 /* 21yearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21yearsOld@3x.png"; sourceTree = "<group>"; };
-		C0A69F4D1EE7F64A00DB4678 /* 21yearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21yearsOld@2x.png"; sourceTree = "<group>"; };
-		C0A69F4E1EE7F64A00DB4678 /* 20yearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20yearsOld@2x.png"; sourceTree = "<group>"; };
-		C0A69F4F1EE7F64A00DB4678 /* 20yearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20yearsOld@3x.png"; sourceTree = "<group>"; };
 		C0A69F5D1EE92DEA00DB4678 /* WWNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWNavigationVC.h; sourceTree = "<group>"; };
 		C0A69F5E1EE92DEA00DB4678 /* WWNavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWNavigationVC.m; sourceTree = "<group>"; };
 		C0A69F611EE9318D00DB4678 /* bacBackBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bacBackBtn@3x.png"; sourceTree = "<group>"; };
@@ -589,6 +590,18 @@
 		FFBDCCC71EE52BFF00B3AE23 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
 		FFBDCCC81EE52BFF00B3AE23 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
 		FFBDCCCB1EE52CBD00B3AE23 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		FFBED37C1F6BA866005C239E /* usernoData@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usernoData@3x.png"; sourceTree = "<group>"; };
+		FFBED37D1F6BA866005C239E /* usernoData@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usernoData@2x.png"; sourceTree = "<group>"; };
+		FFBED37E1F6BA866005C239E /* usernoMore@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usernoMore@3x.png"; sourceTree = "<group>"; };
+		FFBED37F1F6BA866005C239E /* usernoMore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usernoMore@2x.png"; sourceTree = "<group>"; };
+		FFBED3881F6BAA4A005C239E /* WWNoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWNoContentView.h; sourceTree = "<group>"; };
+		FFBED3891F6BAA4A005C239E /* WWNoContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWNoContentView.m; sourceTree = "<group>"; };
+		FFBED38F1F6BB183005C239E /* WWBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseTableView.h; sourceTree = "<group>"; };
+		FFBED3901F6BB183005C239E /* WWBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseTableView.m; sourceTree = "<group>"; };
+		FFBED3921F6BB3F2005C239E /* WWUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWUserInfoModel.h; sourceTree = "<group>"; };
+		FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWUserInfoModel.m; sourceTree = "<group>"; };
+		FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@3x.png"; sourceTree = "<group>"; };
+		FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -654,6 +667,8 @@
 				C089B2621EFFD0AD00648EB4 /* WWCollectBtnCircleView.m */,
 				C07AC06E1F3DD06900EBED61 /* WWGeneric.h */,
 				C07AC06F1F3DD06900EBED61 /* WWGeneric.m */,
+				FFBED38F1F6BB183005C239E /* WWBaseTableView.h */,
+				FFBED3901F6BB183005C239E /* WWBaseTableView.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -715,6 +730,8 @@
 				C0CBA6B81F669B7D008DC3B9 /* WWHomeBookModel.m */,
 				C09C7D861F678831004F5DC7 /* WWMessageModel.h */,
 				C09C7D871F678831004F5DC7 /* WWMessageModel.m */,
+				FFBED3921F6BB3F2005C239E /* WWUserInfoModel.h */,
+				FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -887,6 +904,12 @@
 		C0A69F301EE7984500DB4678 /* userView */ = {
 			isa = PBXGroup;
 			children = (
+				FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */,
+				FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */,
+				FFBED37C1F6BA866005C239E /* usernoData@3x.png */,
+				FFBED37D1F6BA866005C239E /* usernoData@2x.png */,
+				FFBED37E1F6BA866005C239E /* usernoMore@3x.png */,
+				FFBED37F1F6BA866005C239E /* usernoMore@2x.png */,
 				C089B2801F00F05A00648EB4 /* userCollect@2x.png */,
 				C089B2811F00F05A00648EB4 /* userCollect@3x.png */,
 				C089B27C1F00F05100648EB4 /* userNoCollect@2x.png */,
@@ -909,20 +932,10 @@
 			path = userView;
 			sourceTree = "<group>";
 		};
-		C0A69F4B1EE7F5EA00DB4678 /* userYear */ = {
-			isa = PBXGroup;
-			children = (
-				C0A69F4C1EE7F64A00DB4678 /* 21yearsOld@3x.png */,
-				C0A69F4D1EE7F64A00DB4678 /* 21yearsOld@2x.png */,
-				C0A69F4E1EE7F64A00DB4678 /* 20yearsOld@2x.png */,
-				C0A69F4F1EE7F64A00DB4678 /* 20yearsOld@3x.png */,
-			);
-			path = userYear;
-			sourceTree = "<group>";
-		};
 		C0A69F5B1EE92DBA00DB4678 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FFBED3871F6BAA27005C239E /* NoContentView */,
 				C06351271F4440E500820458 /* WWErrorView */,
 				C07AC08B1F42E2AC00EBED61 /* NetWorkTools */,
 				C07AC0611F3DCCFD00EBED61 /* Category */,
@@ -1336,7 +1349,6 @@
 				C07B39951F5D2509001088F2 /* threeqidongye .png */,
 				C0B948F41F39DC2D0008E29F /* loginImage */,
 				C0A69F601EE9317E00DB4678 /* Common */,
-				C0A69F4B1EE7F5EA00DB4678 /* userYear */,
 				C0A69F301EE7984500DB4678 /* userView */,
 				FF340B301E9E520D00B4DB39 /* tabbar */,
 			);
@@ -1365,6 +1377,15 @@
 				FFBDCCC81EE52BFF00B3AE23 /* UIView+SDAutoLayout.m */,
 			);
 			path = SDAutoLayout;
+			sourceTree = "<group>";
+		};
+		FFBED3871F6BAA27005C239E /* NoContentView */ = {
+			isa = PBXGroup;
+			children = (
+				FFBED3881F6BAA4A005C239E /* WWNoContentView.h */,
+				FFBED3891F6BAA4A005C239E /* WWNoContentView.m */,
+			);
+			path = NoContentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1492,7 +1513,6 @@
 				FF340B751E9E640900B4DB39 /* homeSelect@2x.png in Resources */,
 				C089B2341EFFB45700648EB4 /* boolRedLike@2x.png in Resources */,
 				FF340B861EA0A04A00B4DB39 /* homeNormal@3x.png in Resources */,
-				C0A69F521EE7F64A00DB4678 /* 20yearsOld@2x.png in Resources */,
 				C0CBA6731F60039F008DC3B9 /* commentYearBg4@2x.png in Resources */,
 				C089B2781F00E81F00648EB4 /* cleardelete@2x.png in Resources */,
 				FF340B781E9E640900B4DB39 /* userSelect@3x.png in Resources */,
@@ -1509,6 +1529,7 @@
 				C07ABFF61F3C435200EBED61 /* selectBirthday@2x.png in Resources */,
 				C089B2671F00A37400648EB4 /* headbackground@3x.png in Resources */,
 				C089B2871F00F41E00648EB4 /* jitang@3x.png in Resources */,
+				FFBED3811F6BA866005C239E /* usernoData@2x.png in Resources */,
 				C089B27A1F00E81F00648EB4 /* suggestion@2x.png in Resources */,
 				C089B26F1F00D59500648EB4 /* settingSwtch@3x.png in Resources */,
 				C0CBA68F1F60039F008DC3B9 /* contentYearBg8@2x.png in Resources */,
@@ -1536,7 +1557,6 @@
 				C07ABFD31F39EF8E00EBED61 /* loginsettingheading@3x.png in Resources */,
 				C0A69F631EE9318D00DB4678 /* bacBackBtn@3x.png in Resources */,
 				C0CBA6721F60039F008DC3B9 /* commentYearBg3@3x.png in Resources */,
-				C0A69F531EE7F64A00DB4678 /* 20yearsOld@3x.png in Resources */,
 				C0CBA6811F60039F008DC3B9 /* contentYearBg1@2x.png in Resources */,
 				FF340B871EA0A04A00B4DB39 /* userNormal@2x.png in Resources */,
 				C0D48AC71EFE998700B92549 /* normalLock@2x.png in Resources */,
@@ -1573,6 +1593,7 @@
 				C07ABFDA1F39F24F00EBED61 /* nextBirthday@3x.png in Resources */,
 				C0E8EDFF1EFFA5350034570D /* bookOval@3x.png in Resources */,
 				C0CBA6791F60039F008DC3B9 /* commentYearBg7@2x.png in Resources */,
+				FFBED3821F6BA866005C239E /* usernoMore@3x.png in Resources */,
 				C089B24C1EFFBC6C00648EB4 /* Weibo@2x.png in Resources */,
 				C0CBA6801F60039F008DC3B9 /* contentYearBg0@3x.png in Resources */,
 				C0CBA6851F60039F008DC3B9 /* contentYearBg3@2x.png in Resources */,
@@ -1582,7 +1603,6 @@
 				C0D48A831EF680F000B92549 /* homePublish@2x.png in Resources */,
 				FF340B711E9E640900B4DB39 /* bookSelect@2x.png in Resources */,
 				C0CBA67A1F60039F008DC3B9 /* commentYearBg7@3x.png in Resources */,
-				C0A69F511EE7F64A00DB4678 /* 21yearsOld@2x.png in Resources */,
 				C089B2661F00A37400648EB4 /* headbackground@2x.png in Resources */,
 				C089B2351EFFB45700648EB4 /* boolRedLike@3x.png in Resources */,
 				C0CBA6821F60039F008DC3B9 /* contentYearBg1@3x.png in Resources */,
@@ -1595,14 +1615,18 @@
 				C0A69F3C1EE79CCC00DB4678 /* Setting icon@2x.png in Resources */,
 				C0CBA66B1F60039F008DC3B9 /* commentYearBg0@2x.png in Resources */,
 				C0CBA6871F60039F008DC3B9 /* contentYearBg4@2x.png in Resources */,
+				FFBED3801F6BA866005C239E /* usernoData@3x.png in Resources */,
+				FFBED3981F6BBAD0005C239E /* userYearsOld@2x.png in Resources */,
 				C089B27F1F00F05100648EB4 /* userNoCollect@3x.png in Resources */,
 				C07ABFDB1F39F24F00EBED61 /* nextBirthday@2x.png in Resources */,
 				C07ABFE21F3C2D8900EBED61 /* tellMeBirthday@2x.png in Resources */,
 				C0CBA6711F60039F008DC3B9 /* commentYearBg3@2x.png in Resources */,
 				C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */,
 				C0D48ACB1EFE99A100B92549 /* selectLock@2x.png in Resources */,
+				FFBED3971F6BBAD0005C239E /* userYearsOld@3x.png in Resources */,
 				C0E8EDFE1EFFA5350034570D /* bookOval@2x.png in Resources */,
 				C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */,
+				FFBED3831F6BA866005C239E /* usernoMore@2x.png in Resources */,
 				FF340B731E9E640900B4DB39 /* collectSelect@2x.png in Resources */,
 				C0B948F81F39DC760008E29F /* Onboarding@3x.png in Resources */,
 				C089B2481EFFBC6C00648EB4 /* Savetoalbum@2x.png in Resources */,
@@ -1610,7 +1634,6 @@
 				C0B949071F39E1620008E29F /* weChatLogin@3x.png in Resources */,
 				C0CBA68A1F60039F008DC3B9 /* contentYearBg5@3x.png in Resources */,
 				C0CBA66D1F60039F008DC3B9 /* commentYearBg1@2x.png in Resources */,
-				C0A69F501EE7F64A00DB4678 /* 21yearsOld@3x.png in Resources */,
 				FF340B851EA0A04A00B4DB39 /* homeNormal@2x.png in Resources */,
 				FF340B841EA0A04A00B4DB39 /* collectNormal@3x.png in Resources */,
 				C089B2861F00F41E00648EB4 /* jitang@2x.png in Resources */,
@@ -1731,9 +1754,11 @@
 				C0CBA6B91F669B7D008DC3B9 /* WWHomeBookModel.m in Sources */,
 				C0A69FA01EE949E600DB4678 /* WWSOCommon.swift in Sources */,
 				FF340B081E9E152500B4DB39 /* WWAppDelegate+RootController.m in Sources */,
+				FFBED38A1F6BAA4A005C239E /* WWNoContentView.m in Sources */,
 				C07AC06D1F3DCF0900EBED61 /* UIView+WWExt.m in Sources */,
 				C07AC08A1F42E10E00EBED61 /* NSString+WWExtra.m in Sources */,
 				C07AC0561F3D982C00EBED61 /* Permissions.m in Sources */,
+				FFBED3941F6BB3F2005C239E /* WWUserInfoModel.m in Sources */,
 				C05940211EEFB7F7002751FE /* WWMessageVC.m in Sources */,
 				C07AC03B1F3D796F00EBED61 /* SDCycleScrollView.m in Sources */,
 				C07AC0941F42E2B800EBED61 /* XMEngine.m in Sources */,
@@ -1777,6 +1802,7 @@
 				C05940051EEA9605002751FE /* WWCollectionModel.m in Sources */,
 				C05940021EEA48DB002751FE /* WWLabel.m in Sources */,
 				C089B2981F00F5BE00648EB4 /* CardView.swift in Sources */,
+				FFBED3911F6BB183005C239E /* WWBaseTableView.m in Sources */,
 				C089B2511EFFBDD400648EB4 /* WWShareView.m in Sources */,
 				C07AC0731F3DD2EB00EBED61 /* WWGeneric+Application.m in Sources */,
 				C07B39A71F5D83B2001088F2 /* FMDatabasePool.m in Sources */,

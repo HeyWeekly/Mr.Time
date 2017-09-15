@@ -23,7 +23,6 @@
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
-@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @property (nonatomic, strong) CardView *cardView;
 @end
 
@@ -40,12 +39,6 @@
     NSMutableArray *arr = [self generateCardInfoWithCardCount:10];
     [self.cardView setWithCards:arr];
     [self.cardView showStyleWithStyle:1];
-    _fpsLabel = [YYFPSLabel new];
-    [_fpsLabel sizeToFit];
-    _fpsLabel.bottom = KHeight - 100;
-    _fpsLabel.left = 12;
-    _fpsLabel.alpha = 1;
-    [self.view addSubview:_fpsLabel];
 }
 - (NSMutableArray *)listArray {
     if (_listArray == nil) {
@@ -65,10 +58,12 @@
     }
     return _listArray;
 }
+
 #pragma mark - tableView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.cardView.filterArr.count;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cardView.filterArr[indexPath.row] forIndexPath:indexPath];
     UIView *view = [cell viewWithTag:2000];
@@ -88,6 +83,7 @@
     [cell addSubview:collView];
     return cell;
 }
+
 #pragma mark - 懒加载
 - (NSMutableArray *)generateCardInfoWithCardCount:(int)cardCount {
     NSMutableArray *arr = [NSMutableArray array];
@@ -98,6 +94,7 @@
     }
     return arr;
 }
+
 - (CardView *)cardView {
     if (!_cardView) {
         _cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
@@ -106,6 +103,7 @@
     }
     return _cardView;
 }
+
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
         _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
@@ -114,12 +112,11 @@
     }
     return _nav;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 @end
 
+
 @implementation CollectCardView
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
@@ -127,6 +124,7 @@
     }
     return self;
 }
+
 - (void)setupViews{
     [self addSubview:self.toLabel];
     [self.toLabel sizeToFit];
@@ -147,8 +145,8 @@
     [self.countLabel sizeToFit];
     self.countLabel.right = KWidth - 20*screenRate;
     self.countLabel.top = 15*screenRate;
-    
 }
+
 - (YYLabel *)toLabel {
     if (_toLabel == nil) {
         _toLabel = [[YYLabel alloc]init];
@@ -158,6 +156,7 @@
     }
     return _toLabel;
 }
+
 - (WWLabel *)yearNumLabel {
     if (_yearNumLabel == nil) {
         _yearNumLabel = [[WWLabel alloc]init];
@@ -168,6 +167,7 @@
     }
     return _yearNumLabel;
 }
+
 - (YYLabel *)yearsLabel {
     if (_yearsLabel == nil) {
         _yearsLabel = [[YYLabel alloc]init];
@@ -177,6 +177,7 @@
     }
     return _yearsLabel;
 }
+
 - (YYLabel *)countLabel {
     if (_countLabel == nil) {
         _countLabel = [[YYLabel alloc]init];

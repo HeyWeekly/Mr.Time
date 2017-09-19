@@ -235,6 +235,8 @@
 		FF61E0AC1E9BBE76000E68F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF61E0AA1E9BBE76000E68F0 /* LaunchScreen.storyboard */; };
 		FF61E0B71E9BBE76000E68F0 /* Mr_TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0B61E9BBE76000E68F0 /* Mr_TimeTests.m */; };
 		FF61E0C21E9BBE76000E68F0 /* Mr_TimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0C11E9BBE76000E68F0 /* Mr_TimeUITests.m */; };
+		FFB5F9F51F6E17FE00D34F35 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5F9F41F6E17FE00D34F35 /* MBProgressHUD.m */; };
+		FFB5F9F91F6E181800D34F35 /* WWHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5F9F81F6E181800D34F35 /* WWHUD.m */; };
 		FFBDCCC91EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBDCCC61EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m */; };
 		FFBDCCCA1EE52BFF00B3AE23 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBDCCC81EE52BFF00B3AE23 /* UIView+SDAutoLayout.m */; };
 		FFBED3801F6BA866005C239E /* usernoData@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED37C1F6BA866005C239E /* usernoData@3x.png */; };
@@ -584,6 +586,10 @@
 		FF61E0BD1E9BBE76000E68F0 /* Mr.TimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Mr.TimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF61E0C11E9BBE76000E68F0 /* Mr_TimeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mr_TimeUITests.m; sourceTree = "<group>"; };
 		FF61E0C31E9BBE76000E68F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFB5F9F31F6E17FE00D34F35 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		FFB5F9F41F6E17FE00D34F35 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		FFB5F9F71F6E181800D34F35 /* WWHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWHUD.h; sourceTree = "<group>"; };
+		FFB5F9F81F6E181800D34F35 /* WWHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWHUD.m; sourceTree = "<group>"; };
 		FFBDCCC41EE52BFF00B3AE23 /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
 		FFBDCCC51EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
 		FFBDCCC61EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
@@ -935,6 +941,7 @@
 		C0A69F5B1EE92DBA00DB4678 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FFB5F9F61F6E181800D34F35 /* WWHUD */,
 				FFBED3871F6BAA27005C239E /* NoContentView */,
 				C06351271F4440E500820458 /* WWErrorView */,
 				C07AC08B1F42E2AC00EBED61 /* NetWorkTools */,
@@ -1320,6 +1327,7 @@
 		FF61E0D41E9BC061000E68F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				FFB5F9F21F6E17FE00D34F35 /* HUD */,
 				C07B39981F5D83B2001088F2 /* fmdb */,
 				C07AC0751F41971900EBED61 /* WeChatSDK */,
 				C07AC0261F3D796F00EBED61 /* SDCycleScrollView */,
@@ -1365,6 +1373,24 @@
 				FF340B2B1E9E3C5200B4DB39 /* VTGeneralTool.m */,
 			);
 			path = Vendors;
+			sourceTree = "<group>";
+		};
+		FFB5F9F21F6E17FE00D34F35 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				FFB5F9F31F6E17FE00D34F35 /* MBProgressHUD.h */,
+				FFB5F9F41F6E17FE00D34F35 /* MBProgressHUD.m */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
+		FFB5F9F61F6E181800D34F35 /* WWHUD */ = {
+			isa = PBXGroup;
+			children = (
+				FFB5F9F71F6E181800D34F35 /* WWHUD.h */,
+				FFB5F9F81F6E181800D34F35 /* WWHUD.m */,
+			);
+			path = WWHUD;
 			sourceTree = "<group>";
 		};
 		FFBDCCC31EE52BFF00B3AE23 /* SDAutoLayout */ = {
@@ -1733,6 +1759,7 @@
 				C05940141EEF85A8002751FE /* WWCardSlideLayout.m in Sources */,
 				C0D48A2F1EF67EBC00B92549 /* GCDGroup.m in Sources */,
 				C07AC03C1F3D796F00EBED61 /* UIView+SDExtension.m in Sources */,
+				FFB5F9F91F6E181800D34F35 /* WWHUD.m in Sources */,
 				C0CBA69B1F600493008DC3B9 /* NSNumber+WWExt.m in Sources */,
 				C089B29C1F00F5BE00648EB4 /* UIViewExtension.swift in Sources */,
 				C07AC0361F3D796F00EBED61 /* TAAbstractDotView.m in Sources */,
@@ -1793,6 +1820,7 @@
 				C06351261F443ED400820458 /* WWUserModel.m in Sources */,
 				C07B39A91F5D83B2001088F2 /* FMResultSet.m in Sources */,
 				C07AC0701F3DD06900EBED61 /* WWGeneric.m in Sources */,
+				FFB5F9F51F6E17FE00D34F35 /* MBProgressHUD.m in Sources */,
 				C07AC03A1F3D796F00EBED61 /* SDCollectionViewCell.m in Sources */,
 				C089B25D1EFFCC7800648EB4 /* WWShareSucceedView.m in Sources */,
 				C0D48A941EF7B97F00B92549 /* MYCollectionView.m in Sources */,
@@ -1945,7 +1973,7 @@
 			baseConfigurationReference = A11F728AAD1C437A121BCF73 /* Pods-Mr.Time.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
@@ -1986,7 +2014,7 @@
 			baseConfigurationReference = 6A3E3194488AB383DFA6D83F /* Pods-Mr.Time.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;

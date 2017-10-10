@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WWMessageDetailModel : NSObject
+@interface WWHotMessageDetailModel : NSObject
 @property (nonatomic, copy) NSString *apothegmId;
 @property (nonatomic, copy) NSString *cid;
 @property (nonatomic, copy) NSString *content;
@@ -17,8 +17,21 @@
 @property (nonatomic, assign) CGFloat cellHeight;
 @end
 
+@interface WWMessageDetailModel : NSObject
+@property (nonatomic, copy) NSString *apothegmId;
+@property (nonatomic, copy) NSString *nickname;
+@property (nonatomic, copy) NSString *age;
+@property (nonatomic, copy) NSString *favourCnt;
+@property (nonatomic, copy) NSString *cid;
+@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *pubTime;
+@property (nonatomic, copy) NSString *userOpenid;
+@property (nonatomic, assign) CGFloat cellHeight;
+@end
+
 @interface WWMessageModel : NSObject
-@property (nonatomic, strong) NSArray<WWMessageDetailModel *> *cmts;
+@property (nonatomic, strong) NSArray<WWMessageDetailModel *> *lastest_cmts;
+@property (nonatomic, strong) NSArray<WWHotMessageDetailModel *> *hot_cmts;
 @end
 
 @interface WWJsonMessageModel : NSObject

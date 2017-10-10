@@ -40,7 +40,7 @@
     [self configNetwork];
     self.view.backgroundColor = viewBackGround_Color;
     NSArray *imagesURLStrings = @[@"",@""];
-    _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(105*screenRate, 40, 175*screenRate, 140*screenRate) delegate:self placeholderImage:nil];
+    _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 40, KWidth, 140*screenRate) delegate:self placeholderImage:nil];
     _bannerView.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
     _bannerView.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     _bannerView.imageURLStringsGroup = imagesURLStrings;
@@ -183,10 +183,10 @@
         config.generalServer = AppApi;
         WWUserModel *model = [WWUserModel shareUserModel];
         model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
-        config.generalHeaders = @{@"User_Openid": model.openid};
+        config.generalHeaders = @{@"uid": model.uid};
         config.callbackQueue = dispatch_get_main_queue();
 #ifdef DEBUG
-        config.consoleLog = NO;
+        config.consoleLog = YES;
 #endif
     }];
 }
@@ -210,7 +210,7 @@
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.yearsNum];
         [self.yearsNum sizeToFit];
-        self.yearsNum.left = 0;
+        self.yearsNum.centerX_sd = KWidth/2;
         self.yearsNum.top = 5;
         [self addSubview:self.yearLbael];
         [self.yearLbael sizeToFit];

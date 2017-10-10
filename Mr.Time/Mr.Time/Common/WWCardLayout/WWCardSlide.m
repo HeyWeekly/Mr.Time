@@ -162,8 +162,15 @@ static float CardHeightScale = 0.7f;
     return  card;
 }
 
-- (void)bookCellLike {
-    
+- (void)bookCellLikeIndex:(NSInteger)index {
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.api = likeMetto;
+        request.parameters = @{@"apthmId":@(index)};
+        request.httpMethod = kXMHTTPMethodPOST;
+    } onSuccess:^(id  _Nullable responseObject) {
+    } onFailure:^(NSError * _Nullable error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"收藏失败，请稍后再试~"}];
+    } onFinished:nil];
 }
 
 #pragma mark 功能方法

@@ -10,20 +10,37 @@
 #import <YYText/YYText.h>
 #import "Mr_Time-Swift.h"
 #import "WWLabel.h"
+#import "WWCollectionModel.h"
+#import "WWMessageDetailVCViewController.h"
 
-@interface  CollectCardView : UIView
+@interface  CollectCardViewCell : UITableViewCell
+@property (nonatomic, strong) WWCollectionModel *model;
+@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) UIView *fifLine;
+@end
+
+@protocol CollectCardViewDelagate <NSObject>
+- (void)didSelectMetto:(NSInteger)age comment:(NSString *)comment authAge:(NSString *)authAge authName:(NSString *)authName;
+@end
+
+@interface  CollectCardView : UIView<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UIView *sepLine;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong,readwrite) YYLabel *toLabel;
+@property (nonatomic, copy) NSString *yearNum;
 @property (nonatomic, strong,readwrite) WWLabel *yearNumLabel;
 @property (nonatomic, strong,readwrite) YYLabel *yearsLabel;
 @property (nonatomic, strong,readwrite) YYLabel *countLabel;
+@property (nonatomic, strong) NSArray<WWCollectionModel*> *modelArray;
+@property (nonatomic,weak) id <CollectCardViewDelagate> delegate;
 @end
 
-@interface CollectViewController ()<UICollectionViewDataSource>
+@interface CollectViewController ()<UICollectionViewDataSource,CollectCardViewDelagate>
 @property (nonatomic, strong) WWNavigationVC *nav;
-@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) CardView *cardView;
+@property (nonatomic, strong) NSArray <WWCollectionModel *> *modelArray;
+@property (nonatomic, strong) NSMutableArray *dateMutablearray;
 @end
 
 @implementation CollectViewController
@@ -31,35 +48,81 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = viewBackGround_Color;
-    [self setupViews];
+    [self loadData];
 }
+
+- (void)loadData {
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.api = LikeMettoList;
+        request.httpMethod = kXMHTTPMethodGET;
+        WWUserModel *model =  [WWUserModel shareUserModel];
+        model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        request.parameters = @{@"page":@(0),@"size":@(20)};
+    } onSuccess:^(id  _Nullable responseObject) {
+        WWCollectionJsonModel *model = [WWCollectionJsonModel yy_modelWithJSON:responseObject];
+        if ([model.code isEqualToString:@"1"]) {
+            self.modelArray = model.result;
+            [self setupViews];
+        }else {
+#warning 提示
+        }
+    } onFailure:^(NSError * _Nullable error) {
+#warning 提示信息
+    } onFinished:nil];
+}
+
+- (void)setModelArray:(NSArray<WWCollectionModel *> *)modelArray {
+    _modelArray = modelArray;
+    NSMutableArray *array = [NSMutableArray arrayWithArray:modelArray.mutableCopy];
+    for (int i = 0; i < array.count; i ++) {
+        WWCollectionModel *model = array[i];
+        NSString *string = model.age;
+        NSMutableArray *tempArray = [@[] mutableCopy];
+        [tempArray addObject:model];
+        for (int j = i+1; j < array.count; j ++) {
+            WWCollectionModel *model = array[j];
+            NSString *jstring = model.age;
+            if([string isEqualToString:jstring]){
+                [tempArray addObject:model];
+                [array removeObjectAtIndex:j];
+                j = j -1;
+            }
+        }
+        [self.dateMutablearray addObject:tempArray];
+    }
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithArray:self.dateMutablearray];
+    [arrM sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSArray<WWCollectionModel *>  *model1 = (NSArray<WWCollectionModel *> *)obj1;
+        NSArray<WWCollectionModel *>  *model2 = (NSArray<WWCollectionModel *> *)obj2;
+        if (model1[0].age.integerValue < model2[0].age.integerValue) {
+            return NSOrderedAscending;
+        } else if (model1[0].age.integerValue > model2[0].age.integerValue) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedSame;
+    }];
+    self.dateMutablearray = arrM;
+}
+
 - (void)setupViews {
-    [self.view addSubview:self.nav];
     [self.view addSubview:self.cardView];
-    NSMutableArray *arr = [self generateCardInfoWithCardCount:10];
+    NSMutableArray *arr = [self generateCardInfoWithCardCount:self.dateMutablearray.count];
     [self.cardView setWithCards:arr];
     [self.cardView showStyleWithStyle:1];
 }
-- (NSMutableArray *)listArray {
-    if (_listArray == nil) {
-        self.listArray = [NSMutableArray array];
-        NSArray *act1 = @[@"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想。",@"何必要在乎别人所说，做你自己活得开心最重要。",@"坚持如一"];
-        NSArray *act2 = @[@"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想。",@"何必要在乎别人所说，做你自己活得开心最重要。",@"坚持如一"];
-        NSArray *act3 = @[@"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想。"];
-        NSArray *act4 = @[@"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想。",@"何必要在乎别人所说，做你自己活得开心最重要。",@"坚持如一",@"何必要在乎别人所说，做你自己活得开心最重要。",@"坚持如一"];
-        NSArray *act5 = @[@"别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想，相信我，它一直在你的身边且从未走远。别在20岁就绝口不提你的梦想。",@"此刻正在阅读这封信的你身在何方，在做些什么？十五岁的我，怀揣着无法向任何人述说的烦恼的种子，我有话要对十五岁的你说，是否就能将一切诚实地坦露，问问自己到底自己为什么一定要向着某个目的地前行，只要不停的问终能看到答案，狂风巨浪的青春之海虽然很艰难，但是也请将梦想的小舟驶向明天的岸边。只要相信自己的声音前行就可以了，即使是已成为大人的我，也还是会受伤会有睡不着的夜晚，但是，我仍活在苦涩而又甜蜜的这一刻。最后，谢谢你。活在苦涩而又甜蜜的这。"];
-        NSMutableDictionary *actHeader = @{@"flag":@"NO",@"act":act1,@"year":@"TO 21 YEARS OLD",@"count":@"3"}.mutableCopy;
-        NSMutableDictionary *actHeader2 = @{@"flag":@"NO",@"act":act2,@"year":@"TO 34 YEARS OLD",@"count":@"3"}.mutableCopy;
-        NSMutableDictionary *actHeader3 = @{@"flag":@"NO",@"act":act3,@"year":@"TO 25 YEARS OLD",@"count":@"1"}.mutableCopy;
-        NSMutableDictionary *actHeader4 = @{@"flag":@"NO",@"act":act4,@"year":@"TO 29 YEARS OLD",@"count":@"5"}.mutableCopy;
-        NSMutableDictionary *actHeader5 = @{@"flag":@"NO",@"act":act5,@"year":@"TO 33 YEARS OLD",@"count":@"2"}.mutableCopy;
-        NSMutableDictionary *array = @[actHeader,actHeader2,actHeader3,actHeader4,actHeader5].mutableCopy;
-        _listArray = array.mutableCopy;
+
+- (NSMutableArray *)generateCardInfoWithCardCount:(int)cardCount {
+    NSMutableArray *arr = [NSMutableArray array];
+    NSArray *arrName = @[@"CardA"];
+    for (int i=0; i<cardCount; i++) {
+        int value = arc4random_uniform(1);
+        [arr addObject:arrName[value]];
     }
-    return _listArray;
+    return arr;
 }
 
-#pragma mark - tableView
+#pragma mark - collectionview
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.cardView.filterArr.count;
 }
@@ -77,22 +140,49 @@
     };
     cell.backgroundColor = [UIColor whiteColor];
     CollectCardView *collView = [[CollectCardView alloc]init];
-    collView.countLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    collView.delegate = self;
+    NSArray <WWCollectionModel *>*model = self.dateMutablearray[indexPath.row];
+    collView.countLabel.text = [NSString stringWithFormat:@"%ld",model.count];
+    collView.yearNum = model[0].age;
     view.frame = cell.bounds;
     collView.tag = 2000;
     [cell addSubview:collView];
+    collView.modelArray = model;
     return cell;
 }
 
-#pragma mark - 懒加载
-- (NSMutableArray *)generateCardInfoWithCardCount:(int)cardCount {
-    NSMutableArray *arr = [NSMutableArray array];
-    NSArray *arrName = @[@"CardA"];
-    for (int i=0; i<cardCount; i++) {
-        int value = arc4random_uniform(1);
-        [arr addObject:arrName[value]];
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // 输出点击的view的类名
+    NSLog(@"view的类名%@", NSStringFromClass([touch.view superclass]));
+    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"CollectCardViewCell"]) {
+        return NO;
     }
-    return arr;
+    return  YES;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    //    CGPoint currentPoint = [gestureRecognizer locationInView:self.view];
+    //    if (CGRectContainsPoint(CGRectMake(0, 0, 100, 100), currentPoint) ) {
+    //        return YES;
+    //    }
+    //
+    //    return NO;
+    
+    return NO;
+}
+
+- (void)didSelectMetto:(NSInteger)age comment:(NSString *)comment authAge:(NSString *)authAge authName:(NSString *)authName {
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:age comment:comment authAge:authAge authName:authName commentId:0];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - 懒加载
+- (NSMutableArray *)dateMutablearray {
+    if (_dateMutablearray == nil) {
+        _dateMutablearray = [NSMutableArray array];
+    }
+    return _dateMutablearray;
 }
 
 - (CardView *)cardView {
@@ -120,22 +210,23 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupViews];
     }
     return self;
 }
 
-- (void)setupViews{
+- (void)setYearNum:(NSString *)yearNum {
+    _yearNum = yearNum;
     [self addSubview:self.toLabel];
     [self.toLabel sizeToFit];
     self.toLabel.left = 20*screenRate;
     self.toLabel.top = 15*screenRate;
     
+    self.yearNumLabel.text = yearNum;
     [self addSubview:self.yearNumLabel];
     [self.yearNumLabel sizeToFit];
     self.yearNumLabel.left = self.toLabel.right+3;
     self.yearNumLabel.top = 15*screenRate;
-
+    
     [self addSubview:self.yearsLabel];
     [self.yearsLabel sizeToFit];
     self.yearsLabel.left = self.yearNumLabel.right+3;
@@ -145,6 +236,49 @@
     [self.countLabel sizeToFit];
     self.countLabel.right = KWidth - 20*screenRate;
     self.countLabel.top = 15*screenRate;
+    
+    [self addSubview:self.sepLine];
+    self.sepLine.frame = CGRectMake(20*screenRate, self.yearNumLabel.bottom_sd + 20*screenRate, KWidth - 40*screenRate, 1);
+    
+    [self addSubview:self.tableView];
+}
+
+#pragma mark - tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.modelArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CollectCardViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CollectCardViewCell"];
+    if (!cell) {
+        cell = [[CollectCardViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CollectCardViewCell"];
+    }
+    cell.model = self.modelArray[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.modelArray[indexPath.row].cellHeight ? self.modelArray[indexPath.row].cellHeight : 44;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WWCollectionModel *model = self.modelArray[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(didSelectMetto:comment:authAge:authName:)]) {
+        [self.delegate didSelectMetto:model.age comment:model.content authAge:model.authorAge authName:model.nickname];
+    }
+}
+
+#pragma mark - 懒加载
+- (UIView *)sepLine {
+    if (_sepLine == nil) {
+        _sepLine = [[UIView alloc]init];
+        _sepLine.backgroundColor = RGBCOLOR(0xC9D4DD);
+    }
+    return _sepLine;
 }
 
 - (YYLabel *)toLabel {
@@ -161,7 +295,6 @@
     if (_yearNumLabel == nil) {
         _yearNumLabel = [[WWLabel alloc]init];
         _yearNumLabel.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
-        _yearNumLabel.text = @"25";
         NSArray *gradientColors = @[(id)RGBCOLOR(0x15C2FF).CGColor, (id)RGBCOLOR(0x2EFFB6).CGColor];
         _yearNumLabel.colors =gradientColors;
     }
@@ -181,10 +314,70 @@
 - (YYLabel *)countLabel {
     if (_countLabel == nil) {
         _countLabel = [[YYLabel alloc]init];
-        _countLabel.text = @"5";
+        _countLabel.text = @"99";
         _countLabel.textColor = RGBCOLOR(0x15C2FF);
         _countLabel.font = [UIFont fontWithName:kFont_DINAlternate size:24*screenRate];
     }
     return _countLabel;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.sepLine.bottom_sd+1, KWidth, 400*screenRate)];
+        _tableView.delegate = self;
+        _tableView.dataSource  = self;
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.layer.masksToBounds = YES;
+    }
+    return _tableView;
+}
+@end
+
+
+@implementation CollectCardViewCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    }
+    return self;
+}
+
+- (void)setModel:(WWCollectionModel *)model {
+    _model = model;
+    
+    self.contentLabel.text = model.content;
+    [self addSubview:self.contentLabel];
+    [self.contentLabel sizeToFit];
+    self.contentLabel.left_sd = 20*screenRate;
+    self.contentLabel.width = KWidth - 40*screenRate;
+    self.contentLabel.top = 15*screenRate;
+    [self.contentLabel sizeToFit];
+    
+    [self addSubview:self.fifLine];
+    self.fifLine.frame =CGRectMake(20*screenRate, self.contentLabel.bottom_sd+15*screenRate, KWidth-40*screenRate, 1);
+    
+    _model.cellHeight = self.fifLine.bottom_sd;
+}
+
+- (UILabel *)contentLabel {
+    if (_contentLabel == nil) {
+        _contentLabel = [[UILabel alloc]init];
+        _contentLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
+        _contentLabel.textColor =RGBCOLOR(0x39454E);
+        _contentLabel.numberOfLines = 0;
+//        _contentLabel.adjustsFontSizeToFitWidth = true;
+    }
+    return _contentLabel;
+}
+
+- (UIView *)fifLine {
+    if (_fifLine == nil) {
+        _fifLine = [[UIView alloc]init];
+        _fifLine.backgroundColor = RGBCOLOR(0xC9D4DD);
+    }
+    return _fifLine;
 }
 @end

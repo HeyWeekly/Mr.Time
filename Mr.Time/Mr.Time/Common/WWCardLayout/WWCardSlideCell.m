@@ -79,7 +79,16 @@
     int ages = model.age.intValue/10;
     NSString *year = [NSString stringWithFormat:@"%d",ages];
     self.imageView.image = [UIImage imageNamed:[@"contentYearBg" stringByAppendingString:year]];
-    
+    if (model.age.integerValue >= 100) {
+        self.imageView.image = [UIImage imageNamed:@"contentYearBg9"];
+    }
+    if (model.enshrineCnt.integerValue > 0) {
+        [self.likeImage setFavo:YES withAnimate:NO];
+        self.islike = YES;
+    }else {
+        [self.likeImage setFavo:NO withAnimate:NO];
+        self.islike = NO;
+    }
     self.yearsNum.text = model.age;
     [self.yearsNum sizeToFit];
     
@@ -91,15 +100,17 @@
     [text addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_SemiBold size:27*screenRate] range:NSMakeRange(0, 1)];
     self.contentLabel.attributedText = text;
     [self.contentLabel sizeToFit];
+    self.contentLabel.top = self.imageView.bottom;
+    self.contentLabel.left = 25*screenRate;
+    self.contentLabel.width = self.bounds.size.width - 50*screenRate;
     
-    WWUserModel *userModel = [WWUserModel shareUserModel];
-    userModel = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"—— 来自 %@岁 的 %@" ,userModel.yearDay,userModel.nickname]];
-    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(6,userModel.yearDay.length+1)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(6, userModel.yearDay.length+1)];
-    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(12,userModel.nickname.length)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(12, userModel.nickname.length)];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"—— 来自 %@岁 的 %@" ,model.authorAge,model.nickname]];
+    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(6,model.authorAge.length+1)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(6, model.authorAge.length+1)];
+    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(12,model.nickname.length)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(12, model.nickname.length)];
     self.textLabel.attributedText = str;
+    
 }
 
 - (void)likeClick {
@@ -107,11 +118,12 @@
     if (self.islike) {
         [self.likeImage setFavo:YES withAnimate:YES];
     }else {
-        [self.likeImage setFavo:NO withAnimate:YES];
+        [WWHUD showMessage:@"暂不支持取消哟~" inView:self];
+        return;
     }
     
-    if ([self.delegate respondsToSelector:@selector(bookCellLike)]) {
-        [self.delegate bookCellLike];
+    if ([self.delegate respondsToSelector:@selector(bookCellLikeIndex:)]) {
+        [self.delegate bookCellLikeIndex:self.model.aid.integerValue];
     }
 }
 

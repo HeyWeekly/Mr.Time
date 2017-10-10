@@ -14,7 +14,8 @@
 #import "IQKeyboardManager.h"
 #import "WXApi.h"
 #import "WWErrorView.h"
- 
+#import <UserNotifications/UserNotifications.h>
+
 @interface WWAppDelegate ()<WXApiDelegate>
 @property (nonatomic,strong) NSMutableArray *imageArr;
 @property (nonatomic,assign) NSInteger *imageIndex;
@@ -29,7 +30,7 @@
     [IQKeyboardManager sharedManager].enable = YES; //默认值为NO.
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;//不显示工具条
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;//点空白处收回
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginSuccess) name:@"userLoginSuccess" object:nil];
     
     [WWErrorView alloc];
@@ -39,9 +40,19 @@
     [self setAppWindows];
     [self setTabbarController]; 
     [self setRootViewController];
-
     [self.window makeKeyAndVisible];
     
+    //iOS 10 before
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+    [application registerUserNotificationSettings:settings];
+    
+    //iOS 10
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"request authorization succeeded!");
+        }
+    }];
     return YES;
 }
 

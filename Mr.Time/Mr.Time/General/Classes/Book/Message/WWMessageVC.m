@@ -10,6 +10,7 @@
 #import "WWPublishVC.h"
 #import "WWMessageDetailVCViewController.h"
 #import "WWMessageModel.h"
+#import "WWBaseTableView.h"
 
 @interface MessageHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) UIImageView *backImage;
@@ -27,9 +28,10 @@
 
 @interface WWMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) WWNavigationVC *nav;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) WWBaseTableView *tableView;
 @property (nonatomic, assign) NSInteger mettoId;
 @property (nonatomic, strong) NSArray <WWMessageDetailModel *> *messageModelArray;
+@property (nonatomic, strong) NSArray <WWHotMessageDetailModel *> *hotMessageModelArray;
 @end
 
 @implementation WWMessageVC
@@ -58,16 +60,21 @@
 #pragma mark - network
 - (void)loadHotMessage {
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
-        request.api = getHotMessage;
+        request.api = getNewMessage;
         request.httpMethod = kXMHTTPMethodGET;
-        request.parameters = @{@"apthmId":@(self.mettoId)};
+        request.parameters = @{@"apthmId":@(self.mettoId),@"page":@(0),@"size":@(20)};
     } onSuccess:^(id  _Nullable responseObject) {
         WWJsonMessageModel *model = [WWJsonMessageModel yy_modelWithJSON:responseObject];
         if ([model.code isEqualToString:@"1"]) {
-            self.messageModelArray = model.result.cmts;
+            if (model.result.lastest_cmts.count == 0) {
+                [self.tableView showEmptyViewWithType:1];
+            }
+            self.hotMessageModelArray = model.result.hot_cmts;
+            self.messageModelArray = model.result.lastest_cmts;
             [self.tableView reloadData];
         }
-        self.messageModelArray = model.result.cmts;
+        self.hotMessageModelArray = model.result.hot_cmts;
+        self.messageModelArray = model.result.lastest_cmts;
     } onFailure:^(NSError * _Nullable error) {
 #warning 提示信息
     } onFinished:nil];
@@ -75,15 +82,18 @@
 
 #pragma mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.hotMessageModelArray.count ? 2 : 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return 5;
-//    } else {
-//        return 10;
-//    }
-    return self.messageModelArray.count;
+    if (self.hotMessageModelArray.count > 0) {
+        if (section == 0) {
+            return self.hotMessageModelArray.count;
+        } else {
+            return self.messageModelArray.count;
+        }
+    }else {
+        return self.messageModelArray.count ? self.messageModelArray.count : 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,14 +105,22 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     MessageHeaderView *headView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-//    if (section == 0) {
-//        headView.backImage.image = [UIImage imageNamed:@"hotMessage"];
-//    }else {
+    if (self.hotMessageModelArray.count > 0) {
+            if (section == 0) {
+                    headView.backImage.image = [UIImage imageNamed:@"hotMessage"];
+            }else {
+                headView.backImage.image = [UIImage imageNamed:@"newMessage"];
+            }
+        return headView;
+    }
+    if (self.messageModelArray.count > 0) {
         headView.backImage.image = [UIImage imageNamed:@"newMessage"];
-//    }
-    return headView;
+        return headView;
+    }
+    return [UIView new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,7 +128,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]init];
+    WWMessageDetailModel *model =self.messageModelArray[indexPath.row];
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:self.year comment:model.content authAge:model.age authName:model.nickname commentId:model.cid];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -124,9 +143,9 @@
     [self.navigationController pushViewController:publishVC animated:YES];
 }
 
-- (UITableView *)tableView {
+- (WWBaseTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
+        _tableView = [[WWBaseTableView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
         _tableView.delegate = self;
         _tableView.dataSource  = self;
         _tableView.backgroundColor = [UIColor whiteColor];
@@ -152,9 +171,6 @@
     }
     return _nav;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 @end
 
 
@@ -175,21 +191,21 @@
     [self addSubview:self.messageLabel];
     [self.messageLabel sizeToFit];
     
-    self.nameLbael.text = @"——来自 50岁 的王二黑";
+    self.nameLbael.text = [NSString stringWithFormat:@"——来自 %@岁 的%@",model.age,model.nickname];
     [self.nameLbael sizeToFit];
     self.nameLbael.left = 20*screenRate;
     self.nameLbael.top = self.messageLabel.bottom + 12*screenRate;
     [self addSubview:self.nameLbael];
     
-    self.likeNum.text = @"165";
+    self.likeNum.text = model.favourCnt;
     [self.likeNum sizeToFit];
     self.likeNum.right = KWidth - 20*screenRate;
     self.likeNum.top = self.nameLbael.top;
     [self addSubview:self.likeNum];
     
     [self.likeImage sizeToFit];
-    self.likeImage.right = self.likeNum.left-5*screenRate;
-    self.likeImage.top = self.nameLbael.top;
+    self.likeImage.right = self.likeNum.left - 5*screenRate;
+    self.likeImage.top = self.nameLbael.top + 2*screenRate;
     [self addSubview:self.likeImage];
     
     [self.sepLine sizeToFit];
@@ -225,7 +241,7 @@
 - (UIImageView *)likeImage {
     if (_likeImage == nil) {
         _likeImage = [[UIImageView alloc]init];
-        _likeImage.image = [UIImage imageNamed:@"userlike"];
+        _likeImage.image = [UIImage imageNamed:@"userLike"];
     }
     return _likeImage;
 }

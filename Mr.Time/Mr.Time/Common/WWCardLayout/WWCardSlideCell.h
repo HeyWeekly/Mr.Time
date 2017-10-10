@@ -12,7 +12,7 @@
 
 @protocol WWCardSlideCellDelagate <NSObject>
 @optional
-- (void)bookCellLike;
+- (void)bookCellLikeIndex:(NSInteger)index;
 @end
 
 

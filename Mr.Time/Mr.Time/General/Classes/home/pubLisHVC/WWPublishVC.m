@@ -114,9 +114,9 @@
     [self.yearsField resignFirstResponder];
     return YES;
 }
-- (void)textViewDidEndEditing:(YYTextView *)textView {
 
-}
+- (void)textViewDidEndEditing:(YYTextView *)textView {}
+
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
@@ -124,6 +124,7 @@
     }
     return YES;
 }
+
 #pragma mark - event
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
@@ -133,31 +134,49 @@
     NSString *url = nil;
     if (self.isPublish) {
         if (self.yearsField.text.length <= 0 && self.inputTextView.text.length <= 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写年龄和箴言"}];
+            [WWHUD showMessage:@"请填写年龄和箴言" inView:self.view];
             return;
         }
     }
     if (self.isPublish) {
         if (self.yearsField.text.length <= 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写年龄"}];
+            [WWHUD showMessage:@"请填写年龄" inView:self.view];
             return;
+        }else {
+            NSString *yearStr = self.yearsField.text;
+            NSString *firstStr = [yearStr substringToIndex:1];
+            if ([firstStr isEqualToString:@"0"]) {
+                [WWHUD showMessage:@"年龄不能用0开头" inView:self.view];
+                self.yearsField.text = nil;
+                return;
+            }
+            if ([yearStr isEqualToString:@"0"]) {
+                [WWHUD showMessage:@"怎么可能是0岁呢~" inView:self.view];
+                self.yearsField.text = nil;
+                return;
+            }
+            if (yearStr.integerValue > 100) {
+                [WWHUD showMessage:@"让我们先祈祷活到99岁吧" inView:self.view];
+                self.yearsField.text = @"100";
+                return;
+            }
         }
     }
     if (self.isPublish) {
         url = postMotto;
         if (self.inputTextView.text.length <= 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写箴言"}];
+            [WWHUD showMessage:@"请填写箴言" inView:self.view];
             return;
         }
     }else {
         url = postComment;
         if (self.inputTextView.text.length <= 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"请填写评论"}];
+            [WWHUD showMessage:@"请填写评论" inView:self.view];
             return;
         }
     }
     if (self.inputTextView.text.length > 119) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"内容限制119以内"}];
+        [WWHUD showMessage:@"内容限制119以内" inView:self.view];
         return;
     }
     
@@ -173,7 +192,6 @@
         [self.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布成功"}];
     } onFailure:^(NSError * _Nullable error) {
-        NSLog(@"%@",error);
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布失败，服务器可能挂了~"}];
     } onFinished:nil];
     

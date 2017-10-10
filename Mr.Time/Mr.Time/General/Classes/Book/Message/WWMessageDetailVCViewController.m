@@ -26,14 +26,27 @@
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) WWShareView *shareView;
 @property (nonatomic, strong) WWShareSucceedView *sucView;
+@property (nonatomic, assign) NSInteger age;
+@property (nonatomic, assign) NSInteger commentId;
+@property (nonatomic, copy) NSString *comment;
+@property (nonatomic, copy) NSString *authAge;
+@property (nonatomic, copy) NSString *authName;
 @end
 
 @implementation WWMessageDetailVCViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self setupSubViews];
+- (instancetype)initWithAge:(NSInteger )age comment:(NSString *)comment authAge:(NSString *)authAge authName:(NSString *)authName commentId:(NSInteger)commentId {
+    if (self =[super init]) {
+        self.age = age;
+        self.commentId = commentId;
+        self.comment = comment;
+        self.authAge = authAge;
+        self.authName = authName;
+        [self setupSubViews];
+    }
+    return self;
 }
+
 #pragma mark - 视图
 -(void)setupSubViews {
     [self.view addSubview:self.nav];
@@ -48,7 +61,12 @@
     
     //背景
     _imageView = [[UIImageView alloc] init];
-    _imageView.image = [UIImage imageNamed:@"notwhere"];
+    NSInteger ages = self.age/10;
+    NSString *year = [NSString stringWithFormat:@"%ld",ages];
+    _imageView.image = [UIImage imageNamed:[@"commentYearBg" stringByAppendingString:year]];
+    if (self.age >= 100) {
+        _imageView.image = [UIImage imageNamed:@"contentYearBg9"];
+    }
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.layer.masksToBounds = true;
     [_imageView sizeToFit];
@@ -83,11 +101,11 @@
     _textLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
     _textLabel.numberOfLines = 1;
     _textLabel.adjustsFontSizeToFitWidth = true;
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"—— 来自 50岁 的 Punk奶奶"];
-    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(6,3)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(6, 3)];
-    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(12,6)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(12, 6)];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"—— 来自 %@岁 的 %@" ,self.authAge,self.authName]];
+    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(6,self.authAge.length+1)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(6, self.authAge.length+1)];
+    [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(12,self.authName.length)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(12, self.authName.length)];
     _textLabel.attributedText = str;
     [_textLabel sizeToFit];
     _textLabel.bottom = self.containerView.bounds.size.height - 25*screenRate;
@@ -101,7 +119,7 @@
     _contentLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
     _contentLabel.numberOfLines = 5;
     _contentLabel.adjustsFontSizeToFitWidth = true;
-    NSString *strText = @"此刻正在阅读这封信的你身在何方，在做些什么？十五岁的我，怀揣着无法向任何人述说的烦恼的种子，我有话要对十五岁的你说，是否就能将一切诚实地坦露，问问自己到底自己为什么不够一切的爱上一个人，爱的那么轰轰烈烈，没有任何负担的全身心投入";
+    NSString *strText = self.comment;
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:6];
     NSAttributedString *string = [[NSAttributedString alloc] initWithString:strText attributes:@{NSForegroundColorAttributeName : RGBCOLOR(0x39454E), NSParagraphStyleAttributeName: paragraphStyle}];
@@ -116,19 +134,32 @@
     [_contentLabel sizeToFit];
     [self.view addSubview:self.shareView];
 }
+
 #pragma mark - 点击事件
 - (void)likeClick {
     self.islike = !self.islike;
     if (self.islike) {
-        [self.likeImage setFavo:YES withAnimate:YES];
+        [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+            request.api = commentLike;
+            request.parameters = @{@"cmtId":@(self.commentId)};
+            request.httpMethod = kXMHTTPMethodPOST;
+        } onSuccess:^(id  _Nullable responseObject) {
+            [self.likeImage setFavo:YES withAnimate:YES];
+        } onFailure:^(NSError * _Nullable error) {
+            self.islike = !self.islike;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"收藏失败，请稍后再试~"}];
+        } onFinished:nil];
     }else {
-        [self.likeImage setFavo:NO withAnimate:YES];
+        [WWHUD showMessage:@"暂不支持取消哟~" inView:self.view];
+        return;
     }
 }
+
 - (void)dowloadClick {
     UIImage *image = [self captureView:self.containerView];
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
+
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void *)contextInfo {
     if (image) {
             self.sucView = [[WWShareSucceedView alloc]init];
@@ -147,6 +178,7 @@
         NSLog(@"失败");
     }
 }
+
 #pragma mark - 响应方法
 -(UIImage*)captureView: (UIView *)theView {
     CGRect rect = theView.frame;
@@ -163,10 +195,11 @@
         _yearsNum = [[UILabel alloc]init];
         _yearsNum.textColor = [UIColor whiteColor];
         _yearsNum.font = [UIFont fontWithName:kFont_DINAlternate size:32*screenRate];
-        _yearsNum.text = @"TO 25";
+        _yearsNum.text = [NSString stringWithFormat:@"TO %ld",self.age];
     }
     return _yearsNum;
 }
+
 - (UILabel *)yearsLabel {
     if (_yearsLabel == nil) {
         _yearsLabel = [[UILabel alloc]init];
@@ -176,6 +209,7 @@
     }
     return _yearsLabel;
 }
+
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
         _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
@@ -185,6 +219,7 @@
     }
     return _nav;
 }
+
 - (WWShareView *)shareView {
     if (!_shareView) {
         _shareView = [[WWShareView alloc]initWithFrame:CGRectMake(0, KHeight - 49, KWidth, 49)];
@@ -192,10 +227,8 @@
     }
     return _shareView;
 }
+
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 @end

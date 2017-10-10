@@ -8,12 +8,16 @@
 
 #import "WWMessageModel.h"
 
+@implementation WWHotMessageDetailModel
+@end
+
 @implementation WWMessageDetailModel
 @end
 
 @implementation WWMessageModel
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"cmts" : [WWMessageDetailModel class]};
+    return @{@"lastest_cmts" : [WWMessageDetailModel class],
+             @"hot_cmts" : [WWHotMessageDetailModel class] };
 }
 @end
 

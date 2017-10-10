@@ -42,7 +42,7 @@
         request.httpMethod = kXMHTTPMethodGET;
         request.parameters = @{@"page":@(0),@"pagesize":@(20)};
     } onSuccess:^(id  _Nullable responseObject) {
-            WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
+        WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
         if ([model.code isEqualToString:@"1"]) {
             self.modelArray = model.result;
             _cardSlide = [[WWCardSlide alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64) andModel:self.modelArray];

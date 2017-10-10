@@ -35,7 +35,7 @@
 #import "WWUserModel.h"
 #import "YYModel.h"
 #import "NSObject+YYModel.h"
-
+#import "WWHUD.h"
 
 #define WEAK_SELF __weak typeof(self) weakSelf = self
 #define STRONG_SELF if (!weakSelf) return; \

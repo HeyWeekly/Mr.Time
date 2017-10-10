@@ -8,7 +8,7 @@
 
 #import "WWRootViewController.h"
 #import "WWAppDelegate.h"
-@interface WWRootViewController ()
+@interface WWRootViewController ()<UIGestureRecognizerDelegate>
 {
     UIImageView *_barImage;
     
@@ -21,17 +21,26 @@
 //做全局loading与全局消息推送
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
 }
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    
+    if (self.navigationController.viewControllers.count>1) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
+
 @end

@@ -10,10 +10,13 @@
 
 @interface WWHomeBookModel : NSObject
 @property (nonatomic, copy) NSString *age;
+@property (nonatomic, copy) NSString *authorAge;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *pubtime;
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, copy) NSString *enshrineCnt;
+@property (nonatomic, copy) NSString *nickname;
 @end
 
 @interface WWHomeJsonBookModel : NSObject

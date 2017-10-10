@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8E0E38A3D0D61B3B40177530 /* Pods_Mr_Time.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2811DD938DB0501B1D8023CD /* Pods_Mr_Time.framework */; };
 		C05940021EEA48DB002751FE /* WWLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940011EEA48DB002751FE /* WWLabel.m */; };
-		C05940051EEA9605002751FE /* WWCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940041EEA9605002751FE /* WWCollectionModel.m */; };
 		C05940091EEA9659002751FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940081EEA9659002751FE /* LoginViewController.m */; };
 		C05940111EEF84E8002751FE /* WWCardSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940101EEF84E8002751FE /* WWCardSlide.m */; };
 		C05940141EEF85A8002751FE /* WWCardSlideLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C05940131EEF85A8002751FE /* WWCardSlideLayout.m */; };
@@ -248,6 +247,8 @@
 		FFBED3941F6BB3F2005C239E /* WWUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */; };
 		FFBED3971F6BBAD0005C239E /* userYearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */; };
 		FFBED3981F6BBAD0005C239E /* userYearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */; };
+		FFDDE2031F7F9697001AD891 /* WWCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDDE2021F7F9697001AD891 /* WWCollectionModel.m */; };
+		FFDDE2091F8C58A1001AD891 /* UIView+WWView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDDE2081F8C58A1001AD891 /* UIView+WWView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,8 +274,6 @@
 		A11F728AAD1C437A121BCF73 /* Pods-Mr.Time.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr.Time.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mr.Time/Pods-Mr.Time.debug.xcconfig"; sourceTree = "<group>"; };
 		C05940001EEA48DB002751FE /* WWLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWLabel.h; sourceTree = "<group>"; };
 		C05940011EEA48DB002751FE /* WWLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWLabel.m; sourceTree = "<group>"; };
-		C05940031EEA9605002751FE /* WWCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWCollectionModel.h; sourceTree = "<group>"; };
-		C05940041EEA9605002751FE /* WWCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWCollectionModel.m; sourceTree = "<group>"; };
 		C05940071EEA9659002751FE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C05940081EEA9659002751FE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C059400F1EEF84E8002751FE /* WWCardSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWCardSlide.h; sourceTree = "<group>"; };
@@ -608,6 +607,11 @@
 		FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWUserInfoModel.m; sourceTree = "<group>"; };
 		FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@3x.png"; sourceTree = "<group>"; };
 		FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@2x.png"; sourceTree = "<group>"; };
+		FFDDE2011F7F9697001AD891 /* WWCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWCollectionModel.h; sourceTree = "<group>"; };
+		FFDDE2021F7F9697001AD891 /* WWCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWCollectionModel.m; sourceTree = "<group>"; };
+		FFDDE2041F8B1BC8001AD891 /* Mr.Time.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mr.Time.entitlements; sourceTree = "<group>"; };
+		FFDDE2071F8C58A1001AD891 /* UIView+WWView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+WWView.h"; sourceTree = "<group>"; };
+		FFDDE2081F8C58A1001AD891 /* UIView+WWView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+WWView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -738,6 +742,8 @@
 				C09C7D871F678831004F5DC7 /* WWMessageModel.m */,
 				FFBED3921F6BB3F2005C239E /* WWUserInfoModel.h */,
 				FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */,
+				FFDDE2011F7F9697001AD891 /* WWCollectionModel.h */,
+				FFDDE2021F7F9697001AD891 /* WWCollectionModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1179,8 +1185,8 @@
 			children = (
 				FF340B211E9E1FF000B4DB39 /* CollectViewController.h */,
 				FF340B221E9E1FF000B4DB39 /* CollectViewController.m */,
-				C05940031EEA9605002751FE /* WWCollectionModel.h */,
-				C05940041EEA9605002751FE /* WWCollectionModel.m */,
+				FFDDE2071F8C58A1001AD891 /* UIView+WWView.h */,
+				FFDDE2081F8C58A1001AD891 /* UIView+WWView.m */,
 			);
 			path = Collect;
 			sourceTree = "<group>";
@@ -1244,6 +1250,7 @@
 		FF61E09B1E9BBE76000E68F0 /* Mr.Time */ = {
 			isa = PBXGroup;
 			children = (
+				FFDDE2041F8B1BC8001AD891 /* Mr.Time.entitlements */,
 				C0A69F5B1EE92DBA00DB4678 /* Common */,
 				FF61E0CF1E9BC061000E68F0 /* AppDelegate */,
 				FF61E0D11E9BC061000E68F0 /* General */,
@@ -1490,6 +1497,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1783,6 +1793,7 @@
 				FF340B081E9E152500B4DB39 /* WWAppDelegate+RootController.m in Sources */,
 				FFBED38A1F6BAA4A005C239E /* WWNoContentView.m in Sources */,
 				C07AC06D1F3DCF0900EBED61 /* UIView+WWExt.m in Sources */,
+				FFDDE2091F8C58A1001AD891 /* UIView+WWView.m in Sources */,
 				C07AC08A1F42E10E00EBED61 /* NSString+WWExtra.m in Sources */,
 				C07AC0561F3D982C00EBED61 /* Permissions.m in Sources */,
 				FFBED3941F6BB3F2005C239E /* WWUserInfoModel.m in Sources */,
@@ -1816,6 +1827,7 @@
 				C089B2971F00F5BE00648EB4 /* CardCell.swift in Sources */,
 				C07AC06C1F3DCF0900EBED61 /* UIButton+Touch.m in Sources */,
 				C0D48A321EF67EBC00B92549 /* GCDTimer.m in Sources */,
+				FFDDE2031F7F9697001AD891 /* WWCollectionModel.m in Sources */,
 				C07AC0371F3D796F00EBED61 /* TAAnimatedDotView.m in Sources */,
 				C06351261F443ED400820458 /* WWUserModel.m in Sources */,
 				C07B39A91F5D83B2001088F2 /* FMResultSet.m in Sources */,
@@ -1827,7 +1839,6 @@
 				C05940091EEA9659002751FE /* LoginViewController.m in Sources */,
 				FFBDCCCA1EE52BFF00B3AE23 /* UIView+SDAutoLayout.m in Sources */,
 				C0A69F5F1EE92DEA00DB4678 /* WWNavigationVC.m in Sources */,
-				C05940051EEA9605002751FE /* WWCollectionModel.m in Sources */,
 				C05940021EEA48DB002751FE /* WWLabel.m in Sources */,
 				C089B2981F00F5BE00648EB4 /* CardView.swift in Sources */,
 				FFBED3911F6BB183005C239E /* WWBaseTableView.m in Sources */,
@@ -1973,6 +1984,7 @@
 			baseConfigurationReference = A11F728AAD1C437A121BCF73 /* Pods-Mr.Time.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mr.Time/Mr.Time.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
@@ -2014,6 +2026,7 @@
 			baseConfigurationReference = 6A3E3194488AB383DFA6D83F /* Pods-Mr.Time.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mr.Time/Mr.Time.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;

@@ -22,5 +22,5 @@
 @interface WWHomeJsonBookModel : NSObject
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *msg;
-@property (nonatomic, strong) NSArray <WWHomeBookModel *> *result;
+@property (nonatomic, strong) NSMutableArray <WWHomeBookModel *> *result;
 @end

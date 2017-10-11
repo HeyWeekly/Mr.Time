@@ -17,6 +17,7 @@
 @end
 
 @interface WWCardSlide : UIView
+@property (nonatomic, strong) UICollectionView *collectionView;
 //当前选中位置
 @property (nonatomic ,assign, readwrite) NSInteger selectedIndex;
 @property (nonatomic, strong) NSArray<WWHomeBookModel *> *models;

@@ -30,8 +30,8 @@
 @end
 
 @interface WWMessageModel : NSObject
-@property (nonatomic, strong) NSArray<WWMessageDetailModel *> *lastest_cmts;
-@property (nonatomic, strong) NSArray<WWHotMessageDetailModel *> *hot_cmts;
+@property (nonatomic, strong) NSMutableArray<WWMessageDetailModel *> *lastest_cmts;
+@property (nonatomic, strong) NSMutableArray<WWHotMessageDetailModel *> *hot_cmts;
 @end
 
 @interface WWJsonMessageModel : NSObject

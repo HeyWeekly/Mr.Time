@@ -10,6 +10,6 @@
 
 @interface WWBaseTableView : UITableView
 @property (nonatomic, copy) void (^noContentViewTapedBlock)();
-- (void)showEmptyViewWithType:(NSInteger)emptyViewType;
+- (void)showEmptyViewWithType:(NSInteger)emptyViewType andFrame:(CGRect)frame;
 - (void)removeEmptyView;
 @end

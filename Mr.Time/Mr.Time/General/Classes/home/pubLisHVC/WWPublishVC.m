@@ -190,6 +190,7 @@
         request.httpMethod = kXMHTTPMethodPOST;
     } onSuccess:^(id  _Nullable responseObject) {
         [self.navigationController popViewControllerAnimated:YES];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"postMetto" object:nil userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布成功"}];
     } onFailure:^(NSError * _Nullable error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布失败，服务器可能挂了~"}];

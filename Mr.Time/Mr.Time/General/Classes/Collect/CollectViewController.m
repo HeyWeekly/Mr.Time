@@ -71,23 +71,23 @@
         request.parameters = @{@"page":@(0),@"size":@(2000)};
     } onSuccess:^(id  _Nullable responseObject) {
         WWCollectionJsonModel *model = [WWCollectionJsonModel yy_modelWithJSON:responseObject];
+        [self.cardView.collectionView.mj_header endRefreshing];
         if ([model.code isEqualToString:@"1"]) {
-            [self.cardView.collectionView.mj_header endRefreshing];
             if (model.result.count==0) {
-                self.noContentView.hidden = NO;
+                weakSelf.noContentView.hidden = NO;
                 return ;
             }
-            self.noContentView.hidden = YES;;
+            weakSelf.noContentView.hidden = YES;;
             [weakSelf.modelArray removeAllObjects];
             [weakSelf.dateMutablearray removeAllObjects];
             weakSelf.modelArray = model.result;
             [weakSelf setupViews];
         }else {
-            [WWHUD showMessage:@"加载失败~" inView:self.view];
+            [WWHUD showMessage:@"加载失败~" inView:weakSelf.view];
         }
     } onFailure:^(NSError * _Nullable error) {
         [weakSelf.cardView.collectionView.mj_header endRefreshing];
-        [WWHUD showMessage:@"服务器可能出问题了~" inView:self.view];
+        [WWHUD showMessage:@"服务器可能出问题了~" inView:weakSelf.view];
     } onFinished:nil];
 }
 

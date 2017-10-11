@@ -72,18 +72,18 @@
         request.api = getCustomMetto;
         WWUserModel *model = [WWUserModel shareUserModel];
         model = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
-        request.parameters = @{@"user_openid":model.openid,@"page":weakSelf.index,@"size":@(20)};
+        request.parameters = @{@"user_openid":model.openid,@"page" : weakSelf.index,@"size":@(20)};
         request.httpMethod = kXMHTTPMethodGET;
     } onSuccess:^(id  _Nullable responseObject) {
         WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
         if ([model.code isEqualToString:@"1"]) {
-            if (model.result.count==0) {
+            if (model.result.count==0 && ![weakSelf.index isEqual:@(0)]) {
                 [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
                 [weakSelf.tableView reloadData];
                 return ;
             }
-            [weakSelf.tableView.mj_header endRefreshing];
-            [weakSelf.tableView.mj_footer endRefreshing];
             if ([weakSelf.index isEqual:@0]) {
                 [weakSelf.modelArray removeAllObjects];
             }
@@ -92,17 +92,17 @@
             }else {
                 [weakSelf.modelArray addObjectsFromArray:model.result.mutableCopy];
             }
-            if (weakSelf.modelArray.count == 0) {
-                [weakSelf.tableView showEmptyViewWithType:1];
+            if (weakSelf.modelArray.count == 0 && [weakSelf.index isEqual:@(0)]) {
+                [weakSelf.tableView showEmptyViewWithType:1 andFrame:CGRectMake(-20, 0, KWidth, KHeight)];
             }
             [weakSelf.tableView reloadData];
         }else {
-            [WWHUD showMessage:@"加载失败~" inView:self.view];
+            [WWHUD showMessage:@"加载失败~" inView:weakSelf.view];
         }
     } onFailure:^(NSError * _Nullable error) {
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
-        [WWHUD showMessage:@"服务器可能出问题了~" inView:self.view];
+        [WWHUD showMessage:@"服务器可能出问题了~" inView:weakSelf.view];
     } onFinished:nil];
 }
 

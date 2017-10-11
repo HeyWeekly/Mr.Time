@@ -41,7 +41,7 @@
     self.bottomLabel.textColor = [UIColor yellowColor];
     
     [self.imageView sizeToFit];
-    self.imageView.left = 90*screenRate;
+    self.imageView.left = 110*screenRate;
     self.imageView.top  = 90*screenRate;
     
     [self.topLabel sizeToFit];

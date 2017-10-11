@@ -17,12 +17,11 @@ static float CardHeightScale = 0.7f;
 
 @interface WWCardSlide ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WWCardSlideCellDelagate> {
     
-    UICollectionView *_collectionView;
-    
     CGFloat _dragStartX;
     
     CGFloat _dragEndX;
 }
+
 @property (nonatomic, strong) UILabel *oneLabel;
 @property (nonatomic, strong) UILabel *hundrandLabel;
 @property (nonatomic, strong) UIView *backView;
@@ -34,8 +33,6 @@ static float CardHeightScale = 0.7f;
 
 -(instancetype)initWithFrame:(CGRect)frame andModel:(NSArray <WWHomeBookModel* > *)models {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = viewBackGround_Color;
-        self.models = models;
         [self buildUI];
     }
     return self;
@@ -188,7 +185,7 @@ static float CardHeightScale = 0.7f;
 
 - (void)switchToIndex:(NSInteger)index animated:(BOOL)animated {
     _selectedIndex = index;
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
+//    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
     [self performDelegateMethod];
 }
 

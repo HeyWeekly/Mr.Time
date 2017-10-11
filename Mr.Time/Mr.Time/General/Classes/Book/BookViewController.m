@@ -11,11 +11,11 @@
 #import "WWMessageVC.h"
 #import "WWHomeBookModel.h"
 
-@interface BookViewController ()<WWCardSlideDelegate> {
-    WWCardSlide *_cardSlide;
-}
+@interface BookViewController ()<WWCardSlideDelegate>
+@property (nonatomic, strong) WWCardSlide *cardSlide;
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) NSArray <WWHomeBookModel *> *modelArray;
+@property (nonatomic, strong) NSNumber *index;
 @end
 
 @implementation BookViewController
@@ -23,9 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
-    [self loadMettoData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMettoData) name:@"postMetto" object:nil];
+    self.index = @(0);
     [self.view addSubview:self.nav];
-    
+    [self.view addSubview:self.cardSlide];
+    [self loadMettoData];
 }
 
 #pragma mark - delegate
@@ -37,28 +39,36 @@
 
 #pragma mark - netWork
 - (void)loadMettoData {
+    WEAK_SELF;
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
         request.api = getAllMotto;
         request.httpMethod = kXMHTTPMethodGET;
-        request.parameters = @{@"page":@(0),@"size":@(20)};
+        request.parameters = @{@"page":self.index,@"size":@(500)};
     } onSuccess:^(id  _Nullable responseObject) {
         WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
+        [self.cardSlide.collectionView.mj_header endRefreshing];
         if ([model.code isEqualToString:@"1"]) {
-            self.modelArray = model.result;
-            _cardSlide = [[WWCardSlide alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64) andModel:self.modelArray];
-            _cardSlide.models = self.modelArray;
-            _cardSlide.delegate = self;
-            _cardSlide.selectedIndex = 0;
-            [self.view addSubview:_cardSlide];
+            weakSelf.modelArray = model.result;
+            weakSelf.cardSlide.models = weakSelf.modelArray;
+            weakSelf.cardSlide.selectedIndex = 0;
+            [weakSelf.cardSlide.collectionView reloadData];
         }else {
-#warning 提示
+            [WWHUD showMessage:@"加载失败~" inView:weakSelf.view];
         }
     } onFailure:^(NSError * _Nullable error) {
-#warning 提示信息
+        [WWHUD showMessage:@"服务器可能出问题了~" inView:weakSelf.view];
     } onFinished:nil];
 }
 
 #pragma mark - 懒加载
+- (WWCardSlide *)cardSlide {
+    if (_cardSlide == nil) {
+        _cardSlide = [[WWCardSlide alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64) andModel:nil];
+        _cardSlide.delegate = self;
+    }
+    return _cardSlide;
+}
+
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
         _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
@@ -68,4 +78,7 @@
     return _nav;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 @end

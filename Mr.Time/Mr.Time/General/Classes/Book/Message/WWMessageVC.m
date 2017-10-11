@@ -30,16 +30,17 @@
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) WWBaseTableView *tableView;
 @property (nonatomic, assign) NSInteger mettoId;
-@property (nonatomic, strong) NSArray <WWMessageDetailModel *> *messageModelArray;
-@property (nonatomic, strong) NSArray <WWHotMessageDetailModel *> *hotMessageModelArray;
+@property (nonatomic, strong) NSMutableArray <WWMessageDetailModel *> *messageModelArray;
+@property (nonatomic, strong) NSMutableArray <WWHotMessageDetailModel *> *hotMessageModelArray;
+@property (nonatomic, strong) NSNumber *index;
 @end
 
 @implementation WWMessageVC
 
 - (instancetype)initWithMettoId:(NSInteger)mettoId {
     if (self = [super init]) {
+        self.index = @(0);
         self.mettoId = mettoId;
-        [self loadHotMessage];
     }
     return self;
 }
@@ -50,6 +51,7 @@
     [self.view addSubview:self.nav];
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, 64, KWidth, KHeight- 64);
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)setYear:(NSInteger)year {
@@ -59,24 +61,43 @@
 
 #pragma mark - network
 - (void)loadHotMessage {
+    WEAK_SELF;
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
         request.api = getNewMessage;
         request.httpMethod = kXMHTTPMethodGET;
-        request.parameters = @{@"apthmId":@(self.mettoId),@"page":@(0),@"size":@(20)};
+        request.parameters = @{@"apthmId":@(self.mettoId),@"page":weakSelf.index,@"size":@(200)};
     } onSuccess:^(id  _Nullable responseObject) {
         WWJsonMessageModel *model = [WWJsonMessageModel yy_modelWithJSON:responseObject];
+        [weakSelf.tableView.mj_header endRefreshing];
+//        [weakSelf.tableView.mj_footer endRefreshing];
         if ([model.code isEqualToString:@"1"]) {
-            if (model.result.lastest_cmts.count == 0) {
-                [self.tableView showEmptyViewWithType:1];
+//            if (model.result.lastest_cmts==0) {
+//                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+//                [weakSelf.tableView reloadData];
+//                return ;
+//            }
+            if ([weakSelf.index isEqual:@0]) {
+                [weakSelf.messageModelArray removeAllObjects];
+                [weakSelf.hotMessageModelArray removeAllObjects];
             }
-            self.hotMessageModelArray = model.result.hot_cmts;
-            self.messageModelArray = model.result.lastest_cmts;
-            [self.tableView reloadData];
+            if (!weakSelf.messageModelArray || [weakSelf.index isEqual:@0] || !weakSelf.messageModelArray.count) {
+                weakSelf.messageModelArray = model.result.lastest_cmts;
+                weakSelf.hotMessageModelArray = model.result.hot_cmts;
+            }
+//            }else {
+//                [weakSelf.messageModelArray addObjectsFromArray:model.result.lastest_cmts];
+//            }
+            if (weakSelf.messageModelArray.count == 0) {
+                [weakSelf.tableView showEmptyViewWithType:1 andFrame:CGRectMake(0, 0, KWidth, KHeight)];
+            }
+            [weakSelf.tableView reloadData];
+        }else {
+            [WWHUD showMessage:@"加载失败~" inView:weakSelf.view];
         }
-        self.hotMessageModelArray = model.result.hot_cmts;
-        self.messageModelArray = model.result.lastest_cmts;
     } onFailure:^(NSError * _Nullable error) {
-#warning 提示信息
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [WWHUD showMessage:@"服务器可能出问题了~" inView:weakSelf.view];
     } onFinished:nil];
 }
 
@@ -145,7 +166,7 @@
 
 - (WWBaseTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[WWBaseTableView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
+        _tableView = [[WWBaseTableView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64)];
         _tableView.delegate = self;
         _tableView.dataSource  = self;
         _tableView.backgroundColor = [UIColor whiteColor];
@@ -156,6 +177,17 @@
         _tableView.layer.cornerRadius = 10*screenRate;
         _tableView.layer.masksToBounds = YES;
         [_tableView registerClass:[MessageHeaderView class] forHeaderFooterViewReuseIdentifier:@"header"];
+        WEAK_SELF;
+        _tableView.mj_header = [WWRefreshHeaderView headerWithRefreshingBlock:^{
+            weakSelf.index = @(0);
+            [weakSelf loadHotMessage];
+        }];
+//        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//            NSInteger tempIndex = weakSelf.index.integerValue;
+//            tempIndex ++;
+//            weakSelf.index = [NSNumber numberWithInteger:tempIndex];
+//            [weakSelf loadHotMessage];
+//        }];
     }
     return _tableView;
 }

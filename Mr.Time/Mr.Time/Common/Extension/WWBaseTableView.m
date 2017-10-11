@@ -16,13 +16,13 @@
 
 @implementation WWBaseTableView
 
-- (void)showEmptyViewWithType:(NSInteger)emptyViewType{
+- (void)showEmptyViewWithType:(NSInteger)emptyViewType andFrame:(CGRect)frame {
     if (_noContentView) {
         [_noContentView removeFromSuperview];
         _noContentView = nil;
     }
     
-    _noContentView = [[WWNoContentView alloc]initWithFrame:self.bounds];
+    _noContentView = [[WWNoContentView alloc]initWithFrame:frame];
     [self addSubview:_noContentView];
     _noContentView.type = emptyViewType;
     

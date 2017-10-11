@@ -23,5 +23,5 @@
 @interface WWCollectionJsonModel : NSObject
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *msg;
-@property (nonatomic, strong) NSArray <WWCollectionModel *> *result;
+@property (nonatomic, strong) NSMutableArray <WWCollectionModel *> *result;
 @end

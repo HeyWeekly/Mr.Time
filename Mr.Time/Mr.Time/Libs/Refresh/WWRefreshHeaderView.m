@@ -18,28 +18,22 @@
 #pragma mark 在这里做一些初始化配置（比如添加子控件）
 - (void)prepare {
     [super prepare];
-    //self.backgroundColor = [UIColor lightGrayColor];
-    
     // 设置控件的高度
-    self.mj_h = 80;
-    
-    //调试BUG 未达到下拉最大处就会刷新是添加
-    //self.backgroundColor = [UIColor lightGrayColor];
+    self.mj_h = 50;
+    self.frashLayer = [DRFrashLayer layer];
+    [self.layer addSublayer:self.frashLayer];
 }
+
 - (void)dealloc {
     [self.frashLayer stopAnimation];
 }
 
 #pragma mark 在这里设置子控件的位置和尺寸
-- (void)placeSubviews
-{
+- (void)placeSubviews {
     [super placeSubviews];
-    if (!self.frashLayer) {
-        self.frashLayer = [DRFrashLayer layer];
-        _frashLayer.frame = self.bounds;
-        _frashLayer.contentsScale = [UIScreen mainScreen].scale;
-        [self.layer addSublayer:_frashLayer];
-    }
+    
+    self.frashLayer.frame = self.bounds;
+    self.frashLayer.contentsScale = [UIScreen mainScreen].scale;
 }
 
 #pragma mark 监听scrollView的contentOffset改变
@@ -85,8 +79,8 @@
 - (void)setPullingPercent:(CGFloat)pullingPercent {
     [super setPullingPercent:pullingPercent];
     //这里 pullingPercent == 1.0 时 会出错 (备注已经解决)
-    //self.mj_y = -self.mj_h * MIN(1.125, MAX(0.0, pullingPercent)); //动手修改一下试试
-    self.mj_y = -self.mj_h * MIN(1.0, MAX(0.0, pullingPercent));
+//    self.mj_y = -self.mj_h * MIN(1.125, MAX(0.0, pullingPercent)); //动手修改一下试试
+//    self.mj_y = -self.mj_h * MIN(1.0, MAX(0.0, pullingPercent));
     CGFloat complete = MIN(1.0, MAX(0.0, pullingPercent-0.125));
     self.frashLayer.complete = complete;
 }

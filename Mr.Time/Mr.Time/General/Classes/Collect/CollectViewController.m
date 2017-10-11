@@ -39,87 +39,62 @@
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) CardView *cardView;
-@property (nonatomic, strong) NSArray <WWCollectionModel *> *modelArray;
+@property (nonatomic, strong) NSMutableArray <WWCollectionModel *> *modelArray;
 @property (nonatomic, strong) NSMutableArray *dateMutablearray;
+@property (nonatomic, strong) NSNumber *index;
+@property (nonatomic, strong) UIImageView *noContentView;
 @end
 
 @implementation CollectViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = viewBackGround_Color;
-    [self loadData];
+    self.dateMutablearray = [NSMutableArray array];
+    self.index = @(0);
+    [self.view addSubview:self.noContentView];
+    [self.noContentView sizeToFit];
+    self.noContentView.centerX_sd = self.view.centerX_sd;
+    self.noContentView.centerY_sd = self.view.centerY_sd;
+    [self.view addSubview:self.cardView];
+    [self.cardView.collectionView.mj_header beginRefreshing];
 }
 
 - (void)loadData {
+    WEAK_SELF;
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
         request.api = LikeMettoList;
         request.httpMethod = kXMHTTPMethodGET;
         WWUserModel *model =  [WWUserModel shareUserModel];
         model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
-        request.parameters = @{@"page":@(0),@"size":@(20)};
+        request.parameters = @{@"page":@(0),@"size":@(2000)};
     } onSuccess:^(id  _Nullable responseObject) {
         WWCollectionJsonModel *model = [WWCollectionJsonModel yy_modelWithJSON:responseObject];
         if ([model.code isEqualToString:@"1"]) {
-            self.modelArray = model.result;
-            [self setupViews];
+            [self.cardView.collectionView.mj_header endRefreshing];
+            if (model.result.count==0) {
+                self.noContentView.hidden = NO;
+                return ;
+            }
+            self.noContentView.hidden = YES;;
+            [weakSelf.modelArray removeAllObjects];
+            [weakSelf.dateMutablearray removeAllObjects];
+            weakSelf.modelArray = model.result;
+            [weakSelf setupViews];
         }else {
-#warning 提示
+            [WWHUD showMessage:@"加载失败~" inView:self.view];
         }
     } onFailure:^(NSError * _Nullable error) {
-#warning 提示信息
+        [weakSelf.cardView.collectionView.mj_header endRefreshing];
+        [WWHUD showMessage:@"服务器可能出问题了~" inView:self.view];
     } onFinished:nil];
 }
 
-- (void)setModelArray:(NSArray<WWCollectionModel *> *)modelArray {
-    _modelArray = modelArray;
-    NSMutableArray *array = [NSMutableArray arrayWithArray:modelArray.mutableCopy];
-    for (int i = 0; i < array.count; i ++) {
-        WWCollectionModel *model = array[i];
-        NSString *string = model.age;
-        NSMutableArray *tempArray = [@[] mutableCopy];
-        [tempArray addObject:model];
-        for (int j = i+1; j < array.count; j ++) {
-            WWCollectionModel *model = array[j];
-            NSString *jstring = model.age;
-            if([string isEqualToString:jstring]){
-                [tempArray addObject:model];
-                [array removeObjectAtIndex:j];
-                j = j -1;
-            }
-        }
-        [self.dateMutablearray addObject:tempArray];
-    }
-    
-    NSMutableArray *arrM = [NSMutableArray arrayWithArray:self.dateMutablearray];
-    [arrM sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        NSArray<WWCollectionModel *>  *model1 = (NSArray<WWCollectionModel *> *)obj1;
-        NSArray<WWCollectionModel *>  *model2 = (NSArray<WWCollectionModel *> *)obj2;
-        if (model1[0].age.integerValue < model2[0].age.integerValue) {
-            return NSOrderedAscending;
-        } else if (model1[0].age.integerValue > model2[0].age.integerValue) {
-            return NSOrderedDescending;
-        }
-        return NSOrderedSame;
-    }];
-    self.dateMutablearray = arrM;
-}
-
 - (void)setupViews {
-    [self.view addSubview:self.cardView];
     NSMutableArray *arr = [self generateCardInfoWithCardCount:self.dateMutablearray.count];
     [self.cardView setWithCards:arr];
     [self.cardView showStyleWithStyle:1];
-}
-
-- (NSMutableArray *)generateCardInfoWithCardCount:(int)cardCount {
-    NSMutableArray *arr = [NSMutableArray array];
-    NSArray *arrName = @[@"CardA"];
-    for (int i=0; i<cardCount; i++) {
-        int value = arc4random_uniform(1);
-        [arr addObject:arrName[value]];
-    }
-    return arr;
 }
 
 #pragma mark - collectionview
@@ -157,20 +132,36 @@
 }
 
 #pragma mark - 懒加载
+- (CardView *)cardView {
+    if (!_cardView) {
+        _cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 30, KWidth, KHeight-30-49)];
+        _cardView.collectionView.dataSource = self;
+        WEAK_SELF;
+        _cardView.collectionView.mj_header = [WWRefreshHeaderView headerWithRefreshingBlock:^{
+            weakSelf.index = @(0);
+            [weakSelf loadData];
+        }];
+        [_cardView registerCardCellWithC:[CardCell class] identifier:@"CardA"];
+    }
+    return _cardView;
+}
+
+- (UIImageView *)noContentView {
+    if (_noContentView == nil) {
+        _noContentView = [[UIImageView alloc]init];
+        _noContentView.image = [UIImage imageNamed:@"collNoData"];
+        _noContentView.contentMode = UIViewContentModeScaleAspectFit;
+        _noContentView.clipsToBounds = YES;
+        _noContentView.hidden = YES;
+    }
+    return _noContentView;
+}
+
 - (NSMutableArray *)dateMutablearray {
     if (_dateMutablearray == nil) {
         _dateMutablearray = [NSMutableArray array];
     }
     return _dateMutablearray;
-}
-
-- (CardView *)cardView {
-    if (!_cardView) {
-        _cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64-49)];
-        _cardView.collectionView.dataSource = self;
-        [_cardView registerCardCellWithC:[CardCell class] identifier:@"CardA"];
-    }
-    return _cardView;
 }
 
 - (WWNavigationVC *)nav {
@@ -180,6 +171,51 @@
         _nav.navTitle.text = @"收藏";
     }
     return _nav;
+}
+
+#pragma mark - 排序算法
+- (void)setModelArray:(NSMutableArray<WWCollectionModel *> *)modelArray {
+    _modelArray = modelArray;
+    NSMutableArray *array = [NSMutableArray arrayWithArray:modelArray.mutableCopy];
+    for (int i = 0; i < array.count; i ++) {
+        WWCollectionModel *model = array[i];
+        NSString *string = model.age;
+        NSMutableArray *tempArray = [@[] mutableCopy];
+        [tempArray addObject:model];
+        for (int j = i+1; j < array.count; j ++) {
+            WWCollectionModel *model = array[j];
+            NSString *jstring = model.age;
+            if([string isEqualToString:jstring]){
+                [tempArray addObject:model];
+                [array removeObjectAtIndex:j];
+                j = j -1;
+            }
+        }
+        [self.dateMutablearray addObject:tempArray];
+    }
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithArray:self.dateMutablearray];
+    [arrM sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSArray<WWCollectionModel *>  *model1 = (NSArray<WWCollectionModel *> *)obj1;
+        NSArray<WWCollectionModel *>  *model2 = (NSArray<WWCollectionModel *> *)obj2;
+        if (model1[0].age.integerValue < model2[0].age.integerValue) {
+            return NSOrderedAscending;
+        } else if (model1[0].age.integerValue > model2[0].age.integerValue) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedSame;
+    }];
+    self.dateMutablearray = arrM;
+}
+
+- (NSMutableArray *)generateCardInfoWithCardCount:(int)cardCount {
+    NSMutableArray *arr = [NSMutableArray array];
+    NSArray *arrName = @[@"CardA"];
+    for (int i=0; i<cardCount; i++) {
+        int value = arc4random_uniform(1);
+        [arr addObject:arrName[value]];
+    }
+    return arr;
 }
 @end
 

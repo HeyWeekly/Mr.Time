@@ -7,6 +7,8 @@
 //
 
 #import "WWSettingVC.h"
+#import "WWShareSucceedView.h"
+#import "WWAboutMe.h"
 
 @interface SettingSwitchCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *iconView;
@@ -23,6 +25,7 @@
 
 @interface WWSettingVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) WWNavigationVC *nav;
+@property (nonatomic, strong) WWShareSucceedView *sucView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *modelArray;
 @end
@@ -56,6 +59,7 @@
         if (!cell) {
             cell = [[SettingSwitchCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingSwitchCell"];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else {
         NSDictionary* dict = self.modelArray[indexPath.row];
@@ -63,6 +67,7 @@
         if (!cell) {
             cell = [[SettingNormalCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingNormalCell"];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconView.image = [UIImage imageNamed:dict[@"iconImage"]];
         cell.titleNameLabel.text = dict[@"title"];;
         if (indexPath.row == self.modelArray.count-1) {
@@ -73,7 +78,32 @@
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   
+    WEAK_SELF;
+    if (indexPath.section != 0) {
+        if (indexPath.row == 0) {
+            WWAboutMe *vc = [[WWAboutMe alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if (indexPath.row == 1) {
+            [WWHUD showMessage:@"此功能暂时未开通" inView:self.view];
+        }
+        if (indexPath.row == self.modelArray.count-1) {
+            SettingNormalCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.clearLbale.text = @"0M";
+            self.sucView = [[WWShareSucceedView alloc]init];
+            self.sucView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-80)/2,([UIScreen mainScreen].bounds.size.height-80)/2, 80, 80);
+            [self.view addSubview:self.sucView];
+            [self.sucView processSucceed];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.sucView removeFromSuperview];
+                for (UIView* view in weakSelf.view.subviews) {
+                    if ([[view class] isSubclassOfClass:[WWShareSucceedView class]]) {
+                        [view removeFromSuperview];
+                    }
+                }
+            });
+        }
+    }
 }
 //高度设置
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -159,7 +189,7 @@
     if (_clearLbale == nil) {
         _clearLbale = [[UILabel alloc]init];
         _clearLbale.textColor = RGBCOLOR(0x94A3AD);
-        _clearLbale.text = @"2.99M";
+        _clearLbale.text = @"1.78M";
         _clearLbale.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
         _clearLbale.hidden = YES;
     }
@@ -220,7 +250,7 @@
 - (UISwitch *)switchLbale {
     if (_switchLbale == nil) {
         _switchLbale = [[UISwitch alloc]init];
-        _switchLbale.onTintColor = RGBCOLOR(0x292929);
+        _switchLbale.onTintColor = RGBCOLOR(0x15C2FF);
         _switchLbale.thumbTintColor = RGBCOLOR(0xA6B1BA);
         _switchLbale.tintColor = RGBCOLOR(0x292929);
         _switchLbale.layer.cornerRadius = 16*screenRate;

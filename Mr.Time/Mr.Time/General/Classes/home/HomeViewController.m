@@ -13,6 +13,7 @@
 #import "GCD.h"
 #import "POP.h"
 #import "SDCycleScrollView.h"
+#import "WWYearsBook.h"
 
 @interface HomeYearsCell :UICollectionViewCell
 @property (nonatomic,strong) UILabel *yearsNum;
@@ -85,7 +86,7 @@
     WWUserModel *model =  [WWUserModel shareUserModel];
     model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
     for(int index = 0; index< model.yearDay.integerValue; index++) {
-        UIView *cellView = [[UIView alloc ]init ];
+        UIButton *cellView = [[UIButton alloc ]init ];
 //        cellView.layer.shadowColor = RGBCOLOR(0x27ECCC).CGColor;
 //        cellView.layer.shadowOpacity = 0.35;
 //        cellView.layer.shadowRadius = 6;
@@ -113,6 +114,8 @@
         }
         [cellView.layer addSublayer:gradientLayer];
         // 添加到view 中
+        cellView.tag = index+1;
+        [cellView addTarget:self action:@selector(goYears:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:cellView];
         if (index == model.yearDay.integerValue-1) {
             self.animationView = cellView;
@@ -121,6 +124,11 @@
             } afterDelaySecs:1.f];
         }
     }
+}
+
+- (void)goYears:(UIButton *)sender {
+    WWYearsBook *book = [[WWYearsBook alloc]initWithYears:sender.tag];
+    [self.navigationController pushViewController:book animated:YES];
 }
 
 //心跳动画

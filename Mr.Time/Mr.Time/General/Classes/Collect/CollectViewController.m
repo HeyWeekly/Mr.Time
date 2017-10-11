@@ -140,40 +140,19 @@
     };
     cell.backgroundColor = [UIColor whiteColor];
     CollectCardView *collView = [[CollectCardView alloc]init];
+    collView.frame = cell.bounds;
     collView.delegate = self;
     NSArray <WWCollectionModel *>*model = self.dateMutablearray[indexPath.row];
     collView.countLabel.text = [NSString stringWithFormat:@"%ld",model.count];
     collView.yearNum = model[0].age;
-    view.frame = cell.bounds;
     collView.tag = 2000;
     [cell addSubview:collView];
     collView.modelArray = model;
     return cell;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    // 输出点击的view的类名
-    NSLog(@"view的类名%@", NSStringFromClass([touch.view superclass]));
-    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"CollectCardViewCell"]) {
-        return NO;
-    }
-    return  YES;
-}
-
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    //    CGPoint currentPoint = [gestureRecognizer locationInView:self.view];
-    //    if (CGRectContainsPoint(CGRectMake(0, 0, 100, 100), currentPoint) ) {
-    //        return YES;
-    //    }
-    //
-    //    return NO;
-    
-    return NO;
-}
-
 - (void)didSelectMetto:(NSInteger)age comment:(NSString *)comment authAge:(NSString *)authAge authName:(NSString *)authName {
-    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:age comment:comment authAge:authAge authName:authName commentId:0];
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:age comment:comment authAge:authAge authName:authName favoId:222 favoCount:@"-222" source:@"收藏列表"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -268,7 +247,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WWCollectionModel *model = self.modelArray[indexPath.row];
     if ([self.delegate respondsToSelector:@selector(didSelectMetto:comment:authAge:authName:)]) {
-        [self.delegate didSelectMetto:model.age comment:model.content authAge:model.authorAge authName:model.nickname];
+        [self.delegate didSelectMetto:model.age.integerValue comment:model.content authAge:model.authorAge authName:model.nickname];
     }
 }
 

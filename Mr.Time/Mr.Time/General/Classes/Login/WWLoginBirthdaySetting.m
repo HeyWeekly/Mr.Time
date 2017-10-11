@@ -31,10 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dateStr = @"1949-1-01";
+    self.dateStr = @"1970-1-01";
     NSMutableArray *tempArray = [NSMutableArray array];
     self.monthArray = [NSArray array];
-    for (int i = 1949; i <= 2020; i++) {
+    for (int i = 1970; i <= 2020; i++) {
         [tempArray addObject:@(i)];
     }
     self.yearArray = [NSArray arrayWithArray:tempArray.copy];
@@ -135,6 +135,25 @@
 
 #pragma mark - event
 - (void)birthdayDoneClick {
+    
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        WWUserModel *model = [WWUserModel shareUserModel];
+        model = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        request.server = AppApi;
+        request.api = updataYears;
+        request.headers = @{@"uid": model.uid};
+        request.parameters = @{@"birth":self.dateStr,@"nickname":model.nickname};
+        request.httpMethod = kXMHTTPMethodPOST;
+    } onSuccess:^(id  _Nullable responseObject) {
+        dispatch_sync(dispatch_get_main_queue(), ^(){
+            [WWHUD showMessage:@"个人信息更新成功" inView:self.view];
+        });
+    } onFailure:^(NSError * _Nullable error) {
+        dispatch_sync(dispatch_get_main_queue(), ^(){
+            [WWHUD showMessage:@"个人信息更新失败" inView:self.view];
+        });
+    } onFinished:nil];
+    
     NSInteger dataStr = [self getDifferenceByDate:self.dateStr];
     NSString *yearDay = [self dateToOld:self.dateStr];
     [WWUserModel shareUserModel].yearDay = yearDay;

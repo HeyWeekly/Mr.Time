@@ -36,6 +36,7 @@
 #import "YYModel.h"
 #import "NSObject+YYModel.h"
 #import "WWHUD.h"
+#import "WWRefreshHeaderView.h"
 
 #define WEAK_SELF __weak typeof(self) weakSelf = self
 #define STRONG_SELF if (!weakSelf) return; \
@@ -75,6 +76,9 @@ __strong typeof(weakSelf) strongSelf = weakSelf
 #define kFont_SemiBold (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Semibold" : @"AppleSDGothicNeo-SemiBold")
 #define kFont_Avenir (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"Avenir-Medium" : @"PingFangSC-Regular")
 #define kFont_DINAlternate (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"DINAlternate-Bold" : @"PingFangSC-Regular")
+
+/// 预加载条件
+#define CanRefresh scrollView.contentOffset.y + scrollView.height*2 >= scrollView.contentSize.height && scrollView.contentSize.height > 0 && !self.isLoading
 
 //*************error notify*************//
 #define kNotify_MainNavShowError @"kNotify_MainNavShowError"

@@ -28,22 +28,22 @@
     
     [self addSubview:self.moment];
     [self.moment sizeToFit];
-    self.moment.left = self.weChat.right+46*screenRate;
+    self.moment.centerX_sd = self.centerX_sd;
     self.moment.bottom = self.weChat.bottom;
     
-    [self addSubview:self.weibo];
-    [self.weibo sizeToFit];
-    self.weibo.left = self.moment.right+46*screenRate;
-    self.weibo.bottom = self.weChat.bottom;
-    
-    [self addSubview:self.QQZone];
-    [self.QQZone sizeToFit];
-    self.QQZone.left = self.weibo.right+46*screenRate;
-    self.QQZone.bottom = self.weChat.bottom;
+//    [self addSubview:self.weibo];
+//    [self.weibo sizeToFit];
+//    self.weibo.left = self.moment.right+46*screenRate;
+//    self.weibo.bottom = self.weChat.bottom;
+//
+//    [self addSubview:self.QQZone];
+//    [self.QQZone sizeToFit];
+//    self.QQZone.left = self.weibo.right+46*screenRate;
+//    self.QQZone.bottom = self.weChat.bottom;
     
     [self addSubview:self.download];
     [self.download sizeToFit];
-    self.download.left = self.QQZone.right+46*screenRate;
+    self.download.right = KWidth-20*screenRate;
     self.download.bottom = self.weChat.bottom;
 }
 - (UIButton *)weChat {

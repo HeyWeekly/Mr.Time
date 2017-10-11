@@ -14,6 +14,7 @@
 #import "WWLabel.h"
 #import "WWBaseTableView.h"
 #import "WWHomeBookModel.h"
+#import "WWMessageDetailVCViewController.h"
 
 #define CELL_IDENTITY @"myCell"
 
@@ -50,7 +51,9 @@
 @property (nonatomic, strong) UILabel *likeded;
 @property (nonatomic, strong) UILabel *likedNum;
 @property (nonatomic, strong) WWBaseTableView *tableView;
-@property (nonatomic, strong) NSArray <WWHomeBookModel*>* modelArray;
+@property (nonatomic, strong) NSMutableArray <WWHomeBookModel*>* modelArray;
+@property (nonatomic, strong) NSNumber *index;
+@property (nonatomic, assign) BOOL isLoading;
 @end
 
 @implementation UserViewController
@@ -59,9 +62,50 @@
     [super viewDidLoad];
     self.view.backgroundColor = viewBackGround_Color;
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    _index = @(0);
     [self setupViews];
-    [self loadCustomInfo];
 }
+
+- (void)loadCustomInfo {
+    WEAK_SELF;
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.api = getCustomMetto;
+        WWUserModel *model = [WWUserModel shareUserModel];
+        model = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+        request.parameters = @{@"user_openid":model.openid,@"page":weakSelf.index,@"size":@(20)};
+        request.httpMethod = kXMHTTPMethodGET;
+    } onSuccess:^(id  _Nullable responseObject) {
+        WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
+        if ([model.code isEqualToString:@"1"]) {
+            if (model.result.count==0) {
+                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                [weakSelf.tableView reloadData];
+                return ;
+            }
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
+            if ([weakSelf.index isEqual:@0]) {
+                [weakSelf.modelArray removeAllObjects];
+            }
+            if (!weakSelf.modelArray || [weakSelf.index isEqual:@0] || !weakSelf.modelArray.count) {
+                weakSelf.modelArray = model.result.mutableCopy;
+            }else {
+                [weakSelf.modelArray addObjectsFromArray:model.result.mutableCopy];
+            }
+            if (weakSelf.modelArray.count == 0) {
+                [weakSelf.tableView showEmptyViewWithType:1];
+            }
+            [weakSelf.tableView reloadData];
+        }else {
+            [WWHUD showMessage:@"加载失败~" inView:self.view];
+        }
+    } onFailure:^(NSError * _Nullable error) {
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [WWHUD showMessage:@"服务器可能出问题了~" inView:self.view];
+    } onFinished:nil];
+}
+
 - (void)setupViews {
     WWUserModel *model = [WWUserModel shareUserModel];
     model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
@@ -81,10 +125,10 @@
     self.setting.right = self.view.bounds.size.width-25*screenRate;
     self.setting.top = self.backheadImage.top;
     
-    [self.view addSubview:self.notice];
-    [self.notice sizeToFit];
-    self.notice.right = self.setting.left - 35*screenRate;;
-    self.notice.top = self.backheadImage.top;
+    //    [self.view addSubview:self.notice];
+    //    [self.notice sizeToFit];
+    //    self.notice.right = self.setting.left - 35*screenRate;;
+    //    self.notice.top = self.backheadImage.top;
     
     if (model.nickname) {
         self.nameLbael.text = model.nickname;
@@ -102,68 +146,48 @@
     self.yearLbael.left = self.nameLbael.left;
     self.yearLbael.top = self.nameLbael.bottom+8*screenRate;
     
-    [self.view addSubview:self.collectedNum];
-    [self.collectedNum sizeToFit];
-    self.collectedNum.right = self.view.bounds.size.width - 23*screenRate;
-    self.collectedNum.top = self.setting.bottom+73*screenRate;
-    
-    [self.view addSubview:self.collected];
-    [self.collected sizeToFit];
-    self.collected.right = self.collectedNum.right;
-    self.collected.top = self.collectedNum.bottom+6*screenRate;
-    [self.view addSubview:self.sepLine1];
-    [self.sepLine1 sizeToFit];
-    self.sepLine1.right = self.collected.left - 15*screenRate;
-    self.sepLine1.top = self.collectedNum.top + 3*screenRate;
-    self.sepLine1.width = 1;
-    self.sepLine1.height = 30*screenRate;
-    
-    [self.view addSubview:self.recordedNum];
-    [self.recordedNum sizeToFit];
-    self.recordedNum.right = self.sepLine1.left - 15*screenRate;
-    self.recordedNum.top = self.collectedNum.top;
-    [self.view addSubview:self.recorded];
-    [self.recorded sizeToFit];
-    self.recorded.right = self.recordedNum.right;
-    self.recorded.top = self.recordedNum.bottom+6*screenRate;
-    [self.view addSubview:self.sepLine2];
-    [self.sepLine2 sizeToFit];
-    self.sepLine2.right = self.recorded.left - 15*screenRate;
-    self.sepLine2.top = self.recordedNum.top + 3*screenRate;
-    self.sepLine2.width = 1;
-    self.sepLine2.height = 30*screenRate;
-    
-    [self.view addSubview:self.likedNum];
-    [self.likedNum sizeToFit];
-    self.likedNum.right = self.sepLine2.left - 15*screenRate;
-    self.likedNum.top = self.collectedNum.top;
-    [self.view addSubview:self.likeded];
-    [self.likeded sizeToFit];
-    self.likeded.right = self.likedNum.right;
-    self.likeded.top = self.likedNum.bottom+6*screenRate;
+    //    [self.view addSubview:self.collectedNum];
+    //    [self.collectedNum sizeToFit];
+    //    self.collectedNum.right = self.view.bounds.size.width - 23*screenRate;
+    //    self.collectedNum.top = self.setting.bottom+73*screenRate;
+    //
+    //    [self.view addSubview:self.collected];
+    //    [self.collected sizeToFit];
+    //    self.collected.right = self.collectedNum.right;
+    //    self.collected.top = self.collectedNum.bottom+6*screenRate;
+    //    [self.view addSubview:self.sepLine1];
+    //    [self.sepLine1 sizeToFit];
+    //    self.sepLine1.right = self.collected.left - 15*screenRate;
+    //    self.sepLine1.top = self.collectedNum.top + 3*screenRate;
+    //    self.sepLine1.width = 1;
+    //    self.sepLine1.height = 30*screenRate;
+    //
+    //    [self.view addSubview:self.recordedNum];
+    //    [self.recordedNum sizeToFit];
+    //    self.recordedNum.right = self.sepLine1.left - 15*screenRate;
+    //    self.recordedNum.top = self.collectedNum.top;
+    //    [self.view addSubview:self.recorded];
+    //    [self.recorded sizeToFit];
+    //    self.recorded.right = self.recordedNum.right;
+    //    self.recorded.top = self.recordedNum.bottom+6*screenRate;
+    //    [self.view addSubview:self.sepLine2];
+    //    [self.sepLine2 sizeToFit];
+    //    self.sepLine2.right = self.recorded.left - 15*screenRate;
+    //    self.sepLine2.top = self.recordedNum.top + 3*screenRate;
+    //    self.sepLine2.width = 1;
+    //    self.sepLine2.height = 30*screenRate;
+    //
+    //    [self.view addSubview:self.likedNum];
+    //    [self.likedNum sizeToFit];
+    //    self.likedNum.right = self.sepLine2.left - 15*screenRate;
+    //    self.likedNum.top = self.collectedNum.top;
+    //    [self.view addSubview:self.likeded];
+    //    [self.likeded sizeToFit];
+    //    self.likeded.right = self.likedNum.right;
+    //    self.likeded.top = self.likedNum.bottom+6*screenRate;
     
     [self.view addSubview:self.tableView];
-}
-
-- (void)loadCustomInfo {
-    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
-        request.api = getCustomMetto;
-        WWUserModel *model = [WWUserModel shareUserModel];
-        model = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
-        request.parameters = @{@"uid":model.uid,@"page":@(0),@"pagesize":@(20)};
-        request.httpMethod = kXMHTTPMethodGET;
-    } onSuccess:^(id  _Nullable responseObject) {
-        WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
-        if ([model.code isEqualToString:@"1"]) {
-            self.modelArray = model.result;
-            if (self.modelArray.count == 0) {
-                [self.tableView showEmptyViewWithType:1];
-            }
-            [self.tableView reloadData];
-        }
-    } onFailure:^(NSError * _Nullable error) {
-#warning 提示信息
-    } onFinished:nil];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - event
@@ -187,6 +211,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WWHomeBookModel *model = self.modelArray[indexPath.row];
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:model.age.integerValue comment:model.content authAge:model.authorAge authName:model.nickname favoId:model.aid.integerValue favoCount:model.enshrineCnt source:@"个人列表"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return self.modelArray[indexPath.row].cellHeight ? self.modelArray[indexPath.row].cellHeight : 44;
 }
@@ -203,6 +233,15 @@
 //    }
 //}
 
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    if (CanRefresh) {
+//        NSInteger tempIndex = self.index.integerValue;
+//        tempIndex ++;
+//        self.index = [NSNumber numberWithInteger:tempIndex];
+//        [self loadCustomInfo];
+//    }
+//}
+
 #pragma mark - 懒加载
 - (WWBaseTableView *)tableView {
     if (!_tableView) {
@@ -213,6 +252,17 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        WEAK_SELF;
+        _tableView.mj_header = [WWRefreshHeaderView headerWithRefreshingBlock:^{
+            weakSelf.index = @(0);
+            [weakSelf loadCustomInfo];
+        }];
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            NSInteger tempIndex = weakSelf.index.integerValue;
+            tempIndex ++;
+            weakSelf.index = [NSNumber numberWithInteger:tempIndex];
+            [weakSelf loadCustomInfo];
+        }];
     }
     return _tableView;
 }
@@ -463,6 +513,7 @@
     self.yearsImage.top = 12*screenRate;
 //    [self.containerView addSubview:self.yearsImage];
     
+    self.likeNum.text = model.enshrineCnt;
     [self.likeNum sizeToFit];
     self.likeNum.right = self.containerView.width-25*screenRate;
     self.likeNum.top = 26.5*screenRate;
@@ -472,6 +523,11 @@
     [self.likeImage sizeToFit];
     self.likeImage.right = self.likeNum.left-5*screenRate;
     self.likeImage.top = 19*screenRate;
+    if (model.enshrineCnt.integerValue > 0) {
+        [self.likeImage setFavo:YES withAnimate:NO];
+    }else {
+        [self.likeImage setFavo:NO withAnimate:NO];
+    }
     
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:6];
@@ -489,15 +545,6 @@
 //    self.containerView.left = 0;
 //    [self addSubview:self.containerView];
     _model.cellHeight = self.contentLabel.bottom + 47*screenRate;
-}
-
-- (void)favoClick {
-    self.islike = !self.islike;
-    if (self.islike) {
-        [self.likeImage setFavo:YES withAnimate:YES];
-    }else {
-        [self.likeImage setFavo:NO withAnimate:YES];
-    }
 }
 
 #pragma mark - 懒加载
@@ -525,7 +572,8 @@
         _likeImage = [[WWCollectButton alloc]init];
         _likeImage.contentMode = UIViewContentModeCenter;
         _likeImage.favoType = 2;
-        [_likeImage addTarget:self action:@selector(favoClick) forControlEvents:UIControlEventTouchUpInside];
+        _likeImage.userInteractionEnabled = NO;
+//        [_likeImage addTarget:self action:@selector(favoClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _likeImage;
 }

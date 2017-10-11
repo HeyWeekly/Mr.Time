@@ -9,5 +9,5 @@
 #import "WWRootViewController.h"
 
 @interface WWMessageDetailVCViewController : WWRootViewController
-- (instancetype)initWithAge:(NSInteger )age comment:(NSString *)comment authAge:(NSString *)authAge authName:(NSString *)authName commentId:(NSInteger)commentId;
+- (instancetype)initWithAge:(NSInteger )age comment:(NSString *)comment authAge:(NSString *)authAge authName:(NSString *)authName favoId:(NSInteger)favoId favoCount:(NSString *)favoCount source:(NSString *)source;
 @end

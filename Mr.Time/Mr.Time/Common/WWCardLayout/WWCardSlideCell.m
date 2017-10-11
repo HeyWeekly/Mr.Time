@@ -58,7 +58,6 @@
     [self.likeImage sizeToFit];
     self.likeImage.right = self.bounds.size.width - 20*screenRate;
     self.likeImage.top = 20*screenRate;
-    
     [self.likeImage sizeToFit];
     [self.likeImage addTarget:self action:@selector(likeClick) forControlEvents:UIControlEventTouchUpInside];
     

@@ -129,7 +129,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WWMessageDetailModel *model =self.messageModelArray[indexPath.row];
-    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:self.year comment:model.content authAge:model.age authName:model.nickname commentId:model.cid];
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:self.year comment:model.content authAge:model.age authName:model.nickname favoId:model.cid.integerValue favoCount:model.favourCnt source:@"留言列表"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

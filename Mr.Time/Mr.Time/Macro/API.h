@@ -20,4 +20,6 @@
 #define likeMetto                    @"life/apthm/enshrine"                                         //箴言收藏
 #define commentLike              @"life/apthm/cmts/favour"                                   //评论点赞
 #define LikeMettoList              @"life/user/enshrine"                                            //个人收藏列表
+#define getYearsMetto             @"life/apthm/age"                                                 //按年龄获取箴言
+#define updataYears                 @"life/user/info/update"                                       //更新年龄
 #endif /* API_h */

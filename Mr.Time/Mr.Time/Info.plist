@@ -4,6 +4,11 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>wechat</string>
+		<string>weixin</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>时间先生</string>
 	<key>CFBundleExecutable</key>
@@ -42,6 +47,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>需要您的同意才能打开相机设备</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要您的同意才能读取媒体库资料</string>
 	<key>UILaunchStoryboardName</key>

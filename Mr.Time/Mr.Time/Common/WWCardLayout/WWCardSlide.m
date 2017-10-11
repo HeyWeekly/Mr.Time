@@ -9,6 +9,7 @@
 #import "WWCardSlide.h"
 #import "WWCardSlideLayout.h"
 #import "WWCardSlideCell.h"
+#import "WWLabel.h"
 
 //居中卡片宽度与据屏幕宽度比例
 static float CardWidthScale = 0.8f;
@@ -26,9 +27,11 @@ static float CardHeightScale = 0.7f;
 @property (nonatomic, strong) UILabel *hundrandLabel;
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIView *yearsView;
+@property (nonatomic, strong) WWLabel *oneTipLabel;
 @end
 
 @implementation WWCardSlide
+
 -(instancetype)initWithFrame:(CGRect)frame andModel:(NSArray <WWHomeBookModel* > *)models {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = viewBackGround_Color;
@@ -60,6 +63,11 @@ static float CardHeightScale = 0.7f;
     self.yearsView.width = 0;
     self.yearsView.height = 12*screenRate;
     [self addSubview:self.yearsView];
+    
+    [self addSubview:self.oneTipLabel];
+    [self.oneTipLabel sizeToFit];
+    self.oneTipLabel.centerX_sd = self.centerX_sd;
+    self.oneTipLabel.top = self.yearsView.bottom+15*screenRate;
 }
 
 -(void)addCollectionView {
@@ -192,14 +200,31 @@ static float CardHeightScale = 0.7f;
 }
 
 - (void)yearsChangeYearsOld:(NSInteger)years {
-    [UIView animateWithDuration:0.15 delay:0 usingSpringWithDamping:0.65 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:0.85 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.yearsView.width = 265*screenRate/100*years;
         [self.yearsView sizeToFit];
         [self.yearsView layoutIfNeeded];
+        if (years == 1) {
+            self.oneTipLabel.hidden = NO;
+        }else {
+            self.oneTipLabel.hidden = YES;
+        }
     } completion:nil];
 }
 
 #pragma mark - 懒加载
+- (WWLabel *)oneTipLabel {
+    if (_oneTipLabel == nil) {
+        _oneTipLabel = [[WWLabel alloc]init];
+        _oneTipLabel.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
+        _oneTipLabel.text = @"上帝知道什么时候开始，什么时候结束，人只知道中间";
+        NSArray *gradientColors = @[(id)RGBCOLOR(0x15C2FF).CGColor, (id)RGBCOLOR(0x2EFFB6).CGColor];
+        _oneTipLabel.colors =gradientColors;
+        _oneTipLabel.hidden = YES;
+    }
+    return _oneTipLabel;
+}
+
 - (UILabel *)oneLabel {
     if (_oneLabel == nil) {
         _oneLabel = [[UILabel alloc]init];

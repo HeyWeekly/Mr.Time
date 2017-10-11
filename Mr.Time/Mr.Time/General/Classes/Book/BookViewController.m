@@ -40,7 +40,7 @@
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
         request.api = getAllMotto;
         request.httpMethod = kXMHTTPMethodGET;
-        request.parameters = @{@"page":@(0),@"pagesize":@(20)};
+        request.parameters = @{@"page":@(0),@"size":@(20)};
     } onSuccess:^(id  _Nullable responseObject) {
         WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
         if ([model.code isEqualToString:@"1"]) {

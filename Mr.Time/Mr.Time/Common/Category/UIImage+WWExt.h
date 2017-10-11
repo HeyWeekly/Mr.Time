@@ -10,6 +10,8 @@
 
 @interface UIImage (WWExt)
 
++ (UIImage *)compressImage:(UIImage *)image toByte:(NSUInteger)maxLength;
+
 + (UIImage *)imageWithView:(UIView *)view;
 
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;

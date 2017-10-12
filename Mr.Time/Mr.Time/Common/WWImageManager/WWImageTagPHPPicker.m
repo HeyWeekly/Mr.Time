@@ -256,7 +256,7 @@
         if (indexPath.row != 0) {
             WWImgTagPHPickerCell* cell = (WWImgTagPHPickerCell*)[collectionView cellForItemAtIndexPath:indexPath];
             if ([self.didSelectPhotoKey containsObject:cell.representedAssetIdentifier] && self.isOneEnter == NO) {
-#warning 图片已在编辑列表中
+//#warning 图片已在编辑列表中
             }else {
                 if ([self.selectPhotoKey containsObject:cell.representedAssetIdentifier]) {
                     [self.selectPhotoKey removeObject:cell.representedAssetIdentifier];
@@ -268,7 +268,7 @@
                     if (self.selectPhotoKey.count != 9) {
                         if (self.count == self.maxCount) {
                             NSString *msg = [NSString stringWithFormat:@"%@ %lu %@",@"最多选择",(unsigned long)self.maxCount,@"张照片"];
-#warning @"最多选择"
+//#warning @"最多选择"
                             return;
                         }
                         [self.selectPhotoKey addObject:cell.representedAssetIdentifier];
@@ -288,7 +288,7 @@
                         [cell setIsSelected:YES];
                     }else{
                         NSString *msg = [NSString stringWithFormat:@"%@ %lu %@",@"最多选择",(unsigned long)self.selectPhotoKey.count,@"张照片"];
-#warning @"最多选择"
+//#warning @"最多选择"
                         return;
                     }
                 }
@@ -312,7 +312,7 @@
     }else {
         WWImgTagPHPickerCell* cell = (WWImgTagPHPickerCell*)[collectionView cellForItemAtIndexPath:indexPath];
             if ([self.didSelectPhotoKey containsObject:cell.representedAssetIdentifier] && self.isOneEnter == NO) {
-#warning 图片已在编辑列表中
+//#warning 图片已在编辑列表中
             }else {
                 if ([self.selectPhotoKey containsObject:cell.representedAssetIdentifier]) {
                     [self.selectPhotoKey removeObject:cell.representedAssetIdentifier];
@@ -324,7 +324,7 @@
                     if (self.selectPhotoKey.count != 9) {
                         if (self.count == self.maxCount) {
                             NSString *msg = [NSString stringWithFormat:@"%@ %lu %@",@"最多选择",(unsigned long)self.maxCount,@"张照片"];
-#warning @"最多选择"
+//#warning @"最多选择"
                             return;
                         }
                         [self.selectPhotoKey addObject:cell.representedAssetIdentifier];
@@ -343,7 +343,7 @@
                         [cell setIsSelected:YES];
                     }else{
                         NSString *msg = [NSString stringWithFormat:@"%@ %lu %@",@"最多选择",(unsigned long)self.selectPhotoKey.count,@"张照片"];
-                        #warning @"最多选择"
+//                        #warning @"最多选择"
                         return;
                     }
                 }
@@ -402,7 +402,7 @@
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
 {
     if (error) {
-#warning 图片存储失败
+//#warning 图片存储失败
     }else{
         [self performSelector:@selector(addNewPicture)  withObject:image afterDelay:0.5];
     }

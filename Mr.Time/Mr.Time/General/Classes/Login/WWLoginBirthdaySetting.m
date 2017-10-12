@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dateStr = @"1970-1-01";
+    self.dateStr = @"1970-01-01";
     NSMutableArray *tempArray = [NSMutableArray array];
     self.monthArray = [NSArray array];
     for (int i = 1970; i <= 2020; i++) {
@@ -111,10 +111,17 @@
         }
     }
     [pickerView reloadAllComponents];
-    self.dateStr = [NSString stringWithFormat:@"%@-%@-%@",_yearArray[yearIndex],_monthArray[monthIndex],_dayArray[dayIndex]];
+    NSString *monthString;
+    if ([_monthArray[monthIndex] integerValue]/10 == 0) {
+        monthString = [NSString stringWithFormat:@"0%@",_monthArray[monthIndex]];
+    }else {
+        monthString = _monthArray[monthIndex];
+    }
+    self.dateStr = [NSString stringWithFormat:@"%@-%@-%@",_yearArray[yearIndex],monthString,_dayArray[dayIndex]];
     self.year = _yearArray[yearIndex];
-    self.month = _monthArray[monthIndex];
+    self.month = monthString;
     self.day = _dayArray[dayIndex];
+    return;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
@@ -141,17 +148,13 @@
         model = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
         request.server = AppApi;
         request.api = updataYears;
-        request.headers = @{@"uid": model.uid};
+        request.headers = @{@"uid": model.uid ? model.uid : @"life15078000081469261"};
         request.parameters = @{@"birth":self.dateStr,@"nickname":model.nickname};
         request.httpMethod = kXMHTTPMethodPOST;
     } onSuccess:^(id  _Nullable responseObject) {
-        dispatch_sync(dispatch_get_main_queue(), ^(){
-            [WWHUD showMessage:@"个人信息更新成功" inView:self.view];
-        });
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"个人信息更新成功"}];
     } onFailure:^(NSError * _Nullable error) {
-        dispatch_sync(dispatch_get_main_queue(), ^(){
-            [WWHUD showMessage:@"个人信息更新失败" inView:self.view];
-        });
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"个人信息更新失败"}];
     } onFinished:nil];
     
     NSInteger dataStr = [self getDifferenceByDate:self.dateStr];

@@ -60,7 +60,11 @@
     self.sepView.height = 2;
     
     if ([WWUserModel shareUserModel].nickname) {
+        if ([[WWUserModel shareUserModel].nickname isEqualToString:@"测试用。熟人勿加"]) {
+            self.nickName.text = @"时间先生";
+        }else {
         self.nickName.text = [WWUserModel shareUserModel].nickname;
+        }
     }
     [self.view addSubview:self.nickName];
     [self.nickName sizeToFit];

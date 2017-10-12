@@ -22,4 +22,5 @@
 #define LikeMettoList              @"life/user/enshrine"                                            //个人收藏列表
 #define getYearsMetto             @"life/apthm/age"                                                 //按年龄获取箴言
 #define updataYears                 @"life/user/info/update"                                       //更新年龄
+#define getPersonMetto            @"life/user/apthms"                                               //个人箴言uid
 #endif /* API_h */

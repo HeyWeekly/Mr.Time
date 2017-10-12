@@ -69,10 +69,8 @@
 - (void)loadCustomInfo {
     WEAK_SELF;
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
-        request.api = getCustomMetto;
-        WWUserModel *model = [WWUserModel shareUserModel];
-        model = (WWUserModel *)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
-        request.parameters = @{@"user_openid":model.openid,@"page" : weakSelf.index,@"size":@(20)};
+        request.api = getPersonMetto;
+        request.parameters = @{@"page" : weakSelf.index, @"size" : @(20)};
         request.httpMethod = kXMHTTPMethodGET;
     } onSuccess:^(id  _Nullable responseObject) {
         WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
@@ -111,6 +109,9 @@
     model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
     if (model.headimgurl) {
         [self.headImage sd_setImageWithURL:[NSURL URLWithString:model.headimgurl] placeholderImage:[UIImage imageNamed:@"defaulthead"]];
+    }
+    if (model.headimg) {
+        self.headImage.image = model.headimg;
     }
     [self.view addSubview:self.headImage];
     [self drawRect];

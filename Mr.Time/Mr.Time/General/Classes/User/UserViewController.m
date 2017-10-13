@@ -53,7 +53,6 @@
 @property (nonatomic, strong) WWBaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray <WWHomeBookModel*>* modelArray;
 @property (nonatomic, strong) NSNumber *index;
-@property (nonatomic, assign) BOOL isLoading;
 @end
 
 @implementation UserViewController

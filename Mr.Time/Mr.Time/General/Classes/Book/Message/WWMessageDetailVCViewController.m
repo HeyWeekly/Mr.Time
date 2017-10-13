@@ -310,6 +310,13 @@
         [_shareView.download addTarget:self action:@selector(dowloadClick) forControlEvents:UIControlEventTouchUpInside];
         [_shareView.weChat addTarget:self action:@selector(weixinClick) forControlEvents:UIControlEventTouchUpInside];
         [_shareView.moment addTarget:self action:@selector(momentClick) forControlEvents:UIControlEventTouchUpInside];
+        if (![WXApi isWXAppInstalled]) {
+            _shareView.weChat.hidden = YES;
+            _shareView.moment.hidden = YES;
+        }else {
+            _shareView.weChat.hidden = NO;
+            _shareView.moment.hidden = NO;
+        }
     }
     return _shareView;
 }

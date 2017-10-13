@@ -276,6 +276,7 @@
         _mineLook.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,0);
         _mineLook.titleEdgeInsets = UIEdgeInsetsMake(0,12*screenRate,0,0);
         [_mineLook addTarget:self action:@selector(minlookclick) forControlEvents:UIControlEventTouchUpInside];
+        _mineLook.hidden = YES;
     }
     return _mineLook;
 }

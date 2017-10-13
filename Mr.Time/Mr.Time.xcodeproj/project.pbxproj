@@ -613,6 +613,7 @@
 		FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWUserInfoModel.m; sourceTree = "<group>"; };
 		FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@3x.png"; sourceTree = "<group>"; };
 		FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@2x.png"; sourceTree = "<group>"; };
+		FFCAF57A1F91264B00690FB4 /* XZMRefreshConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "\U001aXZMRefreshConst.m"; sourceTree = "<group>"; };
 		FFDDE2011F7F9697001AD891 /* WWCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWCollectionModel.h; sourceTree = "<group>"; };
 		FFDDE2021F7F9697001AD891 /* WWCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWCollectionModel.m; sourceTree = "<group>"; };
 		FFDDE2041F8B1BC8001AD891 /* Mr.Time.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mr.Time.entitlements; sourceTree = "<group>"; };
@@ -1348,6 +1349,7 @@
 		FF61E0D41E9BC061000E68F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				FFCAF57A1F91264B00690FB4 /* XZMRefreshConst.m */,
 				FFFF2F931F8D0F3C00E2614E /* Refresh */,
 				FFB5F9F21F6E17FE00D34F35 /* HUD */,
 				C07B39981F5D83B2001088F2 /* fmdb */,

@@ -35,8 +35,6 @@
 		C07ABFE21F3C2D8900EBED61 /* tellMeBirthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFE01F3C2D8900EBED61 /* tellMeBirthday@2x.png */; };
 		C07ABFE51F3C2E6000EBED61 /* birthdayDone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFE31F3C2E6000EBED61 /* birthdayDone@3x.png */; };
 		C07ABFE61F3C2E6000EBED61 /* birthdayDone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFE41F3C2E6000EBED61 /* birthdayDone@2x.png */; };
-		C07ABFF51F3C435200EBED61 /* selectBirthday@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFF31F3C435200EBED61 /* selectBirthday@3x.png */; };
-		C07ABFF61F3C435200EBED61 /* selectBirthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07ABFF41F3C435200EBED61 /* selectBirthday@2x.png */; };
 		C07AC0041F3C832E00EBED61 /* WWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0031F3C832E00EBED61 /* WWCollectionViewLayout.m */; };
 		C07AC0361F3D796F00EBED61 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0291F3D796F00EBED61 /* TAAbstractDotView.m */; };
 		C07AC0371F3D796F00EBED61 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC02B1F3D796F00EBED61 /* TAAnimatedDotView.m */; };
@@ -71,7 +69,6 @@
 		C07AC0931F42E2B800EBED61 /* XMCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC08D1F42E2B800EBED61 /* XMCenter.m */; };
 		C07AC0941F42E2B800EBED61 /* XMEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0901F42E2B800EBED61 /* XMEngine.m */; };
 		C07AC0951F42E2B800EBED61 /* XMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C07AC0921F42E2B800EBED61 /* XMRequest.m */; };
-		C07B39961F5D2509001088F2 /* threeqidongye .png in Resources */ = {isa = PBXBuildFile; fileRef = C07B39951F5D2509001088F2 /* threeqidongye .png */; };
 		C07B39A51F5D83B2001088F2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B399A1F5D83B2001088F2 /* FMDatabase.m */; };
 		C07B39A61F5D83B2001088F2 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B399C1F5D83B2001088F2 /* FMDatabaseAdditions.m */; };
 		C07B39A71F5D83B2001088F2 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C07B399E1F5D83B2001088F2 /* FMDatabasePool.m */; };
@@ -115,8 +112,6 @@
 		C089B2871F00F41E00648EB4 /* jitang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2851F00F41E00648EB4 /* jitang@3x.png */; };
 		C089B28A1F00F44B00648EB4 /* wechatlogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2881F00F44B00648EB4 /* wechatlogin@2x.png */; };
 		C089B28B1F00F44B00648EB4 /* wechatlogin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B2891F00F44B00648EB4 /* wechatlogin@3x.png */; };
-		C089B28E1F00F49400648EB4 /* Onboarding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B28C1F00F49400648EB4 /* Onboarding@2x.png */; };
-		C089B28F1F00F49400648EB4 /* Onboarding@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C089B28D1F00F49400648EB4 /* Onboarding@3x.png */; };
 		C089B2971F00F5BE00648EB4 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2911F00F5BE00648EB4 /* CardCell.swift */; };
 		C089B2981F00F5BE00648EB4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2921F00F5BE00648EB4 /* CardView.swift */; };
 		C089B2991F00F5BE00648EB4 /* CustomCardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089B2931F00F5BE00648EB4 /* CustomCardLayout.swift */; };
@@ -132,10 +127,6 @@
 		C0A69F631EE9318D00DB4678 /* bacBackBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F611EE9318D00DB4678 /* bacBackBtn@3x.png */; };
 		C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A69F621EE9318D00DB4678 /* bacBackBtn@2x.png */; };
 		C0A69FA01EE949E600DB4678 /* WWSOCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A69F9F1EE949E600DB4678 /* WWSOCommon.swift */; };
-		C0B948F71F39DC760008E29F /* Onboarding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948F51F39DC760008E29F /* Onboarding@2x.png */; };
-		C0B948F81F39DC760008E29F /* Onboarding@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948F61F39DC760008E29F /* Onboarding@3x.png */; };
-		C0B948FB1F39DC8F0008E29F /* qianmuFurture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948F91F39DC8F0008E29F /* qianmuFurture@2x.png */; };
-		C0B948FC1F39DC8F0008E29F /* qianmuFurture@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B948FA1F39DC8F0008E29F /* qianmuFurture@3x.png */; };
 		C0B949031F39DFE50008E29F /* WWLoginSettingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */; };
 		C0B949061F39E1620008E29F /* weChatLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949041F39E1620008E29F /* weChatLogin@2x.png */; };
 		C0B949071F39E1620008E29F /* weChatLogin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B949051F39E1620008E29F /* weChatLogin@3x.png */; };
@@ -313,8 +304,6 @@
 		C07ABFE01F3C2D8900EBED61 /* tellMeBirthday@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tellMeBirthday@2x.png"; sourceTree = "<group>"; };
 		C07ABFE31F3C2E6000EBED61 /* birthdayDone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "birthdayDone@3x.png"; sourceTree = "<group>"; };
 		C07ABFE41F3C2E6000EBED61 /* birthdayDone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "birthdayDone@2x.png"; sourceTree = "<group>"; };
-		C07ABFF31F3C435200EBED61 /* selectBirthday@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectBirthday@3x.png"; sourceTree = "<group>"; };
-		C07ABFF41F3C435200EBED61 /* selectBirthday@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectBirthday@2x.png"; sourceTree = "<group>"; };
 		C07AC0021F3C832E00EBED61 /* WWCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWCollectionViewLayout.h; sourceTree = "<group>"; };
 		C07AC0031F3C832E00EBED61 /* WWCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWCollectionViewLayout.m; sourceTree = "<group>"; };
 		C07AC0281F3D796F00EBED61 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
@@ -371,7 +360,6 @@
 		C07AC0901F42E2B800EBED61 /* XMEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMEngine.m; sourceTree = "<group>"; };
 		C07AC0911F42E2B800EBED61 /* XMRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequest.h; sourceTree = "<group>"; };
 		C07AC0921F42E2B800EBED61 /* XMRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequest.m; sourceTree = "<group>"; };
-		C07B39951F5D2509001088F2 /* threeqidongye .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeqidongye .png"; sourceTree = "<group>"; };
 		C07B39991F5D83B2001088F2 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		C07B399A1F5D83B2001088F2 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		C07B399B1F5D83B2001088F2 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -426,8 +414,6 @@
 		C089B2851F00F41E00648EB4 /* jitang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jitang@3x.png"; sourceTree = "<group>"; };
 		C089B2881F00F44B00648EB4 /* wechatlogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechatlogin@2x.png"; sourceTree = "<group>"; };
 		C089B2891F00F44B00648EB4 /* wechatlogin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechatlogin@3x.png"; sourceTree = "<group>"; };
-		C089B28C1F00F49400648EB4 /* Onboarding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@2x.png"; sourceTree = "<group>"; };
-		C089B28D1F00F49400648EB4 /* Onboarding@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@3x.png"; sourceTree = "<group>"; };
 		C089B2911F00F5BE00648EB4 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		C089B2921F00F5BE00648EB4 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C089B2931F00F5BE00648EB4 /* CustomCardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCardLayout.swift; sourceTree = "<group>"; };
@@ -446,10 +432,6 @@
 		C0A69F621EE9318D00DB4678 /* bacBackBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bacBackBtn@2x.png"; sourceTree = "<group>"; };
 		C0A69F9E1EE9498100DB4678 /* Mr.Time-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr.Time-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0A69F9F1EE949E600DB4678 /* WWSOCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWSOCommon.swift; sourceTree = "<group>"; };
-		C0B948F51F39DC760008E29F /* Onboarding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@2x.png"; sourceTree = "<group>"; };
-		C0B948F61F39DC760008E29F /* Onboarding@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Onboarding@3x.png"; sourceTree = "<group>"; };
-		C0B948F91F39DC8F0008E29F /* qianmuFurture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qianmuFurture@2x.png"; sourceTree = "<group>"; };
-		C0B948FA1F39DC8F0008E29F /* qianmuFurture@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qianmuFurture@3x.png"; sourceTree = "<group>"; };
 		C0B949011F39DFE50008E29F /* WWLoginSettingInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWLoginSettingInfoVC.h; sourceTree = "<group>"; };
 		C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWLoginSettingInfoVC.m; sourceTree = "<group>"; };
 		C0B949041F39E1620008E29F /* weChatLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weChatLogin@2x.png"; sourceTree = "<group>"; };
@@ -600,7 +582,6 @@
 		FFBDCCC61EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
 		FFBDCCC71EE52BFF00B3AE23 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
 		FFBDCCC81EE52BFF00B3AE23 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
-		FFBDCCCB1EE52CBD00B3AE23 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		FFBED37C1F6BA866005C239E /* usernoData@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usernoData@3x.png"; sourceTree = "<group>"; };
 		FFBED37D1F6BA866005C239E /* usernoData@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usernoData@2x.png"; sourceTree = "<group>"; };
 		FFBED37E1F6BA866005C239E /* usernoMore@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usernoMore@3x.png"; sourceTree = "<group>"; };
@@ -995,8 +976,6 @@
 				C07AC0461F3D8D9100EBED61 /* pageControlCurrentDot@3x.png */,
 				C07AC03D1F3D85E900EBED61 /* pageControlDot@3x.png */,
 				C07AC03E1F3D85E900EBED61 /* pageControlDot@2x.png */,
-				C089B28C1F00F49400648EB4 /* Onboarding@2x.png */,
-				C089B28D1F00F49400648EB4 /* Onboarding@3x.png */,
 				C089B2881F00F44B00648EB4 /* wechatlogin@2x.png */,
 				C089B2891F00F44B00648EB4 /* wechatlogin@3x.png */,
 				C089B2841F00F41E00648EB4 /* jitang@2x.png */,
@@ -1042,8 +1021,6 @@
 			children = (
 				C07AC0491F3D953500EBED61 /* defaulthead@3x.png */,
 				C07AC04A1F3D953500EBED61 /* defaulthead@2x.png */,
-				C07ABFF31F3C435200EBED61 /* selectBirthday@3x.png */,
-				C07ABFF41F3C435200EBED61 /* selectBirthday@2x.png */,
 				C07ABFE31F3C2E6000EBED61 /* birthdayDone@3x.png */,
 				C07ABFE41F3C2E6000EBED61 /* birthdayDone@2x.png */,
 				C07ABFDF1F3C2D8900EBED61 /* tellMeBirthday@3x.png */,
@@ -1056,10 +1033,6 @@
 				C07ABFD11F39EF8E00EBED61 /* loginsettingheading@3x.png */,
 				C0B949041F39E1620008E29F /* weChatLogin@2x.png */,
 				C0B949051F39E1620008E29F /* weChatLogin@3x.png */,
-				C0B948F91F39DC8F0008E29F /* qianmuFurture@2x.png */,
-				C0B948FA1F39DC8F0008E29F /* qianmuFurture@3x.png */,
-				C0B948F51F39DC760008E29F /* Onboarding@2x.png */,
-				C0B948F61F39DC760008E29F /* Onboarding@3x.png */,
 			);
 			path = loginImage;
 			sourceTree = "<group>";
@@ -1242,7 +1215,6 @@
 		FF61E0901E9BBE76000E68F0 = {
 			isa = PBXGroup;
 			children = (
-				FFBDCCCB1EE52CBD00B3AE23 /* Reveal.framework */,
 				FF61E09B1E9BBE76000E68F0 /* Mr.Time */,
 				FF61E0B51E9BBE76000E68F0 /* Mr.TimeTests */,
 				FF61E0C01E9BBE76000E68F0 /* Mr.TimeUITests */,
@@ -1378,7 +1350,6 @@
 			children = (
 				C0CBA6411F60039F008DC3B9 /* commentAgeColor */,
 				C0CBA6561F60039F008DC3B9 /* contentAgeColor */,
-				C07B39951F5D2509001088F2 /* threeqidongye .png */,
 				C0B948F41F39DC2D0008E29F /* loginImage */,
 				C0A69F601EE9317E00DB4678 /* Common */,
 				C0A69F301EE7984500DB4678 /* userView */,
@@ -1530,13 +1501,13 @@
 					FF61E0981E9BBE76000E68F0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2CSYYV5Z4H;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1599,7 +1570,6 @@
 				C0CBA6901F60039F008DC3B9 /* contentYearBg8@3x.png in Resources */,
 				C0D48ACC1EFE99A100B92549 /* selectLock@3x.png in Resources */,
 				FF340B811EA0A04A00B4DB39 /* bookNormal@2x.png in Resources */,
-				C07ABFF61F3C435200EBED61 /* selectBirthday@2x.png in Resources */,
 				C089B2671F00A37400648EB4 /* headbackground@3x.png in Resources */,
 				C089B2871F00F41E00648EB4 /* jitang@3x.png in Resources */,
 				FFBED3811F6BA866005C239E /* usernoData@2x.png in Resources */,
@@ -1609,7 +1579,6 @@
 				C089B2761F00E81F00648EB4 /* aboutus@2x.png in Resources */,
 				C0CBA66F1F60039F008DC3B9 /* commentYearBg2@2x.png in Resources */,
 				C07ABFD71F39F04300EBED61 /* setingNickName@3x.png in Resources */,
-				C0B948F71F39DC760008E29F /* Onboarding@2x.png in Resources */,
 				C0CBA6831F60039F008DC3B9 /* contentYearBg2@2x.png in Resources */,
 				C089B28A1F00F44B00648EB4 /* wechatlogin@2x.png in Resources */,
 				C0CBA6741F60039F008DC3B9 /* commentYearBg4@3x.png in Resources */,
@@ -1624,7 +1593,6 @@
 				C0CBA68E1F60039F008DC3B9 /* contentYearBg7@3x.png in Resources */,
 				C089B2491EFFBC6C00648EB4 /* Savetoalbum@3x.png in Resources */,
 				C0CBA6761F60039F008DC3B9 /* commentYearBg5@3x.png in Resources */,
-				C0B948FC1F39DC8F0008E29F /* qianmuFurture@3x.png in Resources */,
 				C0D48A821EF680F000B92549 /* homePublish@3x.png in Resources */,
 				C0CBA6751F60039F008DC3B9 /* commentYearBg5@2x.png in Resources */,
 				C07ABFD31F39EF8E00EBED61 /* loginsettingheading@3x.png in Resources */,
@@ -1634,7 +1602,6 @@
 				FF340B871EA0A04A00B4DB39 /* userNormal@2x.png in Resources */,
 				C0D48AC71EFE998700B92549 /* normalLock@2x.png in Resources */,
 				C0E8EDF71EFFA06D0034570D /* navrightBtn@2x.png in Resources */,
-				C089B28E1F00F49400648EB4 /* Onboarding@2x.png in Resources */,
 				C0CBA66C1F60039F008DC3B9 /* commentYearBg0@3x.png in Resources */,
 				C05940271EEFBF57002751FE /* hotMessage@3x.png in Resources */,
 				C07ABFD61F39F04300EBED61 /* setingNickName@2x.png in Resources */,
@@ -1644,8 +1611,6 @@
 				C089B2831F00F05A00648EB4 /* userCollect@3x.png in Resources */,
 				C0E8EDF81EFFA06D0034570D /* navrightBtn@3x.png in Resources */,
 				C0A69F641EE9318D00DB4678 /* bacBackBtn@2x.png in Resources */,
-				C07B39961F5D2509001088F2 /* threeqidongye .png in Resources */,
-				C07ABFF51F3C435200EBED61 /* selectBirthday@3x.png in Resources */,
 				C0CBA68D1F60039F008DC3B9 /* contentYearBg7@2x.png in Resources */,
 				C0CBA6701F60039F008DC3B9 /* commentYearBg2@3x.png in Resources */,
 				C07ABFE11F3C2D8900EBED61 /* tellMeBirthday@3x.png in Resources */,
@@ -1653,13 +1618,11 @@
 				C07ABFD21F39EF8E00EBED61 /* loginsettingheading@2x.png in Resources */,
 				C089B27B1F00E81F00648EB4 /* suggestion@3x.png in Resources */,
 				FF340B721E9E640900B4DB39 /* bookSelect@3x.png in Resources */,
-				C0B948FB1F39DC8F0008E29F /* qianmuFurture@2x.png in Resources */,
 				C089B2461EFFBC6C00648EB4 /* QQzone@2x.png in Resources */,
 				C0CBA6771F60039F008DC3B9 /* commentYearBg6@2x.png in Resources */,
 				C0CBA6841F60039F008DC3B9 /* contentYearBg2@3x.png in Resources */,
 				C07AC0411F3D85E900EBED61 /* pageControlDot@3x.png in Resources */,
 				C07AC0421F3D85E900EBED61 /* pageControlDot@2x.png in Resources */,
-				C089B28F1F00F49400648EB4 /* Onboarding@3x.png in Resources */,
 				C07AC04C1F3D953500EBED61 /* defaulthead@2x.png in Resources */,
 				C059401D1EEFADEE002751FE /* bookLike@3x.png in Resources */,
 				C0A69F381EE79C2F00DB4678 /* Noticeicon@2x.png in Resources */,
@@ -1701,7 +1664,6 @@
 				C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */,
 				FFBED3831F6BA866005C239E /* usernoMore@2x.png in Resources */,
 				FF340B731E9E640900B4DB39 /* collectSelect@2x.png in Resources */,
-				C0B948F81F39DC760008E29F /* Onboarding@3x.png in Resources */,
 				C089B2481EFFBC6C00648EB4 /* Savetoalbum@2x.png in Resources */,
 				C089B2451EFFBC6C00648EB4 /* Moment@3x.png in Resources */,
 				C0B949071F39E1620008E29F /* weChatLogin@3x.png in Resources */,
@@ -2024,9 +1986,10 @@
 			baseConfigurationReference = A11F728AAD1C437A121BCF73 /* Pods-Mr.Time.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Mr.Time/Mr.Time.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2045,16 +2008,12 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-lc++",
 					"-ObjC",
-					"-lz",
-					"-framework",
-					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Offape.Mr.Time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e6323bc8-8de4-4e53-935a-0b00fde8129e";
+				PROVISIONING_PROFILE_SPECIFIER = timeDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2066,9 +2025,10 @@
 			baseConfigurationReference = 6A3E3194488AB383DFA6D83F /* Pods-Mr.Time.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Mr.Time/Mr.Time.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jicheng yin (ZH4K6TT67Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2087,16 +2047,12 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-lc++",
 					"-ObjC",
-					"-lz",
-					"-framework",
-					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Offape.Mr-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Offape.Mr.Time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e6323bc8-8de4-4e53-935a-0b00fde8129e";
+				PROVISIONING_PROFILE_SPECIFIER = timeDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

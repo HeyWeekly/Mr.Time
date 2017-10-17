@@ -244,7 +244,7 @@
     [self.switchLbale sizeToFit];
     self.switchLbale.right = KWidth - 20*screenRate;
     self.switchLbale.centerY = self.iconView.centerY;
-    self.switchLbale.width = 50*screenRate;
+    self.switchLbale.width = 30*screenRate;
     self.switchLbale.height = 30*screenRate;
 }
 - (UISwitch *)switchLbale {
@@ -256,7 +256,7 @@
         _switchLbale.layer.cornerRadius = 16*screenRate;
         _switchLbale.backgroundColor = RGBCOLOR(0x292929);
         _switchLbale.on = YES;
-        _switchLbale.transform = CGAffineTransformScale(_switchLbale.transform, 48.0*screenRate / _switchLbale.frame.size.width, 48.0*screenRate / _switchLbale.frame.size.width);
+//        _switchLbale.transform = CGAffineTransformScale(_switchLbale.transform, 48.0*screenRate / _switchLbale.frame.size.width, 48.0*screenRate / _switchLbale.frame.size.width);
     }
     return _switchLbale;
 }

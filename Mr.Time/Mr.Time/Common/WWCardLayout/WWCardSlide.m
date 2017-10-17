@@ -214,7 +214,7 @@ static float CardHeightScale = 0.7f;
     if (_oneTipLabel == nil) {
         _oneTipLabel = [[WWLabel alloc]init];
         _oneTipLabel.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
-        _oneTipLabel.text = @"上帝知道什么时候开始，什么时候结束，人只知道中间";
+        _oneTipLabel.text = @"上帝知道何时开始，何时结束，人只知道中间";
         NSArray *gradientColors = @[(id)RGBCOLOR(0x15C2FF).CGColor, (id)RGBCOLOR(0x2EFFB6).CGColor];
         _oneTipLabel.colors =gradientColors;
         _oneTipLabel.hidden = YES;

@@ -86,7 +86,7 @@ static WWErrorView* instance = nil;
         }else{
             errorLabel.font = [UIFont fontWithName:kFont_Regular size:12*screenRate];
             errorView.frame = CGRectMake(0, -20, KWidth, 20);
-            errorView.backgroundColor = [UIColor greenColor];
+            errorView.backgroundColor = [UIColor blueColor];
             errorLabel.frame = CGRectMake(0, 0, errorView.frame.size.width, errorView.frame.size.height);
         }
         [errorView addSubview:errorLabel];

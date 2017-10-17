@@ -152,9 +152,7 @@
         request.parameters = @{@"birth":self.dateStr,@"nickname":model.nickname};
         request.httpMethod = kXMHTTPMethodPOST;
     } onSuccess:^(id  _Nullable responseObject) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"个人信息更新成功"}];
     } onFailure:^(NSError * _Nullable error) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowError object:nil userInfo:@{kUserInfo_MainNavErrorMsg:@"个人信息更新失败"}];
     } onFinished:nil];
     
     NSInteger dataStr = [self getDifferenceByDate:self.dateStr];

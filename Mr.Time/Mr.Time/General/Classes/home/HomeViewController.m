@@ -193,9 +193,9 @@
         model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
         config.generalHeaders = @{@"uid": model.uid ? model.uid : @"life15078000081469261"};
         config.callbackQueue = dispatch_get_main_queue();
-#ifdef DEBUG
-        config.consoleLog = YES;
-#endif
+//#ifdef DEBUG
+        config.consoleLog = NO;
+//#endif
     }];
 }
 

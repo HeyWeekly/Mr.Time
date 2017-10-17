@@ -12,7 +12,7 @@
 #import "WWLabel.h"
 
 @interface LoginViewController ()
-@property (nonatomic, strong) UIImageView *furture;
+@property (nonatomic, strong) WWLabel *furture;
 @property (nonatomic, strong) UIImageView *centerImage;
 @property (nonatomic, strong) UIButton *weChatBtn;
 @property (nonatomic, strong) UIButton *settingLabel;
@@ -29,15 +29,15 @@
 }
 
 - (void)setupSubviews {
-    [self.view addSubview:self.furture];
-    [self.furture sizeToFit];
-    self.furture.centerX = self.view.centerX;
-    self.furture.top = 100*screenRate;
-    
     [self.view addSubview:self.centerImage];
     [self.centerImage sizeToFit];
     self.centerImage.centerX = self.view.centerX;
-    self.centerImage.top = self.furture.bottom+56*screenRate;
+    self.centerImage.top = 60*screenRate;
+    
+    [self.view addSubview:self.furture];
+    [self.furture sizeToFit];
+    self.furture.centerX = self.view.centerX;
+    self.furture.top = self.centerImage.bottom+36*screenRate;
     
     [self.view addSubview:self.settingLabel];
     [self.settingLabel sizeToFit];
@@ -110,10 +110,13 @@
     return _settingLabel;
 }
 
-- (UIImageView *)furture {
+- (WWLabel *)furture {
     if (_furture == nil) {
-        _furture = [[UIImageView alloc]init];
-        _furture.image = [UIImage imageNamed:@"qianmuFurture"];
+        _furture = [[WWLabel alloc]init];
+        _furture.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
+        _furture.text = @"上帝知道何时开始，何时结束，人只知道中间";
+        NSArray *gradientColors = @[(id)RGBCOLOR(0x15C2FF).CGColor, (id)RGBCOLOR(0x2EFFB6).CGColor];
+        _furture.colors =gradientColors;
     }
     return _furture;
 }
@@ -121,7 +124,7 @@
 - (UIImageView *)centerImage {
     if (_centerImage == nil) {
         _centerImage = [[UIImageView alloc]init];
-        _centerImage.image = [UIImage imageNamed:@"Onboarding@2x"];
+        _centerImage.image = [UIImage imageNamed:@"Onboarding"];
     }
     return _centerImage;
 }

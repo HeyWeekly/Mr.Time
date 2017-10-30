@@ -19,7 +19,7 @@
 - (void)prepare {
     [super prepare];
     // 设置控件的高度
-    self.mj_h = 50;
+    self.mj_h = 64;
     self.frashLayer = [DRFrashLayer layer];
     [self.layer addSublayer:self.frashLayer];
 }

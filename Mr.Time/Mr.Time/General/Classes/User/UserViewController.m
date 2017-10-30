@@ -20,6 +20,7 @@
 
 @protocol userPublishCellDelegate <NSObject>
 - (void)userCellLike;
+- (void)moreClickAid:(NSString *)aid withContnet:(NSString *)content;
 @end
 
 @interface userPublishCell : UITableViewCell
@@ -32,10 +33,11 @@
 @property (nonatomic, assign) BOOL islike;
 @property (nonatomic,  weak) id <userPublishCellDelegate> delegate;
 @property (nonatomic, strong) WWHomeBookModel *model;
+@property (nonatomic, strong) UIButton *moreBtn;
 @end
 
 
-@interface UserViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface UserViewController ()<UITableViewDelegate,UITableViewDataSource,userPublishCellDelegate>
 @property(nonatomic, strong) UIButton  *notice;
 @property(nonatomic, strong) UIButton  *setting;
 @property(nonatomic, strong) UIButton  *backheadImage;
@@ -207,20 +209,57 @@
         cell = [[userPublishCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userPublishCell"];
     }
     cell.model = self.modelArray[indexPath.row];
+    cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WWHomeBookModel *model = self.modelArray[indexPath.row];
-    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:model.age.integerValue comment:model.content authAge:model.authorAge authName:model.nickname favoId:model.aid.integerValue favoCount:model.enshrineCnt source:@"个人列表"];
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:model.age.integerValue comment:model.content authAge:model.authorAge authName:model.nickname favoId:model.aid.integerValue favoCount:model.enshrined source:@"个人列表"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return self.modelArray[indexPath.row].cellHeight ? self.modelArray[indexPath.row].cellHeight : 44;
 }
-//
+
+- (void)moreClickAid:(NSString *)aid withContnet:(NSString *)content {
+    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
+    WEAK_SELF;
+    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"删除"
+                                                               handler:^(WWActionSheetAction *action) {
+                                                                   [weakSelf contentDelAid:aid withContnet:content];
+                                                               }];
+    
+    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"复制"
+                                                                handler:^(WWActionSheetAction *action) {
+                                                                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                                                                    pasteboard.string = content;
+                                                                    [WWHUD showMessage:@"已复制" inView:weakSelf.view];
+                                                                }];
+    [actionSheet addAction:action];
+    [actionSheet addAction:action2];
+    
+    [actionSheet showInWindow:[WWGeneric popOverWindow]];
+}
+
+- (void)contentDelAid:(NSString *)aid withContnet:(NSString *)content {
+    WEAK_SELF;
+    WWUserModel *model = [WWUserModel shareUserModel];
+    model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.api = delMetto;
+        request.parameters = @{@"uid" : model.uid ? model.uid : @"life15078000081469261", @"aid" : aid};
+        request.httpMethod = kXMHTTPMethodPOST;
+    } onSuccess:^(id  _Nullable responseObject) {
+        weakSelf.index = @(0);
+        [weakSelf loadCustomInfo];
+    } onFailure:^(NSError * _Nullable error) {
+        [WWHUD showMessage:@"删除失败，请重试~" inView:self.view];
+    } onFinished:nil];
+}
+
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;
 //    for (userPublishCell *cell in [self.tableView visibleCells]) {
@@ -494,6 +533,7 @@
     [self.containerView addSubview:self.yearsImage];
     [self.containerView addSubview:self.likeNum];
     [self.containerView addSubview:self.likeImage];
+    [self.containerView addSubview:self.moreBtn];
     [self.containerView addSubview:self.contentLabel];
     [self addSubview:self.containerView];
 }
@@ -506,24 +546,24 @@
     [self.yearsNum sizeToFit];
     self.yearsNum.top = 8*screenRate;
     self.yearsNum.left = 20*screenRate;
-//    [self.containerView addSubview:self.yearsNum];
     
     [self.yearsImage sizeToFit];
     self.yearsImage.left = self.yearsNum.right;
     self.yearsImage.top = 12*screenRate;
-//    [self.containerView addSubview:self.yearsImage];
+    
+    [self.moreBtn sizeToFit];
+    self.moreBtn.right = self.containerView.width-25*screenRate;
+    self.moreBtn.top = 15*screenRate;
     
     self.likeNum.text = model.enshrineCnt;
     [self.likeNum sizeToFit];
-    self.likeNum.right = self.containerView.width-25*screenRate;
-    self.likeNum.top = 26.5*screenRate;
-//    [self.containerView addSubview:self.likeNum];
+    self.likeNum.right = self.moreBtn.left-15*screenRate;
+    self.likeNum.top = 18*screenRate;
     
-//    [self.containerView addSubview:self.likeImage];
     [self.likeImage sizeToFit];
     self.likeImage.right = self.likeNum.left-5*screenRate;
-    self.likeImage.top = 19*screenRate;
-    if (model.enshrineCnt.integerValue > 0) {
+    self.likeImage.top = 10*screenRate;
+    if (model.enshrined.integerValue > 0) {
         [self.likeImage setFavo:YES withAnimate:NO];
     }else {
         [self.likeImage setFavo:NO withAnimate:NO];
@@ -545,6 +585,12 @@
 //    self.containerView.left = 0;
 //    [self addSubview:self.containerView];
     _model.cellHeight = self.contentLabel.bottom + 47*screenRate;
+}
+
+- (void)moreClick {
+    if ([self.delegate respondsToSelector:@selector(moreClickAid:withContnet:)]) {
+        [self.delegate moreClickAid:self.model.aid withContnet:self.model.content];
+    }
 }
 
 #pragma mark - 懒加载
@@ -595,6 +641,15 @@
         _contentLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
     }
     return _contentLabel;
+}
+
+- (UIButton *)moreBtn {
+    if (_moreBtn == nil) {
+        _moreBtn = [[UIButton alloc]init];
+        [_moreBtn setImage:[UIImage imageNamed:@"More"] forState:UIControlStateNormal];
+        [_moreBtn addTarget:self action:@selector(moreClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _moreBtn;
 }
 
 - (UIView *)containerView {

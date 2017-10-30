@@ -123,7 +123,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WWHomeBookModel *model =self.modelArray[indexPath.row];
-    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:self.years comment:model.content authAge:model.authorAge authName:model.nickname favoId:model.aid.integerValue favoCount:model.enshrineCnt source:@"个人列表"];
+    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:self.years comment:model.content authAge:model.authorAge authName:model.nickname favoId:model.aid.integerValue favoCount:model.enshrined source:@"个人列表"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -214,7 +214,7 @@
     [self.likeImage sizeToFit];
     self.likeImage.right = self.likeNum.left - 5*screenRate;
     self.likeImage.top = self.nameLbael.top - 8*screenRate;
-    if (model.enshrineCnt.integerValue > 0) {
+    if (model.enshrined.integerValue > 0) {
         [self.likeImage setFavo:YES withAnimate:NO];
         self.islike = YES;
     }else {

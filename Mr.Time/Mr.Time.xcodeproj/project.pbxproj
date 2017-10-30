@@ -225,6 +225,8 @@
 		FF61E0B71E9BBE76000E68F0 /* Mr_TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0B61E9BBE76000E68F0 /* Mr_TimeTests.m */; };
 		FF61E0C21E9BBE76000E68F0 /* Mr_TimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0C11E9BBE76000E68F0 /* Mr_TimeUITests.m */; };
 		FF66535F1F8D2867001F38B8 /* WWAboutMe.m in Sources */ = {isa = PBXBuildFile; fileRef = FF66535E1F8D2867001F38B8 /* WWAboutMe.m */; };
+		FFA549231FA70D470067AF8D /* WWBlankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA549221FA70D470067AF8D /* WWBlankVC.m */; };
+		FFB5AB561FA5B912006C907A /* WWRegisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5AB551FA5B912006C907A /* WWRegisVC.m */; };
 		FFB5F9F51F6E17FE00D34F35 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5F9F41F6E17FE00D34F35 /* MBProgressHUD.m */; };
 		FFB5F9F91F6E181800D34F35 /* WWHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5F9F81F6E181800D34F35 /* WWHUD.m */; };
 		FFBDCCC91EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBDCCC61EE52BFF00B3AE23 /* UITableView+SDAutoTableViewCellHeight.m */; };
@@ -573,6 +575,10 @@
 		FF61E0C31E9BBE76000E68F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF66535D1F8D2867001F38B8 /* WWAboutMe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWAboutMe.h; sourceTree = "<group>"; };
 		FF66535E1F8D2867001F38B8 /* WWAboutMe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWAboutMe.m; sourceTree = "<group>"; };
+		FFA549211FA70D470067AF8D /* WWBlankVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWBlankVC.h; sourceTree = "<group>"; };
+		FFA549221FA70D470067AF8D /* WWBlankVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWBlankVC.m; sourceTree = "<group>"; };
+		FFB5AB541FA5B912006C907A /* WWRegisVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWRegisVC.h; sourceTree = "<group>"; };
+		FFB5AB551FA5B912006C907A /* WWRegisVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWRegisVC.m; sourceTree = "<group>"; };
 		FFB5F9F31F6E17FE00D34F35 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		FFB5F9F41F6E17FE00D34F35 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FFB5F9F71F6E181800D34F35 /* WWHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWHUD.h; sourceTree = "<group>"; };
@@ -686,6 +692,8 @@
 				C0B949021F39DFE50008E29F /* WWLoginSettingInfoVC.m */,
 				C07ABFDC1F3ADE6100EBED61 /* WWLoginBirthdaySetting.h */,
 				C07ABFDD1F3ADE6100EBED61 /* WWLoginBirthdaySetting.m */,
+				FFB5AB541FA5B912006C907A /* WWRegisVC.h */,
+				FFB5AB551FA5B912006C907A /* WWRegisVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1259,6 +1267,8 @@
 				FF61E09D1E9BBE76000E68F0 /* main.m */,
 				C0A69F9E1EE9498100DB4678 /* Mr.Time-Bridging-Header.h */,
 				C0A69F9F1EE949E600DB4678 /* WWSOCommon.swift */,
+				FFA549211FA70D470067AF8D /* WWBlankVC.h */,
+				FFA549221FA70D470067AF8D /* WWBlankVC.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1778,6 +1788,7 @@
 				C05940371EF1425A002751FE /* YYFPSLabel.m in Sources */,
 				C0D48A871EF688DA00B92549 /* WWPublishVC.m in Sources */,
 				C089B2631EFFD0AD00648EB4 /* WWCollectBtnCircleView.m in Sources */,
+				FFB5AB561FA5B912006C907A /* WWRegisVC.m in Sources */,
 				C089B29A1F00F5BE00648EB4 /* CustomFlipTransition.swift in Sources */,
 				FF340B021E9E03BE00B4DB39 /* WWAppDelegate.m in Sources */,
 				FF61E09E1E9BBE76000E68F0 /* main.m in Sources */,
@@ -1823,6 +1834,7 @@
 				C063512A1F4440E500820458 /* WWErrorView.m in Sources */,
 				C07AC05D1F3DBCAE00EBED61 /* WWActionSheet.m in Sources */,
 				FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */,
+				FFA549231FA70D470067AF8D /* WWBlankVC.m in Sources */,
 				C05940381EF1425A002751FE /* YYWeakProxy.m in Sources */,
 				FF66535F1F8D2867001F38B8 /* WWAboutMe.m in Sources */,
 				C089B2971F00F5BE00648EB4 /* CardCell.swift in Sources */,
@@ -1988,7 +2000,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
@@ -2027,7 +2039,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;

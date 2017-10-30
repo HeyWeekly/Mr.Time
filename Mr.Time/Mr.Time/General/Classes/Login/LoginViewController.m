@@ -10,12 +10,15 @@
 #import "WWLoginSettingInfoVC.h"
 #import "WXApi.h"
 #import "WWLabel.h"
+#import <YYText/YYText.h>
+#import "WWRegisVC.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) WWLabel *furture;
 @property (nonatomic, strong) UIImageView *centerImage;
 @property (nonatomic, strong) UIButton *weChatBtn;
 @property (nonatomic, strong) UIButton *settingLabel;
+@property (nonatomic, strong) YYLabel *regisBtn;
 @end
 
 @implementation LoginViewController
@@ -55,6 +58,10 @@
         self.settingLabel.hidden = YES;
         self.weChatBtn.hidden = NO;
     }
+    [self.view addSubview:self.regisBtn];
+    [self.regisBtn sizeToFit];
+    self.regisBtn.centerX_sd = self.view.centerX_sd;
+    self.regisBtn.bottom = self.view.bottom  - 49;
 }
 
 #pragma mark - event
@@ -141,6 +148,36 @@
     return _weChatBtn;
 }
 
+- (YYLabel *)regisBtn {
+    if (_regisBtn == nil) {
+        _regisBtn = [[YYLabel alloc]init];
+        NSMutableAttributedString *text;
+        NSInteger loc;
+        WEAK_SELF;
+        if (![WXApi isWXAppInstalled]) {
+            text = [[NSMutableAttributedString alloc] initWithString:@"点击下一步代表您同意《使用协议》"];
+            loc = 10;
+        }else {
+             text = [[NSMutableAttributedString alloc] initWithString:@"注册代表您同意《使用协议》"];
+            loc = 7;
+        }
+        text.yy_font = [UIFont fontWithName:kFont_Light size:12];
+        text.yy_color = RGBCOLOR(0xe5e5e5);
+        [text yy_setTextHighlightRange:NSMakeRange(loc, 6)
+                                 color:RGBCOLOR(0x0076FF)
+                       backgroundColor:[UIColor clearColor]
+                             tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                                 [weakSelf regisClick];
+                             }];
+        _regisBtn.attributedText = text;
+    }
+    return _regisBtn;
+}
+
+- (void)regisClick {
+    WWRegisVC *vc = [[WWRegisVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }

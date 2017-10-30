@@ -9,6 +9,7 @@
 #import "WWLoginSettingInfoVC.h"
 #import "WWLoginBirthdaySetting.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "WXApi.h"
 
 #define DESMAX_STARWORDS_LENGTH 12
 

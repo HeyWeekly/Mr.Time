@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UILabel *textLabel;;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, assign) BOOL islike;
+@property (nonatomic, strong) UIButton *moreBtn;
 @end
 
 @implementation WWCardSlideCell
@@ -54,9 +55,14 @@
     self.oldLabel.left = self.yearsNum.left;
     self.oldLabel.top = self.yearsLabel.bottom;
     
+    [self addSubview:self.moreBtn];
+    [self.moreBtn sizeToFit];
+    self.moreBtn.right = self.bounds.size.width - 20*screenRate;
+    self.moreBtn.top = 23*screenRate;
+    
     [self addSubview:self.likeImage];
     [self.likeImage sizeToFit];
-    self.likeImage.right = self.bounds.size.width - 20*screenRate;
+    self.likeImage.right = self.moreBtn.left - 15*screenRate;
     self.likeImage.top = 20*screenRate;
     [self.likeImage sizeToFit];
     [self.likeImage addTarget:self action:@selector(likeClick) forControlEvents:UIControlEventTouchUpInside];
@@ -81,7 +87,7 @@
     if (model.age.integerValue >= 100) {
         self.imageView.image = [UIImage imageNamed:@"contentYearBg9"];
     }
-    if (model.enshrineCnt.integerValue > 0) {
+    if (model.enshrined.integerValue > 0) {
         [self.likeImage setFavo:YES withAnimate:NO];
         self.islike = YES;
     }else {
@@ -109,7 +115,12 @@
     [str addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(0x50616E) range:NSMakeRange(12,model.nickname.length)];
     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont_DINAlternate size:14*screenRate] range:NSMakeRange(12, model.nickname.length)];
     self.textLabel.attributedText = str;
-    
+}
+
+- (void)moreClick {
+    if ([self.delegate respondsToSelector:@selector(moreClickAid:withContnet:)]) {
+        [self.delegate moreClickAid:self.model.aid withContnet:self.model.content];
+    }
 }
 
 - (void)likeClick {
@@ -196,5 +207,15 @@
     }
     return _likeImage;
 }
+
+- (UIButton *)moreBtn {
+    if (_moreBtn == nil) {
+        _moreBtn = [[UIButton alloc]init];
+        [_moreBtn setImage:[UIImage imageNamed:@"More"] forState:UIControlStateNormal];
+        [_moreBtn addTarget:self action:@selector(moreClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _moreBtn;
+}
+
 
 @end

@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, copy) NSString *enshrineCnt;
+@property (nonatomic, copy) NSString *enshrined;
 @property (nonatomic, copy) NSString *nickname;
 @end
 

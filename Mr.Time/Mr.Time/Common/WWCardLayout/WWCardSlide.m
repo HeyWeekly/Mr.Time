@@ -178,6 +178,33 @@ static float CardHeightScale = 0.7f;
     } onFinished:nil];
 }
 
+- (void)moreClickAid:(NSString *)aid withContnet:(NSString *)content {
+    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
+    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:@"举报"
+                                                               handler:^(WWActionSheetAction *action) {
+                                                                   [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+                                                                       request.api = conReport;
+                                                                       request.parameters = @{@"content" : content, @"tid" : aid, @"type" : @"1"};
+                                                                       request.httpMethod = kXMHTTPMethodPOST;
+                                                                   } onSuccess:^(id  _Nullable responseObject) {
+                                                                       [WWHUD showMessage:@"举报成功，处理中！" inView:self];
+                                                                   } onFailure:^(NSError * _Nullable error) {
+                                                                       [WWHUD showMessage:@"提交失败，请重试~" inView:self];
+                                                                   } onFinished:nil];
+                                                               }];
+    
+    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"复制"
+                                                                handler:^(WWActionSheetAction *action) {
+                                                                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                                                                    pasteboard.string = content;
+                                                                    [WWHUD showMessage:@"已复制" inView:self];
+                                                                }];
+    [actionSheet addAction:action];
+    [actionSheet addAction:action2];
+    
+    [actionSheet showInWindow:[WWGeneric popOverWindow]];
+}
+
 #pragma mark 功能方法
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     [self switchToIndex:selectedIndex animated:false];

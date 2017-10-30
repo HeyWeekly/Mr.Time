@@ -299,7 +299,7 @@
         _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 10, KWidth, 44)];
         _nav.backBtn.hidden = YES;
         [_nav.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-        _nav.navTitle.text = @"不必";
+        _nav.navTitle.text = @"时间先生";
     }
     return _nav;
 }

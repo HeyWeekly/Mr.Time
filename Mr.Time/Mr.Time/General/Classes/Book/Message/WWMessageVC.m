@@ -16,6 +16,9 @@
 @property (nonatomic, strong) UIImageView *backImage;
 @end
 
+@protocol MessageCellDelegate <NSObject>
+- (void)moreClickAid:(NSString *)aid withContnet:(NSString *)content andOpenid:(NSString *)openid;
+@end
 
 @interface MessageCell : UITableViewCell
 @property (nonatomic, strong) UILabel *messageLabel;
@@ -24,9 +27,11 @@
 @property (nonatomic, strong) UILabel *likeNum;
 @property (nonatomic, strong) UIView *sepLine;
 @property (nonatomic, strong) WWMessageDetailModel *model;
+@property (nonatomic, strong) UIButton *moreBtn;
+@property (nonatomic,weak) id <MessageCellDelegate> delegate;
 @end
 
-@interface WWMessageVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface WWMessageVC ()<UITableViewDelegate,UITableViewDataSource,MessageCellDelegate>
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) WWBaseTableView *tableView;
 @property (nonatomic, assign) NSInteger mettoId;
@@ -122,6 +127,7 @@
     if (!cell) {
         cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCell"];
     }
+    cell.delegate = self;
     cell.model = self.messageModelArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -152,6 +158,57 @@
     WWMessageDetailModel *model =self.messageModelArray[indexPath.row];
     WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:self.year comment:model.content authAge:model.age authName:model.nickname favoId:model.cid.integerValue favoCount:model.favourCnt source:@"留言列表"];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)moreClickAid:(NSString *)aid withContnet:(NSString *)content andOpenid:(NSString *)openid{
+    WWUserModel *model = [WWUserModel shareUserModel];
+    model = (WWUserModel*)[NSKeyedUnarchiver unarchiveObjectWithFile:ArchiverPath];
+    NSString *text = @"举报";
+    NSString *uid = model.uid;
+    if ([openid isEqualToString:model.openid]) {
+        text = @"删除";
+    }
+    if ([openid isEqualToString:@"oDPUU1JCynfSGI8bUasATxPAwo9E"] && model.openid == nil) {
+        text = @"删除";
+        openid = @"oDPUU1JCynfSGI8bUasATxPAwo9E";
+        uid = @"life15078000081469261";
+    }
+    WWActionSheet *actionSheet = [[WWActionSheet alloc] initWithTitle:nil];
+    WEAK_SELF;
+    WWActionSheetAction *action = [WWActionSheetAction actionWithTitle:text
+                                                               handler:^(WWActionSheetAction *action) {
+                                                                   [weakSelf  messageId:aid content:content openid:openid andDel:[text isEqualToString:@"删除"] ? YES:NO andUid:uid];
+                                                               }];
+    
+    WWActionSheetAction *action2 = [WWActionSheetAction actionWithTitle:@"复制"
+                                                                handler:^(WWActionSheetAction *action) {
+                                                                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                                                                    pasteboard.string = content;
+                                                                    [WWHUD showMessage:@"已复制" inView:weakSelf.view];
+                                                                }];
+    [actionSheet addAction:action];
+    [actionSheet addAction:action2];
+    
+    [actionSheet showInWindow:[WWGeneric popOverWindow]];
+}
+
+- (void)messageId:(NSString *)aid content:(NSString *)content openid:(NSString*)openid andDel:(BOOL)isDel andUid:(NSString *)uid{
+    WEAK_SELF;
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        if (isDel) {
+            request.api = delMessage;
+            request.parameters = @{@"cid" : aid,@"uid":uid};
+        }else {
+            request.api = conReport;
+            request.parameters = @{@"content" : content, @"tid" : aid, @"type" : @"2"};
+        }
+        request.httpMethod = kXMHTTPMethodPOST;
+    } onSuccess:^(id  _Nullable responseObject) {
+        [weakSelf loadHotMessage];
+        [WWHUD showMessage:@"操作成功！" inView:self.view];
+    } onFailure:^(NSError * _Nullable error) {
+        [WWHUD showMessage:@"操作失败，请重试~" inView:self.view];
+    } onFinished:nil];
 }
 
 - (void)backClick {
@@ -229,9 +286,14 @@
     self.nameLbael.top = self.messageLabel.bottom + 12*screenRate;
     [self addSubview:self.nameLbael];
     
+    [self addSubview:self.moreBtn];
+    [self.moreBtn sizeToFit];
+    self.moreBtn.right = KWidth - 20*screenRate;
+    self.moreBtn.top = self.nameLbael.top-2*screenRate;
+    
     self.likeNum.text = model.favourCnt;
     [self.likeNum sizeToFit];
-    self.likeNum.right = KWidth - 20*screenRate;
+    self.likeNum.right = self.moreBtn.left - 15*screenRate;
     self.likeNum.top = self.nameLbael.top;
     [self addSubview:self.likeNum];
     
@@ -247,6 +309,12 @@
     self.sepLine.height = 0.5;
     [self addSubview:self.sepLine];
     model.cellHeight = self.sepLine.bottom;
+}
+
+- (void)moreClick {
+    if ([self.delegate respondsToSelector:@selector(moreClickAid:withContnet:andOpenid:)]) {
+        [self.delegate moreClickAid:self.model.cid withContnet:self.model.content andOpenid:self.model.userOpenid];
+    }
 }
 
 #pragma mark - 懒加载
@@ -294,6 +362,16 @@
     }
     return _sepLine;
 }
+
+- (UIButton *)moreBtn {
+    if (_moreBtn == nil) {
+        _moreBtn = [[UIButton alloc]init];
+        [_moreBtn setImage:[UIImage imageNamed:@"More"] forState:UIControlStateNormal];
+        [_moreBtn addTarget:self action:@selector(moreClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _moreBtn;
+}
+
 
 @end
 

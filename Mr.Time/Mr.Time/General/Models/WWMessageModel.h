@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *nickname;
 @property (nonatomic, copy) NSString *age;
 @property (nonatomic, copy) NSString *favourCnt;
+@property (nonatomic, copy) NSString *favoured;
 @property (nonatomic, copy) NSString *cid;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *pubTime;

@@ -81,7 +81,7 @@
     }
     if ([viewController isKindOfClass:[BookViewController class]])
     {
-        tabBarController.navigationItem.title = @"人间指南";
+        tabBarController.navigationItem.title = @"中间";
     }
     if ([viewController isKindOfClass:[CollectViewController class]])
     {

@@ -12,6 +12,7 @@
 
 @protocol WWCardSlideCellDelagate <NSObject>
 @optional
+- (void)moreClickAid:(NSString *)aid withContnet:(NSString *)content;
 - (void)bookCellLikeIndex:(NSInteger)index;
 @end
 

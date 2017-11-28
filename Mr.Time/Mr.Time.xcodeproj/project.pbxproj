@@ -192,6 +192,7 @@
 		C0E8EDFB1EFFA3440034570D /* WWMessageDetailVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E8EDFA1EFFA3440034570D /* WWMessageDetailVCViewController.m */; };
 		C0E8EDFE1EFFA5350034570D /* bookOval@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0E8EDFC1EFFA5350034570D /* bookOval@2x.png */; };
 		C0E8EDFF1EFFA5350034570D /* bookOval@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0E8EDFD1EFFA5350034570D /* bookOval@3x.png */; };
+		FF0C730F1FC5585F00577388 /* WWNewMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0C730E1FC5585F00577388 /* WWNewMessageVC.m */; };
 		FF340B021E9E03BE00B4DB39 /* WWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B011E9E03BE00B4DB39 /* WWAppDelegate.m */; };
 		FF340B081E9E152500B4DB39 /* WWAppDelegate+RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B071E9E152500B4DB39 /* WWAppDelegate+RootController.m */; };
 		FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = FF340B0A1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m */; };
@@ -225,6 +226,7 @@
 		FF61E0B71E9BBE76000E68F0 /* Mr_TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0B61E9BBE76000E68F0 /* Mr_TimeTests.m */; };
 		FF61E0C21E9BBE76000E68F0 /* Mr_TimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0C11E9BBE76000E68F0 /* Mr_TimeUITests.m */; };
 		FF66535F1F8D2867001F38B8 /* WWAboutMe.m in Sources */ = {isa = PBXBuildFile; fileRef = FF66535E1F8D2867001F38B8 /* WWAboutMe.m */; };
+		FF73DF8A1FCD68870070E9CF /* WWMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF73DF891FCD68870070E9CF /* WWMessageView.m */; };
 		FFA549231FA70D470067AF8D /* WWBlankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA549221FA70D470067AF8D /* WWBlankVC.m */; };
 		FFB5AB561FA5B912006C907A /* WWRegisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5AB551FA5B912006C907A /* WWRegisVC.m */; };
 		FFB5F9F51F6E17FE00D34F35 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5F9F41F6E17FE00D34F35 /* MBProgressHUD.m */; };
@@ -517,6 +519,8 @@
 		C0E8EDFA1EFFA3440034570D /* WWMessageDetailVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWMessageDetailVCViewController.m; sourceTree = "<group>"; };
 		C0E8EDFC1EFFA5350034570D /* bookOval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookOval@2x.png"; sourceTree = "<group>"; };
 		C0E8EDFD1EFFA5350034570D /* bookOval@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookOval@3x.png"; sourceTree = "<group>"; };
+		FF0C730D1FC5585F00577388 /* WWNewMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWNewMessageVC.h; sourceTree = "<group>"; };
+		FF0C730E1FC5585F00577388 /* WWNewMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWNewMessageVC.m; sourceTree = "<group>"; };
 		FF10A31A1F8CB41200537C78 /* WechatAuthSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		FF10A31B1F8CB41300537C78 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		FF10A31C1F8CB41300537C78 /* WXApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -575,6 +579,8 @@
 		FF61E0C31E9BBE76000E68F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF66535D1F8D2867001F38B8 /* WWAboutMe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWAboutMe.h; sourceTree = "<group>"; };
 		FF66535E1F8D2867001F38B8 /* WWAboutMe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWAboutMe.m; sourceTree = "<group>"; };
+		FF73DF881FCD68870070E9CF /* WWMessageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWMessageView.h; sourceTree = "<group>"; };
+		FF73DF891FCD68870070E9CF /* WWMessageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWMessageView.m; sourceTree = "<group>"; };
 		FFA549211FA70D470067AF8D /* WWBlankVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWBlankVC.h; sourceTree = "<group>"; };
 		FFA549221FA70D470067AF8D /* WWBlankVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWBlankVC.m; sourceTree = "<group>"; };
 		FFB5AB541FA5B912006C907A /* WWRegisVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWRegisVC.h; sourceTree = "<group>"; };
@@ -718,6 +724,10 @@
 				C05940201EEFB7F7002751FE /* WWMessageVC.m */,
 				C0E8EDF91EFFA3440034570D /* WWMessageDetailVCViewController.h */,
 				C0E8EDFA1EFFA3440034570D /* WWMessageDetailVCViewController.m */,
+				FF0C730D1FC5585F00577388 /* WWNewMessageVC.h */,
+				FF0C730E1FC5585F00577388 /* WWNewMessageVC.m */,
+				FF73DF881FCD68870070E9CF /* WWMessageView.h */,
+				FF73DF891FCD68870070E9CF /* WWMessageView.m */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -1511,7 +1521,7 @@
 					FF61E0981E9BBE76000E68F0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2CSYYV5Z4H;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -1835,6 +1845,7 @@
 				C07AC05D1F3DBCAE00EBED61 /* WWActionSheet.m in Sources */,
 				FF340B0B1E9E153C00B4DB39 /* WWAppDelegate+AppLifeCircle.m in Sources */,
 				FFA549231FA70D470067AF8D /* WWBlankVC.m in Sources */,
+				FF0C730F1FC5585F00577388 /* WWNewMessageVC.m in Sources */,
 				C05940381EF1425A002751FE /* YYWeakProxy.m in Sources */,
 				FF66535F1F8D2867001F38B8 /* WWAboutMe.m in Sources */,
 				C089B2971F00F5BE00648EB4 /* CardCell.swift in Sources */,
@@ -1852,6 +1863,7 @@
 				C0D48A941EF7B97F00B92549 /* MYCollectionView.m in Sources */,
 				C05940091EEA9659002751FE /* LoginViewController.m in Sources */,
 				FFBDCCCA1EE52BFF00B3AE23 /* UIView+SDAutoLayout.m in Sources */,
+				FF73DF8A1FCD68870070E9CF /* WWMessageView.m in Sources */,
 				C0A69F5F1EE92DEA00DB4678 /* WWNavigationVC.m in Sources */,
 				C05940021EEA48DB002751FE /* WWLabel.m in Sources */,
 				C089B2981F00F5BE00648EB4 /* CardView.swift in Sources */,
@@ -2000,10 +2012,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2024,8 +2036,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Offape.Mr.Time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e6323bc8-8de4-4e53-935a-0b00fde8129e";
-				PROVISIONING_PROFILE_SPECIFIER = timeDistribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2039,10 +2051,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2063,8 +2075,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Offape.Mr.Time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e6323bc8-8de4-4e53-935a-0b00fde8129e";
-				PROVISIONING_PROFILE_SPECIFIER = timeDistribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

@@ -141,10 +141,10 @@ void drawLineInContextFromStartPointAndEndPointWithScale (CGContextRef ctx, CGPo
         drawPointAtRect(ScaleFourthPoint,ctx,UIColorFromRGB_DR(0x00FFD5, 1).CGColor);
     }else {
         if (self.complete >= 0.375 ) {
-            //必定绘制第二个圆
+            //必定绘制第一个圆
             drawPointAtRect(secondPoint,ctx,UIColorFromRGB_DR(0x15C2FF, 1.0).CGColor);
             if (self.complete > 0.425 && self.complete < 0.575) {
-                //绘制第二条线条
+                //绘制第一条线条
                 if (self.complete<0.5) {
                     CGFloat scale = (self.complete-0.425)/0.075;
                     drawLineInContextFromStartPointAndEndPointWithScale(ctx, secondPoint, fourthPoint, scale,UIColorFromRGB_DR(0x15C2FF, 1.0));
@@ -153,10 +153,10 @@ void drawLineInContextFromStartPointAndEndPointWithScale (CGContextRef ctx, CGPo
                     drawLineInContextFromStartPointAndEndPointWithScale(ctx, fourthPoint, secondPoint, scale,UIColorFromRGB_DR(0x15C2FF, 1.0));
                 }
             }else if (self.complete >= 0.575) {
-                //必定绘制 第三个圆
+                //必定绘制 第二个圆
                 drawPointAtRect(fourthPoint,ctx,UIColorFromRGB_DR(0x00FFD5, 1).CGColor);
                 if (self.complete > 0.625 && self.complete < 0.775) {
-                    //绘制第三条线
+                    //绘制第二条线
                     if (self.complete<0.7) {
                         CGFloat scale = (self.complete-0.625)/0.075;
                         drawLineInContextFromStartPointAndEndPointWithScale(ctx, fourthPoint, secondPoint, scale,UIColorFromRGB_DR(0x00FFD5, 1));

@@ -36,13 +36,15 @@ static const NSTimeInterval defaultDuration = 0.5f;
         }
     });
 }
+
 - (NSTimeInterval)timeInterval{
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
 }
+
 - (void)setTimeInterval:(NSTimeInterval)timeInterval{
     objc_setAssociatedObject(self, @selector(timeInterval), @(timeInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
 }
+
 //当我们按钮点击事件 sendAction 时  将会执行  mySendAction
 - (void)mySendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{
     if (self.isIgnore) {
@@ -62,19 +64,23 @@ static const NSTimeInterval defaultDuration = 0.5f;
     self.isIgnoreEvent = YES;
     [self mySendAction:action to:target forEvent:event];
 }
+
 //runtime 动态绑定 属性
 - (void)setIsIgnoreEvent:(BOOL)isIgnoreEvent{
     // 注意BOOL类型 需要用OBJC_ASSOCIATION_RETAIN_NONATOMIC 不要用错，否则set方法会赋值出错
     objc_setAssociatedObject(self, @selector(isIgnoreEvent), @(isIgnoreEvent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
 - (BOOL)isIgnoreEvent{
     //_cmd == @select(isIgnore); 和set方法里一致
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
+
 - (void)setIsIgnore:(BOOL)isIgnore{
     // 注意BOOL类型 需要用OBJC_ASSOCIATION_RETAIN_NONATOMIC 不要用错，否则set方法会赋值出错
     objc_setAssociatedObject(self, @selector(isIgnore), @(isIgnore), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
 - (BOOL)isIgnore{
     //_cmd == @select(isIgnore); 和set方法里一致
     return [objc_getAssociatedObject(self, _cmd) boolValue];

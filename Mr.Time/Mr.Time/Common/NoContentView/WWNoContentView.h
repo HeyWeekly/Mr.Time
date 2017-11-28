@@ -18,5 +18,5 @@ typedef NS_ENUM(NSInteger, NoContentType) {
 
 /** 无数据占位图的类型 */
 @property (nonatomic,assign) NSInteger type;
-
+@property (nonatomic, strong) UIColor *ContentColor;
 @end

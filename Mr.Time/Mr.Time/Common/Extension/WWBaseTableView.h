@@ -10,6 +10,7 @@
 
 @interface WWBaseTableView : UITableView
 @property (nonatomic, copy) void (^noContentViewTapedBlock)();
+@property (nonatomic, strong) UIColor *noContentColor;
 - (void)showEmptyViewWithType:(NSInteger)emptyViewType andFrame:(CGRect)frame;
 - (void)removeEmptyView;
 @end

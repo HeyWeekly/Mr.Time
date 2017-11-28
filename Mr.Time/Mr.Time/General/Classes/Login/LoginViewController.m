@@ -75,6 +75,7 @@
     req.scope = @"snsapi_userinfo";
     req.state = @"App";
     [WXApi sendReq:req];
+    [WWHUD showProgress:nil inView:self.view];
 }
 
 //微信回调通知
@@ -84,6 +85,7 @@
      userModel = [WWUserModel yy_modelWithDictionary:[user valueForKey:@"result"]];
     [userModel saveAccount];
     dispatch_sync(dispatch_get_main_queue(), ^(){
+        [WWHUD hide];
          if ([[user valueForKey:@"code"] integerValue] == 1) {
              WWLoginSettingInfoVC *vc = [[WWLoginSettingInfoVC alloc]init];
              [self.navigationController pushViewController:vc animated:YES];

@@ -24,6 +24,11 @@
     return self;
 }
 
+- (void)setContentColor:(UIColor *)ContentColor {
+    _ContentColor = ContentColor;
+    self.backgroundColor = ContentColor;
+}
+
 - (void)setupSubviews{
     self.imageView = [[UIImageView alloc]init];
     [self addSubview:self.imageView];

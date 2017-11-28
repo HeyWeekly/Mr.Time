@@ -32,7 +32,7 @@
 
 #pragma mark - delegate
 - (void)cellWWCardSlideDidSelected:(NSInteger)selectIndex {
-    WWMessageVC *vc = [[WWMessageVC alloc]initWithMettoId:self.modelArray[selectIndex].aid.integerValue];
+    WWMessageVC *vc = [[WWMessageVC alloc]initWithMettoId:self.modelArray[selectIndex].age.integerValue];
     vc.year = self.modelArray[selectIndex].age.integerValue;
     [self.navigationController pushViewController:vc animated:YES];
 }

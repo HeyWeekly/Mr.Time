@@ -53,7 +53,7 @@ static WWErrorView* instance = nil;
     self.recommentView.alpha = 0.75;
     self.recommentView.layer.cornerRadius = 5;
     self.recommentView.textAlignment = NSTextAlignmentCenter;
-    NSMutableAttributedString* mAttr = [[NSMutableAttributedString alloc] initWithString:showLabel?showLabel:@"" attributes:@{NSFontAttributeName:[UIFont fontWithName:kFont_Regular size:14*screenRate],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    NSMutableAttributedString* mAttr = [[NSMutableAttributedString alloc] initWithString:showLabel?showLabel:@"" attributes:@{NSFontAttributeName:[UIFont fontWithName:kFont_Regular size:14*screenRate],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.recommentView.attributedText = mAttr.copy;
     CGSize size = [mAttr boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
     size = CGSizeMake(size.width + 30*screenRate, size.height + 20*screenRate);
@@ -77,7 +77,7 @@ static WWErrorView* instance = nil;
         UIView *errorView = [[UIView alloc]init];
         UILabel *errorLabel = [[UILabel alloc]init];
         errorLabel.text = content;
-        errorLabel.textColor = [UIColor blackColor];
+        errorLabel.textColor = [UIColor whiteColor];
         if (type && type.integerValue == MainNavErrorTypeSmall) {
             errorView.frame = CGRectMake(0, -20, KWidth, 20);
             errorView.backgroundColor = [UIColor colorWithRed:254/255.0 green:215/255.0 blue:0/255.0 alpha:1];

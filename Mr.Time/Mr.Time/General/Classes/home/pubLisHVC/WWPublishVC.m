@@ -131,7 +131,6 @@
 }
 
 - (void)publishClick {
-    NSString *url = nil;
     if (self.isPublish) {
         if (self.yearsField.text.length <= 0 && self.inputTextView.text.length <= 0) {
             [WWHUD showMessage:@"请填写年龄和箴言" inView:self.view];
@@ -162,31 +161,19 @@
             }
         }
     }
-    if (self.isPublish) {
-        url = postMotto;
         if (self.inputTextView.text.length <= 0) {
             [WWHUD showMessage:@"请填写箴言" inView:self.view];
             return;
         }
-    }else {
-        url = postComment;
-        if (self.inputTextView.text.length <= 0) {
-            [WWHUD showMessage:@"请填写评论" inView:self.view];
-            return;
-        }
-    }
+    
     if (self.inputTextView.text.length > 119) {
         [WWHUD showMessage:@"内容限制119以内" inView:self.view];
         return;
     }
     
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
-        request.api = url;
-        if (self.isPublish) {
-            request.parameters = @{@"content": self.inputTextView.text,@"age":@(self.yearsField.text.integerValue)};
-        }else {
-            request.parameters = @{@"cmt": self.inputTextView.text,@"apthmId":@(self.mettoId)};
-        }
+        request.api = postMotto;
+        request.parameters = @{@"content": self.inputTextView.text,@"age": self.isPublish ? @(self.yearsField.text.integerValue) : @(self.yearsNum)};
         request.httpMethod = kXMHTTPMethodPOST;
     } onSuccess:^(id  _Nullable responseObject) {
         [self.navigationController popViewControllerAnimated:YES];

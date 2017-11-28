@@ -23,12 +23,17 @@
     }
     
     _noContentView = [[WWNoContentView alloc]initWithFrame:frame];
+    _noContentView.backgroundColor = self.noContentColor;
     [self addSubview:_noContentView];
     _noContentView.type = emptyViewType;
     
     [_noContentView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(noContentViewDidTaped:)]];
 }
 
+- (void)setNoContentColor:(UIColor *)noContentColor {
+    _noContentColor = noContentColor;
+    _noContentView.ContentColor = self.noContentColor;
+}
 
 - (void)removeEmptyView{
     [_noContentView removeFromSuperview];

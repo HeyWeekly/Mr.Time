@@ -71,6 +71,11 @@ __strong typeof(weakSelf) strongSelf = weakSelf
 #define kFont_Avenir (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"Avenir-Medium" : @"PingFangSC-Regular")
 #define kFont_DINAlternate (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"DINAlternate-Bold" : @"PingFangSC-Regular")
 
+#define AdjustsScrollViewInsetNever(controller,view) if(@available(iOS 11.0, *)) {view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;} else if([controller isKindOfClass:[UIViewController class]]) {controller.automaticallyAdjustsScrollViewInsets = false;}
+
+#define kWJHeightCoefficient (kWJScreenHeight == 812.0 ? 667.0/667.0 : kWJScreenHeight/667.0)
+#define SafeAreaTopHeight (kWJScreenHeight == 812.0 ? 88 : 64)
+#define SafeAreaBottomHeight (kWJScreenHeight == 812.0 ? 34 : 0)
 /// 预加载条件
 #define CanRefresh scrollView.contentOffset.y + scrollView.height*2 >= scrollView.contentSize.height && scrollView.contentSize.height > 0 && !self.isLoading
 

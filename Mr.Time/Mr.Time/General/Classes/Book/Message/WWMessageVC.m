@@ -11,6 +11,9 @@
 #import "WWMessageDetailVCViewController.h"
 #import "WWMessageModel.h"
 #import "WWBaseTableView.h"
+#import "WWHomeBookModel.h"
+#import "WWCollectButton.h"
+#import "WWNewMessageVC.h"
 
 @interface MessageHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) UIImageView *backImage;
@@ -18,24 +21,26 @@
 
 @protocol MessageCellDelegate <NSObject>
 - (void)moreClickAid:(NSString *)aid withContnet:(NSString *)content andOpenid:(NSString *)openid;
+- (void)yearsBookCellLikeIndex:(NSInteger)index;
 @end
 
 @interface MessageCell : UITableViewCell
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, strong) UILabel *nameLbael;
-@property (nonatomic, strong) UIImageView *likeImage;
+@property (nonatomic, strong) WWCollectButton *likeImage;
 @property (nonatomic, strong) UILabel *likeNum;
 @property (nonatomic, strong) UIView *sepLine;
-@property (nonatomic, strong) WWMessageDetailModel *model;
+@property (nonatomic, strong) WWHomeBookModel *model;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic,weak) id <MessageCellDelegate> delegate;
+@property (nonatomic, assign) BOOL islike;
 @end
 
 @interface WWMessageVC ()<UITableViewDelegate,UITableViewDataSource,MessageCellDelegate>
 @property (nonatomic, strong) WWNavigationVC *nav;
 @property (nonatomic, strong) WWBaseTableView *tableView;
 @property (nonatomic, assign) NSInteger mettoId;
-@property (nonatomic, strong) NSMutableArray <WWMessageDetailModel *> *messageModelArray;
+@property (nonatomic, strong) NSMutableArray<WWHomeBookModel*> *messageModelArray;
 @property (nonatomic, strong) NSMutableArray <WWHotMessageDetailModel *> *hotMessageModelArray;
 @property (nonatomic, strong) NSNumber *index;
 @end
@@ -65,34 +70,31 @@
 }
 
 #pragma mark - network
-- (void)loadHotMessage {
+- (void)loadData {
     WEAK_SELF;
     [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
-        request.api = getNewMessage;
+        request.api = getYearsMetto;
         request.httpMethod = kXMHTTPMethodGET;
-        request.parameters = @{@"apthmId":@(self.mettoId),@"page":weakSelf.index,@"size":@(200)};
+        request.parameters = @{@"age":@(self.mettoId),@"page":weakSelf.index,@"size":@(20)};
     } onSuccess:^(id  _Nullable responseObject) {
-        WWJsonMessageModel *model = [WWJsonMessageModel yy_modelWithJSON:responseObject];
+        WWHomeJsonBookModel *model = [WWHomeJsonBookModel yy_modelWithJSON:responseObject];
         [weakSelf.tableView.mj_header endRefreshing];
-//        [weakSelf.tableView.mj_footer endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
         if ([model.code isEqualToString:@"1"]) {
-//            if (model.result.lastest_cmts==0) {
-//                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-//                [weakSelf.tableView reloadData];
-//                return ;
-//            }
+            if (model.result.count==0 && ![weakSelf.index isEqual:@(0)]) {
+                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                [weakSelf.tableView reloadData];
+                return ;
+            }
             if ([weakSelf.index isEqual:@0]) {
                 [weakSelf.messageModelArray removeAllObjects];
-                [weakSelf.hotMessageModelArray removeAllObjects];
             }
             if (!weakSelf.messageModelArray || [weakSelf.index isEqual:@0] || !weakSelf.messageModelArray.count) {
-                weakSelf.messageModelArray = model.result.lastest_cmts;
-                weakSelf.hotMessageModelArray = model.result.hot_cmts;
+                weakSelf.messageModelArray = model.result;
+            }else {
+                [weakSelf.messageModelArray addObjectsFromArray:model.result];
             }
-//            }else {
-//                [weakSelf.messageModelArray addObjectsFromArray:model.result.lastest_cmts];
-//            }
-            if (weakSelf.messageModelArray.count == 0) {
+            if (weakSelf.messageModelArray.count == 0 && [weakSelf.index isEqual:@(0)]) {
                 [weakSelf.tableView showEmptyViewWithType:1 andFrame:CGRectMake(0, 0, KWidth, KHeight)];
             }
             [weakSelf.tableView reloadData];
@@ -155,8 +157,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    WWMessageDetailModel *model =self.messageModelArray[indexPath.row];
-    WWMessageDetailVCViewController *vc = [[WWMessageDetailVCViewController alloc]initWithAge:self.year comment:model.content authAge:model.age authName:model.nickname favoId:model.cid.integerValue favoCount:model.favourCnt source:@"留言列表"];
+    WWHomeBookModel *model =self.messageModelArray[indexPath.row];
+    WWNewMessageVC *vc = [[WWNewMessageVC alloc]initWithMettoId:model.aid.integerValue withContent:model.content withPersonInfo:model.authorAge withName:model.nickname withFavCount:model.enshrineCnt withYear:model.age];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -204,10 +206,21 @@
         }
         request.httpMethod = kXMHTTPMethodPOST;
     } onSuccess:^(id  _Nullable responseObject) {
-        [weakSelf loadHotMessage];
+        [weakSelf loadData];
         [WWHUD showMessage:@"操作成功！" inView:self.view];
     } onFailure:^(NSError * _Nullable error) {
         [WWHUD showMessage:@"操作失败，请重试~" inView:self.view];
+    } onFinished:nil];
+}
+
+- (void)yearsBookCellLikeIndex:(NSInteger)index {
+    [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
+        request.api = likeMetto;
+        request.parameters = @{@"apthmId":@(index)};
+        request.httpMethod = kXMHTTPMethodPOST;
+    } onSuccess:^(id  _Nullable responseObject) {
+    } onFailure:^(NSError * _Nullable error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"收藏失败，请稍后再试~"}];
     } onFinished:nil];
 }
 
@@ -237,14 +250,14 @@
         WEAK_SELF;
         _tableView.mj_header = [WWRefreshHeaderView headerWithRefreshingBlock:^{
             weakSelf.index = @(0);
-            [weakSelf loadHotMessage];
+            [weakSelf loadData];
         }];
-//        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//            NSInteger tempIndex = weakSelf.index.integerValue;
-//            tempIndex ++;
-//            weakSelf.index = [NSNumber numberWithInteger:tempIndex];
-//            [weakSelf loadHotMessage];
-//        }];
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            NSInteger tempIndex = weakSelf.index.integerValue;
+            tempIndex ++;
+            weakSelf.index = [NSNumber numberWithInteger:tempIndex];
+            [weakSelf loadData];
+        }];
     }
     return _tableView;
 }
@@ -271,7 +284,7 @@
     return self;
 }
 
-- (void)setModel:(WWMessageDetailModel *)model {
+- (void)setModel:(WWHomeBookModel *)model {
     _model = model;
     self.messageLabel.text = model.content;
     self.messageLabel.left = 20*screenRate;
@@ -280,7 +293,7 @@
     [self addSubview:self.messageLabel];
     [self.messageLabel sizeToFit];
     
-    self.nameLbael.text = [NSString stringWithFormat:@"——来自 %@岁 的%@",model.age,model.nickname];
+    self.nameLbael.text = [NSString stringWithFormat:@"——来自 %@岁 的%@",model.authorAge,model.nickname];
     [self.nameLbael sizeToFit];
     self.nameLbael.left = 20*screenRate;
     self.nameLbael.top = self.messageLabel.bottom + 12*screenRate;
@@ -291,16 +304,24 @@
     self.moreBtn.right = KWidth - 20*screenRate;
     self.moreBtn.top = self.nameLbael.top-2*screenRate;
     
-    self.likeNum.text = model.favourCnt;
+    self.likeNum.text = model.enshrineCnt;
     [self.likeNum sizeToFit];
     self.likeNum.right = self.moreBtn.left - 15*screenRate;
     self.likeNum.top = self.nameLbael.top;
     [self addSubview:self.likeNum];
-    
+        
+    [self addSubview:self.likeImage];
     [self.likeImage sizeToFit];
     self.likeImage.right = self.likeNum.left - 5*screenRate;
-    self.likeImage.top = self.nameLbael.top + 2*screenRate;
-    [self addSubview:self.likeImage];
+    self.likeImage.top = self.nameLbael.top - 8*screenRate;
+    if (model.enshrined.integerValue > 0) {
+        [self.likeImage setFavo:YES withAnimate:NO];
+        self.islike = YES;
+    }else {
+        [self.likeImage setFavo:NO withAnimate:NO];
+        self.islike = NO;
+    }
+    [self.likeImage addTarget:self action:@selector(likeClick) forControlEvents:UIControlEventTouchUpInside];
     
     [self.sepLine sizeToFit];
     self.sepLine.left = 20 *screenRate;
@@ -311,9 +332,25 @@
     model.cellHeight = self.sepLine.bottom;
 }
 
+- (void)likeClick {
+    self.islike = !self.islike;
+    if (self.islike) {
+        [self.likeImage setFavo:YES withAnimate:YES];
+        self.likeNum.text = [NSString stringWithFormat:@"%ld",self.likeNum.text.integerValue+1];
+    }else {
+        [WWHUD showMessage:@"暂不支持取消哟~" inView:self];
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(yearsBookCellLikeIndex:)]) {
+        [self.delegate yearsBookCellLikeIndex:self.model.aid.integerValue];
+    }
+}
+
 - (void)moreClick {
     if ([self.delegate respondsToSelector:@selector(moreClickAid:withContnet:andOpenid:)]) {
-        [self.delegate moreClickAid:self.model.cid withContnet:self.model.content andOpenid:self.model.userOpenid];
+        [self.delegate moreClickAid:self.model.aid withContnet:self.model.content andOpenid:nil];
+//        [self.delegate moreClickAid:self.model.cid withContnet:self.model.content andOpenid:self.model.userOpenid];
     }
 }
 
@@ -338,10 +375,11 @@
     return _nameLbael;
 }
 
-- (UIImageView *)likeImage {
-    if (_likeImage == nil) {
-        _likeImage = [[UIImageView alloc]init];
-        _likeImage.image = [UIImage imageNamed:@"userLike"];
+- (WWCollectButton *)likeImage {
+    if (!_likeImage) {
+        _likeImage = [[WWCollectButton alloc] init];
+        _likeImage.imageView.contentMode = UIViewContentModeCenter;
+        _likeImage.favoType = 2;
     }
     return _likeImage;
 }
@@ -371,8 +409,6 @@
     }
     return _moreBtn;
 }
-
-
 @end
 
 

@@ -28,6 +28,7 @@
 @property (nonatomic, copy) NSString *pubTime;
 @property (nonatomic, copy) NSString *userOpenid;
 @property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, copy) NSString *headImageUrl;
 @end
 
 @interface WWMessageModel : NSObject

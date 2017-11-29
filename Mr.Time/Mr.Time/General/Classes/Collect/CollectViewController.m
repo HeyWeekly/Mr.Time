@@ -134,7 +134,7 @@
 #pragma mark - 懒加载
 - (CardView *)cardView {
     if (!_cardView) {
-        _cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 30, KWidth, KHeight-30-49)];
+        _cardView = [[CardView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight+10, KWidth, KHeight-SafeAreaTopHeight-59)];
         _cardView.collectionView.dataSource = self;
         WEAK_SELF;
         _cardView.collectionView.mj_header = [WWRefreshHeaderView headerWithRefreshingBlock:^{
@@ -166,7 +166,7 @@
 
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
-        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
+        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, KWidth, 44)];
         _nav.backBtn.hidden = YES;
         _nav.navTitle.text = @"收藏";
     }

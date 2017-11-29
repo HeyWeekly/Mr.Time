@@ -260,7 +260,7 @@
 #pragma mark - lazy
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
-        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
+        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, KWidth, 44)];
         _nav.backBtn.hidden = NO;
         [_nav.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
         _nav.navTitle.text = nil;

@@ -8,6 +8,7 @@
 
 #import "WWPublishVC.h"
 #import <YYText/YYText.h>
+#import "WWShareSucceedView.h"
 
 @interface WWPublishVC ()<YYTextViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) WWNavigationVC *nav;
@@ -21,6 +22,7 @@
 @property (nonatomic, assign) BOOL isSelect;
 @property (nonatomic, strong) UITextField *yearsField;
 @property (nonatomic, assign) NSUInteger yearsNum;
+@property (nonatomic, strong) WWShareSucceedView *sucView;
 @end
 
 @implementation WWPublishVC
@@ -82,10 +84,14 @@
         self.yearsLbale.top = 20*screenRate;
     }
     
-    [self.containerView addSubview:self.pubLish];
     [self.pubLish sizeToFit];
-    self.pubLish.bottom = self.containerView.bottom -25*screenRate;
+    if (UIScreen.mainScreen.bounds.size.height == 812) {
+        self.pubLish.bottom = self.containerView.bottom -50*screenRate;
+    }else {
+        self.pubLish.bottom = self.containerView.bottom -25*screenRate;
+    }
     self.pubLish.centerX = self.containerView.centerX-20*screenRate;
+    [self.containerView addSubview:self.pubLish];
     
     [self.containerView addSubview:self.sepLine];
     [self.sepLine sizeToFit];
@@ -131,6 +137,7 @@
 }
 
 - (void)publishClick {
+    WEAK_SELF;
     if (self.isPublish) {
         if (self.yearsField.text.length <= 0 && self.inputTextView.text.length <= 0) {
             [WWHUD showMessage:@"请填写年龄和箴言" inView:self.view];
@@ -176,9 +183,20 @@
         request.parameters = @{@"content": self.inputTextView.text,@"age": self.isPublish ? @(self.yearsField.text.integerValue) : @(self.yearsNum)};
         request.httpMethod = kXMHTTPMethodPOST;
     } onSuccess:^(id  _Nullable responseObject) {
-        [self.navigationController popViewControllerAnimated:YES];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"postMetto" object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布成功"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"postMetto" object:nil userInfo:nil];
+        weakSelf.sucView = [[WWShareSucceedView alloc]init];
+        weakSelf.sucView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-80)/2,([UIScreen mainScreen].bounds.size.height-80)/2, 80, 80);
+        [weakSelf.view addSubview:weakSelf.sucView];
+        [weakSelf.sucView processSucceed];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.sucView removeFromSuperview];
+            for (UIView* view in weakSelf.view.subviews) {
+                if ([[view class] isSubclassOfClass:[WWShareSucceedView class]]) {
+                    [view removeFromSuperview];
+                }
+            }
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        });
     } onFailure:^(NSError * _Nullable error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_MainNavShowRecomment object:nil userInfo:@{kUserInfo_MainNavRecommentMsg:@"发布失败，服务器可能挂了~"}];
     } onFinished:nil];
@@ -199,7 +217,7 @@
 #pragma mark - lazyload
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
-        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
+        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, KWidth, 44)];
         _nav.backBtn.hidden = NO;
         [_nav.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
         _nav.navTitle.text = @"发布";

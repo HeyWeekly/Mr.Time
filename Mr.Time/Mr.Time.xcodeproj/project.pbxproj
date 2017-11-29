@@ -227,6 +227,8 @@
 		FF61E0C21E9BBE76000E68F0 /* Mr_TimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF61E0C11E9BBE76000E68F0 /* Mr_TimeUITests.m */; };
 		FF66535F1F8D2867001F38B8 /* WWAboutMe.m in Sources */ = {isa = PBXBuildFile; fileRef = FF66535E1F8D2867001F38B8 /* WWAboutMe.m */; };
 		FF73DF8A1FCD68870070E9CF /* WWMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF73DF891FCD68870070E9CF /* WWMessageView.m */; };
+		FF73DF8D1FCEAD8B0070E9CF /* userYearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF73DF8B1FCEAD8A0070E9CF /* userYearsOld@2x.png */; };
+		FF73DF8E1FCEAD8B0070E9CF /* userYearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF73DF8C1FCEAD8B0070E9CF /* userYearsOld@3x.png */; };
 		FFA549231FA70D470067AF8D /* WWBlankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA549221FA70D470067AF8D /* WWBlankVC.m */; };
 		FFB5AB561FA5B912006C907A /* WWRegisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5AB551FA5B912006C907A /* WWRegisVC.m */; };
 		FFB5F9F51F6E17FE00D34F35 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB5F9F41F6E17FE00D34F35 /* MBProgressHUD.m */; };
@@ -240,8 +242,6 @@
 		FFBED38A1F6BAA4A005C239E /* WWNoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBED3891F6BAA4A005C239E /* WWNoContentView.m */; };
 		FFBED3911F6BB183005C239E /* WWBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBED3901F6BB183005C239E /* WWBaseTableView.m */; };
 		FFBED3941F6BB3F2005C239E /* WWUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */; };
-		FFBED3971F6BBAD0005C239E /* userYearsOld@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */; };
-		FFBED3981F6BBAD0005C239E /* userYearsOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */; };
 		FFDDE2031F7F9697001AD891 /* WWCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDDE2021F7F9697001AD891 /* WWCollectionModel.m */; };
 		FFDDE2111F8CA0CD001AD891 /* WWYearsBook.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDDE2101F8CA0CD001AD891 /* WWYearsBook.m */; };
 		FFFF2F921F8CB59400E2614E /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF10A31D1F8CB41300537C78 /* libWeChatSDK.a */; };
@@ -581,6 +581,8 @@
 		FF66535E1F8D2867001F38B8 /* WWAboutMe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWAboutMe.m; sourceTree = "<group>"; };
 		FF73DF881FCD68870070E9CF /* WWMessageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWMessageView.h; sourceTree = "<group>"; };
 		FF73DF891FCD68870070E9CF /* WWMessageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWMessageView.m; sourceTree = "<group>"; };
+		FF73DF8B1FCEAD8A0070E9CF /* userYearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@2x.png"; sourceTree = "<group>"; };
+		FF73DF8C1FCEAD8B0070E9CF /* userYearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@3x.png"; sourceTree = "<group>"; };
 		FFA549211FA70D470067AF8D /* WWBlankVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWBlankVC.h; sourceTree = "<group>"; };
 		FFA549221FA70D470067AF8D /* WWBlankVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWBlankVC.m; sourceTree = "<group>"; };
 		FFB5AB541FA5B912006C907A /* WWRegisVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWRegisVC.h; sourceTree = "<group>"; };
@@ -604,8 +606,6 @@
 		FFBED3901F6BB183005C239E /* WWBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseTableView.m; sourceTree = "<group>"; };
 		FFBED3921F6BB3F2005C239E /* WWUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWUserInfoModel.h; sourceTree = "<group>"; };
 		FFBED3931F6BB3F2005C239E /* WWUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWUserInfoModel.m; sourceTree = "<group>"; };
-		FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@3x.png"; sourceTree = "<group>"; };
-		FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userYearsOld@2x.png"; sourceTree = "<group>"; };
 		FFCAF57A1F91264B00690FB4 /* XZMRefreshConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "\U001aXZMRefreshConst.m"; sourceTree = "<group>"; };
 		FFDDE2011F7F9697001AD891 /* WWCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWCollectionModel.h; sourceTree = "<group>"; };
 		FFDDE2021F7F9697001AD891 /* WWCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWCollectionModel.m; sourceTree = "<group>"; };
@@ -931,8 +931,8 @@
 		C0A69F301EE7984500DB4678 /* userView */ = {
 			isa = PBXGroup;
 			children = (
-				FFBED3951F6BBAD0005C239E /* userYearsOld@3x.png */,
-				FFBED3961F6BBAD0005C239E /* userYearsOld@2x.png */,
+				FF73DF8B1FCEAD8A0070E9CF /* userYearsOld@2x.png */,
+				FF73DF8C1FCEAD8B0070E9CF /* userYearsOld@3x.png */,
 				FFBED37C1F6BA866005C239E /* usernoData@3x.png */,
 				FFBED37D1F6BA866005C239E /* usernoData@2x.png */,
 				FFBED37E1F6BA866005C239E /* usernoMore@3x.png */,
@@ -1604,6 +1604,7 @@
 				C0CBA6741F60039F008DC3B9 /* commentYearBg4@3x.png in Resources */,
 				C089B2771F00E81F00648EB4 /* aboutus@3x.png in Resources */,
 				C089B24B1EFFBC6C00648EB4 /* Wechat@3x.png in Resources */,
+				FF73DF8D1FCEAD8B0070E9CF /* userYearsOld@2x.png in Resources */,
 				FF61E0AC1E9BBE76000E68F0 /* LaunchScreen.storyboard in Resources */,
 				C0CBA6781F60039F008DC3B9 /* commentYearBg6@3x.png in Resources */,
 				FF340B881EA0A04A00B4DB39 /* userNormal@3x.png in Resources */,
@@ -1627,6 +1628,7 @@
 				C07ABFD61F39F04300EBED61 /* setingNickName@2x.png in Resources */,
 				C089B27E1F00F05100648EB4 /* userNoCollect@2x.png in Resources */,
 				C089B2791F00E81F00648EB4 /* cleardelete@3x.png in Resources */,
+				FF73DF8E1FCEAD8B0070E9CF /* userYearsOld@3x.png in Resources */,
 				C0CBA68C1F60039F008DC3B9 /* contentYearBg6@3x.png in Resources */,
 				C089B2831F00F05A00648EB4 /* userCollect@3x.png in Resources */,
 				C0E8EDF81EFFA06D0034570D /* navrightBtn@3x.png in Resources */,
@@ -1672,14 +1674,12 @@
 				C0CBA66B1F60039F008DC3B9 /* commentYearBg0@2x.png in Resources */,
 				C0CBA6871F60039F008DC3B9 /* contentYearBg4@2x.png in Resources */,
 				FFBED3801F6BA866005C239E /* usernoData@3x.png in Resources */,
-				FFBED3981F6BBAD0005C239E /* userYearsOld@2x.png in Resources */,
 				C089B27F1F00F05100648EB4 /* userNoCollect@3x.png in Resources */,
 				C07ABFDB1F39F24F00EBED61 /* nextBirthday@2x.png in Resources */,
 				C07ABFE21F3C2D8900EBED61 /* tellMeBirthday@2x.png in Resources */,
 				C0CBA6711F60039F008DC3B9 /* commentYearBg3@2x.png in Resources */,
 				C0A69F3B1EE79CCC00DB4678 /* Setting icon@3x.png in Resources */,
 				C0D48ACB1EFE99A100B92549 /* selectLock@2x.png in Resources */,
-				FFBED3971F6BBAD0005C239E /* userYearsOld@3x.png in Resources */,
 				C0E8EDFE1EFFA5350034570D /* bookOval@2x.png in Resources */,
 				C089B2381EFFB8CC00648EB4 /* notwhere@2x.png in Resources */,
 				FFBED3831F6BA866005C239E /* usernoMore@2x.png in Resources */,
@@ -2015,7 +2015,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2054,7 +2054,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

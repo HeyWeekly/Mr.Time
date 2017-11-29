@@ -41,7 +41,7 @@
     [self configNetwork];
     self.view.backgroundColor = viewBackGround_Color;
     NSArray *imagesURLStrings = @[@"",@""];
-    _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 40, KWidth, 140*screenRate) delegate:self placeholderImage:nil];
+    _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, SafeAreaTopHeight+20, KWidth, 140*screenRate) delegate:self placeholderImage:nil];
     _bannerView.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
     _bannerView.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     _bannerView.imageURLStringsGroup = imagesURLStrings;
@@ -54,7 +54,7 @@
     [self.view addSubview:self.puslishBtn];
     [self.puslishBtn sizeToFit];
     self.puslishBtn.centerX = self.view.centerX;
-    self.puslishBtn.bottom = self.view.bottom - 10*screenRate - 49;
+    self.puslishBtn.bottom = self.view.bottom - 10*screenRate - 49 - SafeAreaBottomHeight;
     
     [self creatBackView];
     [self creatYearsView];

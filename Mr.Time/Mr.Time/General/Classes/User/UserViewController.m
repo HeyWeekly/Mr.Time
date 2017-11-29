@@ -119,7 +119,7 @@
     [self.view addSubview:self.backheadImage];
     [self.backheadImage sizeToFit];
     self.backheadImage.left = 25*screenRate;
-    self.backheadImage.top = 50*screenRate;
+    self.backheadImage.top = SafeAreaTopHeight + 30*screenRate;
     [self.backheadImage sizeToFit];
     
     [self.view addSubview:self.setting];
@@ -363,7 +363,7 @@
 
 - (UIImageView *)headImage {
     if (_headImage == nil) {
-        _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(32.8*screenRate, 59.8*screenRate, 55, 55)];
+        _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(32.8*screenRate, SafeAreaTopHeight + 39.8*screenRate, 55, 55)];
         _headImage.image = [UIImage imageNamed:@"defaulthead"];
         _headImage.clipsToBounds = YES;
     }
@@ -548,12 +548,12 @@
     self.yearsNum.left = 20*screenRate;
     
     [self.yearsImage sizeToFit];
-    self.yearsImage.left = self.yearsNum.right;
-    self.yearsImage.top = 12*screenRate;
+    self.yearsImage.left = self.yearsNum.right+5*screenRate;
+    self.yearsImage.top = 15*screenRate;
     
     [self.moreBtn sizeToFit];
     self.moreBtn.right = self.containerView.width-25*screenRate;
-    self.moreBtn.top = 15*screenRate;
+    self.moreBtn.top = 18*screenRate;
     
     self.likeNum.text = model.enshrineCnt;
     [self.likeNum sizeToFit];

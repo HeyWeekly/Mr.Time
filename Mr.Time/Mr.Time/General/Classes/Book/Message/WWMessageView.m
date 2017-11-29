@@ -260,7 +260,7 @@
 - (UIView *)maskView{
     if (_maskView == nil) {
         _maskView = [[UIView alloc] init];
-        _maskView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.2];
+        _maskView.backgroundColor = [UIColor clearColor];
     }
     return _maskView;
 }
@@ -291,7 +291,7 @@
     if (_sendBtn == nil) {
         _sendBtn = [[UIButton alloc]init];
         [_sendBtn setTitle:@"发布" forState:UIControlStateNormal];
-        _sendBtn.titleLabel.font = [UIFont fontWithName:kFont_DINAlternate size:14*screenRate];
+        _sendBtn.titleLabel.font = [UIFont fontWithName:kFont_SemiBold size:14*screenRate];
         [_sendBtn setTitleColor:RGBCOLOR(0x15C2FF) forState:UIControlStateNormal];
         [_sendBtn addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
         _sendBtn.enabled = NO;

@@ -75,10 +75,9 @@
     self.containerView.top = self.nav.bottom+15*screenRate;
     self.containerView.width = KWidth;
     
-    
     [self.contentLabel sizeToFit];
     self.contentLabel.left = 20*screenRate;
-    self.contentLabel.top = self.nav.bottom+30*screenRate;
+    self.contentLabel.top = self.nav.bottom+35*screenRate;
     self.contentLabel.width = KWidth-40*screenRate;
     [self.view addSubview:self.contentLabel];
     [self.contentLabel sizeToFit];
@@ -104,11 +103,11 @@
     }
     
     [self.view addSubview:self.sepLine];
-    self.sepLine.frame = CGRectMake(20*screenRate, self.personInfoLabel.bottom+20*screenRate, KWidth-40*screenRate, 1);
+    self.sepLine.frame = CGRectMake(20*screenRate, self.personInfoLabel.bottom+15*screenRate, KWidth-40*screenRate, 1);
     self.containerView.height = self.sepLine.bottom;
     
     [self.view addSubview:self.tableView];
-    self.tableView.frame = CGRectMake(0, self.sepLine.bottom+20*screenRate, KWidth, KHeight - (self.sepLine.bottom+20*screenRate)-50);
+    self.tableView.frame = CGRectMake(0, self.sepLine.bottom+20*screenRate, KWidth, KHeight - (self.sepLine.bottom+20*screenRate)-50-SafeAreaBottomHeight);
     [self.tableView.mj_header beginRefreshing];
     
     [self.view addSubview:self.tabbarView];
@@ -225,7 +224,7 @@
 #pragma mark -懒加载
 - (WWBaseTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[WWBaseTableView alloc] initWithFrame:CGRectMake(0, self.sepLine.bottom+20*screenRate, KWidth, KHeight - (self.sepLine.bottom+20*screenRate))];
+        _tableView = [[WWBaseTableView alloc] initWithFrame:CGRectMake(0, self.sepLine.bottom+20*screenRate, KWidth, KHeight - (self.sepLine.bottom+20*screenRate)-SafeAreaBottomHeight)];
         _tableView.delegate = self;
         _tableView.dataSource  = self;
         _tableView.noContentColor = [UIColor whiteColor];
@@ -315,7 +314,7 @@
 
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
-        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
+        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, KWidth, 44)];
         _nav.backBtn.hidden = NO;
         [_nav.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
         _nav.navTitle.text = [NSString stringWithFormat:@"TO %@ YEARS OLD",self.years];
@@ -337,7 +336,7 @@
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:model.headImageUrl] placeholderImage:[UIImage imageNamed:@"defaulthead"]];
     [self.headImage sizeToFit];
     self.headImage.left = 20*screenRate;
-    self.headImage.top = 20*screenRate;
+    self.headImage.top = 15*screenRate;
     self.headImage.width = 30*screenRate;
     self.headImage.height = 30*screenRate;
     [self addSubview:self.headImage];
@@ -345,7 +344,7 @@
     self.messageLabel.text = model.content;
     [self.messageLabel sizeToFit];
     self.messageLabel.left = self.headImage.right+20*screenRate;
-    self.messageLabel.top = 20*screenRate;
+    self.messageLabel.top = 15*screenRate;
     self.messageLabel.width = KWidth-40*screenRate - self.headImage.right;
     [self.messageLabel sizeToFit];
     [self addSubview:self.messageLabel];
@@ -353,7 +352,7 @@
     self.nameLbael.text = self.nameLbael.text = [NSString stringWithFormat:@"——来自 %@岁 的%@",model.age,model.nickname];
     [self.nameLbael sizeToFit];
     self.nameLbael.left = self.messageLabel.left;
-    self.nameLbael.top = self.messageLabel.bottom+10*screenRate;
+    self.nameLbael.top = self.messageLabel.bottom+12*screenRate;
     [self addSubview:self.nameLbael];
     model.cellHeight = self.nameLbael.bottom+20*screenRate;
 }

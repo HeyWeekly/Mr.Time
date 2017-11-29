@@ -69,6 +69,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconView.image = [UIImage imageNamed:dict[@"iconImage"]];
+        [cell.iconView sizeToFit];
         cell.titleNameLabel.text = dict[@"title"];;
         if (indexPath.row == self.modelArray.count-1) {
             cell.clearLbale.hidden = NO;
@@ -141,7 +142,7 @@
 }
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
-        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 20, KWidth, 44)];
+        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, KWidth, 44)];
         _nav.backBtn.hidden = NO;
         [_nav.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
         _nav.navTitle.text = @"设置";
@@ -234,6 +235,8 @@
     [self.iconView sizeToFit];
     self.iconView.left = 20*screenRate;
     self.iconView.centerY = self.centerY;
+//    self.iconView.width = 15*screenRate;
+//    self.iconView.height = 15*screenRate;
     
     [self addSubview:self.titleNameLabel];
     [self.titleNameLabel sizeToFit];
@@ -250,7 +253,7 @@
 - (UISwitch *)switchLbale {
     if (_switchLbale == nil) {
         _switchLbale = [[UISwitch alloc]init];
-        _switchLbale.onTintColor = RGBCOLOR(0x15C2FF);
+        _switchLbale.onTintColor = RGBCOLOR(0x292929);
         _switchLbale.thumbTintColor = RGBCOLOR(0xA6B1BA);
         _switchLbale.tintColor = RGBCOLOR(0x292929);
         _switchLbale.layer.cornerRadius = 16*screenRate;
@@ -273,6 +276,8 @@
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc]init];
         _iconView.image = [UIImage imageNamed:@"settingSwtch"];
+        _iconView.contentMode = UIViewContentModeScaleAspectFit;
+        _iconView.clipsToBounds = YES;
     }
     return _iconView;
 }

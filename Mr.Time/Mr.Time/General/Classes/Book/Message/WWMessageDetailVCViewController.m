@@ -158,7 +158,7 @@
     [self.view addSubview:self.backBtn];
     [self.backBtn sizeToFit];
     self.backBtn.left = 20;
-    self.backBtn.top = 24;
+    self.backBtn.top = SafeAreaTopHeight;
 }
 
 #pragma mark - 点击事件
@@ -296,7 +296,7 @@
 
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
-        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, 10, KWidth, 44)];
+        _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight-10, KWidth, 44)];
         _nav.backBtn.hidden = YES;
         [_nav.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
         _nav.navTitle.text = @"时间先生";
@@ -306,7 +306,7 @@
 
 - (WWShareView *)shareView {
     if (!_shareView) {
-        _shareView = [[WWShareView alloc]initWithFrame:CGRectMake(0, KHeight - 49, KWidth, 49)];
+        _shareView = [[WWShareView alloc]initWithFrame:CGRectMake(0, KHeight - 49 - SafeAreaBottomHeight, KWidth, 49)];
         [_shareView.download addTarget:self action:@selector(dowloadClick) forControlEvents:UIControlEventTouchUpInside];
         [_shareView.weChat addTarget:self action:@selector(weixinClick) forControlEvents:UIControlEventTouchUpInside];
         [_shareView.moment addTarget:self action:@selector(momentClick) forControlEvents:UIControlEventTouchUpInside];

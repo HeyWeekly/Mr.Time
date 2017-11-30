@@ -1521,7 +1521,7 @@
 					FF61E0981E9BBE76000E68F0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2CSYYV5Z4H;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2011,9 +2011,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2036,8 +2036,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Offape.Mr.Time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "bd1e9ed1-997f-4d4c-bcae-949e4fbe32bb";
+				PROVISIONING_PROFILE_SPECIFIER = timeDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2050,9 +2050,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Offape Technology Co., Ltd. (2CSYYV5Z4H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CSYYV5Z4H;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2075,8 +2075,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Offape.Mr.Time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "bd1e9ed1-997f-4d4c-bcae-949e4fbe32bb";
+				PROVISIONING_PROFILE_SPECIFIER = timeDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Mr.Time/Mr.Time-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

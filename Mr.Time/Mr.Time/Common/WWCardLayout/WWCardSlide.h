@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 //当前选中位置
 @property (nonatomic ,assign, readwrite) NSInteger selectedIndex;
+ //是否分页，默认为true
+@property (nonatomic, assign) BOOL pagingEnabled;
 @property (nonatomic, strong) NSArray<WWHomeBookModel *> *models;
 @property (nonatomic, weak) id<WWCardSlideDelegate>delegate;
 //构造方法

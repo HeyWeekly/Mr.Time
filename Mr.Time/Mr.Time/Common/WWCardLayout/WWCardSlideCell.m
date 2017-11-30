@@ -72,7 +72,11 @@
     self.contentLabel.width = self.bounds.size.width - 50*screenRate;
     [self addSubview:self.contentLabel];
     
-    self.textLabel.top = 378*screenRate;
+    if (UIScreen.mainScreen.bounds.size.height == 812) {
+        self.textLabel.top = self.bounds.size.height - 50*screenRate;
+    }else {
+        self.textLabel.top = 378*screenRate;
+    }
     self.textLabel.left = 25*screenRate;
     self.textLabel.width = self.bounds.size.width - 50*screenRate;
     self.textLabel.height = 20*screenRate;

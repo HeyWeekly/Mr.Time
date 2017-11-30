@@ -40,7 +40,14 @@
     [self setTabbarController]; 
     [self setRootViewController];
     [self.window makeKeyAndVisible];
-
+    
+//    float sysVersion=[[UIDevice currentDevice]systemVersion].floatValue;
+//    if (sysVersion>=8.0) {
+//        　　UIUserNotificationType type=UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
+//　　        UIUserNotificationSettings *setting=[UIUserNotificationSettings settingsForTypes:type categories:nil];
+//        　　[[UIApplication sharedApplication]registerUserNotificationSettings:setting];
+//    }
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = 25;
     return YES;
 }
 

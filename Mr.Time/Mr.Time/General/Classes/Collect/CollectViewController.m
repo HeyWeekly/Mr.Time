@@ -157,13 +157,6 @@
     return _noContentView;
 }
 
-- (NSMutableArray *)dateMutablearray {
-    if (_dateMutablearray == nil) {
-        _dateMutablearray = [NSMutableArray array];
-    }
-    return _dateMutablearray;
-}
-
 - (WWNavigationVC *)nav {
     if (_nav == nil) {
         _nav = [[WWNavigationVC alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, KWidth, 44)];

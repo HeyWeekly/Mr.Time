@@ -11,10 +11,6 @@
 #import "WWCardSlideCell.h"
 #import "WWLabel.h"
 
-//居中卡片宽度与据屏幕宽度比例
-static float CardWidthScale = 0.8f;
-static float CardHeightScale = 0.7f;
-
 @interface WWCardSlide ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WWCardSlideCellDelagate> {
     
     CGFloat _dragStartX;
@@ -31,14 +27,14 @@ static float CardHeightScale = 0.7f;
 
 @implementation WWCardSlide
 
--(instancetype)initWithFrame:(CGRect)frame andModel:(NSArray <WWHomeBookModel* > *)models {
+- (instancetype)initWithFrame:(CGRect)frame andModel:(NSArray <WWHomeBookModel* > *)models {
     if (self = [super initWithFrame:frame]) {
-        [self buildUI];
+        [self setupSubviews];
     }
     return self;
 }
 
--(void)buildUI {
+- (void)setupSubviews {
     [self addCollectionView];
     [self.oneLabel sizeToFit];
     self.oneLabel.left = 25*screenRate;
@@ -69,14 +65,11 @@ static float CardHeightScale = 0.7f;
 
 -(void)addCollectionView {
     WWCardSlideLayout *flowLayout = [[WWCardSlideLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake([self cellWidth],self.bounds.size.height * CardHeightScale)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    [flowLayout setMinimumLineSpacing:[self cellMargin]];
     _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
     _collectionView.showsHorizontalScrollIndicator = false;
     _collectionView.backgroundColor = [UIColor clearColor];
     [_collectionView registerClass:[WWCardSlideCell class] forCellWithReuseIdentifier:@"WWCardSlideCell"];
-    [_collectionView setUserInteractionEnabled:YES];
+    _collectionView.userInteractionEnabled = true;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [self addSubview:_collectionView];
@@ -85,6 +78,7 @@ static float CardHeightScale = 0.7f;
 #pragma mark Setter
 - (void)setModels:(NSArray<WWHomeBookModel *> *)models {
     _models = models;
+    [_collectionView reloadData];
 }
 
 #pragma mark - CollectionDelegate
@@ -110,6 +104,24 @@ static float CardHeightScale = 0.7f;
 }
 
 #pragma mark CollectionDelegate
+//在不使用分页滚动的情况下需要手动计算当前选中位置 -> _selectedIndex
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_pagingEnabled) {return;}
+    if (!_collectionView.visibleCells.count) {return;}
+    if (!scrollView.isDragging) {return;}
+    CGRect currentRect = _collectionView.bounds;
+    currentRect.origin.x = _collectionView.contentOffset.x;
+    for (WWCardSlideCell *card in _collectionView.visibleCells) {
+        if (CGRectContainsRect(currentRect, card.frame)) {
+            NSInteger index = [_collectionView indexPathForCell:card].row;
+            if (index != _selectedIndex) {
+                _selectedIndex = index;
+                [self yearsChangeYearsOld:self.models[_selectedIndex].age.integerValue];
+            }
+        }
+    }
+    
+}
 //手指拖动开始
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     _dragStartX = scrollView.contentOffset.x;
@@ -117,6 +129,7 @@ static float CardHeightScale = 0.7f;
 
 //手指拖动停止
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!_pagingEnabled) {return;}
     _dragEndX = scrollView.contentOffset.x;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self fixCellToCenter];
@@ -132,25 +145,6 @@ static float CardHeightScale = 0.7f;
 }
 
 #pragma mark CollectionDataSource
-//卡片宽度
--(CGFloat)cellWidth {
-    return self.bounds.size.width * CardWidthScale;
-}
-
-//卡片间隔
--(float)cellMargin {
-    return (self.bounds.size.width - [self cellWidth])/4;
-}
-
-//设置左右缩进
--(CGFloat)collectionInset {
-    return self.bounds.size.width/2.0f - [self cellWidth]/2.0f;
-}
-
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, [self collectionInset], 0, [self collectionInset]);
-}
-
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -212,7 +206,7 @@ static float CardHeightScale = 0.7f;
 
 - (void)switchToIndex:(NSInteger)index animated:(BOOL)animated {
     _selectedIndex = index;
-//    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
     [self performDelegateMethod];
 }
 
@@ -220,7 +214,6 @@ static float CardHeightScale = 0.7f;
     if ([_delegate respondsToSelector:@selector(WWCardSlideDidSelectedAt:)]) {
         [_delegate WWCardSlideDidSelectedAt:_selectedIndex];
     }
-    [self yearsChangeYearsOld:self.models[_selectedIndex].age.integerValue];
 }
 
 - (void)yearsChangeYearsOld:(NSInteger)years {
